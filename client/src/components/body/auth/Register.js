@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isEmpty, isEmail, isLength, isMatch} from '../../utils/validation/Validation'
+import './register.css'
 
 
 const initialState = {
     name: '',
+    lastName: '',
+    userName: '',
     email: '',
     password: '',
     cf_password: '',
@@ -17,7 +20,7 @@ const initialState = {
 function Register() {
     const [user, setUser] = useState(initialState)
 
-    const {name, email, password,cf_password, err, success} = user
+    const {name, lastName, userName, email, password,cf_password, err, success} = user
 
     const handleChangeInput = e => {
         const {name, value} = e.target
@@ -41,7 +44,7 @@ function Register() {
 
         try {
             const res = await axios.post('/user/register', {
-                name, email, password
+                name, lastName, userName, email, password
             })
 
             setUser({...user, err: '', success: res.data.msg})
@@ -53,6 +56,16 @@ function Register() {
 
     return (
         <div className="login_page">
+            <div class="container">
+          <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+              <div class="col-lg-5 col-md-6">
+                <h1 class="text-white">Welcome!</h1>
+                <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+              </div>
+            </div>
+          </div>
+        </div>
             <h2>Register</h2>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
@@ -62,6 +75,18 @@ function Register() {
                     <label htmlFor="name">Name</label>
                     <input type="text" placeholder="Enter your name" id="name"
                     value={name} name="name" onChange={handleChangeInput} />
+                </div>
+
+                <div>
+                    <label htmlFor="lastName">Last Name</label>
+                    <input type="text" placeholder="Enter your last name" id="lastName"
+                    value={lastName} name="lastName" onChange={handleChangeInput} />
+                </div>
+
+                <div>
+                    <label htmlFor="userName">User Name</label>
+                    <input type="text" placeholder="Enter your last username" id="userName"
+                    value={userName} name="userName" onChange={handleChangeInput} />
                 </div>
 
                 <div>

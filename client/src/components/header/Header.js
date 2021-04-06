@@ -85,7 +85,7 @@ function Header() {
   }
   const userLinkAdmin = () => {
     return  <UncontrolledDropdown nav>
-    <DropdownToggle className="pr-0" nav>
+    <DropdownToggle  className="pr-0" nav>
       <Media className="align-items-center">
         <span className="avatar avatar-sm rounded-circle">
           <img
@@ -100,8 +100,16 @@ function Header() {
         </Media>
       </Media>
     </DropdownToggle>
-    
+    <DropdownMenu className="dropdown-menu-arrow" right>
+        
+          <DropdownItem to="/dashboard" tag={Link}>
+            <i className="ni ni-settings-gear-65" />
+            <span>Dashboard</span>
+          </DropdownItem>
+
+        </DropdownMenu>
   </UncontrolledDropdown>
+  
 }
 
     const transForm = {

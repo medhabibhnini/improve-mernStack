@@ -14,6 +14,7 @@ import EditUser from '../body/profile/EditUser'
 import Home from '../body/home/Home'
 
 import {useSelector} from 'react-redux'
+import Dashboard from './dashboard/dashboard'
 
 function Body() {
     const auth = useSelector(state => state.auth)
@@ -33,6 +34,7 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
+                <Route path="/dashboard" component={Dashboard} exact />
 
             </Switch>
         </section>

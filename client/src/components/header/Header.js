@@ -9,6 +9,7 @@ import {  DropdownMenu,
   Media } from  "reactstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import dashboardlogo from "../assets/Dashboard.png"
+import improvelogo from "../../assets/img/logo.png"
 function Header() {
     const auth = useSelector(state => state.auth)
 
@@ -84,7 +85,7 @@ function Header() {
   }
   const userLinkAdmin = () => {
     return  <UncontrolledDropdown nav>
-    <DropdownToggle className="pr-0" nav>
+    <DropdownToggle  className="pr-0" nav>
       <Media className="align-items-center">
         <span className="avatar avatar-sm rounded-circle">
           <img
@@ -99,8 +100,16 @@ function Header() {
         </Media>
       </Media>
     </DropdownToggle>
-    
+    <DropdownMenu className="dropdown-menu-arrow" right>
+        
+          <DropdownItem to="/dashboard" tag={Link}>
+            <i className="ni ni-settings-gear-65" />
+            <span>Dashboard</span>
+          </DropdownItem>
+
+        </DropdownMenu>
   </UncontrolledDropdown>
+  
 }
 
     const transForm = {
@@ -109,23 +118,21 @@ function Header() {
     }
 
     return (
-      
-      <div className="main-content">
-      <nav className="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
-    <div className="container px-4">
-      <a className="navbar-brand" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
-        Improve
-      </a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbar-collapse-main">
+     
+        <div class="main-content">
+        <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
+      <div class="container px-4">
+     <Link to="/"> <img alt="..." src={improvelogo} width="200px"/></Link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
 
         <div className="navbar-collapse-header d-md-none">
           <div className="row">
             <div className="col-6 collapse-brand">
               <a href="../index.html">
-                Argon
+                
               </a>
             </div>
             <div className="col-6 collapse-close">
@@ -153,8 +160,8 @@ function Header() {
          : <li className="nav-item">
             <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
             <Link to="/register">
-              <i className="ni ni-circle-08"></i>
-              <span className="nav-link-inner--text">Register</span>
+              
+              <button   className="btn btn-primary" >Register</button>
               </Link>
             </a>
           </li>
@@ -165,8 +172,7 @@ function Header() {
          :<li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/login">
-              <i className="ni ni-key-25"></i>
-              <span className="nav-link-inner--text">Login</span>
+            <button   className="btn btn-primary" >Login</button>
               </Link>
             </a>
           </li>
@@ -179,7 +185,6 @@ function Header() {
  
   </div>
 
-    
     )
 }
 

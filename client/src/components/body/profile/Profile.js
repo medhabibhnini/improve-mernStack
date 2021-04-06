@@ -144,7 +144,7 @@ function Profile() {
      
     
    
-     <div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+     <div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://collectivevaluecreation.co.za/wp-content/uploads/2018/10/my-account-background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
 
        <span className="mask bg-gradient-default opacity-8"></span>
  
@@ -208,7 +208,7 @@ function Profile() {
                  <i className="fas fa-camera"></i>
                        <p>Change</p>
                        <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
-                       <button disabled={loading}  className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
+                       <button   className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
                </div>
              </div>
            </div>

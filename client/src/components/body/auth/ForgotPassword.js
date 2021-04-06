@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {isEmail} from '../../utils/validation/Validation'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
-
+import './ForgotPassword.css';
 const initialState = {
     email: '',
     err: '',
@@ -33,19 +33,68 @@ function ForgotPassword() {
     }
     
     return (
-        <div className="fg_pass">
-            <h2>Forgot Your Password?</h2>
-
-            <div className="row">
+        <body class="bg-default">
+        <div class="main-content">
+      
+          <div class="header bg-primary py-7 py-lg-8">
+            <div class="container">
+              <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                  <div class="col-lg-5 col-md-6">
+                    <h1 class="text-white">Welcome!</h1>
+                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="separator separator-bottom separator-skew zindex-100">
+              <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+              </svg>
+            </div>
+          </div>
+   
+          <div class="container mt--8 pb-5">
+       
+            <div class="row justify-content-center">
+              <div class="col-lg-6 col-md-8">
+                <div class="card bg-secondary shadow border-0">
+                  <div class="card-header bg-transparent pb-5">
+                    <div class="text-center">
+                      <h1>Forget your password ? </h1>
+                    </div>
+                  </div>
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <div class="text-center text-muted mb-4">
+                      <small>Enter your adress mail here</small>
+                    </div>
+                    <form role="form">
+                   
+                      
+                      <div class="form-group">
+                        <div class="input-group input-group-alternative">
+                        
+                          <div className="row">
                 {err && showErrMsg(err)}
                 {success && showSuccessMsg(success)}
 
-                <label htmlFor="email">Enter your email address</label>
-                <input type="email" name="email" id="email" value={email}
-                onChange={handleChangeInput} />
-                <button onClick={forgotPassword}>Verify your email</button>
+                          <input name="email" type="email" id="email" className="form-control" value={email} onChange={handleChangeInput} />
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type="button" onClick={forgotPassword} class="btn btn-primary mt-4">Verify your email</button>
+                      </div>
+                </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+  
+       
+      </body>
     )
 }
 

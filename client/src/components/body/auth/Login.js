@@ -86,7 +86,7 @@ function Login() {
             <div className="row justify-content-center">
               <div className="col-lg-5 col-md-6">
                 <h1 className="text-white">Welcome!</h1>
-                <p className="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                <p className="text-lead text-light">here you can login</p>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@ function Register() {
     }
     
     return (
-        <body class="bg-default">
+
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -64,7 +64,7 @@ function Register() {
                 <div class="row justify-content-center">
                   <div class="col-lg-5 col-md-6">
                     <h1 class="text-white">Welcome!</h1>
-                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                    <p class="text-lead text-light">here you can register</p>
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@ function Register() {
         </div>
   
        
-      </body>
+  
       )
 
     

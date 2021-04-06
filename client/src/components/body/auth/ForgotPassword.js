@@ -33,7 +33,7 @@ function ForgotPassword() {
     }
     
     return (
-        <body class="bg-default">
+    
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -68,23 +68,24 @@ function ForgotPassword() {
                     <div class="text-center text-muted mb-4">
                       <small>Enter your adress mail here</small>
                     </div>
+                    {err && showErrMsg(err)}
+                {success && showSuccessMsg(success)}
                     <form role="form">
                    
                       
-                      <div class="form-group">
-                        <div class="input-group input-group-alternative">
-                        
-                          <div className="row">
-                {err && showErrMsg(err)}
-                {success && showSuccessMsg(success)}
-
-                          <input name="email" type="email" id="email" className="form-control" value={email} onChange={handleChangeInput} />
+                    <div class="form-group mb-3">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                         </div>
+                        <input class="form-control" placeholder="Email" type="email" id="email"
+                      value={email} name="email" onChange={handleChangeInput} />
                       </div>
+                    </div>
                       <div class="text-center">
                         <button type="button" onClick={forgotPassword} class="btn btn-primary mt-4">Verify your email</button>
                       </div>
-                </div>
+              
                     </form>
                   </div>
                 </div>
@@ -94,7 +95,7 @@ function ForgotPassword() {
         </div>
   
        
-      </body>
+  
     )
 }
 

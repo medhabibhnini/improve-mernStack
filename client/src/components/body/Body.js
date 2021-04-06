@@ -12,7 +12,7 @@ import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'
 
 import Home from '../body/home/Home'
-
+import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 
 function Body() {
@@ -30,6 +30,7 @@ function Body() {
                 <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
 
                 <Route path="/user/activate/:activation_token" component={ActivationEmail} exact />
+                <Route path="/advancement" component={isLogged ? Advancement : NotFound} exact />
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />

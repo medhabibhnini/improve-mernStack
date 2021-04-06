@@ -13,14 +13,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter your name!"],
         trim: true,
-        default : '',
+        default : 'test',
 
     },
     lastName: {
         type: String,
         required: [true, "Please enter your name!"],
         trim: true,
-        default : '',
+        default : 'test',
 
     },
     email: {

@@ -8,6 +8,8 @@ import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAc
 import './profile.css'
 const initialState = {
     name: '',
+    lastName:'',
+    userName:'',
     password: '',
     cf_password: '',
     err: '',
@@ -22,7 +24,7 @@ function Profile() {
 
     const {user, isAdmin} = auth
     const [data, setData] = useState(initialState)
-    const {name, password, cf_password, err, success} = data
+    const {name,lastName,userName, password, cf_password, err, success} = data
 
     const [avatar, setAvatar] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -76,6 +78,8 @@ function Profile() {
         try {
             axios.patch('/user/update', {
                 name: name ? name : user.name,
+                lastName:lastName? lastName:user.lastName,
+                userName:userName? userName :user.userName,
                 avatar: avatar ? avatar : user.avatar
             },{
                 headers: {Authorization: token}
@@ -106,7 +110,7 @@ function Profile() {
     }
 
     const handleUpdate = () => {
-        if(name || avatar ) updateInfor()
+        if(name || lastName || userName || avatar ) updateInfor()
         if(password) updatePassword()
     }
 
@@ -232,7 +236,7 @@ function Profile() {
                      <div className="col-lg-6">
                        <div className="form-group focused">
                          <label className="form-control-label" for="input-username">Username</label>
-                         <input type="text" id="input-username" className="form-control form-control-alternative" defaultValue={user.userName}/>
+                         <input type="text" id="input-username" name="userName" className="form-control form-control-alternative" defaultValue={user.userName} onChange={handleChange}/>
                        </div>
                      </div>
                      <div className="col-lg-6">
@@ -246,13 +250,13 @@ function Profile() {
                      <div className="col-lg-6">
                        <div className="form-group focused">
                          <label className="form-control-label" for="input-first-name">First name</label>
-                         <input type="text" id="name" className="form-control form-control-alternative" name="name"  defaultValue={user.name} onChange={handleChange}/>
+                         <input type="text" id="name"  className="form-control form-control-alternative" name="name"  defaultValue={user.name} onChange={handleChange}/>
                        </div>
                      </div>
                      <div className="col-lg-6">
                        <div className="form-group focused">
                          <label className="form-control-label" for="input-last-name">Last name</label>
-                         <input type="text" id="input-last-name" className="form-control form-control-alternative"  defaultValue={user.lastName}/>
+                         <input type="text" id="input-last-name" className="form-control form-control-alternative" name="lastName" defaultValue={user.lastName} onChange={handleChange}/>
                        </div>
                      </div>
                    </div>

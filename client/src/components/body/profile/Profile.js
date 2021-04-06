@@ -132,153 +132,153 @@ function Profile() {
   
         <>
       
-    <br></br>
-    <br></br>
-    <br></br>
-  
-        <div class="main-content">
-      
+      <br></br>
+   <br></br>
+   <br></br>
+ 
+       <div className="main-content">
      
     
-      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+   
+     <div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
 
-        <span class="mask bg-gradient-default opacity-8"></span>
-  
-        <div class="container-fluid d-flex align-items-center">
-          <div class="row">
-            <div class="col-lg-7 col-md-10">
-           
-            </div>
-          </div>
-        </div>
-      </div>
+       <span className="mask bg-gradient-default opacity-8"></span>
+ 
+       <div className="container-fluid d-flex align-items-center">
+         <div className="row">
+           <div className="col-lg-7 col-md-10">
+          
+           </div>
+         </div>
+       </div>
+     </div>
 
-      <div class="container-fluid mt--7">
-        <div class="row">
-          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-              <div class="row justify-content-center">
-                <div class="col-lg-3 order-lg-2">
-                  <div class="card-profile-image">
-                    <a href="#">
-                      <img src={avatar ? avatar : user.avatar} class="rounded-circle"/>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div class="d-flex justify-content-between">
-      
-                </div>
-              </div>
-              <div class="card-body pt-0 pt-md-4">
-                <div class="row">
-                  <div class="col">
-                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
-                      
-                      </div>
-                      <div>
-                       
-                      </div>
-                      <div>
+     <div className="container-fluid mt--7">
+       <div className="row">
+         <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+           <div className="card card-profile shadow">
+             <div className="row justify-content-center">
+               <div className="col-lg-3 order-lg-2">
+                 <div className="card-profile-image">
+                   <a href="#">
+                     <img src={avatar ? avatar : user.avatar} className="rounded-circle"/>
+                   </a>
+                 </div>
+               </div>
+             </div>
+             <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+               <div className="d-flex justify-content-between">
+     
+               </div>
+             </div>
+             <div className="card-body pt-0 pt-md-4">
+               <div className="row">
+                 <div className="col">
+                   <div className="card-profile-stats d-flex justify-content-center mt-md-5">
+                     <div>
                      
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <h3>
-                  {user.name} {user.lastName}<span class="font-weight-light"></span>
-                  </h3>
-                  <div class="h5 font-weight-300">
-                  
-                  </div>
-                  <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>{user.email}
-                  </div>
-                  <div>
-                    <i class="ni education_hat mr-2"></i>University of Computer Science
-                  </div>
-                  <hr class="my-4"/>
-                  <i className="fas fa-camera"></i>
-                        <p>Change</p>
-                        <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
-                        <button disabled={loading}  class="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-8 order-xl-1">
-            <div class="card bg-secondary shadow">
-              <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                  <div class="col-8">
-                    <h3 class="mb-0">My account</h3>
-                  </div>
-                  <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-              {err && showErrMsg(err)}
-            {success && showSuccessMsg(success)}
-            {loading && <h3>Loading.....</h3>}
-                <form>
-                  <h6 class="heading-small text-muted mb-4">User information</h6>
-                  <div class="pl-lg-4">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-username">Username</label>
-                          <input type="text" id="input-username" class="form-control form-control-alternative" defaultValue={user.userName}/>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-email">Email address</label>
-                          <input type="email" id="input-email" class="form-control form-control-alternative"  defaultValue={user.email} disabled/>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-first-name">First name</label>
-                          <input type="text" id="name" class="form-control form-control-alternative" name="name"  defaultValue={user.name} onChange={handleChange}/>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="form-group focused">
-                          <label class="form-control-label" for="input-last-name">Last name</label>
-                          <input type="text" id="input-last-name" class="form-control form-control-alternative"  defaultValue={user.lastName}/>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                    <button disabled={loading}  class="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
-                    </div>
-                  </div>
-               
-        
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br>
- <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                     </div>
+                     <div>
+                      
+                     </div>
+                     <div>
+                    
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div className="text-center">
+                 <h3>
+                 {user.name} {user.lastName}<span className="font-weight-light"></span>
+                 </h3>
+                 <div className="h5 font-weight-300">
+                 
+                 </div>
+                 <div className="h5 mt-4">
+                   <i className="ni business_briefcase-24 mr-2"></i>{user.email}
+                 </div>
+                 <div>
+                   <i className="ni education_hat mr-2"></i>University of Computer Science
+                 </div>
+                 <hr className="my-4"/>
+                 <i className="fas fa-camera"></i>
+                       <p>Change</p>
+                       <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
+                       <button disabled={loading}  className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div className="col-xl-8 order-xl-1">
+           <div className="card bg-secondary shadow">
+             <div className="card-header bg-white border-0">
+               <div className="row align-items-center">
+                 <div className="col-8">
+                   <h3 className="mb-0">My account</h3>
+                 </div>
+                 <div className="col-4 text-right">
+                   <a href="#!" className="btn btn-sm btn-primary">Settings</a>
+                 </div>
+               </div>
+             </div>
+             <div className="card-body">
+             {err && showErrMsg(err)}
+           {success && showSuccessMsg(success)}
+           {loading && <h3>Loading.....</h3>}
+               <form>
+                 <h6 className="heading-small text-muted mb-4">User information</h6>
+                 <div className="pl-lg-4">
+                   <div className="row">
+                     <div className="col-lg-6">
+                       <div className="form-group focused">
+                         <label className="form-control-label" for="input-username">Username</label>
+                         <input type="text" id="input-username" className="form-control form-control-alternative" defaultValue={user.userName}/>
+                       </div>
+                     </div>
+                     <div className="col-lg-6">
+                       <div className="form-group">
+                         <label className="form-control-label" for="input-email">Email address</label>
+                         <input type="email" id="input-email" className="form-control form-control-alternative"  defaultValue={user.email} disabled/>
+                       </div>
+                     </div>
+                   </div>
+                   <div className="row">
+                     <div className="col-lg-6">
+                       <div className="form-group focused">
+                         <label className="form-control-label" for="input-first-name">First name</label>
+                         <input type="text" id="name" className="form-control form-control-alternative" name="name"  defaultValue={user.name} onChange={handleChange}/>
+                       </div>
+                     </div>
+                     <div className="col-lg-6">
+                       <div className="form-group focused">
+                         <label className="form-control-label" for="input-last-name">Last name</label>
+                         <input type="text" id="input-last-name" className="form-control form-control-alternative"  defaultValue={user.lastName}/>
+                       </div>
+                     </div>
+                   </div>
+                   <div className="col-md-12 text-center">
+                   <button disabled={loading}  className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
+                   </div>
+                 </div>
+              
+       
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         </>
     
     )

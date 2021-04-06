@@ -12,7 +12,7 @@ const getMostCommented = require("../functions/ForumFunctions/getMostCommented")
 const getSinglePost = require("../functions/ForumFunctions/getSinglePost");
 const getUserPostsByMiddleware = require("../functions/ForumFunctions/getUserPostsByMiddleware");
 const getUserPostsById = require("../functions/ForumFunctions/getUserPostsById");
-const createPost = require("../functions/ForumFunctions/createPost");
+const createPost = require("../controllers/createPost");
 const searchForPost = require("../functions/ForumFunctions/searchForPost");
 const addLike = require("../functions/ForumFunctions/addLike");
 const addComment = require("../functions/ForumFunctions/addComment");
@@ -37,7 +37,7 @@ router.get("/user_posts/:user_id", getUserPostsById);
 
 router.get("/user_posts", auth, getUserPostsByMiddleware);
 
-router.post("/createpost", auth, createPostValidator, createPost);
+router.post("/createpost",auth, createPostValidator, createPost);
 
 router.put("/search_for_post", searchForPostValidator, searchForPost);
 

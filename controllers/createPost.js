@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
-const Post = require("../../models/Post");
-const User = require("../../models/userModel");
+const Post = require("../models/Post");
+const Users = require("../models/userModel");
 
 module.exports = async (req, res) => {
   
@@ -10,13 +10,16 @@ module.exports = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
   try {
-    let user = await User.findById(req.user.id);
+    let user = await Users.findById(req.users.id).select("-password");
+    res.json(user);
     if (!user) return res.status(404).json("User not found");
     let name = user.name;
+    console.log(user)
     let lastName = user.lastName;
     let userName = user.userName;
-    
+    let id= user.id;
     let newPost = new Post({
+      id,
       name,
       lastName,
       userName,
@@ -29,7 +32,7 @@ module.exports = async (req, res) => {
 
     res.json("Post is created, congratulations!");
   } catch (error) {
-    console.error("mad5alch");
-    return res.status(500).json("Server Error...");
+    console.error(error);
+    return res.status(500).json("Servjhjher Error ...");
   }
 };

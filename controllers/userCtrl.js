@@ -14,7 +14,7 @@ const {CLIENT_URL} = process.env
 const userCtrl = {
     register: async (req, res) => {
         try {
-            const {name, email, password,userName ,lastName} = req.body
+            const {name, email,userName ,lastName, password} = req.body
             
             if(!name || !email || !password || !userName ||!lastName)
                 return res.status(400).json({msg: "Please fill in all fields."})
@@ -31,7 +31,7 @@ const userCtrl = {
             const passwordHash = await bcrypt.hash(password, 12)
 
             const newUser = {
-                name, email, password,userName ,lastName: passwordHash
+                name, email,userName ,lastName, password: passwordHash
             }
 
             const activation_token = createActivationToken(newUser)

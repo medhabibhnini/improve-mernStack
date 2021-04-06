@@ -77,80 +77,88 @@ function Login() {
     }
 
     return (
-      <div>
-        <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-          <div class="header-body text-center mb-7">
-            <div class="row justify-content-center">
-              <div class="col-lg-5 col-md-6">
-                <h1 class="text-white">Welcome!</h1>
-                <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+      <body class="bg-default">
+      <div class="main-content">
+    
+        <div class="header bg-primary py-7 py-lg-8">
+          <div class="container">
+            <div class="header-body text-center mb-7">
+              <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                  <h1 class="text-white">Welcome!</h1>
+                  <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                </div>
               </div>
             </div>
           </div>
+          <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+          </div>
         </div>
-
-        <div/>
-      <div/>
-<br></br>
-<br></br>
-<br></br>
-      <div class="container mt--8 pb-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-5 col-md-7">
-            <div class="card bg-secondary shadow border-0">
-              <div class="card-header bg-transparent pb-5">
-                <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-                <div class="btn-wrapper text-center">
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon"><img src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/icons/common/github.svg"/></span>
-                    <span class="btn-inner--text">Github</span>
-                  </a>
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon"><img src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/icons/common/google.svg"/></span>
-                    <span class="btn-inner--text">Google</span>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body px-lg-5 py-lg-5">
-                <div class="text-center text-muted mb-4">
-                  <small>Or sign in with credentials</small>
-                </div>
-                {err && showErrMsg(err)}
-            {success && showSuccessMsg(success)}
-                <form role="form" onSubmit={handleSubmit}>
-                  <div class="form-group mb-3">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Email" type="email" id="email"
-                    value={email} name="email" onChange={handleChangeInput} />
-                    </div>
+ 
+        <div class="container mt--8 pb-5">
+     
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+              <div class="card bg-secondary shadow border-0">
+                <div class="card-header bg-transparent pb-5">
+                  <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+                  <div class="text-center">
+                  <GoogleLogin
+                    clientId="892015450442-lc9bne9gbtddtc8njmf34n7clsrcj23n.apps.googleusercontent.com"
+                    buttonText="Login with google"
+                    onSuccess={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
                   </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <div class="card-body px-lg-5 py-lg-5">
+                  <div class="text-center text-muted mb-4">
+                    <small>Or sign up with credentials</small>
+                  </div>
+                  {err && showErrMsg(err)}
+            {success && showSuccessMsg(success)}
+                  <form role="form" onSubmit={handleSubmit}>
+                 
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Email" type="email" id="email"
+                    value={email} name="email" onChange={handleChangeInput}/>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password"
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Password" type="password"
                        id="password"
                        value={password} name="password" onChange={handleChangeInput}/>
+                      </div>
                     </div>
-                  </div>
-                  <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox"/>
-                    <label class="custom-control-label" for=" customCheckLogin">
-                      <span class="text-muted">Remember me</span>
-                    </label>
-                  </div>
-                  <div class="text-center">
-                    <button type="button" type="submit" class="btn btn-primary my-4">Sign in</button>
-                  </div>
-                </form>
+                  
+                    <div class="row my-4">
+                      <div class="col-12">
+                        <div class="custom-control custom-control-alternative custom-checkbox">
+                          <input class="custom-control-input" id="customCheckRegister" type="checkbox"/>
+                          <label class="custom-control-label" for="customCheckRegister">
+                            <span class="text-muted">Remember me</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-info mt-4">Create account</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class="row mt-3">
+              <div class="row mt-3">
               <div class="col-6"><Link to="/forgot_password">
                 <a href="#" class="text-light"><small>Forgot your password?</small></a></Link>
               </div>
@@ -158,11 +166,13 @@ function Login() {
               <Link to="/register">  <a href="#" class="text-light"><small>Create new account</small></a></Link>
               </div>
             </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+
+     
+    </body>
     )
 }
 

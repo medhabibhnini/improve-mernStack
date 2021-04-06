@@ -2,8 +2,13 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
-
-
+import {  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  Media } from  "reactstrap";
+import 'bootstrap/dist/css/bootstrap.css';
+import improvelogo from "../../assets/img/logo.png"
 function Header() {
     const auth = useSelector(state => state.auth)
 
@@ -37,12 +42,11 @@ function Header() {
     }
 
     return (
+      
         <div class="main-content">
         <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
       <div class="container px-4">
-        <a class="navbar-brand" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
-          Improve
-        </a>
+      <img alt="..." src={improvelogo} width="200px"/>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,7 +67,7 @@ function Header() {
               </div>
             </div>
           </div>
-
+        
           <ul class="navbar-nav ml-auto" style={transForm}>
           
             <li class="nav-item">
@@ -82,50 +86,59 @@ function Header() {
                 </Link>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="media align-items-center">
-                  <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"/>
+            <UncontrolledDropdown nav>
+              <DropdownToggle className="pr-0" nav>
+                <Media className="align-items-center">
+                  <span className="avatar avatar-sm rounded-circle">
+                    <img
+                      alt="..."
+                     src=
+                     {user.avatar}
+                      
+                    />
                   </span>
-                  <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{user.name} {user.lastName}</span>
-                  </div>
-                </div>
-              </a>
-              <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                <div class=" dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
-                </div>
-                <a href="../examples/profile.html" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
+                  <Media className="ml-2 d-none d-lg-block">
+                    <span className="mb-0 text-sm font-weight-bold">
+                    {user.name} {user.lastName}
+                    </span>
+                  </Media>
+                </Media>
+              </DropdownToggle>
+              <DropdownMenu className="dropdown-menu-arrow" right>
+                <DropdownItem className="noti-title" header tag="div">
+                  <h6 className="text-overflow m-0">Welcome!</h6>
+                </DropdownItem>
+                <DropdownItem to="/profile" tag={Link}>
+                  <i className="ni ni-single-02" />
                   <span>My profile</span>
-                </a>
-                <a href="../examples/profile.html" class="dropdown-item">
-                  <i class="ni ni-settings-gear-65"></i>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-settings-gear-65" />
                   <span>Settings</span>
-                </a>
-                <a href="../examples/profile.html" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-calendar-grid-58" />
                   <span>Activity</span>
-                </a>
-                <a href="../examples/profile.html" class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-support-16" />
                   <span>Support</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-user-run"></i>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem to="/" onClick={handleLogout}>
+                  <i className="ni ni-user-run" />
                   <span>Logout</span>
-                </a>
-              </div>
-            </li>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </ul>
         </div>
       </div>
     </nav>
    
     </div>
+  
+    
     )
 }
 

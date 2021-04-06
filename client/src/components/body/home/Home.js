@@ -3,6 +3,11 @@ import './home.css'
 
 function Home() {
     return (
+        <>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div >
             <h2>Hello everyone!</h2>
             <p>
@@ -22,6 +27,17 @@ function Home() {
             <a href="https://youtu.be/uXl77UFkrkQ" target="_blank" 
             rel="noopener noreferrer">Build a Ecommerce</a>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        </>
     )
 }
 

@@ -102,14 +102,13 @@ function Login() {
               <div class="card-header bg-transparent pb-5">
                 <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
                 <div class="btn-wrapper text-center">
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon"><img src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/icons/common/github.svg"/></span>
-                    <span class="btn-inner--text">Github</span>
-                  </a>
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon"><img src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/icons/common/google.svg"/></span>
-                    <span class="btn-inner--text">Google</span>
-                  </a>
+                <GoogleLogin
+                    clientId="892015450442-lc9bne9gbtddtc8njmf34n7clsrcj23n.apps.googleusercontent.com"
+                    buttonText="Login with google"
+                    onSuccess={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+             
                 </div>
               </div>
               <div class="card-body px-lg-5 py-lg-5">

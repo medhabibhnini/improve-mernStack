@@ -45,6 +45,23 @@ function Advancement() {
           
         ]
       };
+      const datachartHard = {
+        labels: ['Marketing ', 'Data Analysis', 'Mobile and Web Development', 'Network structure and security', 'Project management ', 'Mathematical and numerical skills', 'Design '],
+        datasets: [
+          {
+            label: 'Soft Skills Data',
+            backgroundColor: 'rgba(179,181,198,0.2)',
+            borderColor: 'rgba(0,191,255)',
+            pointBackgroundColor: 'rgba(0,191,255)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(0,191,255)',
+            data: [66, 55, 75, 83, 79, 72, 95]
+          },
+          
+          
+        ]
+      };
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -229,7 +246,7 @@ function Advancement() {
               <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">My hard skills Advancement</h3>
+                    <h3 class="mb-0">My soft skills Advancement</h3>
                   </div>
                   
                 </div>
@@ -241,6 +258,13 @@ function Advancement() {
             <div>
         <Radar data ={datachart}></Radar>
         </div>
+        <hr></hr>
+        <h3 class="mb-0">My hard skills Advancement</h3>
+
+        <div>
+        <Radar data ={datachartHard}></Radar>
+        </div>
+
                   </div>
             </div>
           </div>

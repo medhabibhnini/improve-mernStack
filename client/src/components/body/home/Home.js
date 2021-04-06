@@ -16,13 +16,15 @@ function Home() {
 
 
 
-<div className="jumbotron jumbotron-odi-hero bg-primary">
-<div className="jumbotron-overlay ">
-  <div className="container jumbotron-padding  text-center">
-  <h1 className="display-4">Speed up your development with high quality themes.</h1>
-     <p>
-        <a href="https://www.odipixel.com" className="btn btn-lg btn-success btn-circle my-4 mr-3">Visit for more</a>
-     </p>
+<div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://www.eleapsoftware.com/wp-content/uploads/2018/02/education-and-business-background-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+
+<span className="mask bg-gradient-default opacity-8"></span>
+
+<div className="container-fluid d-flex align-items-center">
+  <div className="row">
+    <div className="col-lg-7 col-md-10">
+   
+    </div>
   </div>
 </div>
 </div>

@@ -118,7 +118,7 @@ function Header() {
     }
 
     return (
-      
+     
         <div class="main-content">
         <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
       <div class="container px-4">
@@ -160,8 +160,8 @@ function Header() {
          : <li className="nav-item">
             <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
             <Link to="/register">
-              <i className="ni ni-circle-08"></i>
-              <span className="nav-link-inner--text">Register</span>
+              
+              <button   className="btn btn-primary" >Register</button>
               </Link>
             </a>
           </li>
@@ -172,8 +172,7 @@ function Header() {
          :<li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/login">
-              <i className="ni ni-key-25"></i>
-              <span className="nav-link-inner--text">Login</span>
+            <button   className="btn btn-primary" >Login</button>
               </Link>
             </a>
           </li>
@@ -186,7 +185,6 @@ function Header() {
  
   </div>
 
-    
     )
 }
 

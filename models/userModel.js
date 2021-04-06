@@ -5,17 +5,20 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Please enter your name!"],
-        trim: true
+        trim: true,
+        default:null
     },
     userName: {
         type: String,
         required: [true, "Please enter your name!"],
-        trim: true
+        trim: true,
+        default:'Connect'
     },
     lastName: {
         type: String,
         required: [true, "Please enter your name!"],
-        trim: true
+        trim: true,
+        default:'Connect'
     },
     email: {
         type: String,

@@ -112,6 +112,16 @@ function Login() {
                     onSuccess={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
+                <hr></hr>
+                <FacebookLogin
+                buttonStyle={{fontSize:"10.6px"}}
+                
+                 appId="619161739039869"
+                 autoLoad={false}
+                 fields="name,email,picture"
+                 callback={responseFacebook} 
+                 />
+
                   </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">

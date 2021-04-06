@@ -15,6 +15,10 @@ import Home from '../body/home/Home'
 
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
+import Activation from './auth/ActivationEmail'
+import Header from '../header/Header'
+import Footer from '../footer/Footer'
+import body from '../body/Body'
 
 function Body() {
     const auth = useSelector(state => state.auth)

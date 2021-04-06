@@ -208,7 +208,7 @@ function Profile() {
                  <i className="fas fa-camera"></i>
                        <p>Change</p>
                        <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
-                       <button disabled={loading}  className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
+                       <button   className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
                </div>
              </div>
            </div>

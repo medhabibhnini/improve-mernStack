@@ -53,42 +53,49 @@ function Register() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
-
     return (
-        <div>
-          <div class="header bg-gradient-primary py-7 py-lg-8">
-          <div class="container">
-            <div class="header-body text-center mb-7">
-              <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-6">
-                  <h1 class="text-white">Welcome!</h1>
-                  <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+        <body class="bg-default">
+        <div class="main-content">
+      
+          <div class="header bg-primary py-7 py-lg-8">
+            <div class="container">
+              <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                  <div class="col-lg-5 col-md-6">
+                    <h1 class="text-white">Welcome!</h1>
+                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="separator separator-bottom separator-skew zindex-100">
+              <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+              </svg>
+            </div>
           </div>
-  
-          <div/>
-        <div/>
-  <br></br>
-  <br></br>
-  <br></br>
-        <div class="container mt--8 pb-5">
-          <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-7">
-              <div class="card bg-secondary shadow border-0">
-                <div class="card-body px-lg-5 py-lg-5">
-                  <div class="text-center text-muted mb-4">
-                    <small>Please fill all the blanks</small>
-                  </div>
-                  {err && showErrMsg(err)}
+   
+          <div class="container mt--8 pb-5">
+       
+            <div class="row justify-content-center">
+              <div class="col-lg-6 col-md-8">
+                <div class="card bg-secondary shadow border-0">
+                
+                  <div class="card-body px-lg-5 py-lg-5">
+                    <div class="text-center text-muted mb-4">
+                      <small>Please fill all the blanks</small>
+                    </div>
+                    {err && showErrMsg(err)}
               {success && showSuccessMsg(success)}
-                  <form role="form" onSubmit={handleSubmit}>
-
-                  <div class="form-group mb-3">
+              <form role="form" onSubmit={handleSubmit}>
+                   
+                      
+             	 
+                        
+                    <div class="form-group mb-3">
                       <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                         </div>
                         <input class="form-control" placeholder="name" type="name" id="name"
                       value={name} name="name" onChange={handleChangeInput} />
@@ -99,7 +106,7 @@ function Register() {
                     <div class="form-group mb-3">
                       <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                         </div>
                         <input class="form-control" placeholder="lastName" type="lastName" id="lastName"
                       value={lastName} name="lastName" onChange={handleChangeInput} />
@@ -109,7 +116,7 @@ function Register() {
                     <div class="form-group mb-3">
                       <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                         </div>
                         <input class="form-control" placeholder="userName" type="userName" id="userName"
                       value={userName} name="userName" onChange={handleChangeInput} />
@@ -143,31 +150,41 @@ function Register() {
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                         </div>
-                        <input class="form-control" placeholder="cf_password" type="password" id="cf_password"
+                        <input class="form-control" placeholder="Confirm Password" type="password" id="cf_password"
                       value={cf_password} name="cf_password" onChange={handleChangeInput} />
                       </div>
                     </div>
-
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id=" customCheckLogin" type="checkbox"/>
-                      <label class="custom-control-label" for=" customCheckLogin">
-                        <span class="text-muted">Remember me</span>
-                      </label>
-                    </div>
-                    <div class="text-center">
-                      <button type="button" type="submit" class="btn btn-primary my-4">Sign in</button>
-                    </div>
-                  </form>
-                  <p>Already an account? <Link to="/login">Login</Link></p>
+                      <div class="row my-4">
+                        <div class="col-12">
+                          <div class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id="customCheckRegister" type="checkbox"/>
+                            <label class="custom-control-label" for="customCheckRegister">
+                              <span class="text-muted">Remember me</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-info mt-4">Create account</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                
+                <div class="col-12 text-right">
+                <Link to="/login">  <a href="#" class="text-light"><small>You already have an account?</small></a></Link>
                 </div>
               </div>
-              
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
+  
+       
+      </body>
       )
+
     
 }
 

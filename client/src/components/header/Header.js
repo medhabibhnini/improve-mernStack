@@ -8,6 +8,7 @@ import {  DropdownMenu,
   DropdownToggle,
   Media } from  "reactstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import improvelogo from "../../assets/img/logo.png"
 function Header() {
     const auth = useSelector(state => state.auth)
 
@@ -45,9 +46,7 @@ function Header() {
         <div class="main-content">
         <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
       <div class="container px-4">
-        <a class="navbar-brand" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
-          Improve
-        </a>
+      <img alt="..." src={improvelogo} width="200px"/>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

@@ -3,7 +3,8 @@ import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isLength, isMatch} from '../../utils/validation/Validation'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 
 const initialState = {
     password: '',
@@ -46,6 +47,10 @@ function ResetPassword() {
 
 
     return (
+    
+      <>
+        <Header />
+    
         <div className="main-content">
    
         <div className="header bg-primary py-7 py-lg-8">
@@ -116,7 +121,8 @@ function ResetPassword() {
           </div>
         </div>
       </div>
-  
+      <Footer/>
+  </>
     )
 }
 

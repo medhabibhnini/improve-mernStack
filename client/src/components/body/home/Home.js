@@ -1,9 +1,12 @@
 import React from 'react'
 import './home.css'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 function Home() {
     return (
         <>
+          <Header />
+    
     <br></br>
     <br></br>
     <br></br>
@@ -306,7 +309,7 @@ function Home() {
 
 </body>
 
-
+<Footer/>
         </>
     )
 }

@@ -3,6 +3,8 @@ import axios from 'axios'
 import {isEmail} from '../../utils/validation/Validation'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import './ForgotPassword.css';
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     email: '',
     err: '',
@@ -33,7 +35,8 @@ function ForgotPassword() {
     }
     
     return (
-    
+    <>
+    <Header/>
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -93,7 +96,8 @@ function ForgotPassword() {
             </div>
           </div>
         </div>
-  
+        <Footer/>
+  </>
        
   
     )

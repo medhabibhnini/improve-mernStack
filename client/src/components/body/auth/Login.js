@@ -7,7 +7,8 @@ import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     email: '',
     password: '',
@@ -77,7 +78,8 @@ function Login() {
     }
 
     return (
-    
+   <>
+   <Header/>
       <div class="main-content">
     
         <div class="header bg-primary py-7 py-lg-8">
@@ -181,8 +183,8 @@ function Login() {
         </div>
       </div>
 
-     
-  
+    <Footer/> 
+  </>
     )
 }
 

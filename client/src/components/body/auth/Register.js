@@ -5,7 +5,8 @@ import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isEmpty, isEmail, isLength, isMatch} from '../../utils/validation/Validation'
 import './register.css'
 
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     name: '',
     lastName: '',
@@ -55,7 +56,9 @@ function Register() {
     }
     
     return (
-
+<>
+<Header />
+     
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -181,8 +184,8 @@ function Register() {
             </div>
           </div>
         </div>
-  
-       
+        <Footer/>
+    </>   
   
       )
 

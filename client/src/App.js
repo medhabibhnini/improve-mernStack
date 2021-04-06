@@ -42,7 +42,6 @@ function App() {
   return (
     
     <Router>
-
         <Header />
         <Body />
        

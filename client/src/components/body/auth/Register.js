@@ -53,6 +53,7 @@ function Register() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
+    
     return (
         <body class="bg-default">
         <div class="main-content">

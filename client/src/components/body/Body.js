@@ -20,6 +20,9 @@ function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
     return (
+        <>
+
+<Header/>
         <section>
             <Switch>
                 <Route path="/" component={Home} exact />
@@ -37,7 +40,9 @@ function Body() {
                 <Route path="/dashboard" component={Dashboard} exact />
 
             </Switch>
-        </section>
+        </section> 
+    
+    </>
     )
 }
 

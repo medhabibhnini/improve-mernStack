@@ -27,6 +27,8 @@ function ActivationEmail() {
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
         </div>
+
+
     )
 }
 

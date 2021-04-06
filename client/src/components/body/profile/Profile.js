@@ -61,7 +61,7 @@ function Profile() {
             let formData =  new FormData()
             formData.append('file', file)
 
-            setLoading(true)
+            setLoading(false)
             const res = await axios.post('/api/upload_avatar', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })

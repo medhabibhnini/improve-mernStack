@@ -3,25 +3,309 @@ import './home.css'
 
 function Home() {
     return (
-        <div >
-            <h2>Hello everyone!</h2>
-            <p>
-                This site is about user authentication, 
-                so there won't be any other pages here. 
-                If people want to see more about how to 
-                create other websites. You can click on 
-                the link below, visit my youtube channel. 
-                And if you find it useful, please subscribe 
-                for us. Thank you very much!
-            </p>
-            <a href="https://www.youtube.com/c/DevATHTML" target="_blank" 
-            rel="noopener noreferrer">My Youtube</a>
+        <>
+    <br></br>
+    <br></br>
+    <br></br>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-            <h3>Build a simple e-commerce site.</h3>
 
-            <a href="https://youtu.be/uXl77UFkrkQ" target="_blank" 
-            rel="noopener noreferrer">Build a Ecommerce</a>
+<body>
+
+
+
+<div className="jumbotron jumbotron-odi-hero bg-primary">
+<div className="jumbotron-overlay ">
+  <div className="container jumbotron-padding  text-center">
+  <h1 className="display-4">Speed up your development with high quality themes.</h1>
+     <p>
+        <a href="https://www.odipixel.com" className="btn btn-lg btn-success btn-circle my-4 mr-3">Visit for more</a>
+     </p>
+  </div>
+</div>
+</div>
+
+
+     <div className="container mt-5" id="about">
+               <h1 className="text-center py-4">Why to choose fixr landing</h1>
+              
+              <div className="row text-center mt-5">
+               <div className="col-md-3">
+                <div className="card shadow">
+                  <div className="card-body">
+                  <div className="py-3 text-center"> <i className="fas fa-rocket card-img-top fa-4x text-primary" aria-hidden="true"></i></div>
+                  <div className="card-body">
+                    <h4 className="card-title">Ready to ship</h4>
+                    <p className="card-text">You can use this theme as personal as well as for commercial purpose & can customise it. </p>
+                   </div>
+                  </div>
+                </div>
+                </div>
+                  <div className="col-md-3">
+                 <div className="card shadow">
+                  <div className="card-body">
+                   <div className="py-3 text-center"><i className="fas fa-feather card-img-top fa-4x text-primary" aria-hidden="true"></i></div>
+                  <div className="card-body">
+                    <h4 className="card-title">Light weight</h4>
+                    <p className="card-text">We avoid needless js and CSS which makes template more sleek and powerful. </p>
+                   </div>
+                  </div>
+                </div>
+                </div>
+                  <div className="col-md-3">
+                 <div className="card shadow">
+                  <div className="card-body">
+                  <div className="py-3 text-center"><i className="fa fa-tablet card-img-top fa-4x text-primary" aria-hidden="true"></i></div>
+                 
+                  <div className="card-body">
+                    <h4 className="card-title">Responsive </h4>
+                    <p className="card-text">Our templates works in all devices (desktop,tablets and phones). </p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                         
+                <div className="col-md-3">
+                 <div className="card shadow">
+                  <div className="card-body">
+                  <div className="py-3 text-center"><i className="fas fa-charging-station card-img-top fa-4x text-primary" aria-hidden="true"></i>
+                 </div>
+                  <div className="card-body">
+                    <h4 className="card-title">Easy customisation</h4>
+                    <p className="card-text">Our templates are clean,light weight and technically refined. </p>
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+               
+              </div>
+            </div>
+            <div>
+          <div className="container mt-5  text-center">
+             <p className="pt-5 pb-2 h4 text-monospace">Speed up your development with high quality themes.</p>
+            <div className="row">
+             
+              <div className="mx-auto" style={{width: '800px'}}>
+                <p className="text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+              </div>
+
+            </div>
+          </div>
+     
+         <div className="container mt-5">
+            <div className="row py-5">
+              <div className="col-md-4">
+                <strong className="d-inline-block mb-2 text-primary">Price plans</strong>
+                <h3 className="mb-0">
+                  No hidden charges
+               </h3>
+               <p className="lead text-muted">We have best suitable plans for your bussiness needs.Money back guarantee.</p>
+                <button type="button" className="btn btn-lg btn-primary btn-circle">Get started</button>
+              </div>
+              <div className="col-md-8">
+                 <div className="card-deck mb-3 text-center">
+              <div className="card mb-4 shadow">
+                
+                <div className="card-body">
+                  <h3 className="my-3 font-weight-norma text-uppercase">Free</h3>
+                 
+                  <span className="d-block  text-primary">
+                    <span className="align-top">$</span>
+                    <span className="display-4 font-weight-bold">0</span>
+                    <span className="text-muted">/month</span>
+                  </span>
+                  <ul className="list-unstyled mt-3 mb-4">
+                    <li>10 users included</li>
+                    <li>2 GB of storage</li>
+                    <li>Email support</li>
+                    <li>Help center access</li>
+                  </ul>
+                  <button type="button" className="btn btn-lg btn-block btn-outline-primary btn-circle">Sign up for free</button>
+                </div>
+              </div>
+              <div className="card mb-4 shadow">
+               
+                <div className="card-body">
+                   <h3 className="my-3 font-weight-norma text-uppercase">Pro</h3>
+                   <span className="d-block  text-primary">
+                    <span className="align-top">$</span>
+                    <span className="display-4 font-weight-bold">19</span>
+                    <span className="text-muted">/month</span>
+                  </span>
+                  <ul className="list-unstyled mt-3 mb-4">
+                    <li>20 users included</li>
+                    <li>10 GB of storage</li>
+                    <li>Priority email support</li>
+                    <li>Help center access</li>
+                  </ul>
+                  <button type="button" className="btn btn-lg btn-block btn-primary btn-circle">Get started</button>
+                </div>
+              </div>
+              <div className="card mb-4 shadow">
+                  <div className="card-body">
+                   <h3 className="my-3 font-weight-norma text-uppercase">Enterprise</h3>
+                   <span className="d-block  text-primary">
+                    <span className="align-top">$</span>
+                    <span className="display-4 font-weight-bold">199</span>
+                    <span className="text-muted">/month</span>
+                  </span>
+                  <ul className="list-unstyled mt-3 mb-4">
+                    <li>30 users included</li>
+                    <li>15 GB of storage</li>
+                    <li>Phone and email support</li>
+                    <li>Help center access</li>
+                  </ul>
+                  <button type="button" className="btn btn-lg btn-block btn-primary btn-circle">Contact us</button>
+                </div>
+              </div>
+              </div>
+              
+            </div>
+           
+         </div>
+       </div>
+     
+         <div className="container mt-5 ">
+               <p className="py-4 h3 text-center">Template features</p>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="card shadow">
+                    <div className="card-body">
+                      <div className="media">
+                        <div className="mr-4" style={{height:'64px',width:'64px'}}>
+                          <i className="fa fa-rocket card-img-top fa-4x text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div className="media-body">
+                          <h4 className="mt-0 tex-dark">Ready to ship</h4>
+                          <p className=" text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="card shadow">
+                    <div className="card-body">
+                      <div className="media">
+                        <div className="mr-4" style={{height:'64px',width:'64px'}}>
+                          <i className="fa fa-leaf card-img-top fa-4x text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div className="media-body">
+                          <h4 className="mt-0 tex-dark">Light weight</h4>
+                          <p className=" text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div className="row py-4">
+                <div className="col-md-6">
+                  <div className="card shadow">
+                    <div className="card-body">
+                      <div className="media">
+                        <div className="mr-4" style={{height:'64px',width:'64px'}}>
+                          <i className="fa fa-tablet card-img-top fa-4x text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div className="media-body">
+                          <h4 className="mt-0 tex-dark">Responsive</h4>
+                          <p className=" text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="card shadow">
+                    <div className="card-body">
+                      <div className="media">
+                        <div className="mr-4" sstyle={{height:'64px',width:'64px'}}>
+                          <i className="fa fa-cogs card-img-top fa-4x text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div className="media-body">
+                          <h4 className="mt-0 tex-dark">Easy customisation</h4>
+                          <p className=" text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+          </div>
+        
+        <div className="container mt-5">
+               <h3 className="pt-4 d-inline latest-news">Latest News</h3>
+              
+                <a href="" className="btn btn-outline-primary btn-circle d-inline float-right">View all</a>
+               <p className="h5 text-center text-muted">Awesome featured templates</p> 
+              <div className="row mt-5">
+              <div className="col-md-4">
+          <div className="card mb-4 shadow-sm">
+            <img className="card-img-top" src="images/jelly-pro-3.jpg"  alt=""/>
+            <div className="card-body">
+              <h4 className="card-title mb-3 text-dark">
+              <a href="#" className="text-decoration-none text-dark font-weight-bold">
+                Title of a blog post
+              </a>
+            </h4>
+              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+              
+            </div>
+             <div className="card-footer text-muted border-0 bg-white">
+               
+              </div>
+          </div>
         </div>
+        <div className="col-md-4">
+         <div className="card mb-4 shadow-sm">
+            <img className="card-img-top" src="images/jelly-pro-2.jpeg"  alt=""/>
+            <div className="card-body">
+              <h4 className="card-title mb-3 text-dark">
+                <a href="#" className="text-decoration-none text-dark font-weight-bold">
+                Title of a blog post
+              </a>
+              </h4>
+              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+              
+            </div>
+             <div className="card-footer text-muted border-0 bg-white">
+                
+              </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+         <div className="card mb-4 shadow-sm">
+            <img className="card-img-top" src="images/jelly-pro-1.jpeg"  alt=""/>
+            <div className="card-body">
+              <h4 className="card-title mb-3 text-dark">
+                <a href="#" className="text-decoration-none text-dark font-weight-bold">
+               Title of a blog post
+              </a>
+              </h4>
+              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+              
+            </div>
+             <div className="card-footer text-muted border-0 bg-white">
+               
+              </div>
+          </div>
+        </div>
+</div>
+</div>
+
+
+
+
+</body>
+
+
+        </>
     )
 }
 

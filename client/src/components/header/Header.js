@@ -113,9 +113,9 @@ function Header() {
       <div className="main-content">
       <nav className="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
     <div className="container px-4">
-      <a className="navbar-brand" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
+      <Link className="navbar-brand" to="/" target="_blank">
         Improve
-      </a>
+      </Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -125,7 +125,7 @@ function Header() {
           <div className="row">
             <div className="col-6 collapse-brand">
               <a href="../index.html">
-                Argon
+                
               </a>
             </div>
             <div className="col-6 collapse-close">

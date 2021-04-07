@@ -6,7 +6,7 @@ const post = new Schema({
     email:{type: String,required: true},
 
 description:{type: String,required: true},
-date: { type : Date, required: true},
+date: { type : Date},
 
 
 }, {

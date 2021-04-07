@@ -10,7 +10,7 @@ import ResetPass from '../body/auth/ResetPassword'
 
 import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'
-
+import Radar from '../body/advancement/advancement'
 import Home from '../body/home/Home'
 import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
@@ -34,7 +34,7 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-
+                <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
             </Switch>
         </section>
     )

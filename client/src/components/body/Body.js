@@ -15,10 +15,7 @@ import Home from '../body/home/Home'
 
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
-import Activation from './auth/ActivationEmail'
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
-import body from '../body/Body'
+import Users from './profile/ListeUser'
 
 function Body() {
     const auth = useSelector(state => state.auth)
@@ -26,7 +23,7 @@ function Body() {
     return (
         <>
 
-<Header/>
+
         <section>
             <Switch>
                 <Route path="/" component={Home} exact />
@@ -41,7 +38,8 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-                <Route path="/dashboard" component={Dashboard} exact />
+                <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
+                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
             </Switch>
         </section> 

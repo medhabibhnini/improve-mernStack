@@ -40,7 +40,7 @@ function Header() {
             </span>
             <Media className="ml-2 d-none d-lg-block">
               <span className="mb-0 text-sm font-weight-bold">
-              {user.name} {user.lastName}
+              {user.name} 
               </span>
             </Media>
           </Media>
@@ -84,31 +84,14 @@ function Header() {
     </li>
   }
   const userLinkAdmin = () => {
-    return  <UncontrolledDropdown nav>
-    <DropdownToggle  className="pr-0" nav>
-      <Media className="align-items-center">
-        <span className="avatar avatar-sm rounded-circle">
-          <img
-            alt="..."
-            src={dashboardlogo}
-          />
-        </span>
-        <Media className="ml-2 d-none d-lg-block">
-          <span className="mb-0 text-sm font-weight-bold">
-          Dashboard
-          </span>
-        </Media>
-      </Media>
-    </DropdownToggle>
-    <DropdownMenu className="dropdown-menu-arrow" right>
-        
-          <DropdownItem to="/dashboard" tag={Link}>
-            <i className="ni ni-settings-gear-65" />
-            <span>Dashboard</span>
-          </DropdownItem>
-
-        </DropdownMenu>
-  </UncontrolledDropdown>
+    return  <li className="nav-item">
+    <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
+    <Link to="/Dashboard">
+      
+      <button   className="btn btn-secondary" >Dashboard</button>
+      </Link>
+    </a>
+  </li>
   
 }
 

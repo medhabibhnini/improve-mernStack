@@ -156,6 +156,7 @@ function ListeUser() {
                                 <th>Avatar</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                           
                                 <th>Role</th>
                                 <th>Action</th>
                             </tr>
@@ -171,6 +172,7 @@ function ListeUser() {
                           </td>
                                         <td><span className="mb-0 text-sm">{user.name}</span></td>
                                         <td><span className="mb-0 text-sm">{user.email}</span></td>
+                                  
                                         <td>
                                             {
                                                 user.role === 1

@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import axios from 'axios'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 
-
+import Dashboard from '../dashboard/dashboard'
 function EditUser() {
     const {id} = useParams()
     const history = useHistory()
@@ -27,7 +27,7 @@ function EditUser() {
                 }
             })
         }else{
-            history.push('/profile')
+            history.push('/users')
         }
     },[users, id, history])
 
@@ -42,6 +42,8 @@ function EditUser() {
 
                 setSuccess(res.data.msg)
                 setNum(0)
+            }else{
+                history.goBack()
             }
         } catch (err) {
             err.response.data.msg && setErr(err.response.data.msg)
@@ -56,38 +58,137 @@ function EditUser() {
     }
 
     return (
-        <div className="profile_page edit_user">
-            <div className="row">
-                <button onClick={() => history.goBack()} className="go_back">
-                    <i className="fas fa-long-arrow-alt-left"></i> Go Back
-                </button>
-            </div>
+        <>
+<Dashboard/>
+           
+      <br></br>
+   <br></br>
+   <br></br>
+   <br></br>
+   <br></br>
+   <br></br>
+ 
+       <div className="main-content">
+     
+    
+   
+    
 
-            <div className="col-left">
-                <h2>Edit User</h2>
+     <div className="container-fluid mt--7">
+       <div className="row">
+         <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+           <div className="card card-profile shadow">
+             <div className="row justify-content-center">
+               <div className="col-lg-3 order-lg-2">
+                 <div className="card-profile-image">
+                   <a href="#">
+                     <img src={editUser.avatar} className="rounded-circle"/>
+                   </a>
+                 </div>
+               </div>
+             </div>
+             <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+               <div className="d-flex justify-content-between">
+     
+               </div>
+             </div>
+             <div className="card-body pt-0 pt-md-4">
+               <div className="row">
+                 <div className="col">
+                   <div className="card-profile-stats d-flex justify-content-center mt-md-5">
+                     <div>
+                     
+                     </div>
+                     <div>
+                      
+                     </div>
+                     <div>
+                    
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div className="text-center">
+                 <h3>
+                 {editUser.name} {editUser.lastName}<span className="font-weight-light"></span>
+                 </h3>
+                 <div className="h5 font-weight-300">
+                 
+                 </div>
+                 <div className="h5 mt-4">
+                   <i className="ni business_briefcase-24 mr-2"></i>{editUser.email}
+                 </div>
+                
+         
+               
+               </div>
+             </div>
+           </div>
+         </div>
+         <div className="col-xl-8 order-xl-1">
+           <div className="card bg-secondary shadow">
+             <div className="card-header bg-white border-0">
+               <div className="row align-items-center">
+                 <div className="col-8">
+                   <h3 className="mb-0">My account</h3>
+                 </div>
+                 <div className="col-4 text-right">
+                   <button onClick={() => history.goBack()}  className="btn btn-sm btn-primary">Go Back</button>
+                 </div>
+               </div>
+             </div>
+             <div className="card-body">
+             {err && showErrMsg(err)}
+           {success && showSuccessMsg(success)}
+      
+               <form>
+                 <h6 className="heading-small text-muted mb-4">User information</h6>
+                 <div className="pl-lg-4">
+                   <div className="row">
+                  
+                     <div className="col-lg-6">
+                       <div className="form-group">
+                         <label className="form-control-label" for="input-email">Email address</label>
+                         <input type="email" id="input-email" className="form-control form-control-alternative"  defaultValue={editUser.email} disabled/>
+                       </div>
+                     </div>
+                   </div>
+                   <div className="row">
+                     <div className="col-lg-6">
+                       <div className="form-group focused">
+                         <label className="form-control-label" for="input-first-name">First name</label>
+                         <input type="text" id="name"  className="form-control form-control-alternative" name="name"  defaultValue={editUser.name} disabled/>
+                       </div>
+                     </div>
+                     
+                   </div>
+                   <div className="row">
+                     <div className="col-lg-6">
+                     <div class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id="isAdmin" checked={checkAdmin}
+                    onChange={handleCheck} type="checkbox"/>
+                            <label class="custom-control-label" htmlFor="isAdmin">
+                              <span class="text-muted">Admin</span>
+                            </label>
+                          </div>
+                     </div>
+                     
+                   </div>
+                   <div className="col-md-12 text-center">
+                   <button   className="btn btn-primary" onClick={handleUpdate}>Make Admin</button>
+                   </div>
+                 </div>
+              
+       
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
 
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" defaultValue={editUser.name} disabled/>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" defaultValue={editUser.email} disabled />
-                </div>
-
-                <div className="form-group">
-                    <input type="checkbox" id="isAdmin" checked={checkAdmin}
-                    onChange={handleCheck} />
-                    <label htmlFor="isAdmin">isAdmin</label>
-                </div>
-
-                <button onClick={handleUpdate}>Update</button>
-
-                {err && showErrMsg(err)}
-                {success && showSuccessMsg(success)}
-            </div>
-        </div>
+        </>
     )
 }
 

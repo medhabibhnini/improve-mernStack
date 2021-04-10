@@ -31,7 +31,7 @@ function Home() {
 
 
      <div className="container mt-5" id="about">
-               <h1 className="text-center py-4">Why to choose fixr landing</h1>
+               <h1 className="text-center py-4">Welcome to imProve</h1>
               
               <div className="row text-center mt-5">
                <div className="col-md-3">
@@ -88,11 +88,11 @@ function Home() {
             </div>
             <div>
           <div className="container mt-5  text-center">
-             <p className="pt-5 pb-2 h4 text-monospace">Speed up your development with high quality themes.</p>
+             <p className="pt-5 pb-2 h4 text-monospace">How can we imPROve ourseleves ?</p>
             <div className="row">
              
               <div className="mx-auto" style={{width: '800px'}}>
-                <p className="text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p className="text-center">Each of us has unique skills and abilities to contribute to humanity. Despite knowing this, it can be difficult to realize what those skills are and how to use them well. Whether you’re a numbers whiz, you do embroidery, or you excel socially, there are ways to put your skills to use and improve them along the way!</p>
               </div>
               </div>
 

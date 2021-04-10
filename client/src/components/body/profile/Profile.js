@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 import './profile.css'
 const initialState = {
     name: '',
@@ -135,6 +137,7 @@ function Profile() {
     return (
   
         <>
+      <Header />
       
       <br></br>
    <br></br>
@@ -282,7 +285,7 @@ function Profile() {
 <br></br>
 <br></br>
 <br></br>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>  <Footer/>
         </>
     
     )

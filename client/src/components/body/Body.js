@@ -10,15 +10,12 @@ import ResetPass from '../body/auth/ResetPassword'
 
 import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'
-
+import Radar from '../body/advancement/advancement'
 import Home from '../body/home/Home'
-
+import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
-import Activation from './auth/ActivationEmail'
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
-import body from '../body/Body'
+import Users from './profile/ListeUser'
 
 function Body() {
     const auth = useSelector(state => state.auth)
@@ -26,7 +23,7 @@ function Body() {
     return (
         <>
 
-<Header/>
+
         <section>
             <Switch>
                 <Route path="/" component={Home} exact />
@@ -38,11 +35,14 @@ function Body() {
                 <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
 
                 <Route path="/user/activate/:activation_token" component={ActivationEmail} exact />
+                <Route path="/advancement" component={isLogged ? Advancement : NotFound} exact />
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-                <Route path="/dashboard" component={Dashboard} exact />
+                <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
+                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
+                <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
             </Switch>
         </section> 
     

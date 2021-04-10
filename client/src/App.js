@@ -42,10 +42,10 @@ function App() {
   return (
     
     <Router>
-        <Header />
+        
         <Body />
        
-        <Footer/>
+    
   
     </Router>
 

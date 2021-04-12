@@ -7,7 +7,8 @@ import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     email: '',
     password: '',
@@ -77,7 +78,8 @@ function Login() {
     }
 
     return (
-      <body class="bg-default">
+   <>
+   <Header/>
       <div class="main-content">
     
         <div class="header bg-primary py-7 py-lg-8">
@@ -112,6 +114,16 @@ function Login() {
                     onSuccess={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
+                <hr></hr>
+                <FacebookLogin
+                buttonStyle={{fontSize:"10.6px"}}
+                
+                 appId="619161739039869"
+                 autoLoad={false}
+                 fields="name,email,picture"
+                 callback={responseFacebook} 
+                 />
+
                   </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
@@ -153,7 +165,7 @@ function Login() {
                       </div>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-info mt-4">Create account</button>
+                      <button type="submit" class="btn btn-info mt-4">Sign In</button>
                     </div>
                   </form>
                 </div>
@@ -171,8 +183,8 @@ function Login() {
         </div>
       </div>
 
-     
-    </body>
+    <Footer/> 
+  </>
     )
 }
 

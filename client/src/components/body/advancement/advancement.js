@@ -7,6 +7,8 @@ import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
 import '../profile/profile.css'
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     name: '',
     password: '',
@@ -165,7 +167,7 @@ function Advancement() {
     return (
   
         <>
-      
+      <Header/>
     <br></br>
     <br></br>
     <br></br>
@@ -234,8 +236,7 @@ function Advancement() {
                   <div>
                     <i class="ni education_hat mr-2"></i>University of Computer Science
                   </div>
-                  <hr class="my-4"/>
-                  <i className="fas fa-camera"></i>
+         
                         
                 </div>
               </div>
@@ -281,6 +282,7 @@ function Advancement() {
  <br></br>
  <br></br>
  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+ <Footer/>
         </>
     
     )

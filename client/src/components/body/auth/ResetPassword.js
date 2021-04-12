@@ -3,7 +3,8 @@ import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isLength, isMatch} from '../../utils/validation/Validation'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 
 const initialState = {
     password: '',
@@ -46,24 +47,82 @@ function ResetPassword() {
 
 
     return (
-        <div className="fg_pass">
-            <h2>Reset Your Password</h2>
-
-            <div className="row">
-                {err && showErrMsg(err)}
-                {success && showSuccessMsg(success)}
-
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" value={password}
-                onChange={handleChangeInput} />
-
-                <label htmlFor="cf_password">Confirm Password</label>
-                <input type="password" name="cf_password" id="cf_password" value={cf_password}
-                onChange={handleChangeInput} />         
-
-                <button onClick={handleResetPass}>Reset Password</button>
+    
+      <>
+        <Header />
+    
+        <div className="main-content">
+   
+        <div className="header bg-primary py-7 py-lg-8">
+          <div className="container">
+            <div className="header-body text-center mb-7">
+              <div className="row justify-content-center">
+                <div className="col-lg-5 col-md-6">
+                  <h1 className="text-white">Welcome!</h1>
+                  <p className="text-lead text-light">Here you can reset your password</p>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <polygon className="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+          </div>
         </div>
+  
+        <div className="container mt--8 pb-5">
+     
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-md-8">
+              <div className="card bg-secondary shadow border-0">
+                <div className="card-header bg-transparent pb-5">
+                  <div className="text-muted text-center mt-2 mb-4"><small>Reset Password</small></div>
+                  <div className="text-center">
+                 
+                  </div>
+                </div>
+                <div className="card-body px-lg-5 py-lg-5">
+                  
+             
+                  <form role="form" >
+                  {err && showErrMsg(err)}
+            {success && showSuccessMsg(success)}
+                  <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Password" type="password"
+                         id="password"
+                         value={password} name="password" onChange={handleChangeInput}/>
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Confirm Password" type="password" id="cf_password"
+                      value={cf_password} name="cf_password" onChange={handleChangeInput} />
+                      </div>
+                    </div>
+                   
+                
+                    <div className="text-center">
+                      <button onClick={handleResetPass}className="btn btn-info mt-4">Reset Password</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+  </>
     )
 }
 

@@ -31,7 +31,7 @@ const userCtrl = {
             const passwordHash = await bcrypt.hash(password, 12)
 
             const newUser = {
-                name, email, password,userName ,lastName: passwordHash
+                name, email,lastName ,userName ,password: passwordHash
             }
 
             const activation_token = createActivationToken(newUser)
@@ -161,9 +161,9 @@ const userCtrl = {
     },
     updateUser: async (req, res) => {
         try {
-            const {name,userName ,lastName, avatar} = req.body
+            const {name,lastName ,userName, avatar} = req.body
             await Users.findOneAndUpdate({_id: req.user.id}, {
-                name, avatar,userName ,lastName
+                name ,lastName,userName,avatar
             })
 
             res.json({msg: "Update Success!"})

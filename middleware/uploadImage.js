@@ -12,7 +12,7 @@ module.exports = async function(req, res, next) {
             return res.status(400).json({msg: "Size too large."})
         } // 1mb
 
-        if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png'){
+        if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png'  ){
             removeTmp(file.tempFilePath)
             return res.status(400).json({msg: "File format is incorrect."})
         }

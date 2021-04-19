@@ -15,7 +15,9 @@ import Home from '../body/home/Home'
 import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
+import create_course from '../createCourse/CreateCourse'
 import Users from './profile/ListeUser'
+import CreateCourse from '../createCourse/CreateCourse'
 
 function Body() {
     const auth = useSelector(state => state.auth)
@@ -41,6 +43,8 @@ function Body() {
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
                 <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
                 <Route path="/users" component={isAdmin ? Users : NotFound} exact />
+
+                <Route path="/create_course" exact component={isAdmin ? CreateCourse : NotFound} />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
             </Switch>

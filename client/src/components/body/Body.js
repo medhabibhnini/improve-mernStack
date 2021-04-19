@@ -17,12 +17,7 @@ import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 import Users from './profile/ListeUser'
 
-import UserProfile from "../../views/UserProfile/UserProfile.js";
-import table from "../../views/TableList/TableList.js"
-import Admin from "../../layouts/Admin.js";
-import softskills from "../../views/skills/ListSoftSkills";
-import  editSkills from "../../views/skills/editSoft"
-import RTL from "../../layouts/RTL.js";
+
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -46,18 +41,17 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-               {/* <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />*/}
+            <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
-                <Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
+             {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
                 <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
                 <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />
 
                 <Route path="/admin/softskills" component={isAdmin ? softskills : NotFound} exact  />
                 <Route path="/admin/editskills/:id" component={isAdmin ? editSkills : NotFound} exact  />
-
-      <Route path="/rtl" component={isAdmin ? RTL : NotFound} />
+    */}
             
             </Switch>
         </section> 

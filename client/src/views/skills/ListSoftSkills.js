@@ -2,8 +2,6 @@ import React,{useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskillsAction'
 import axios from 'axios'
-import AdminNavbarLinks from "../../component/Navbars/AdminNavbarLinks";
-import Sidebars from "../../component/Sidebar/Sidebar"
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
 import { $CombinedState } from 'redux'
@@ -61,7 +59,6 @@ const mystyle = {
     return (
       <div>
      <div style={mystyle} >
-              <AdminNavbarLinks/>
               </div>
               <div  class="contenant">
               <img src={image} class="img-fluid"  style={{marginLeft:'0%',height:'300px',width:'1140px',maxWidth:'100%'}}/>

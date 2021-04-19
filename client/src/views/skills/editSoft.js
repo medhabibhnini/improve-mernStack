@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import AdminNavbarLinks from "../../component/Navbars/AdminNavbarLinks";
 import image from "./header.jpg";
-import footers from "../../component/Footer/Footer"
 import axios from 'axios'
 const initialState = {
     title: '',
@@ -77,7 +75,6 @@ if(title || description || type )
         
       }}>  
           <div style={mystyle} >
-              <AdminNavbarLinks/>
               </div>
               <img src={image} class="img-fluid"  style={{marginLeft:'12%',height:'auto',width:'1140px',maxWidth:'100%'}}/>
 

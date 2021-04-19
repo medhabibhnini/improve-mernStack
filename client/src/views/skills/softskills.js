@@ -4,18 +4,8 @@ import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // core components
-import navi from "../../component/Sidebar/Sidebar";
 import axios from 'axios'
-import GridItem from "../../component/Grid/GridItem.js";
-import GridContainer from "../../component/Grid/GridContainer.js";
-import CustomInput from "../../component/CustomInput/CustomInput.js";
-import Button from "../../component/CustomButtons/Button.js";
-import Card from "../../component/Card/Card.js";
-import CardHeader from "../../component/Card/CardHeader.js";
-import CardAvatar from "../../component/Card/CardAvatar.js";
-import CardBody from "../../component/Card/CardBody.js";
-import CardFooter from "../../component/Card/CardFooter.js";
-import avatar from "../../assets/img/faces/marc.jpg";
+
 import { isEmpty } from "../../components/utils/validation/Validation";
 const styles = {
     cardCategoryWhite: {

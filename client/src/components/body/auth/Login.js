@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Recaptcha from 'react-google-recaptcha';
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
@@ -8,6 +9,8 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
 
+
+
 const initialState = {
     email: '',
     password: '',
@@ -16,6 +19,7 @@ const initialState = {
 }
 
 function Login() {
+  
     const [user, setUser] = useState(initialState)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -75,6 +79,15 @@ function Login() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
+    
+  /*  verifyCallback(response) {
+      if (response) {
+        this.setState({
+          isVerified: true
+        })
+      }
+    }*/
+    
 
     return (
       <body class="bg-default">
@@ -162,11 +175,21 @@ function Login() {
                         </div>
                       </div>
                     </div>
+                    <div>
+                <Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+           // onloadCallback={this.recaptchaLoaded}
+           // verifyCallback={this.verifyCallback}
+          />
+                </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-info mt-4">Create account</button>
                     </div>
                   </form>
+
                 </div>
+                
               </div>
               <div class="row mt-3">
               <div class="col-6"><Link to="/forgot_password">

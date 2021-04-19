@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/*const mongoose = require("mongoose");
 
 let PostSchema = mongoose.Schema({
   user: {
@@ -69,3 +69,23 @@ let PostSchema = mongoose.Schema({
 const PostModel = mongoose.model("post", PostSchema);
 
 module.exports = PostModel;
+*/
+const mongoose = require('mongoose')
+const postSchema = new mongoose.Schema ({
+email :{
+  type: String,
+required :[true,"please enter your email"],
+trim:true,
+unique :true},
+post :{
+
+type:String,
+required : [true,"please enter a post"],
+trim : true,
+unique :true
+
+},
+
+
+},{timestamps:true})
+module.exports=mongoose.model("Posts",postSchema)

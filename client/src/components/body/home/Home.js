@@ -2,6 +2,7 @@ import React from 'react'
 import './home.css'
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+import radar from '../advancement/advancement'
 function Home() {
     return (
         <>

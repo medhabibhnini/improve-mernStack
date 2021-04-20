@@ -5,6 +5,7 @@ import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isEmpty, isEmail, isLength, isMatch} from '../../utils/validation/Validation'
 import './register.css'
+import swal from 'sweetalert'
 
 
 const initialState = {
@@ -23,6 +24,8 @@ function Register() {
 
     const {name, lastName, userName, email, password,cf_password, err, success} = user
 
+  
+
     const handleChangeInput = e => {
         const {name, value} = e.target
         setUser({...user, [name]:value, err: '', success: ''})
@@ -32,7 +35,15 @@ function Register() {
     const handleSubmit = async e => {
         e.preventDefault()
         if(isEmpty(name) || isEmpty(password))
-                return setUser({...user, err: "Please fill in all fields.", success: ''})
+        
+        return swal({
+          title: "Please fill in all fields!",
+          text: "You need to fill all fields to Register!",
+          icon: "error",
+          button: "Confirm",
+          timer: "9000"
+          });
+                //return setUser({...user, err: "Please fill in all fields.", success: ''})
 
         if(!isEmail(email))
             return setUser({...user, err: "Invalid emails.", success: ''})
@@ -44,6 +55,13 @@ function Register() {
             return setUser({...user, err: "Password did not match.", success: ''})
 
         try {
+          swal({
+            title: "Account created successefuly!",
+            text: " Please Check your Email to activate it!",
+            icon: "success",
+            button: "Confirm",
+            timer: "9000"
+            });
             const res = await axios.post('/user/register', {
                 name, lastName, userName, email, password
             })
@@ -174,7 +192,7 @@ function Register() {
           />
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-info mt-4">Create account</button>
+                        <button type="submit" class="btn btn-info mt-4" >Create account</button>
                       </div>
                     </form>
                   </div>

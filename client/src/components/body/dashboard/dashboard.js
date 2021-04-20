@@ -1,4 +1,5 @@
 import React from 'react'
+import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -30,7 +31,15 @@ function Dashboard() {
 
 
     const handleLogout = async () => {
+      
         try {
+          swal({
+            title: "Logout Bouton",
+            text: "You are going to Logout",
+            icon: "warning",
+            buttons: "Confirm",
+            timer: "9000"
+            });
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
             window.location.href = "/";

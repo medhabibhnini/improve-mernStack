@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
+import swal from 'sweetalert'
 
 
 
@@ -46,6 +47,13 @@ function Login() {
             history.push("/")
 
         } catch (err) {
+          swal({
+            title: "Verify your inputs",
+            text: "Your Email & Password must match & exist!",
+            icon: "error",
+            button: "OK",
+            timer: "9000"
+            });
             err.response.data.msg && 
             setUser({...user, err: err.response.data.msg, success: ''})
         }
@@ -78,19 +86,16 @@ function Login() {
             history.push('/')
         } catch (err) {
             err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
+            setUser({...user, err: err.response.data.msg, success: ''}) 
         }
     }
     
-   /*verifyCallback(response) => {
-      if (response) {
-        this.setState({
-          isVerified: true
-        })
+    var verifyCallback = (response) => {
+      console.log(response);
+      if (!response) {
+          alert("captcha baby")
       }
-      else 
-      return "check your captcha"
-    }*/
+  };
     
 
     return (
@@ -185,7 +190,7 @@ function Login() {
             sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
             render="explicit"
            // onloadCallback={this.recaptchaLoaded}
-           // verifyCallback={this.verifyCallback}
+            verifyCallback={verifyCallback}
           />
                 </div>
                     <div class="text-center">

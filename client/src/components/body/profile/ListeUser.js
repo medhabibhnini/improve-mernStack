@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -116,25 +117,44 @@ function ListeUser() {
         if(name || lastName || userName || avatar ) updateInfor()
         if(password) updatePassword()
     }
-
-    const handleDelete = async (id) => {
+    const deleteuser = async (id) => {
         try {
             if(user._id !== id){
-                if(window.confirm("Are you sure you want to delete this account?")){
+                //if(window.confirm("Are you sure you want to delete this account?")){
                     setLoading(true)
                     await axios.delete(`/user/delete/${id}`, {
                         headers: {Authorization: token}
                     })
+                    Swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                      )
                     setLoading(false)
                     setCallback(!callback)
-                }
+                //}
             }
             
         } catch (err) {
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
-
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                deleteuser(id);
+              
+            }
+          })
+    }
     return (
   
         <>

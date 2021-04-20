@@ -10,6 +10,8 @@ import {  DropdownMenu,
 import 'bootstrap/dist/css/bootstrap.css';
 import dashboardlogo from "../assets/Dashboard.png"
 import improvelogo from "../../assets/img/logo.png"
+import swal from 'sweetalert'
+
 function Header() {
     const auth = useSelector(state => state.auth)
 
@@ -17,10 +19,17 @@ function Header() {
 
 
     const handleLogout = async () => {
+      swal({
+        title: "Logout Bouton",
+        text: "You are going to Logout",
+        icon: "warning",
+        button: "Confirm",
+        timer: "9000"
+        });
         try {
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
-            window.location.href = "/";
+            window.location.href = "/login";
         } catch (err) {
             window.location.href = "/";
         }

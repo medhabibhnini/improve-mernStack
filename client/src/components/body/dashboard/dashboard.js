@@ -1,7 +1,9 @@
 import React from 'react'
+import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import Softskill from "../../../views/skills/ListSoftSkills"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -31,7 +33,15 @@ function Dashboard() {
 
 
     const handleLogout = async () => {
+      
         try {
+          swal({
+            title: "Logout Bouton",
+            text: "You are going to Logout",
+            icon: "warning",
+            buttons: "Confirm",
+            timer: "9000"
+            });
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
             window.location.href = "/";
@@ -71,9 +81,9 @@ const submenus = [
   
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" href="#">Sidebar Nav</a>
   <button
@@ -91,12 +101,13 @@ const submenus = [
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
     <Nav vertical className="list-unstyled pb-3">
-        <NavItem>
-          <NavLink tag={Link} to={"/about"}>
+    <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/homeback"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-            About
+Home
           </NavLink>
         </NavItem>
+
   <NavItem>
         <NavLink tag={Link} to={"/create_course"}>
             <FontAwesomeIcon icon={faBook} className="mr-2" />
@@ -107,17 +118,33 @@ const submenus = [
         <NavItem>
           <NavLink tag={Link} to={"/pages"}>
             Portfolio
+
+       
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/users"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            List of users
+
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            FAQ
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/softskills"} >
+          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+
+            Soft skills
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/hardskills"}>
+          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+
+            Hard skills
+          </NavLink>
+        </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/contact"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Contact
+            Courses
           </NavLink>
         </NavItem>
       </Nav>
@@ -145,7 +172,7 @@ const submenus = [
           <DropdownItem className="noti-title" header tag="div">
             <h6 className="text-overflow m-0">Welcome!</h6>
           </DropdownItem>
-          <DropdownItem to="/profile" tag={Link}>
+
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>

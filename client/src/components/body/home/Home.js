@@ -4,7 +4,8 @@ import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import radar from '../advancement/advancement'
 function Home() {
-    return (
+ 
+  return (
         <>
           <Header />
     
@@ -20,14 +21,13 @@ function Home() {
 
 
 
-<div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://www.eleapsoftware.com/wp-content/uploads/2018/02/education-and-business-background-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://www.eleapsoftware.com/wp-content/uploads/2018/02/education-and-business-background-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
 <span className="mask bg-gradient-default opacity-8"></span>
-
+   <h1 class="titre" style={{marginLeft:"500px",fontSize:"100",color:"white"}}>imProve your skills </h1>
+<div class="overlay"></div>
 <div className="container-fluid d-flex align-items-center">
   <div className="row">
     <div className="col-lg-7 col-md-10">
-   
     </div>
   </div>
 </div>

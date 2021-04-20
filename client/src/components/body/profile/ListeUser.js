@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -116,25 +117,44 @@ function ListeUser() {
         if(name || lastName || userName || avatar ) updateInfor()
         if(password) updatePassword()
     }
-
-    const handleDelete = async (id) => {
+    const deleteuser = async (id) => {
         try {
             if(user._id !== id){
-                if(window.confirm("Are you sure you want to delete this account?")){
+                //if(window.confirm("Are you sure you want to delete this account?")){
                     setLoading(true)
                     await axios.delete(`/user/delete/${id}`, {
                         headers: {Authorization: token}
                     })
+                    Swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                      )
                     setLoading(false)
                     setCallback(!callback)
-                }
+                //}
             }
             
         } catch (err) {
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
-
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                deleteuser(id);
+              
+            }
+          })
+    }
     return (
   
         <>
@@ -146,7 +166,12 @@ function ListeUser() {
             <div class="card-header border-0">
               <h3 class="mb-0">Card tables</h3>
               </div>
-             
+               <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+              
+
+              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}>Users list </h1>
+<div class="overlay"></div>
+</div>
              {err && showErrMsg(err)}
            {success && showSuccessMsg(success)}
            {loading && <h3>Loading.....</h3>}

@@ -7,7 +7,8 @@ import DetailPostCard from '../../utils/detailPostsCard/DetailPostCard'
 import FormInput from '../../utils/formInput/FormInput'
 import CommentItem from '../../utils/commentItem/CommentItem'
 import Loading from '../../utils/images/loading.gif'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 function DetailPost() {
     const {id} = useParams()
 
@@ -40,56 +41,31 @@ function DetailPost() {
 
     // Realtime 
     // Join room
-    useEffect(() => {
-        if(socket){
-            socket.emit('joinRoom', id)
-        }
-    },[socket, id])
+ 
 
     useEffect(() => {
-        if(socket){
-            socket.on('sendCommentToClient', msg => {
-                setComments([msg, ...comments])
-            })
-
-            return () => socket.off('sendCommentToClient')
-        } 
-    },[socket, comments])
+    
+    },[])
 
     // infiniti scroll
     useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
-            if(entries[0].isIntersecting){
-                setPage(prev => prev + 1)
-            }
-        },{
-            threshold: 0.1
-        })
-
-        observer.observe(pageEnd.current)
+   
     },[])
 
 
     // Reply Comments
     useEffect(() => {
-        if(socket){
-            socket.on('sendReplyCommentToClient', msg => {
-                const newArr = [...comments]
-                
-                newArr.forEach(cm => {
-                    if(cm._id === msg._id){
-                        cm.reply = msg.reply
-                    }
-                })
-
-                setComments(newArr)
-            })
-
-            return () => socket.off('sendReplyCommentToClient')
-        } 
-    },[socket, comments])
+  
+    })
 
     return (
+        <>
+        <Header/>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div className="container">
         <div className="detail_product_page">
             {
                 detailPost.map(posts => (
@@ -99,27 +75,11 @@ function DetailPost() {
 
             <div className="comments">
                 <h2 className="app_title">
-                        Realtime website ( chat, comments ... ) with MERN Stack and Socket.io
+                        
                 </h2>
 
-                <div className="reviews">
-                    <input type="radio" name="rate" id="rd-5" onChange={() => setRating(5)} />
-                    <label htmlFor="rd-5" className="fas fa-star"></label>
 
-                    <input type="radio" name="rate" id="rd-4" onChange={() => setRating(4)} />
-                    <label htmlFor="rd-4" className="fas fa-star"></label>
-
-                    <input type="radio" name="rate" id="rd-3" onChange={() => setRating(3)} />
-                    <label htmlFor="rd-3" className="fas fa-star"></label>
-
-                    <input type="radio" name="rate" id="rd-2" onChange={() => setRating(2)} />
-                    <label htmlFor="rd-2" className="fas fa-star"></label>
-
-                    <input type="radio" name="rate" id="rd-1" onChange={() => setRating(1)} />
-                    <label htmlFor="rd-1" className="fas fa-star"></label>
-                </div>
-
-                <FormInput id={id} socket={socket} rating={rating} />
+              
 
                 <div className="comments_list">
                     {
@@ -131,11 +91,12 @@ function DetailPost() {
 
             </div>
 
-            {
-                loading && <div className="loading"><img src={Loading} alt=""/></div>
-            }  
+            
             <button ref={pageEnd} style={{opacity: 0}}>Load more</button>    
         </div>
+        </div>
+        <Footer/>
+        </>
     )
 }
 

@@ -11,6 +11,7 @@ function DetailPostsCard({posts}) {
             <h2>{posts.title}</h2>
 
             <p>{posts.description}</p>
+            <p>{posts.user.name}</p>
 
 
             <div>

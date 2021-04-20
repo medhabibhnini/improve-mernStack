@@ -1,8 +1,8 @@
 {
   "name": "client",
+  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -16,6 +16,7 @@
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "mdbreact": "^5.0.2",
+    "moment": "^2.29.1",
     "node-sass": "^5.0.0",
     "react": "^16.14.0",
     "react-bootstrap": "^1.5.2",

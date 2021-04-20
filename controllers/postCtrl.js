@@ -1,5 +1,5 @@
 const Posts = require('../models/postModel')
-
+const User = require ('../models/userModel')
 // Filter, sorting and paginating
 
 class APIfeatures {
@@ -65,11 +65,11 @@ const postCtrl = {
     },
     createPost: async(req, res) =>{
         try {
-            const {title,description} = req.body;
-
+            const {title,description,user} = req.body;
+            let users = await User.findById(user).select("-password");
 
             const newPost = new Posts({
-               title: title.toLowerCase(), description
+        title: title.toLowerCase(), description,user:users,name:users.name,lastName:users.lastName,avatar:users.avatar
             })
 
             await newPost.save()

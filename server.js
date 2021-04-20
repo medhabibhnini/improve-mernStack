@@ -34,7 +34,7 @@ app.use('/hard',require('./routes/hardskills'))
 const postRoute= require('./routes/posts')
 app.use('/forum',postRoute);
 
-
+*/
 // Connect to mongodb
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {

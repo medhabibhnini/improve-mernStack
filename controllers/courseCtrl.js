@@ -66,7 +66,7 @@ const courseCtrl = {
     createCourse: async(req, res) =>{
         try {
             const {course_id, title, price, description, image, category, link} = req.body;
-            if(!image) return res.status(400).json({msg: "No image upload"})
+            //if(!image) return res.status(400).json({msg: "No image upload"})
 
             const course = await Courses.findOne({course_id})
             if(course)

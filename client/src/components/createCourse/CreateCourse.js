@@ -1,8 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
+import {GlobalState} from '../../GlobalState'
+import Loading from '../../utils/loading/Loading'
 import {useSelector, useDispatch} from 'react-redux'
-
+import Select from 'react-Select';
 import {useHistory, useParams} from 'react-router-dom'
+
 
 const initialState = {
     course_id: '',
@@ -15,17 +18,20 @@ const initialState = {
 }
 
 function CreateCourse() {
-    const auth = useSelector(state => state.auth)
-    const token = useSelector(state => state.token)
+    const state = useContext(GlobalState)
     const [course, setCourse] = useState(initialState)
-    const [image, setImage] = useState(false)
+    const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
-    const param = useParams();
+    const options = ['Soft Skill', 'Hard Skill']
+    const token = useSelector(state => state.token)
 
-    const [courses] = useSelector(state=> state.courses)
+
+    const history = useHistory()
+    const param = useParams()
+
+    const [courses, setCourses] = useState([])
     const [onEdit, setOnEdit] = useState(false)
     const [callback, setCallback] = useState(false)
-    const [isAdmin, setIsAdmin] = useState(false)
 
     useEffect(() => {
         if(param.id){
@@ -33,20 +39,19 @@ function CreateCourse() {
             courses.forEach(course => {
                 if(course._id === param.id) {
                     setCourse(course)
-                    setImage(course.image)
+                    setImages(course.images)
                 }
             })
         }else{
             setOnEdit(false)
             setCourse(initialState)
-            setImage(false)
+            setImages(false)
         }
     }, [param.id, courses])
 
     const handleUpload = async e =>{
         e.preventDefault()
         try {
-            if(!isAdmin) return alert("You're not an admin")
             const file = e.target.files[0]
             
             if(!file) return alert("File not exist.")
@@ -61,11 +66,11 @@ function CreateCourse() {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/api/upload', formData, {
+            const res = await axios.post('/api/upload_avatar', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
-            setImage(res.data)
+            setImages(res.data)
 
         } catch (err) {
             alert(err.response.data.msg)
@@ -74,13 +79,12 @@ function CreateCourse() {
 
     const handleDestroy = async () => {
         try {
-            if(!isAdmin) return alert("You're not an admin")
             setLoading(true)
-            await axios.post('/api/destroy', {public_id: image.public_id}, {
-                headers: {Authorization: token}
+            await axios.post('/api/destroy', {public_id: images.public_id}, {
+              //  headers: {Authorization: token}
             })
             setLoading(false)
-            setImage(false)
+            setImages(false)
         } catch (err) {
             alert(err.response.data.msg)
         }
@@ -94,31 +98,39 @@ function CreateCourse() {
     const handleSubmit = async e =>{
         e.preventDefault()
         try {
-            if(!isAdmin) return alert("You're not an admin")
-            if(!image) return alert("No Image Upload")
+            //if(!images) return alert("No Image Upload")
 
             if(onEdit){
-                await axios.put(`/api/courses/${course._id}`, {...course, image}, {
-                    headers: {Authorization: token}
+                await axios.put(`/api/courses/${course._id}`, {...course, images}, {
+                //    headers: {Authorization: token}
                 })
             }else{
-                await axios.post('/api/courses', {...course, image}, {
-                    headers: {Authorization: token}
+                await axios.post('/api/courses', {...course, images}, {
+                  //  headers: {Authorization: token}
                 })
             }
             setCallback(!callback)
-            
+            history.push("/")
         } catch (err) {
             alert(err.response.data.msg)
         }
     }
 
     const styleUpload = {
-        display: image ? "block" : "none"
+        display: images ? "block" : "none"
     }
     return (
         <div className="create_course">
             <div className="upload">
+                <input type="file" name="file" id="file_up" onChange={handleUpload}/>
+                {
+                    loading ? <div id="file_img"><Loading /></div>
+
+                    :<div id="file_img" style={styleUpload}>
+                        <img src={images ? images.url : ''} alt=""/>
+                        <span onClick={handleDestroy}>X</span>
+                    </div>
+                }
                 
             </div>
 
@@ -147,18 +159,16 @@ function CreateCourse() {
                     value={course.description} rows="5" onChange={handleChangeInput} />
                 </div>
 
-                <div className="row">
-                    <label htmlFor="content">Content</label>
-                    <textarea type="text" name="content" id="content" required
-                    value={course.content} rows="7" onChange={handleChangeInput} />
-                </div>
+                <div style={{marginLeft:'40%', marginTop: '60px'}}>
+    <label htmlFor="category">category</label>
+      <select
+        options={options}
+        style={{ width: 300 }}
+        renderInput={(params) =>
+          <TextField {...params} label="Combo box" variant="outlined" />}
+      />
+    </div>
 
-                <div className="row">
-                    <label htmlFor="categories">Categories: </label>
-                    <select name="category" value={course.category} onChange={handleChangeInput} >
-                        
-                    </select>
-                </div>
 
                 <button type="submit">{onEdit? "Update" : "Create"}</button>
             </form>

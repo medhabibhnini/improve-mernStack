@@ -84,9 +84,13 @@ io.on('connection', socket => {
 // Routes
 app.use('/user', require('./routes/userRouter'))
 
+
 app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
 app.use('/comment', require('./routes/commentRouter'))
+app.use('/soft',require('./routes/skills'))
+
+app.use('/api', require('./routes/upload'))
 app.use('/soft',require('./routes/skills'))
 
 /*

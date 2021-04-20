@@ -18,6 +18,7 @@ import Dashboard from './dashboard/dashboard'
 import Users from './profile/ListeUser'
 import Posts from './posts/Posts'
 import DetailPosts from './detailPosts/DetailPosts'
+
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -45,8 +46,10 @@ function Body() {
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
+
                 <Route path="/posts" component={Posts} exact />
                 <Route path="/forum/posts/:id" component={DetailPosts} exact />
+
              {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
                 <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
                 <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />

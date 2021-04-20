@@ -10,6 +10,7 @@ import {
   faQuestion,
   faImage,
   faCopy,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenu from "./SubMenu"
 import axios from 'axios'
@@ -96,6 +97,13 @@ const submenus = [
             About
           </NavLink>
         </NavItem>
+  <NavItem>
+        <NavLink tag={Link} to={"/create_course"}>
+            <FontAwesomeIcon icon={faBook} className="mr-2" />
+            Courses
+          </NavLink>
+        </NavItem>
+
         <NavItem>
           <NavLink tag={Link} to={"/pages"}>
             Portfolio

@@ -86,7 +86,7 @@ function Header() {
   const userLinkAdmin = () => {
     return  <li className="nav-item">
     <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
-    <Link to="/dashboard">
+    <Link to="/homeback">
       
       <button   className="btn btn-secondary" >Dashboard</button>
       </Link>
@@ -137,6 +137,37 @@ function Header() {
             </a>
           </li>
 }
+{
+                 
+         <li className="nav-item" style={{marginRight:"0px"}}>
+            <a className="nav-link nav-link-icon"  target="_blank">
+            <Link to="/listsoft">
+            <button   className="btn btn-primary" >Soft skills</button>
+              </Link>
+            </a>
+          </li>
+}
+{
+         <li className="nav-item" style={{marginRight:"0px"}}>
+            <a className="nav-link nav-link-icon"  target="_blank">
+            <Link to="/login">
+            <button   className="btn btn-primary" >Hard skills</button>
+              </Link>
+            </a>
+          </li>
+}
+
+{
+                    
+         <li className="nav-item" style={{marginRight:"400px"}}>
+            <a className="nav-link nav-link-icon"  target="_blank">
+            <Link to="/login">
+            <button   className="btn btn-primary" >Courses</button>
+              </Link>
+            </a>
+          </li>
+}
+
         {
                     isLogged
                     ? userLinkreg()

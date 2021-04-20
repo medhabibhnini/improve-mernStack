@@ -21,6 +21,8 @@ const postRoute= require('./routes/posts')
 
 app.use('/api', require('./routes/upload'))
 app.use('/soft',require('./routes/skills'))
+app.use('/hard',require('./routes/hardskills'))
+
 app.use('/post',postRoute)
 
 /*

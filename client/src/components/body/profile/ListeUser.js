@@ -146,7 +146,12 @@ function ListeUser() {
             <div class="card-header border-0">
               <h3 class="mb-0">Card tables</h3>
               </div>
-             
+               <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+              
+
+              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}>Users list </h1>
+<div class="overlay"></div>
+</div>
              {err && showErrMsg(err)}
            {success && showSuccessMsg(success)}
            {loading && <h3>Loading.....</h3>}

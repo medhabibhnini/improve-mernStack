@@ -15,13 +15,37 @@ const initialState = {
     password: '',
     cf_password: '',
     err: '',
-    success: ''
+    success: '',
+    isVerified: false
+
 }
 
 function Register() {
-    const [user, setUser] = useState(initialState)
+    const [user, setUser, data, setData] = useState(initialState)
 
     const {name, lastName, userName, email, password,cf_password, err, success} = user
+    
+
+    // specifying your onload callback function
+    var callback = () => {
+      console.log('Done!!!!');
+
+  };
+
+  // specifying verify callback function
+  var verifyCallback = (response) => {
+      console.log(response);
+      if (response) {
+          setData({
+              ...data,
+              isVerified: true
+          })
+      }
+     /* else
+      {
+        return alert("offf")
+      }*/
+  };
 
     const handleChangeInput = e => {
         const {name, value} = e.target
@@ -31,6 +55,8 @@ function Register() {
 
     const handleSubmit = async e => {
         e.preventDefault()
+      /*  if(!isVerified(data))
+            return alert("are you a robot?")*/
         if(isEmpty(name) || isEmpty(password))
                 return setUser({...user, err: "Please fill in all fields.", success: ''})
 
@@ -43,6 +69,7 @@ function Register() {
         if(!isMatch(password, cf_password))
             return setUser({...user, err: "Password did not match.", success: ''})
 
+
         try {
             const res = await axios.post('/user/register', {
                 name, lastName, userName, email, password
@@ -53,6 +80,8 @@ function Register() {
             err.response.data.msg && 
             setUser({...user, err: err.response.data.msg, success: ''})
         }
+     
+      
     }
     
     return (
@@ -168,6 +197,17 @@ function Register() {
                           </div>
                         </div>
                       </div>
+<<<<<<< Updated upstream
+=======
+                      <div>
+                      <Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+            onloadCallback={callback}
+            verifyCallback={verifyCallback}
+          />
+                      </div>
+>>>>>>> Stashed changes
                       <div class="text-center">
                         <button type="submit" class="btn btn-info mt-4">Create account</button>
                       </div>

@@ -16,7 +16,8 @@ import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 import Users from './profile/ListeUser'
-
+import Posts from './posts/Posts'
+import DetailPosts from './detailPosts/DetailPosts'
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -43,6 +44,8 @@ function Body() {
                 <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
+                <Route path="/posts" component={Posts} exact />
+                <Route path="/forum/posts/:id" component={DetailPosts} exact />
             </Switch>
         </section> 
     

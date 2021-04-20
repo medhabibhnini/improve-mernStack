@@ -128,6 +128,14 @@ function Header() {
         </div>
       
         <ul className="navbar-nav ml-auto" style={transForm}>
+        <li className="nav-item">
+    <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
+    <Link to="/posts">
+      
+      <button   className="btn btn-secondary" >Forum</button>
+      </Link>
+    </a>
+  </li>
         {
                     isAdmin 
                     ? userLinkAdmin()
@@ -149,6 +157,7 @@ function Header() {
             </a>
           </li>
 }
+
 {
                     isLogged
                     ? userLink()

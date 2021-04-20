@@ -31,7 +31,7 @@ const userCtrl = {
             const passwordHash = await bcrypt.hash(password, 12)
 
             const newUser = {
-                name, email, password,userName ,lastName: passwordHash
+                name, email,lastName ,userName ,password: passwordHash
             }
 
             const activation_token = createActivationToken(newUser)

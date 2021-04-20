@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 function ActivationEmail() {
     const {activation_token} = useParams()
     const [err, setErr] = useState('')
@@ -23,10 +24,26 @@ function ActivationEmail() {
     },[activation_token])
 
     return (
+        <>
+          <Header />
+      
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div className="active_page">
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Footer/>
+</>
     )
 }
 

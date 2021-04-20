@@ -11,6 +11,8 @@ import './login.css'
 
 
 
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
 const initialState = {
     email: '',
     password: '',
@@ -92,7 +94,8 @@ function Login() {
     
 
     return (
-      <body class="bg-default">
+   <>
+   <Header/>
       <div class="main-content">
     
         <div class="header bg-primary py-7 py-lg-8">
@@ -186,7 +189,7 @@ function Login() {
           />
                 </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-info mt-4">Create account</button>
+                      <button type="submit" class="btn btn-info mt-4">Sign In</button>
                     </div>
                   </form>
 
@@ -206,8 +209,8 @@ function Login() {
         </div>
       </div>
 
-     
-    </body>
+    <Footer/> 
+  </>
     )
 }
 

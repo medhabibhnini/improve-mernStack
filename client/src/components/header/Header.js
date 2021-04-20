@@ -8,8 +8,8 @@ import {  DropdownMenu,
   DropdownToggle,
   Media } from  "reactstrap";
 import 'bootstrap/dist/css/bootstrap.css';
-import improvelogo from "../../assets/img/logo.png"
 import dashboardlogo from "../assets/Dashboard.png"
+import improvelogo from "../../assets/img/logo.png"
 function Header() {
     const auth = useSelector(state => state.auth)
 
@@ -40,7 +40,7 @@ function Header() {
             </span>
             <Media className="ml-2 d-none d-lg-block">
               <span className="mb-0 text-sm font-weight-bold">
-              {user.name} {user.lastName}
+              {user.name} 
               </span>
             </Media>
           </Media>
@@ -53,9 +53,9 @@ function Header() {
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>
-          <DropdownItem to="/admin/user-profile" tag={Link}>
+          <DropdownItem to="/radar" tag={Link}>
             <i className="ni ni-settings-gear-65" />
-            <span>Settings</span>
+            <span>My advancement</span>
           </DropdownItem>
           <DropdownItem to="/admin/user-profile" tag={Link}>
             <i className="ni ni-calendar-grid-58" />
@@ -84,24 +84,15 @@ function Header() {
     </li>
   }
   const userLinkAdmin = () => {
-    return  <UncontrolledDropdown nav>
-    <DropdownToggle className="pr-0" nav>
-      <Media className="align-items-center">
-        <span className="avatar avatar-sm rounded-circle">
-          <img
-            alt="..."
-            src={dashboardlogo}
-          />
-        </span>
-        <Media className="ml-2 d-none d-lg-block">
-          <span className="mb-0 text-sm font-weight-bold">
-          Dashboard
-          </span>
-        </Media>
-      </Media>
-    </DropdownToggle>
-    
-  </UncontrolledDropdown>
+    return  <li className="nav-item">
+    <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
+    <Link to="/dashboard">
+      
+      <button   className="btn btn-secondary" >Dashboard</button>
+      </Link>
+    </a>
+  </li>
+  
 }
 
     const transForm = {
@@ -110,22 +101,21 @@ function Header() {
     }
 
     return (
-      
+     
         <div class="main-content">
         <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-light">
       <div class="container px-4">
-      <img alt="..." src={improvelogo} width="200px"/>
+     <Link to="/"> <img alt="..." src={improvelogo} width="200px"/></Link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
 
-
         <div className="navbar-collapse-header d-md-none">
           <div className="row">
             <div className="col-6 collapse-brand">
               <a href="../index.html">
-                Argon
+                
               </a>
             </div>
             <div className="col-6 collapse-close">
@@ -138,6 +128,14 @@ function Header() {
         </div>
       
         <ul className="navbar-nav ml-auto" style={transForm}>
+        <li className="nav-item">
+    <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
+    <Link to="/posts">
+      
+      <button   className="btn btn-secondary" >Forum</button>
+      </Link>
+    </a>
+  </li>
         {
                     isAdmin 
                     ? userLinkAdmin()
@@ -153,20 +151,20 @@ function Header() {
          : <li className="nav-item">
             <a className="nav-link nav-link-icon" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">
             <Link to="/register">
-              <i className="ni ni-circle-08"></i>
-              <span className="nav-link-inner--text">Register</span>
+              
+              <button   className="btn btn-primary" >Register</button>
               </Link>
             </a>
           </li>
 }
+
 {
                     isLogged
                     ? userLink()
          :<li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/login">
-              <i className="ni ni-key-25"></i>
-              <span className="nav-link-inner--text">Login</span>
+            <button   className="btn btn-primary" >Login</button>
               </Link>
             </a>
           </li>
@@ -179,7 +177,6 @@ function Header() {
  
   </div>
 
-    
     )
 }
 

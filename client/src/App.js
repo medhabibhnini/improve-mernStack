@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {dispatchLogin, fetchUser, dispatchGetUser} from './redux/actions/authAction'
-
+import {DataProvider} from './GlobalState'
 import Header from './components/header/Header'
 import Body from './components/body/Body'
 import axios from 'axios';
 import Footer from './components/footer/Footer'
+import Dashboard from './components/body/dashboard/dashboard'
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.token)
@@ -38,12 +40,19 @@ function App() {
 
 
   return (
-    <Router>
-
-        <Header />
+   <DataProvider>    
+     <Router>
+        
         <Body />
-        <Footer/>
+       
+  
     </Router>
+
+    </DataProvider> 
+
+
+   
+
   );
 }
 

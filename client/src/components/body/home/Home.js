@@ -1,9 +1,13 @@
 import React from 'react'
 import './home.css'
-
+import Header from '../../header/Header'
+import Footer from '../../footer/Footer'
+import radar from '../advancement/advancement'
 function Home() {
     return (
         <>
+          <Header />
+    
     <br></br>
     <br></br>
     <br></br>
@@ -16,20 +20,22 @@ function Home() {
 
 
 
-<div className="jumbotron jumbotron-odi-hero bg-primary">
-<div className="jumbotron-overlay ">
-  <div className="container jumbotron-padding  text-center">
-  <h1 className="display-4">Speed up your development with high quality themes.</h1>
-     <p>
-        <a href="https://www.odipixel.com" className="btn btn-lg btn-success btn-circle my-4 mr-3">Visit for more</a>
-     </p>
+<div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://www.eleapsoftware.com/wp-content/uploads/2018/02/education-and-business-background-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+
+<span className="mask bg-gradient-default opacity-8"></span>
+
+<div className="container-fluid d-flex align-items-center">
+  <div className="row">
+    <div className="col-lg-7 col-md-10">
+   
+    </div>
   </div>
 </div>
 </div>
 
 
      <div className="container mt-5" id="about">
-               <h1 className="text-center py-4">Why to choose fixr landing</h1>
+               <h1 className="text-center py-4">Welcome to imProve</h1>
               
               <div className="row text-center mt-5">
                <div className="col-md-3">
@@ -86,11 +92,11 @@ function Home() {
             </div>
             <div>
           <div className="container mt-5  text-center">
-             <p className="pt-5 pb-2 h4 text-monospace">Speed up your development with high quality themes.</p>
+             <p className="pt-5 pb-2 h4 text-monospace">How can we imPROve ourseleves ?</p>
             <div className="row">
              
               <div className="mx-auto" style={{width: '800px'}}>
-                <p className="text-center"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p className="text-center">Each of us has unique skills and abilities to contribute to humanity. Despite knowing this, it can be difficult to realize what those skills are and how to use them well. Whether you’re a numbers whiz, you do embroidery, or you excel socially, there are ways to put your skills to use and improve them along the way!</p>
               </div>
               </div>
 
@@ -304,7 +310,7 @@ function Home() {
 
 </body>
 
-
+<Footer/>
         </>
     )
 }

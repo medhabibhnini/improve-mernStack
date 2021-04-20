@@ -30,34 +30,36 @@ const styles = {
   };
   
 const initialState ={
-title :'',
-type :'',
-description :'',
-err: '',
-success: ''
-
-}
-
-export default function Softskills() {
-  const history = useHistory()
+    title :'',
+    type :'',
+    description :'',
+    categorie:'',
+    err: '',
+    success: ''
+    
+    }
+    
+export default  function Addhardskills()
+{
+    const history = useHistory()
 
     const [data, setData] = useState(initialState)
-    const {title,type,description, err, success} = data
+    const {title,type,description,categorie, err, success} = data
     const handleChange = e => {
       const {name, value} = e.target
       setData({...data, [name]:value, err:'', success: ''})
     }
     const handleSubmit = async e => {
 e.preventDefault()
-if(isEmpty(title) || isEmpty(type) || isEmpty(description))
+if(isEmpty(title) || isEmpty(type) || isEmpty(description) || isEmpty(categorie))
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/soft/ajoutSoft',{
-  title,type,description
+const res = await axios.post('http://localhost:5000/hard/ajouthard',{
+  title,type,description,categorie
 })
 setData({...data,err:'',success:res.data.msg})
-history.push("./softskills")
+history.push("./hardskills")
 } catch(err)
 {
   err.response.data.msg && 
@@ -67,28 +69,40 @@ history.push("./softskills")
 
 
     }
-console.log(data)
-  return (
-    <>
-    <Dashboard/>
+    return(
+<> 
+<Dashboard/>
 <div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
-              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add soft skills </h1>
+              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add Hard skills</h1>
 <div class="overlay"></div>
-</div>  <form onSubmit={handleSubmit}>
+</div>
+  <form onSubmit={handleSubmit}>
     <div class="form-group">
-        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title :</label>
+        <label for="fname">Title</label>
         <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
     </div>
     <div class="form-group">
-        <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type :</label>
+        <label for="lname">Type</label>
         <input type="text" id="lname"  class="form-control" name="type"  onChange={handleChange} placeholder="type.."/>
       </div>
   
+      <div class="form-group">
+        <label for="cat">Categorie</label>
+     <select name="categorie" id="cat" class="form-control" onChange={handleChange} name="categorie">
+<option value="informatic">Informatic</option>
+<option value="bussiness">Business</option>
+<option value="Health care">Health care</option>
+<option value="Mathematic">Mathematic</option>
+
+     </select>
+     
+     
+      </div>
     <div class="form-group">
-        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description :</label>
+        <label for="subject">Description</label>
         <textarea id="subject"  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
     </div>
     <div class="row">
@@ -96,6 +110,8 @@ console.log(data)
     </div>
   </form>
 </div>
+
 </>
-  );
+
+    )
 }

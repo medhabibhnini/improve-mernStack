@@ -27,6 +27,12 @@ app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
 app.use('/comments', require('./routes/commentRouter'))
 app.use('/soft',require('./routes/skills'))
+app.use('/hard',require('./routes/hardskills'))
+
+
+/*
+const postRoute= require('./routes/posts')
+app.use('/forum',postRoute);
 
 
 // Connect to mongodb

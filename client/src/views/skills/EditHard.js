@@ -9,10 +9,11 @@ const initialState = {
     title: '',
     description:'',
     type:'',
+    categorie:'',
     err: '',
     success: ''
 }
-export default function EditSoft  ()  {
+export default function EditHard  ()  {
     const {id} = useParams()
     const history = useHistory()
     const [data, setData] = useState(initialState)
@@ -20,14 +21,14 @@ export default function EditSoft  ()  {
     const [editSkills,setEditSkills]= useState([])
     const [skills,getSkills] =useState([]);
     
-    const {title,description,type, err, success} = data
+    const {title,description,type,categorie, err, success} = data
 
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getsoft/${id}`)
+        axios.get(`http://localhost:5000/hard/gethard/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -45,13 +46,13 @@ export default function EditSoft  ()  {
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateSoft/${id}`,{
-    title,type,description
+const res = await axios.put(`http://localhost:5000/hard/updateHard/${id}`,{
+    title,type,description,categorie
 
 })
-history.push("/softskills")
 
 setData({...data,err:'',success:res.data.msg})
+
 }catch(err)
         {
             setData({...data, err: err.response.data.msg , success: ''})
@@ -62,6 +63,7 @@ setData({...data,err:'',success:res.data.msg})
     const handleUpdate =()=>{
 if(title || description || type ) 
 {handleSubmit()
+    history.push("/hardskills")
 
 }
     }
@@ -87,7 +89,7 @@ if(title || description || type )
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
-              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Edit soft skills </h1>
+              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}>Edit hard skills </h1>
 <div class="overlay"></div>
 </div>  <form onSubmit={handleUpdate}>
     <div class="form-group">
@@ -100,7 +102,18 @@ if(title || description || type )
         <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type</label>
         <input type="text" class="form-control" id="lname" name="type"  onChange={handleChange} placeholder="type.." defaultValue={skills.type}/>
     </div>
-  
+    <div class="form-group">
+        <label for="cat">Categorie</label>
+     <select name="categorie" id="cat" class="form-control" onChange={handleChange} name="categorie" defaultValue={skills.categorie}>
+<option value="informatic">Informatic</option>
+<option value="bussiness">Business</option>
+<option value="Health care">Health care</option>
+<option value="Mathematic">Mathematic</option>
+
+     </select>
+     
+     
+      </div>
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
         <textarea id="subject" name="description" class="form-control" onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={skills.description}></textarea>

@@ -83,9 +83,20 @@ io.on('connection', socket => {
 
 // Routes
 app.use('/user', require('./routes/userRouter'))
+const postRoute= require('./routes/posts')
+
 app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
 app.use('/comment', require('./routes/commentRouter'))
+app.use('/soft',require('./routes/skills'))
+app.use('/post',postRoute)
+
+/*
+const postRoute= require('./routes/posts')
+app.use('/forum',postRoute);
+
+app.use('/forum', require('./routes/post'))*/
+
 // Connect to mongodb
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {

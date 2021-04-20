@@ -1,9 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
-import {GlobalState} from '../../GlobalState'
+//import {GlobalState} from '../../GlobalState'
 import Loading from '../../utils/loading/Loading'
 import {useSelector, useDispatch} from 'react-redux'
-import Select from 'react-Select';
 import {useHistory, useParams} from 'react-router-dom'
 
 
@@ -18,7 +17,7 @@ const initialState = {
 }
 
 function CreateCourse() {
-    const state = useContext(GlobalState)
+    //const state = useContext(GlobalState)
     const [course, setCourse] = useState(initialState)
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -148,6 +147,23 @@ function CreateCourse() {
                 </div>
 
                 <div className="row">
+                    <label htmlFor="title">link</label>
+                    <input type="text" name="link" id="link" required
+                    value={course.link} onChange={handleChangeInput} />
+                </div>
+
+                <div className="row">
+                <label htmlFor="category" >category</label>
+                
+                <select name="category" id="category" required 
+                value= {course.category} onChange={handleChangeInput}>
+                <option>Soft Skill</option>
+                <option>Hard Skill</option>
+
+                </select>
+                
+                </div>
+                <div className="row">
                     <label htmlFor="price">Price</label>
                     <input type="number" name="price" id="price" required
                     value={course.price} onChange={handleChangeInput} />
@@ -160,13 +176,8 @@ function CreateCourse() {
                 </div>
 
                 <div style={{marginLeft:'40%', marginTop: '60px'}}>
-    <label htmlFor="category">category</label>
-      <select
-        options={options}
-        style={{ width: 300 }}
-        renderInput={(params) =>
-          <TextField {...params} label="Combo box" variant="outlined" />}
-      />
+    
+      
     </div>
 
 

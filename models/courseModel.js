@@ -22,7 +22,7 @@ const courseSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['hard skill', 'soft skill'],
+    enum: ['Hard Skill', 'Soft Skill'],
     required: true,
   },
   price: {

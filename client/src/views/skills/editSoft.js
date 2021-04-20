@@ -97,9 +97,20 @@ if(title || description || type )
      
     </div>
     <div class="form-group">
-        <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type</label>
-        <input type="text" class="form-control" id="lname" name="type"  onChange={handleChange} placeholder="type.." defaultValue={skills.type}/>
-    </div>
+        <label for="cat">Categorie</label>
+     <select name="type" id="cat" class="form-control" onChange={handleChange} defaultValue={skills.type} >
+<option value="Communication">Communication</option>
+<option value="Leadership">Leadership</option>
+<option value="Health Influencing">Influencing</option>
+<option value="Interpersonal skills">Interpersonal skills</option>
+<option value="personal skills">personal skills</option>
+<option value="Creativity">Creativity</option>
+<option value="Professional skills">Professional skills</option>
+
+     </select>
+     
+     
+      </div>
   
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>

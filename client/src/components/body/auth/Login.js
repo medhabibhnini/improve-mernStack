@@ -80,12 +80,14 @@ function Login() {
         }
     }
     
-  /*  verifyCallback(response) {
+   /*verifyCallback(response) => {
       if (response) {
         this.setState({
           isVerified: true
         })
       }
+      else 
+      return "check your captcha"
     }*/
     
 

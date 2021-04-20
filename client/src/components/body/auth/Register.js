@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Recaptcha from 'react-google-recaptcha';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
@@ -163,6 +164,14 @@ function Register() {
                             </label>
                           </div>
                         </div>
+                      </div>
+                      <div>
+                      <Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+           // onloadCallback={this.recaptchaLoaded}
+           // verifyCallback={this.verifyCallback}
+          />
                       </div>
                       <div class="text-center">
                         <button type="submit" class="btn btn-info mt-4">Create account</button>

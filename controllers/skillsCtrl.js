@@ -1,4 +1,5 @@
 const SoftSkills = require('../models/SoftSkills')
+
 const softSkills ={
  create : async(req,res)=>
  {

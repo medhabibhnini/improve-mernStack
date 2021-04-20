@@ -5,13 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import DataProvider from './redux/store'
 import reportWebVitals from './reportWebVitals';
-
+import {DataProviders} from './GlobalState'
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
-     
+    <DataProviders>
       <App />
-     
+      </DataProviders>
     </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')

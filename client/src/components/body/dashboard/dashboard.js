@@ -1,7 +1,9 @@
 import React from 'react'
+import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import Softskill from "../../../views/skills/ListSoftSkills"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -30,7 +32,15 @@ function Dashboard() {
 
 
     const handleLogout = async () => {
+      
         try {
+          swal({
+            title: "Logout Bouton",
+            text: "You are going to Logout",
+            icon: "warning",
+            buttons: "Confirm",
+            timer: "9000"
+            });
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
             window.location.href = "/";
@@ -90,26 +100,37 @@ const submenus = [
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
     <Nav vertical className="list-unstyled pb-3">
-        <NavItem>
-          <NavLink tag={Link} to={"/about"}>
+    <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/homeback"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-            About
+Home
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/pages"}>
-            Portfolio
+       
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/users"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            List of users
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            FAQ
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/softskills"} >
+          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+
+            Soft skills
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/hardskills"}>
+          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+
+            Hard skills
+          </NavLink>
+        </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/contact"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Contact
+            Courses
           </NavLink>
         </NavItem>
       </Nav>

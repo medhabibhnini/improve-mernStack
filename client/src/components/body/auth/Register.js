@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
+import Recaptcha from 'react-google-recaptcha';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isEmpty, isEmail, isLength, isMatch} from '../../utils/validation/Validation'
 import './register.css'
+import swal from 'sweetalert'
 
-import Header from '../../header/Header'
-import Footer from '../../footer/Footer'
+
 const initialState = {
     name: '',
     lastName: '',
@@ -15,37 +16,15 @@ const initialState = {
     password: '',
     cf_password: '',
     err: '',
-    success: '',
-    isVerified: false
-
+    success: ''
 }
 
 function Register() {
-    const [user, setUser, data, setData] = useState(initialState)
+    const [user, setUser] = useState(initialState)
 
     const {name, lastName, userName, email, password,cf_password, err, success} = user
-    
 
-    // specifying your onload callback function
-    var callback = () => {
-      console.log('Done!!!!');
-
-  };
-
-  // specifying verify callback function
-  var verifyCallback = (response) => {
-      console.log(response);
-      if (response) {
-          setData({
-              ...data,
-              isVerified: true
-          })
-      }
-     /* else
-      {
-        return alert("offf")
-      }*/
-  };
+  
 
     const handleChangeInput = e => {
         const {name, value} = e.target
@@ -55,10 +34,16 @@ function Register() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-      /*  if(!isVerified(data))
-            return alert("are you a robot?")*/
         if(isEmpty(name) || isEmpty(password))
-                return setUser({...user, err: "Please fill in all fields.", success: ''})
+        
+        return swal({
+          title: "Please fill in all fields!",
+          text: "You need to fill all fields to Register!",
+          icon: "error",
+          button: "Confirm",
+          timer: "9000"
+          });
+                //return setUser({...user, err: "Please fill in all fields.", success: ''})
 
         if(!isEmail(email))
             return setUser({...user, err: "Invalid emails.", success: ''})
@@ -69,8 +54,14 @@ function Register() {
         if(!isMatch(password, cf_password))
             return setUser({...user, err: "Password did not match.", success: ''})
 
-
         try {
+          swal({
+            title: "Account created successefuly!",
+            text: " Please Check your Email to activate it!",
+            icon: "success",
+            button: "Confirm",
+            timer: "9000"
+            });
             const res = await axios.post('/user/register', {
                 name, lastName, userName, email, password
             })
@@ -80,14 +71,9 @@ function Register() {
             err.response.data.msg && 
             setUser({...user, err: err.response.data.msg, success: ''})
         }
-     
-      
     }
-    
     return (
-<>
-<Header />
-     
+        <body class="bg-default">
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -96,7 +82,7 @@ function Register() {
                 <div class="row justify-content-center">
                   <div class="col-lg-5 col-md-6">
                     <h1 class="text-white">Welcome!</h1>
-                    <p class="text-lead text-light">here you can register</p>
+                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
                   </div>
                 </div>
               </div>
@@ -197,19 +183,16 @@ function Register() {
                           </div>
                         </div>
                       </div>
-<<<<<<< Updated upstream
-=======
                       <div>
                       <Recaptcha
             sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
             render="explicit"
-            onloadCallback={callback}
-            verifyCallback={verifyCallback}
+           // onloadCallback={this.recaptchaLoaded}
+           // verifyCallback={this.verifyCallback}
           />
                       </div>
->>>>>>> Stashed changes
                       <div class="text-center">
-                        <button type="submit" class="btn btn-info mt-4">Create account</button>
+                        <button type="submit" class="btn btn-info mt-4" >Create account</button>
                       </div>
                     </form>
                   </div>
@@ -224,9 +207,9 @@ function Register() {
             </div>
           </div>
         </div>
-        <Footer/>
-    </>   
   
+       
+      </body>
       )
 
     

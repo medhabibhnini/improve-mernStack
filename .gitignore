@@ -1,11 +1,4 @@
-<<<<<<< Updated upstream
-node_modules
-=======
 node_modules
 client/package-lock.json
 client/package-lock.json
 client/package.json
-client/package-lock.json
-client/package.json
->>>>>>> Stashed changes
-client/package-lock.json

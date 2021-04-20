@@ -1,6 +1,4 @@
 const Comments = require('../models/commentModel')
-
-
 class APIfeatures{
     constructor(query, queryString){
         this.query = query;
@@ -36,7 +34,7 @@ const commentCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    addComment: async (req, res)=> {
+   /* addComment: async (req, res)=> {
         try {
             let post = await Post.findById(req.params.post_id);
             let user = await User.findById(req.user.id).select("-password");
@@ -53,6 +51,7 @@ const commentCtrl = {
             let newComment = {
               textOfTheComment,
               name: user.name,
+              avatar: user.avatar,
             };
             post.comments.unshift(newComment);
         
@@ -63,7 +62,7 @@ const commentCtrl = {
             console.error(error);
             return res.status(500).json("Server Error...");
           }
-    }
+    }*/
 }
 
 module.exports = commentCtrl

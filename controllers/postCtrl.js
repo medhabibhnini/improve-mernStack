@@ -69,7 +69,7 @@ const postCtrl = {
             let users = await User.findById(user).select("-password");
 
             const newPost = new Posts({
-        title: title.toLowerCase(), description,user:users,name:users.name,lastName:users.lastName,avatar:users.avatar
+        title: title.toLowerCase(), description,user:users,name:users.name,avatar:users.avatar
             })
 
             await newPost.save()
@@ -99,7 +99,30 @@ const postCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }
+    },
+    likePost: async (req, res) => {
+        try {
+          let post = await Post.findById(req.params.post_id);
+      
+          if (!post) return res.status(404).json("Post not found");
+      
+          if (post.likes.find((like) => like.user.toString() === req.user.id))
+            return res.status(401).json("Post is already liked by you!");
+      
+          let newLike = {
+            user: req.user.id,
+          };
+      
+          post.likes.unshift(newLike);
+      
+          await post.save();
+      
+          res.json(post);
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json("Server Error...");
+        }
+      }
 }
 
 

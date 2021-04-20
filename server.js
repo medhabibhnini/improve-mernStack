@@ -21,23 +21,12 @@ app.use(fileUpload({
 
 // Routes
 app.use('/user', require('./routes/userRouter'))
-<<<<<<< Updated upstream
 //const postRoute= require('./routes/posts')
 
-=======
->>>>>>> Stashed changes
 app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
-app.use('/comment', require('./routes/commentRouter'))
+app.use('/comments', require('./routes/commentRouter'))
 app.use('/soft',require('./routes/skills'))
-<<<<<<< Updated upstream
-//app.use('/post',postRoute)
-
-/*
-const postRoute= require('./routes/posts')
-app.use('/forum',postRoute);
-=======
->>>>>>> Stashed changes
 
 
 // Connect to mongodb

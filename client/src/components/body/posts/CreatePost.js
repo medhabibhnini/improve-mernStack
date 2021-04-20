@@ -64,7 +64,6 @@ setData({...data,err:'',success:res.data.msg})
   setData({...data, err: err.response.data.msg, success: ''})
 }
 
-history.push('/posts')
 
     }
 console.log(data)

@@ -1,10 +1,47 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './ProductCard.css'
+import  {useState, useEffect} from "react";
+// @material-ui/core components
 import {useSelector, useDispatch} from 'react-redux'
+import {useParams, useHistory} from 'react-router-dom'
+// core components
+import axios from 'axios'
+
+
+import { isEmpty } from "../../utils/validation/Validation";
+const initialState ={
+    err: '',
+    success: ''
+    
+    }
 function PostCard({posts}) {
-  const auth = useSelector(state => state.auth)
-  const {user, isAdmin} = auth
+    const [loading, setLoading] = useState(false)
+const [callback, setCallback] = useState(false)
+const [data, setData] = useState(initialState)
+    const handleLike = async (id) =>{
+        try{
+          if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
+          {                  
+              setLoading(true)
+            await axios.post(`http://localhost:5000/soft/deleteskills/${id}`, {
+        
+          })
+          setLoading(false)
+          setCallback(!callback)
+          window.location.reload(false);
+        
+          }
+          
+        
+        
+        } catch (err) {
+          setData({...data, err: err.response.data.msg , success: ''})
+        }
+        
+        
+        }
+  
     return (
       <>
 
@@ -32,13 +69,13 @@ function PostCard({posts}) {
                 </div>
                 <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
                     <div class="images-container">
-                        <a href="https://medium.com/@karthikricssion/how-to-design-a-printable-html-page-layout-802bc9ea61dd" target="_blank">
+                      
                             
                             <div class="sponsord-post-title-links">
                             <small>{posts.title}</small>
                                 <h5>{posts.description}</h5>
                             </div>
-                        </a>
+                     
                     </div>
                 </div>
 
@@ -59,25 +96,15 @@ function PostCard({posts}) {
             <div class="fb-card-actions-holder">
                 <div class="fb-card-actions">
                     <div class="fb-btn-holder">
-                        <a href="#"><i class="far fa-thumbs-up"></i> Like</a>
+                        <a href="#"><i class="far fa-thumbs-up" onClick={() => handleLike(posts._id)} ></i> Like</a>
                     </div>
                     <div class="fb-btn-holder">
-                        <a href="#"><i class="far fa-comment-alt"></i> Comment</a>
+                        <Link to={`/forum/posts/${posts._id}`}><i class="far fa-comment-alt"></i> Comment</Link>
                     </div>
                   
                 </div>
             </div>
-
-            <div class="fb-card-comments">
-                <div class="comment-input-holder">
-                    <div class="user-thumb">
-                        <img src={user.avatar} class="img-responsive" />
-                    </div>
-                    <div class="comment-input">
-                        <div class="comment-box" placeholder="Write a comment..." contenteditable="true" placeholder="write a comment"></div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
 </div>
 

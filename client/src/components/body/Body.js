@@ -16,10 +16,12 @@ import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 import Users from './profile/ListeUser'
-
+import Posts from './posts/Posts'
+import DetailPosts from './detailPosts/DetailPosts'
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
+
     return (
         <>
 
@@ -39,10 +41,20 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-                <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
-                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
+            <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
+               <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
+                <Route path="/posts" component={Posts} exact />
+                <Route path="/forum/posts/:id" component={DetailPosts} exact />
+             {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
+                <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
+                <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />
+
+                <Route path="/admin/softskills" component={isAdmin ? softskills : NotFound} exact  />
+                <Route path="/admin/editskills/:id" component={isAdmin ? editSkills : NotFound} exact  />
+    */}
+            
             </Switch>
         </section> 
     

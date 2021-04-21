@@ -9,6 +9,11 @@ import Body from './components/body/Body'
 import axios from 'axios';
 import Footer from './components/footer/Footer'
 import Dashboard from './components/body/dashboard/dashboard'
+import { BrowserRouter } from 'react-router-dom';
+
+import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
+import Login from './components/body/auth/Login';
+
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.token)
@@ -40,6 +45,12 @@ function App() {
 
 
   return (
+    <BrowserRouter>
+    <Switch >
+      <Route exact path="/linkedin" component={LinkedInPopUp} />
+      <Route path="/" component={Login} />
+    </Switch>
+  </BrowserRouter>,
    <DataProvider>    
      <Router>
         

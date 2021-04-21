@@ -84,7 +84,7 @@ const submenus = [
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Sidebar Nav</a>
+  <Link to="/" class="navbar-brand" >imPROve</Link>
   <button
     class="navbar-toggler"
     type="button"

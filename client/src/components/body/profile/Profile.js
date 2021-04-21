@@ -7,6 +7,7 @@ import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+import { CustomInput, FormGroup } from 'reactstrap';
 import './profile.css'
 const initialState = {
     name: '',
@@ -212,8 +213,10 @@ function Profile() {
                  <hr className="my-4"/>
                  <i className="fas fa-camera"></i>
                        <p>Change</p>
-                       <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
+                       <CustomInput  type="file" name="file" id="file_up" onChange={changeAvatar} />
+                       <hr className="my-4"/>
                        <button   className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
+                
                </div>
              </div>
            </div>

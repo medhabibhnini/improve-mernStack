@@ -21,7 +21,7 @@ function Posts() {
 </br>
 <br></br>
 <div className="container mt-5">
-               <h3 className="pt-4 d-inline latest-news">Latest News</h3>
+               <h3 className="pt-4 d-inline latest-news">Forum</h3>
                <Link to="/posts/add" className="btn btn-outline-primary btn-circle d-inline float-right">Add Post</Link>
               
                <p className="h5 text-center text-muted"></p> 

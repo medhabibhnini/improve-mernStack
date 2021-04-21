@@ -8,7 +8,7 @@ import {useParams, useHistory} from 'react-router-dom'
 // core components
 import axios from 'axios'
 
-
+import Moment from "react-moment";
 import { isEmpty } from "../../utils/validation/Validation";
 const initialState ={
     err: '',
@@ -16,22 +16,20 @@ const initialState ={
     
     }
 function PostCard({posts}) {
-    const [loading, setLoading] = useState(false)
-const [callback, setCallback] = useState(false)
+    const auth = useSelector(state => state.auth)
+    const {user} = auth
+    const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
     const handleLike = async (id) =>{
         try{
-          if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
-          {                  
-              setLoading(true)
-            await axios.post(`http://localhost:5000/soft/deleteskills/${id}`, {
-        
+                         
+             
+            await axios.put(`http://localhost:5000/forum/like/${posts._id}`, {
+                user
           })
-          setLoading(false)
-          setCallback(!callback)
-          window.location.reload(false);
+         
+          window.location.reload(true);
         
-          }
           
         
         
@@ -41,6 +39,25 @@ const [data, setData] = useState(initialState)
         
         
         }
+        const removeLikeFromPost  = async (id,idl) =>{
+            try{
+                             
+                 
+                await axios.delete(`http://localhost:5000/forum/like/${id}/${idl}`, {
+                    user
+              })
+             
+            
+              
+              window.location.reload(true);
+            
+            
+            } catch (err) {
+              setData({...data, err: err.response.data.msg , success: ''})
+            }
+            
+            
+            }
   
     return (
       <>
@@ -60,7 +77,7 @@ const [data, setData] = useState(initialState)
                         </div>
                         <div class="user-information">
                             <p>{posts.name} {posts.lastName}</p>
-                         
+                            <small> <Moment format="HH:mm YYYY-MM-DD">{posts.date}</Moment></small>
                         </div>
                     </div>
                     <div class="post-action">
@@ -85,7 +102,9 @@ const [data, setData] = useState(initialState)
             <div class="fb-card-like-comment-holder">
                 <div class="fb-card-like-comment">
                     <div class="likes-emoji-holder">
-                   
+                    <span> {posts.likes.length} <i class="fas fa-thumbs-up"></i>    </span> 
+             
+             
                     </div>
                     <div class="like-comment-holder">
                     
@@ -96,10 +115,29 @@ const [data, setData] = useState(initialState)
             <div class="fb-card-actions-holder">
                 <div class="fb-card-actions">
                     <div class="fb-btn-holder">
-                        <a href="#"><i class="far fa-thumbs-up" onClick={() => handleLike(posts._id)} ></i> Like</a>
+                        <Link /*onClick={() => handleLike(posts._id)}*/
+                         onClick={() => {
+                            if (posts.likes.find((like) => like.user === user._id)) {
+                              posts.likes.find((like) =>
+                                removeLikeFromPost(
+                                  posts._id,
+                                  like._id,
+                                )
+                              );
+                            }else {
+                                handleLike(
+                                posts._id,
+                              );
+                            }
+                          }}
+                         ><i  className={
+                            posts.likes.find((like) => like.user === user._id)
+                              ? "fas fa-thumbs-up"
+                              : "far fa-thumbs-up"
+                          } ></i> </Link>
                     </div>
                     <div class="fb-btn-holder">
-                        <Link to={`/forum/posts/${posts._id}`}><i class="far fa-comment-alt"></i> Comment</Link>
+                        <Link to={`/forum/posts/${posts._id}`}><i class="far fa-comment-alt"></i> </Link>
                     </div>
                   
                 </div>

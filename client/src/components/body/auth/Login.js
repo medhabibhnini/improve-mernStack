@@ -9,6 +9,8 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
 import swal from 'sweetalert'
+import { LinkedIn } from 'react-linkedin-login-oauth2';
+import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png'
 
 
 
@@ -72,6 +74,22 @@ function Login() {
             err.response.data.msg && 
             setUser({...user, err: err.response.data.msg, success: ''})
         }
+    }
+    
+    const responseLinkedin = async (response) => {
+      try {
+        const {accessToken, userID} = response
+        const res = await axios.post('/user/linkedin_login', {accessToken, userID})
+
+        setUser({...user, error:'', success: res.data.msg})
+        localStorage.setItem('firstLogin', true)
+
+        dispatch(dispatchLogin())
+        history.push('/')
+    } catch (err) {
+        err.response.data.msg && 
+        setUser({...user, err: err.response.data.msg, success: ''}) 
+    }
     }
 
     const responseFacebook = async (response) => {
@@ -148,7 +166,14 @@ function Login() {
                  fields="name,email,picture"
                  callback={responseFacebook} 
                  />
-
+                 <hr></hr>
+              <LinkedIn
+                clientId="77ly230ti6em95"
+                redirectUri="http://localhost:3000/"
+                callback={responseLinkedin} 
+              >
+                <img src={linkedin} alt="Log in with Linked In" style={{ maxWidth: '180px' }} />
+              </LinkedIn>
                   </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">

@@ -34,6 +34,7 @@ import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
 import HomeBack from '../../views/Home'
+import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -66,13 +67,7 @@ function Body() {
                 <Route path="/posts" component={Posts} exact />
                 <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/forum/posts/:id" component={DetailPosts} exact />
-             {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
-                <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
-                <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />
-
-                <Route path="/admin/softskills" component={isAdmin ? softskills : NotFound} exact  />
-                <Route path="/admin/editskills/:id" component={isAdmin ? editSkills : NotFound} exact  />
-    */}
+                <Route exact path="/linkedin" component={LinkedInPopUp} />
                             <Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
                             <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
                             <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />

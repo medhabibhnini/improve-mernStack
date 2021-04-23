@@ -1,4 +1,4 @@
-const Posts = require('../models/postModel')
+const Posts = require('../models/postModel');
 const User = require ('../models/userModel')
 // Filter, sorting and paginating
 
@@ -102,15 +102,16 @@ const postCtrl = {
     },
     likePost: async (req, res) => {
         try {
-          let post = await Post.findById(req.params.post_id);
-      
+          let post = await Posts.findById(req.params.post_id);
+          const {user} = req.body;
+          let users = await User.findById(user).select("-password");
           if (!post) return res.status(404).json("Post not found");
       
-          if (post.likes.find((like) => like.user.toString() === req.user.id))
+          if (post.likes.find((like) => like.user.toString() === user))
             return res.status(401).json("Post is already liked by you!");
       
           let newLike = {
-            user: req.user.id,
+            user: users,
           };
       
           post.likes.unshift(newLike);
@@ -122,7 +123,28 @@ const postCtrl = {
           console.error(error);
           return res.status(500).json("Server Error...");
         }
+      },
+      removeLikefromPost: async (req, res)=>{
+        try {
+            let post = await Posts.findById(req.params.post_id);
+        
+            if (!post) return res.status(404).json("Post not found");
+        
+            const removeLikeFromPost = post.likes.filter(
+              (like) => like.id.toString() !== req.params.like_id.toString()
+            );
+        
+            post.likes = removeLikeFromPost;
+        
+            await post.save();
+        
+            res.json(post);
+          } catch (error) {
+            console.error(error);
+            return res.status(500).json("Server Error...");
+          }
       }
+
 }
 
 

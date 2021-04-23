@@ -1,3 +1,4 @@
+
 import React from 'react'
 import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -81,9 +82,9 @@ const submenus = [
   
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" href="#">Sidebar Nav</a>
   <button
@@ -107,24 +108,11 @@ const submenus = [
 Home
           </NavLink>
         </NavItem>
-
-  <NavItem>
-        <NavLink tag={Link} to={"/create_course"}>
-            <FontAwesomeIcon icon={faBook} className="mr-2" />
-            Courses
-          </NavLink>
-        </NavItem>
-
-        <NavItem>
-          <NavLink tag={Link} to={"/pages"}>
-            Portfolio
-
        
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/users"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
             List of users
-
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
@@ -142,8 +130,8 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/contact"}>
-            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+          <NavLink tag={Link} to={"/create_course"}>
+            <FontAwesomeIcon icon={faBook} className="mr-2" />
             Courses
           </NavLink>
         </NavItem>
@@ -172,7 +160,7 @@ Home
           <DropdownItem className="noti-title" header tag="div">
             <h6 className="text-overflow m-0">Welcome!</h6>
           </DropdownItem>
-
+          <DropdownItem to="/profile" tag={Link}>
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>

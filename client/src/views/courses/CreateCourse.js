@@ -4,29 +4,9 @@ import axios from 'axios'
 import Loading from '../../utils/loading/Loading'
 import {useSelector, useDispatch} from 'react-redux'
 import {useHistory, useParams} from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faBriefcase,
-  faPaperPlane,
-  faQuestion,
-  faImage,
-  faCopy,
-  faBook,
-} from "@fortawesome/free-solid-svg-icons";
-import SubMenu from "../body/dashboard/SubMenu"
-import {Link} from 'react-router-dom'
-
-import "../body/dashboard/styledash.css"
-import {  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Media ,Nav,NavItem, NavLink } from  "reactstrap";
 
 
-
-
+import Dashboard from "../../components/body/dashboard/dashboard"
 const initialState = {
     course_id: '',
     title: '',
@@ -37,7 +17,7 @@ const initialState = {
     _id: ''
 }
 
-function CreateCourse() {
+export default function CreateCourse() {
     const auth = useSelector(state => state.auth)
     const {user, isLogged, isAdmin} = auth
 
@@ -151,112 +131,10 @@ function CreateCourse() {
         display: images ? "block" : "none"
     }
     return (
-        
-            
-        <div className="create_course">
-            
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Sidebar Nav</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarCollapse"
-    aria-controls="navbarCollapse"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
-    <Nav vertical className="list-unstyled pb-3">
-        <NavItem>
-          <NavLink tag={Link} to={"/about"}>
-            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-            About
-          </NavLink>
-        </NavItem>
-  <NavItem>
-        <NavLink tag={Link} to={"/create_course"}>
-            <FontAwesomeIcon icon={faBook} className="mr-2" />
-            Courses
-          </NavLink>
-        </NavItem>
-
-        <NavItem>
-          <NavLink tag={Link} to={"/pages"}>
-            Portfolio
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            FAQ
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/contact"}>
-            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Contact
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </ul>
-    <ul class="navbar-nav ml-auto mt-2 mt-md-0">
-    <UncontrolledDropdown nav>
-        <DropdownToggle className="pr-0" nav>
-          <Media className="align-items-center">
-            <span className="avatar avatar-sm rounded-circle">
-              <img
-                alt="..."
-               src=
-               {user.avatar}
-                
-              />
-            </span>
-            <Media className="ml-2 d-none d-lg-block">
-              <span className="mb-0 text-sm font-weight-bold">
-              {user.name}
-              </span>
-            </Media>
-          </Media>
-        </DropdownToggle>
-        <DropdownMenu className="dropdown-menu-arrow" right>
-          <DropdownItem className="noti-title" header tag="div">
-            <h6 className="text-overflow m-0">Welcome!</h6>
-          </DropdownItem>
-          <DropdownItem to="/profile" tag={Link}>
-            <i className="ni ni-single-02" />
-            <span>My profile</span>
-          </DropdownItem>
-          <DropdownItem to="/admin/user-profile" tag={Link}>
-            <i className="ni ni-settings-gear-65" />
-            <span>Settings</span>
-          </DropdownItem>
-          <DropdownItem to="/admin/user-profile" tag={Link}>
-            <i className="ni ni-calendar-grid-58" />
-            <span>Activity</span>
-          </DropdownItem>
-          <DropdownItem to="/admin/user-profile" tag={Link}>
-            <i className="ni ni-support-16" />
-            <span>Support</span>
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem to="/" onClick={handleLogout}>
-            <i className="ni ni-user-run" />
-            <span>Logout</span>
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
-    </ul>
-  </div>
-</nav>
+      <>
+<Dashboard/>
+<div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://images.theconversation.com/files/245367/original/file-20181113-194488-cusrab.jpg?ixlib=rb-1.1.0&rect=0%2C935%2C4977%2C3158&q=45&auto=format&w=926&fit=clip)', backgroundSize: 'cover', backgroundPosition: 'center top'}}></div>
 
             <div className="upload">
                 <input type="file" name="file" id="file_up" onChange={handleUpload}/>
@@ -264,7 +142,7 @@ function CreateCourse() {
                     loading ? <div id="file_img"><Loading /></div>
 
                     :<div id="file_img" style={styleUpload}>
-                        <img src={images ? images.url : ''} alt=""/>
+                         <img src={images ? images.url : ''} alt=""/>
                         <span onClick={handleDestroy}>X</span>
                     </div>
                 }
@@ -321,8 +199,8 @@ function CreateCourse() {
 
                 <button type="submit">{onEdit? "Update" : "Create"}</button>
             </form>
-        </div>
-    )
+        
+    </div>
+    </>
+    );
 }
-
-export default CreateCourse

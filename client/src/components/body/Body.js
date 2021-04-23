@@ -4,7 +4,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import ActivationEmail from './auth/ActivationEmail'
 import NotFound from '../utils/NotFound/NotFound'
-
+import Loading from '../utils/Loading/Loading'
 import ForgotPass from '../body/auth/ForgotPassword'
 import ResetPass from '../body/auth/ResetPassword'
 
@@ -15,9 +15,9 @@ import Home from '../body/home/Home'
 import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
-import create_course from '../createCourse/CreateCourse'
+
 import Users from './profile/ListeUser'
-import CreateCourse from '../createCourse/CreateCourse'
+import CreateCourse from '../../views/courses/CreateCourse'
 
 import Posts from './posts/Posts'
 import DetailPosts from './detailPosts/DetailPosts'
@@ -26,8 +26,8 @@ import DetailPosts from './detailPosts/DetailPosts'
 
 import CreatePost from './posts/CreatePost'
 import Softskills from  '../../views/skills/ListSoftSkills'
-import Addsoftskills from '../../views/skills/Softskills'
-import Editsoftskills from '../../views/skills/EditSoft'
+import Addsoftskills from '../../views/skills/softskills.js'
+import Editsoftskills from '../../views/skills/editSoft.js'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
 import Hardskills from '../../views/skills/ListHardSkills'
@@ -57,7 +57,7 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-            <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
+            <Route path="/dashboard" component={isAdmin ? Dashboard : Loading} exact />
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/create_course" exact component={isAdmin ? CreateCourse : NotFound} />

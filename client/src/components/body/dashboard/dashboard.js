@@ -128,6 +128,13 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/events"} >
+          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+
+            Events
+          </NavLink>
+        </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/contact"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
             Courses

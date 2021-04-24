@@ -40,7 +40,6 @@ function App() {
 
 
   return (
-   <DataProvider>    
  
      <Router>
         
@@ -48,8 +47,6 @@ function App() {
        
   
     </Router>
-
-    </DataProvider> 
 
 
 

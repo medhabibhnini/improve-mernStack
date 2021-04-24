@@ -91,12 +91,14 @@ app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
 app.use('/comment', require('./routes/commentRouter'))
 app.use('/soft',require('./routes/skills'))
+app.use('/event',require('./routes/events'))
+
 //const postRoute= require('./routes/posts')
 
 app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
 app.use('/comments', require('./routes/commentRouter'))
-app.use('/soft',require('./routes/skills'))
+app.use('/event',require('./routes/events'))
 app.use('/hard',require('./routes/hardskills'))
 
 

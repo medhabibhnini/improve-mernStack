@@ -130,7 +130,7 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/create_course"}>
+          <NavLink tag={Link} to={"/courses"}>
             <FontAwesomeIcon icon={faBook} className="mr-2" />
             Courses
           </NavLink>

@@ -10,7 +10,7 @@ router.route('/courses')
 
 
 router.route('/courses/:id')
-    .delete(auth, authAdmin, courseCtrl.deleteCourse)
+    .delete(courseCtrl.deleteCourse)
     .put(auth, authAdmin, courseCtrl.updateCourse)
 
 

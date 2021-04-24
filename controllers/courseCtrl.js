@@ -52,12 +52,8 @@ const courseCtrl = {
             .filtering().sorting().paginating()
 
             const courses = await features.query
+            res.json(courses)
 
-            res.json({
-                status: 'success',
-                result: courses.length,
-                courses: courses
-            })
             
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -65,16 +61,9 @@ const courseCtrl = {
     },
     createCourse: async(req, res) =>{
         try {
-            const {course_id, title, price, description, image, category, link} = req.body;
-            //if(!image) return res.status(400).json({msg: "No image upload"})
-
-            const course = await Courses.findOne({course_id})
-            if(course)
-                return res.status(400).json({msg: "This course already exists."})
-
-            const newCourse = new Courses({
-                course_id, title: title.toLowerCase(), price, description, link, image, category
-            })
+            const {title, price, description, image, category, link} = req.body;
+            if(!image) return res.status(400).json({msg: "No image upload"})
+             const newCourse = new Courses({title,description,category,price,link,image})
 
             await newCourse.save()
             res.json({msg: "Created a course"})
@@ -84,13 +73,15 @@ const courseCtrl = {
         }
     },
     deleteCourse: async(req, res) =>{
-        try {
-            await Courses.findByIdAndDelete(req.params.id)
-            res.json({msg: "Deleted a course"})
-        } catch (err) {
-            return res.status(500).json({msg: err.message})
-        }
-    },
+        
+            try {
+                await Courses.findByIdAndDelete(req.params.id)
+            
+                res.json({msg: "Deleted Success!"})
+            } catch (err) {
+                return res.status(500).json({msg: err.message})
+            }},
+
     updateCourse: async(req, res) =>{
         try {
             const {title, price, description, image, category, link} = req.body;

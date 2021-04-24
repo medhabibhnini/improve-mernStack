@@ -1,68 +1,81 @@
-import React, {useState, useContext, useEffect} from 'react'
-import axios from 'axios'
-//import {GlobalState} from '../../GlobalState'
-import Loading from '../../utils/loading/Loading'
+import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from 'react-redux'
-import {useHistory, useParams} from 'react-router-dom'
+
+// @material-ui/core components
+import {useHistory} from 'react-router-dom'
+import { CustomInput, FormGroup } from 'reactstrap';
 
 
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+// core components
+import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
-const initialState = {
-    course_id: '',
-    title: '',
-    price: 0,
-    description: 'How to and tutorial videos of cool CSS effect, Web Design ideas,JavaScript libraries, Node.',
-    link: '',
-    category: '',
-    _id: ''
+
+import { isEmpty } from "../../components/utils/validation/Validation";
+const styles = {
+    cardCategoryWhite: {
+      color: "rgba(255,255,255,.62)",
+      margin: "0",
+      fontSize: "14px",
+      marginTop: "0",
+      marginBottom: "0"
+    },
+    cardTitleWhite: {
+      color: "#FFFFFF",
+      marginTop: "0px",
+      minHeight: "auto",
+      fontWeight: "300",
+      fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+      marginBottom: "3px",
+      textDecoration: "none"
+    }
+  };
+  
+const initialState ={
+title :'',
+description :'',
+category:'',
+price:'',
+link:'',
+err: '',
+success: ''
+
 }
 
 export default function CreateCourse() {
-    const auth = useSelector(state => state.auth)
-    const {user, isLogged, isAdmin} = auth
+  const history = useHistory()
+    
+  const token = useSelector(state => state.token)
 
-    //const state = useContext(GlobalState)
-    const [course, setCourse] = useState(initialState)
-    const [images, setImages] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const options = ['Soft Skill', 'Hard Skill']
-    const token = useSelector(state => state.token)
-
-    const handleLogout = async () => {
+  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState(false)
+    const [data, setData] = useState(initialState)
+    const {title,category,description,price,link, err, success} = data
+    const handleChange = e => {
+      const {name, value} = e.target
+      setData({...data, [name]:value, err:'', success: ''})
+    }
+    const styleUpload = {
+        display: image ? "block" : "none"
+    }   
+    const handleDestroy = async () => {
         try {
-            await axios.get('/user/logout')
-            localStorage.removeItem('firstLogin')
-            window.location.href = "/";
+     
+            setLoading(true)
+            await axios.post('/api/destroy', {public_id: image.public_id}, {
+                headers: {Authorization: token}
+            })
+            setLoading(false)
+            setImage(false)
         } catch (err) {
-            window.location.href = "/";
+            alert(err.response.data.msg)
         }
     }
-    const history = useHistory()
-    const param = useParams()
-
-    const [courses, setCourses] = useState([])
-    const [onEdit, setOnEdit] = useState(false)
-    const [callback, setCallback] = useState(false)
-
-    useEffect(() => {
-        if(param.id){
-            setOnEdit(true)
-            courses.forEach(course => {
-                if(course._id === param.id) {
-                    setCourse(course)
-                    setImages(course.images)
-                }
-            })
-        }else{
-            setOnEdit(false)
-            setCourse(initialState)
-            setImages(false)
-        }
-    }, [param.id, courses])
-
     const handleUpload = async e =>{
         e.preventDefault()
         try {
+            
             const file = e.target.files[0]
             
             if(!file) return alert("File not exist.")
@@ -81,126 +94,82 @@ export default function CreateCourse() {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
-            setImages(res.data)
+            setImage(res.data.url)
 
         } catch (err) {
             alert(err.response.data.msg)
         }
     }
+    const handleSubmit = async e => {
+e.preventDefault()
+if(isEmpty(title) || isEmpty(description || isEmpty(link) || isEmpty(category)))
 
-    const handleDestroy = async () => {
-        try {
-            setLoading(true)
-            await axios.post('/api/destroy', {public_id: images.public_id}, {
-              //  headers: {Authorization: token}
-            })
-            setLoading(false)
-            setImages(false)
-        } catch (err) {
-            alert(err.response.data.msg)
-        }
+  return setData({...data,err:"Please fill in all fields ", success :''})
+try {
+const res = await axios.post('http://localhost:5000/api/courses',{
+  title,description,category,image,link,price
+})
+setData({...data,err:'',success:res.data.msg})
+history.push("./courses")
+} catch(err)
+{
+  err.response.data.msg && 
+  setData({...data, err: err.response.data.msg, success: ''})
+}
+
+
+
     }
+console.log(data)
+  return (
+    <>
+    <Dashboard/>
+<div className="container" style={{marginLeft:"300px",marginTop:"100px"}}>
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+              
 
-    const handleChangeInput = e =>{
-        const {name, value} = e.target
-        setCourse({...course, [name]:value})
-    }
+              <h1 className="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add soft skills </h1>
+<div className="overlay"></div>
+</div>
+  <form onSubmit={handleSubmit}>
+    <div className="form-group">
+        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title :</label>
+        <input type="text" id="fname"  className="form-control" name="title" onChange={handleChange} />
+    </div>
+ 
+      <div className="form-group">
+        <label for="category">Category</label>
+        <input type="text" id="category"  className="form-control" name="category" onChange={handleChange} />
+        
+      </div>
+      <div className="form-group">
+        <label for="link">Link</label>
+        <input type="text" id="link"  className="form-control" name="link" onChange={handleChange} />
+        
+      </div>
+      <div className="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price"  className="form-control" name="price" onChange={handleChange} />
+        
+      </div>
+      
+    <div className="form-group">
+        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description :</label>
+        <textarea id="subject"  className="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+    </div>
+    <div className="form-group">
+      <div className="upload">
+      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
 
-    const handleSubmit = async e =>{
-        e.preventDefault()
-        try {
-            //if(!images) return alert("No Image Upload")
-
-            if(onEdit){
-                await axios.put(`/api/courses/${course._id}`, {...course, images}, {
-                //    headers: {Authorization: token}
-                })
-            }else{
-                await axios.post('/api/courses', {...course, images}, {
-                  //  headers: {Authorization: token}
-                })
-            }
-            setCallback(!callback)
-            history.push("/")
-        } catch (err) {
-            alert(err.response.data.msg)
-        }
-    }
-
-    const styleUpload = {
-        display: images ? "block" : "none"
-    }
-    return (
-      <>
-<Dashboard/>
-<div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://images.theconversation.com/files/245367/original/file-20181113-194488-cusrab.jpg?ixlib=rb-1.1.0&rect=0%2C935%2C4977%2C3158&q=45&auto=format&w=926&fit=clip)', backgroundSize: 'cover', backgroundPosition: 'center top'}}></div>
-
-            <div className="upload">
-                <input type="file" name="file" id="file_up" onChange={handleUpload}/>
-                {
-                    loading ? <div id="file_img"><Loading /></div>
-
-                    :<div id="file_img" style={styleUpload}>
-                         <img src={images ? images.url : ''} alt=""/>
-                        <span onClick={handleDestroy}>X</span>
-                    </div>
-                }
                 
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <div className="row">
-                    <label htmlFor="course_id">Course ID</label>
-                    <input type="text" name="course_id" id="course_id" required
-                    value={course.course_id} onChange={handleChangeInput} disabled={onEdit} />
-                </div>
-
-                <div className="row">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id="title" required
-                    value={course.title} onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
-                    <label htmlFor="title">link</label>
-                    <input type="text" name="link" id="link" required
-                    value={course.link} onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
-                <label htmlFor="category" >category</label>
-                
-                <select name="category" id="category" required 
-                value= {course.category} onChange={handleChangeInput}>
-                <option>Soft Skill</option>
-                <option>Hard Skill</option>
-
-                </select>
-                
-                </div>
-                <div className="row">
-                    <label htmlFor="price">Price</label>
-                    <input type="number" name="price" id="price" required
-                    value={course.price} onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
-                    <label htmlFor="description">Description</label>
-                    <textarea type="text" name="description" id="description" required
-                    value={course.description} rows="5" onChange={handleChangeInput} />
-                </div>
-
-                <div style={{marginLeft:'40%', marginTop: '60px'}}>
-    
-      
+</div>
+    <div className="row">
+      <input type="submit" className="btn btn-primary" value="Submit"/>
     </div>
-
-
-                <button type="submit">{onEdit? "Update" : "Create"}</button>
-            </form>
-        
-    </div>
-    </>
-    );
+  </form>
+</div>
+</>
+  );
 }

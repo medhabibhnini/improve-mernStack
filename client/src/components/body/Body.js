@@ -17,11 +17,13 @@ import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 
 import Users from './profile/ListeUser'
-import CreateCourse from '../../views/courses/CreateCourse'
 
 import Posts from './posts/Posts'
 import DetailPosts from './detailPosts/DetailPosts'
 
+
+import CreateCourse from '../../views/courses/CreateCourse'
+import Courses from '../../views/courses/ListCourses'
 
 
 import CreatePost from './posts/CreatePost'
@@ -62,12 +64,14 @@ function Body() {
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/create_course" exact component={isAdmin ? CreateCourse : NotFound} />
+                <Route path="/courses" exact component={isAdmin ? Courses : NotFound} />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
                 <Route path="/posts" component={Posts} exact />
                 <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/forum/posts/:id" component={DetailPosts} exact />
                 <Route exact path="/linkedin" component={LinkedInPopUp} />
+                            
                             <Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
                             <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
                             <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />

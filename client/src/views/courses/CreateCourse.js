@@ -1,13 +1,11 @@
-import React, {useState, useEffect} from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useState,useEffect} from "react";
+import {useSelector} from 'react-redux'
 
 // @material-ui/core components
 import {useHistory} from 'react-router-dom'
 import { CustomInput, FormGroup } from 'reactstrap';
 
 
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
@@ -47,6 +45,33 @@ export default function CreateCourse() {
   const history = useHistory()
     
   const token = useSelector(state => state.token)
+
+  const [hardskills] =useState([]);
+  useEffect(()=>{
+    getAllHardSkills();},[]);
+    const getAllHardSkills =()=>{
+    axios.get('http://localhost:5000/hard/hardskills')
+    .then((response)=>{
+    const allHardSkills =response.data;
+    getAllHardSkills(allHardSkills);
+    }).catch(error=>console.error(`Error :${error}`));
+    
+    
+    }
+
+  const [softskills,getSkills] =useState([]);
+  useEffect(()=>{
+    getAllSkills();},[]);
+    const getAllSkills =()=>{
+    axios.get('http://localhost:5000/soft/softskills')
+    .then((response)=>{
+    const allSkills =response.data;
+    getSkills(allSkills);
+    }).catch(error=>console.error(`Error :${error}`));
+    
+    
+    }
+
 
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState(false)
@@ -127,7 +152,7 @@ console.log(data)
 <div className="container" style={{marginLeft:"300px",marginTop:"100px"}}>
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
-
+<p>softskills</p>
               <h1 className="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add soft skills </h1>
 <div className="overlay"></div>
 </div>
@@ -138,10 +163,21 @@ console.log(data)
     </div>
  
       <div className="form-group">
-        <label for="category">Category</label>
-        <input type="text" id="category"  className="form-control" name="category" onChange={handleChange} />
+      <label htmlFor="categories">Categories: </label>
+                    <select name="category" value={category} onChange={handleChange} >
+                        <option value="">Please select a category</option>
+                        {
+                            softskills.map(softskills => (
+                                <option value={softskills.title} key={softskills._id}>
+                                    {softskills.title}
+                                </option>
+                            ))
+                        }
+                    </select>
         
       </div>
+
+
       <div className="form-group">
         <label for="link">Link</label>
         <input type="text" id="link"  className="form-control" name="link" onChange={handleChange} />

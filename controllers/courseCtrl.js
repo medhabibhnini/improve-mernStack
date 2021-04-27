@@ -95,7 +95,18 @@ const courseCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
+    },
+    getCoursesById : async (req,res)=>
+{
+    try {
+        const course = await Courses.findById(req.params.id)
+
+        res.json(course)
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
     }
+
+}
 }
 
 

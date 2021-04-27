@@ -178,7 +178,7 @@ function Header() {
                     
          <li className="nav-item" style={{marginRight:"400px"}}>
             <a className="nav-link nav-link-icon"  target="_blank">
-            <Link to="/login">
+            <Link to="/listcourses">
             <button   className="btn btn-primary" >Courses</button>
               </Link>
             </a>

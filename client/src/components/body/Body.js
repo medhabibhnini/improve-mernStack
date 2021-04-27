@@ -26,6 +26,7 @@ import CreateCourse from '../../views/courses/CreateCourse'
 import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
+import DetailsCourse from '../../views/front/DetailCourse'
 
 import CreatePost from './posts/CreatePost'
 import Softskills from  '../../views/skills/ListSoftSkills'
@@ -68,6 +69,7 @@ function Body() {
                 <Route path="/courses" exact component={isAdmin ? Courses : NotFound} />
                 <Route path="/listcourses" exact component={isAdmin ? ListCourse : NotFound} />
                 <Route path="/edit_course/:id" component={isAdmin ? EditCourse : NotFound} exact  />
+                <Route path="/detailcourse/:id" component={DetailsCourse} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
                 <Route path="/posts" component={Posts} exact />

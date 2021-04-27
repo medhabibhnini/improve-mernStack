@@ -31,7 +31,7 @@ export default function ListSoft  (){
     <br></br>
 <div  className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://www.eleapsoftware.com/wp-content/uploads/2018/02/education-and-business-background-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
 <span className="mask bg-gradient-default opacity-8"></span>
-<h1 class="titre" style={{marginLeft:"500px",fontSize:"100",color:"white"}}>imProve your skills </h1>
+<h1 class="titre" style={{marginLeft:"500px",fontSize:"100",color:"white"}}>Our Courses </h1>
 <div class="overlay"></div>
 <div className="container-fluid d-flex align-items-center">
   <div className="row">
@@ -54,7 +54,7 @@ export default function ListSoft  (){
                   <div className="card-body">
                   <div className="py-3 text-center">
 
-                  <div style={{minHeight: '140px' ,backgroundImage: "url(https://theyellowspot.com/wp-content/uploads/2019/10/soft-skills-1.png)", backgroundSize: 'cover', backgroundPosition: 'center top'}}/>
+                  <div style={{minHeight: '140px' ,backgroundImage: `url(${course.image})` , backgroundSize: 'cover', backgroundPosition: 'center top'}}/>
                  </div>
                   <div className="card-body">
                     <h4 className="card-title">{course.category}  : {course.title}</h4>

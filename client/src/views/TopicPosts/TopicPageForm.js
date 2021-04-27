@@ -5,30 +5,33 @@ const TopicPageForm = ({ auth, createComment, post }) => {
 
   const onChange = (e) => setTextOfTheComment(e.target.value);
   return (
-    <form
-      className="search-topic-wrapper"
-      style={{ display: auth.isLogged ? "block" : "none" }}
+  
+     <>
+<form style={{ display: auth.isLogged ? "block" : "none" }}
     >
-     
-
-      <textarea
-        value={textOfTheComment}
+    <div class="comment-input-holder">
+      
+    <div class="user-thumb">
+        <img src={auth.user.avatar} class="img-responsive" />
+    </div>
+ <div className="form-group">
+        <input class="form-control" placeholder="write comment here"  value={textOfTheComment}
         onChange={(e) => onChange(e)}
-        type="text"
-      />
-
-      <div
-        className="topic-search-button app_color_background font__p font__bold"
-        onClick={() => {
+        type="text" contenteditable="true" />
+        <div class="post-action"   onClick={() => {
           createComment(textOfTheComment, post._id,auth);
           setTextOfTheComment("");
-        }}
-      >
-        Add comment
-
-      </div>
-    
-    </form>
+        }}>
+                    <i class="fas fa-paper-plane"></i>
+        </div>
+       </div>
+       
+       
+      
+       </div>  
+      
+      </form>
+      </>
   );
 };
 

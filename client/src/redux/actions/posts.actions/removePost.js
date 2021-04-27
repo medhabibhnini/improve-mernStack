@@ -1,5 +1,5 @@
 import { REMOVE_POST, POST_ERROR } from "../../../constants/posts.constants";
-import { getUserPosts } from "../../users.actions/getUserPosts.js";
+import { getUserPosts } from "./getUserPosts";
 import axios from "axios";
 
 export const removePost = (post_id) => async (dispatch) => {

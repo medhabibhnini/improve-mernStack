@@ -66,9 +66,9 @@ function Header() {
             <i className="ni ni-settings-gear-65" />
             <span>My advancement</span>
           </DropdownItem>
-          <DropdownItem to="/admin/user-profile" tag={Link}>
+          <DropdownItem to="/posts/user-posts" tag={Link}>
             <i className="ni ni-calendar-grid-58" />
-            <span>Activity</span>
+            <span>My posts</span>
           </DropdownItem>
           <DropdownItem to="/admin/user-profile" tag={Link}>
             <i className="ni ni-support-16" />
@@ -156,7 +156,7 @@ function Header() {
 }
 {
                  
-         <li className="nav-item" style={{marginRight:"0px"}}>
+         <li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/listsoft">
             <button   className="btn btn-primary" >Soft skills</button>
@@ -165,7 +165,7 @@ function Header() {
           </li>
 }
 {
-         <li className="nav-item" style={{marginRight:"0px"}}>
+         <li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/login">
             <button   className="btn btn-primary" >Hard skills</button>

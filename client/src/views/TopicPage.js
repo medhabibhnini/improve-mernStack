@@ -56,11 +56,11 @@ const TopicPage = ({
      
         <CommentsWrapper comments={post.comments} />
      
-        </div>
+      
+    <TopicPageForm auth={auth} post={post} createComment={createComment} />
+    </div>
       </div>
     </div>
-    <TopicPageForm auth={auth} post={post} createComment={createComment} />
-
     </div>
     <Footer/>
 </>

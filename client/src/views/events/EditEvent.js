@@ -84,7 +84,7 @@ if(title || description || type || avatar )
               </div>
 
 <div class="container"  style={{marginLeft:"300px",marginTop:"100px"}} >
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.lymehaus.com/wp-content/uploads/2020/05/eventsturkeyantalya.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
               <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Edit events </h1>

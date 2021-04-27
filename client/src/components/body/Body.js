@@ -65,10 +65,10 @@ function Body() {
             <Route path="/dashboard" component={isAdmin ? Dashboard : Loading} exact />
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
-                <Route path="/create_course" exact component={isAdmin ? CreateCourse : NotFound} />
-                <Route path="/courses" exact component={isAdmin ? Courses : NotFound} />
-                <Route path="/listcourses" exact component={isAdmin ? ListCourse : NotFound} />
-                <Route path="/edit_course/:id" component={isAdmin ? EditCourse : NotFound} exact  />
+                <Route path="/create_course" exact component={isAdmin ? CreateCourse : Loading} />
+                <Route path="/courses" exact component={isAdmin ? Courses : Loading} />
+                <Route path="/listcourses" exact component={isAdmin ? ListCourse : Loading} />
+                <Route path="/edit_course/:id" component={isAdmin ? EditCourse : Loading} exact  />
                 <Route path="/detailcourse/:id" component={DetailsCourse} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />

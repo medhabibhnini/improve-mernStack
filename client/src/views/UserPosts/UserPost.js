@@ -2,57 +2,93 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { removePost } from "../../redux/actions/posts.actions/removePost";
-
+import {useState, useEffect} from 'react'
 import Moment from "react-moment";
-
+import {useParams, useHistory} from 'react-router-dom'
 const UserPost = ({ post, removePost, auth }) => {
+  const [loading, setLoading] = useState(false)
+  const history = useHistory()
+  console.log(auth);
   return post === null || !post ? (
     <div className="all-page-wrapper flex__center">
     </div>
   ) : (
-    <div className="user-post">
-      <div className="user-post-date">
-        <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment>
-      </div>
+    <>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      <div className="user-post-topic">
-        <p className="font__p font__bold">{post.textOfThePost}</p>
-      </div>
 
-      <div className="post__likes__comments__deleteBtn-wrapper">
-        <div className="post__likes__comments__deleteBtn">
-          <div className="user-post-likes">
-            <i className="far fa-thumbs-up"></i> {post.likes.length}
-          </div>
-          <div className="user-post-comments">
-            <i className="far fa-comment"></i>
-            {post.comments.length}
-          </div>
+<div class="fb-cards-designs">
+    <div class="fb-clone-card">
+            <div class="fb-card-main-content">
+                <div class="fb-card-header">
+                    <div class="user-post-info">
+                        <div class="user-thumb">
+                            <img src={post.avatar} class="img-responsive" />
+                        </div>
+                        <div class="user-information">
+                            <p>{post.name} {post.lastName}</p>
+                            <small> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></small>
+                        </div>
+                    </div>
+                    
+                    <div class="post-action" to="/posts/user-posts"
+                    onClick={() =>{
+                      if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
+                      {                  
+                          setLoading(true) 
+                          removePost(post._id).then(history.push("/topics"))}
+                          
+                        }
+                          }><i className="fas fa-times"></i>
+                         
+                    </div>
+                    
+                </div>
+                <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
+                    <div class="images-container">
+                      
+                            
+                            <div class="sponsord-post-title-links">
+                            <small>{post.title}</small>
+                                <h5>{post.description}</h5>
+                            </div>
+                     
+                    </div>
+                </div>
 
-          <div
-            style={{
-              display: post.user === auth.user._id ? "block" : "none",
-            }}
-          >
-            <div
-              className="removePostBtn app_color_background"
-              onClick={() => removePost(post._id)}
-            >
-              <i className="fas fa-times"></i>
+               
             </div>
-          </div>
 
-          <div className="link-to-post-page-button app_color_background font__p font__bold p__size">
-            <Link to={`/topics/topic/${post._id}`}>View More</Link>
-          </div>
+            <div class="fb-card-like-comment-holder">
+                <div class="fb-card-like-comment">
+                    <div class="likes-emoji-holder">
+                    <span>   {post.likes.length} <i class="fas fa-thumbs-up"></i>  
+                  
+                      </span> 
+             
+             
+                    </div>
+                    <div class="like-comment-holder">
+                    
+                    </div>
+                </div>
+            </div>
+
+           
+            
+           
         </div>
-      </div>
-    </div>
+</div>
+</>
   );
 };
 
+
 const mapStateToProps = (state) => ({
   auth: state.auth,
+
 });
 
 const mapDispatchToProps = {

@@ -2,8 +2,12 @@ import React from "react";
 import UserPost from "./UserPost";
 
 const UserPostsWrapper = ({ posts }) =>
+
   posts !== null &&
   posts.length > 0 &&
-  posts.map((post) => <UserPost post={post} key={post._id} />);
+  posts.map((post) => <UserPost  post={post} key={post._id} />,
+  console.log(posts)
+  )
+  ;
 
 export default UserPostsWrapper;

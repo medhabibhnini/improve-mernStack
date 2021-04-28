@@ -1,125 +1,84 @@
-import React, { useState, useEffect } from "react";
-import { getPosts } from "../redux/actions/posts.actions/getPosts";
-import { getMostRecentPosts } from "../redux/actions/posts.actions/getMostRecentPosts";
-import { getMostCommentedPosts } from "../redux/actions/posts.actions/getMostCommentedPosts";
-import { getMostLikedPosts } from "../redux/actions/posts.actions/getMostLikedPosts";
-import { searchTopics } from "../redux/actions/posts.actions/searchTopics";
-import { getUserPostsById } from "../redux/actions/posts.actions/getUserPostsById";
-import { connect } from "react-redux";
-import UserPostsWrapper from "./UserPosts/UserPostsWrapper";
-import Header from "../components/header/Header";
-import { Link } from "react-router-dom";
-const PostsUser = ({
-  getPosts,
-  getMostRecentPosts,
-  getMostCommentedPosts,
-  getMostLikedPosts,
-  searchTopics,
-  getPostsUserById,
-  posts,
-  auth
-}) => {
-  let [dataFromSearch, setDataFromSearch] = useState("");
-  let [topicsSortType, setTopicsSortType] = useState({
-    isTheOldest: false,
-    isTheMostRecent: true,
-    isTheMostCommented: false,
-    isTheMostLiked: false,
-  });
+import React,{useState, useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useParams, useHistory} from 'react-router-dom'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import Moment from "react-moment";
+import UserPostsWrapper from "../views/UserPosts/UserPostsWrapper"
 
-  let {
-    isTheMostCommented,
-    isTheOldest,
-    isTheMostLiked,
-    isTheMostRecent,
-  } = topicsSortType;
+import { Button } from 'react-bootstrap';
 
-  useEffect(() => {
-    getUserPostsById(auth.user.id);
- 
-  }, []);
-
-  const onChange = (e) => setDataFromSearch(e.target.value);
-
-  const searchForTopic = () => {
-    if (dataFromSearch !== "" || dataFromSearch !== null) {
-      return searchTopics(dataFromSearch);
-    } else {
-      setTopicsSortType({
-        isTheMostRecent: true,
-        isTheMostCommented: false,
-        isTheMostLiked: false,
-        isTheOldest: false,
-      });
-      getMostRecentPosts();
-    }
-  };
-
-  const changeTopicsType = (changedType) => {
-    if (changedType === "isTheMostLiked") {
-      setTopicsSortType({
-        isTheMostLiked: true,
-        isTheOldest: false,
-        isTheMostCommented: false,
-        isTheMostRecent: false,
-      });
-      getMostLikedPosts();
-    } else if (changedType === "isTheOldest") {
-      setTopicsSortType({
-        isTheMostLiked: false,
-        isTheOldest: true,
-        isTheMostCommented: false,
-        isTheMostRecent: false,
-      });
-      getPosts();
-    } else if (changedType === "isTheMostCommented") {
-      setTopicsSortType({
-        isTheMostLiked: false,
-        isTheOldest: false,
-        isTheMostCommented: true,
-        isTheMostRecent: false,
-      });
-      getMostCommentedPosts();
-    } else {
-      setTopicsSortType({
-        isTheMostLiked: false,
-        isTheOldest: false,
-        isTheMostCommented: false,
-        isTheMostRecent: true,
-      });
-      getMostRecentPosts();
-    }
-  };
-
-  return (
-    <>
-    <Header/>
-    
-     
-      <div className="topics-wrapper">
-   
-        <UserPostsWrapper
- 
-          posts={posts.posts}
-        />
-      </div>
+import { $CombinedState } from 'redux'
+import Header from '../components/header/Header';
+const initialState ={
+  title :'',
+  type :'',
+  description :'',
+  err: '',
+  success: ''
   
-    </>
-  );
-};
+  }
+  
+function PostsUser  ()  {
+const auth = useSelector(state => state.auth)
+const [posts,getMyPosts] =useState([]);
+const [loading, setLoading] = useState(false)
+const [callback, setCallback] = useState(false)
+const [data, setData] = useState(initialState)
+const history = useHistory()
 
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-  auth: state.auth
-});
+const user_id =auth.user._id
+useEffect(()=>{
+getUserPostById();},[]);
+const getUserPostById =()=>{
+axios.get(`http://localhost:5000/forum/posts/user_posts/${user_id}`)
+    .then((response)=>{
+        const Myposts =response.data;
+            getMyPosts(Myposts);
+        }).catch(error=>console.error(`Error :${error}`));
 
-const mapDispatchToProps = {
-  getPosts,
-  getMostRecentPosts,
-  getMostCommentedPosts,
-  getMostLikedPosts,
-  getUserPostsById,
-  searchTopics,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsUser);
+}
+/*
+const handleDelete = async (id) =>{
+try{
+  if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
+  {                  
+      setLoading(true)
+    await axios.delete(`http://localhost:5000/soft/deleteskills/${id}`, {
+
+  })
+  setLoading(false)
+  setCallback(!callback)
+  window.location.reload(false);
+
+  }
+  
+
+
+} catch (err) {
+  setData({...data, err: err.response.data.msg , success: ''})
+}
+
+
+}*/
+
+    return (
+        <>
+    <Header/>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    
+
+<UserPostsWrapper posts={posts}/>
+
+   
+</>
+
+    
+    )
+                    }
+
+export default PostsUser

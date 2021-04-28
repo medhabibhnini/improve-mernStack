@@ -182,8 +182,6 @@ const postCtrl = {
       
           if (!post) return res.status(404).json("Post not found");
       
-          if (post.user.toString() !== req.user.id.toString())
-            return res.status(401).json("You are not allowed to do that!");
       
           await post.remove();
       
@@ -214,6 +212,8 @@ const postCtrl = {
       } ,
       getUserPostbyId:async (req, res) => {
         try {
+          console.log(req.params.user_id)
+          
           let posts = await Posts.find({ user: req.params.user_id });
           res.json(posts);
         } catch (error) {
@@ -244,7 +244,9 @@ const postCtrl = {
       },
       likeComment:async (req, res) => {
         try {
+          const {user} = req.body;
           let post = await Posts.findById(req.params.post_id);
+          let users = await User.findById(user).select("-password");
       
           if (!post) return res.status(404).json("Post not found!");
       
@@ -255,7 +257,7 @@ const postCtrl = {
           if (!commentFromPost) return res.status(404).json("Comment not found");
       
           let newLike = {
-            user: req.user.id,
+            user: users,
           };
       
           commentFromPost.likes.unshift(newLike);
@@ -314,6 +316,7 @@ const postCtrl = {
       },
       searchForPost:async (req, res) => {
         const { searchInput } = req.body;
+        console.log(searchInput)
         const errors = validationResult(req);
         if (!errors.isEmpty())
           return res.status(400).json({ errors: errors.array() });
@@ -324,7 +327,7 @@ const postCtrl = {
           } else {
             const findPostBySearchInput = posts.filter(
               (post) =>
-                post.description.toString().toLowerCase().split(" ").join("") ===
+                post.title.toString().split(" ").join("") ===
                 searchInput.toString().toLowerCase().split(" ").join("")
             );
             res.json(findPostBySearchInput);

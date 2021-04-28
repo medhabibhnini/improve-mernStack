@@ -22,14 +22,14 @@ router.route('/posts/likes/:post_id')
 router.put("/posts/likes/:post_id",  postCtrl.likePost);
 router.put("/posts/add_comment/:post_id", postCtrl.addComment);
       
-router.put("/posts/like_comment/:post_id/:comment_id",auth,  postCtrl.likeComment);
+router.put("/posts/like_comment/:post_id/:comment_id",  postCtrl.likeComment);
       
-router.delete("/posts/delete_post/:post_id",auth, postCtrl.removePost);
+router.delete("/posts/delete_post/:post_id", postCtrl.removePost);
       
       
 router.delete("/posts/remove_comment/:post_id/:comment_id",postCtrl.removeComment);
       
-router.delete("/remove_like_from_comment/:post_id/:comment_id/:like_id",postCtrl.removeLikeFromComment );
+router.delete("/posts/remove_like_from_comment/:post_id/:comment_id/:like_id",postCtrl.removeLikeFromComment );
 
 router.get("/posts/most_liked", postCtrl.getMostLikedPost);
 
@@ -41,7 +41,7 @@ router.get("/posts/single_post/:post_id", postCtrl.getSinglePost);
 
 router.get("/posts/user_posts/:user_id", postCtrl.getUserPostbyId);
 
-router.get("/posts/user_posts",  postCtrl.getUserPostbyMiddleware);
+router.get("/posts/user_postsMiddleware",  postCtrl.getUserPostbyMiddleware);
 
 router.put("/posts/search_for_post",  postCtrl.searchForPost);
 

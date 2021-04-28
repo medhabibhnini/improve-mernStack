@@ -60,8 +60,7 @@ const res = await axios.post('http://localhost:5000/forum/posts',{
 })
 
 setData({...data,err:'',success:res.data.msg})
-history.push("/posts")
-window.location.reload(true);
+history.push("/topics")
 } catch(err)
 {
   err.response.data.msg && 
@@ -81,7 +80,7 @@ console.log(data)
               <h1 class="titre" style={{marginLeft:"100px",fontSize:"100",color:"white"}}>Post Here</h1>
 <div class="overlay"></div>
 </div>
-<Link to="/posts" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
+<Link to="/topics" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
     
 <div class="container">
   <h1>Add post </h1>

@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 import { removeLikeFromComment } from "../../redux/actions/likes.actions/removeLikeFromComment";
 import { addLikeToComment } from "../../redux/actions/likes.actions/addLikeToComment";
+import { removeComment } from "../../redux/actions/comments.actions/removeComment";
 
 
 const Comment = ({
@@ -11,7 +12,9 @@ const Comment = ({
   post,
   removeLikeFromComment,
   addLikeToComment,
+  removeComment
 }) => {
+
   return post === null || post === [] ? (
     <div className="all-page-wrapper flex__center">
     
@@ -25,8 +28,16 @@ const Comment = ({
         </div>
         <div class="comment-input">
             <div class="comment-box" placeholder={comment.textOfTheComment} contenteditable="false" ></div>
-            <div class="post-action">
-                        <i class="fas fa-ellipsis-h"></i>
+            <div class="post-action"onClick={() => {
+        
+          
+        removeComment(post._id, comment._id, )
+    
+    window.location.reload(true);
+  }}
+            >
+                        <i class="fas fa-times" 
+                         ></i>
             </div>
            </div>
            
@@ -39,7 +50,7 @@ const Comment = ({
                   removeLikeFromComment(post._id, comment._id, like._id)
                 );
               } else {
-                addLikeToComment(post._id, comment._id);
+                addLikeToComment(post._id, comment._id ,auth);
               }
             }}
           >
@@ -51,11 +62,12 @@ const Comment = ({
                     : "far fa-thumbs-up"
                 }
               ></i>{comment.likes.length}
+          
             </div>
-
+    
           </div>
         
-
+      
     
 
   );
@@ -69,6 +81,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   removeLikeFromComment,
   addLikeToComment,
+  removeComment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

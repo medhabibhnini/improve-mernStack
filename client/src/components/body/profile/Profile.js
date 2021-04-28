@@ -8,7 +8,9 @@ import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAc
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import { CustomInput, FormGroup } from 'reactstrap';
+import UserPostsWrapper from "../../../views/UserPosts/UserPostsWrapper";
 import './profile.css'
+
 const initialState = {
     name: '',
     lastName:'',
@@ -24,7 +26,7 @@ function Profile() {
     const token = useSelector(state => state.token)
 
     const users = useSelector(state => state.users)
-
+    
     const {user, isAdmin} = auth
     const [data, setData] = useState(initialState)
     const {name,lastName,userName, password, cf_password, err, success} = data
@@ -42,7 +44,7 @@ function Profile() {
             })
         }
     },[token, isAdmin, dispatch, callback])
-
+ 
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
@@ -283,6 +285,7 @@ function Profile() {
    </div>
 <br></br>
 <br></br>
+
 <br></br>
 <br></br>
 <br></br>

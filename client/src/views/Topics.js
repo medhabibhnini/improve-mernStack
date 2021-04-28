@@ -94,33 +94,20 @@ const Topics = ({
     <>
     <Header/>
     
-      <header >
-        <p >
-          Topics
-        </p>
+    
+     
         <br />
-
-        <div
-          className={
-            isTheOldest
-              ? "header-checkbox app_color_font p__size font__p font__bold"
-              : "header-checkbox app_color_font p__size font__p"
-          }
-        >
-          <input
-            type="checkbox"
-            value={isTheOldest}
-            checked={isTheOldest}
-            onChange={() => changeTopicsType("isTheOldest")}
-          />
-          <p onClick={() => changeTopicsType("isTheOldest")}>The Oldest</p>
-        </div>
-
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="container">
+        <div class="d-flex flex-row">
+        <div class="p-2">
         <div
           className={
             isTheMostRecent
-              ? "header-checkbox app_color_font p__size font__p font__bold"
-              : "header-checkbox app_color_font p__size font__p"
+     
           }
         >
           <input
@@ -133,12 +120,12 @@ const Topics = ({
             The most recent
           </p>
         </div>
-
+</div>
+<div class="p-2">
         <div
           className={
             isTheMostLiked
-              ? "header-checkbox app_color_font p__size "
-              : "header-checkbox app_color_font p__size font__p"
+          
           }
         >
           <input
@@ -148,15 +135,16 @@ const Topics = ({
             onChange={() => changeTopicsType("isTheMostLiked")}
           />
           <p onClick={() => changeTopicsType("isTheMostLiked")}>
-            The Most Liked
+            The Most Liked 
           </p>
         </div>
-
-        <div
+        </div>
+        
+        <div class="p-2">
+            <div
           className={
             isTheMostCommented
-              ? "header-checkbox app_color_font p__size font__p font__bold"
-              : "header-checkbox app_color_font p__size font__p"
+        
           }
         >
           <input
@@ -166,25 +154,11 @@ const Topics = ({
             onChange={() => changeTopicsType("isTheMostCommented")}
           />
           <p onClick={() => changeTopicsType("isTheMostCommented")}>
-            The Most Commented
+            The Most Commented  
           </p>
         </div>
-
-        <form className="search-topic-wrapper">
-          <textarea
-            type="submit"
-            value={dataFromSearch}
-            onChange={(e) => onChange(e)}
-          />
-
-          <div
-            className="topic-search-button app_color_background font__p font__bold"
-            onClick={() => searchForTopic()}
-          >
-            Search for topic
-          </div>
-        </form>
-      </header>
+</div>
+        </div>
      
       <div className="topics-wrapper">
       <Link to="/posts/add" className="btn btn-outline-primary btn-circle d-inline float-left">Add Post</Link>
@@ -196,7 +170,8 @@ const Topics = ({
           posts={posts.posts}
         />
       </div>
-  
+      </div>
+     
     </>
   );
 };

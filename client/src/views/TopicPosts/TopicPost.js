@@ -74,8 +74,8 @@ const TopicPost = ({
 
             <div class="fb-card-actions-holder">
                 <div class="fb-card-actions">
-                    <div class="fb-btn-holder">
-                        <Link /*onClick={() => handleLike(posts._id)}*/
+                    <div class="fb-btn-holder" style={{ display: auth.isLogged ? "block" : "none" }}>
+                        <Link 
                          onClick={() => {
                             if (post.likes.find((like) => like.user === auth.user._id)) {
                               post.likes.find((like) =>

@@ -13,7 +13,6 @@ const initialState ={
   title :'',
   type :'',
   description :'',
-  avatar : '',
   err: '',
   success: ''
   
@@ -23,6 +22,8 @@ const ListEvents = () => {
 const [events,getEvents] =useState([]);
 const [loading, setLoading] = useState(false)
 const [callback, setCallback] = useState(false)
+const token = useSelector(state => state.token)
+const [avatar, setAvatar] = useState(false)
 
 const [data, setData] = useState(initialState)
 
@@ -37,12 +38,54 @@ getEvents(allEvents);
 
 
 }
+
+const changeAvatar = async(e) => {
+  e.preventDefault()
+  try {
+      const file = e.target.files[0]
+
+      if(!file) return setData({...data, err: "No files were uploaded." , success: ''})
+
+      if(file.size > 1024 * 1024)
+          return setData({...data, err: "Size too large." , success: ''})
+
+      if(file.type !== 'image/jpeg' && file.type !== 'image/png')
+          return setData({...data, err: "File format is incorrect." , success: ''})
+
+      let formData =  new FormData()
+      formData.append('file', file)
+
+      setLoading(false)
+      const res = await axios.post('/api/upload_avatar', formData, {
+          headers: {'content-type': 'multipart/form-data', Authorization: token}
+      })
+
+      setLoading(true)
+      setAvatar(res.data.url)
+      
+  } catch (err) {
+      setData({...data, err: err.response.data.msg , success: ''})
+  }
+}
+const updateInfor = () => {
+  try {
+      axios.patch('/event/events', {
+          avatar: avatar ? avatar : events.avatar
+      },{
+          headers: {Authorization: token}
+      })
+
+      setData({...data, err: '' , success: "Updated Success!"})
+  } catch (err) {
+      setData({...data, err: err.response.data.msg , success: ''})
+  }
+}
 const handleDelete = async (id) =>{
 try{
   if(window.confirm("Are you sure ? Do you want to delete this event"))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/event/deleteevent/${id}`, {
+    await axios.delete(`http://localhost:5000/event/deleteevents/${id}`, {
 
   })
   setLoading(false)
@@ -97,7 +140,10 @@ const mystyle = {
             <td>{event.title}</td>
             <td>{event.description}</td>
             <td>{event.type}</td>
-            <td>{event.avatar}</td>
+            <td><div className="col-lg-3 order-lg-2">
+                     <img src={avatar ? avatar : event.avatar} className="rounded-circle"/>
+
+               </div></td>
             <td>
             <Link  to={`/editevent/${event._id}`}>
                                                 <Button className="fas fa-edit btn btn-warning" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </Button>

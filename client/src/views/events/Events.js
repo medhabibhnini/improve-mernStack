@@ -11,6 +11,7 @@ import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
 
 import { isEmpty } from "../../components/utils/validation/Validation";
+import { selectFields } from "express-validator/src/select-fields";
 const styles = {
     cardCategoryWhite: {
       color: "rgba(255,255,255,.62)",
@@ -52,6 +53,35 @@ export default function Events() {
       const {name, value} = e.target
       setData({...data, [name]:value, err:'', success: ''})
     }
+    const handleUpload = async e =>{
+      e.preventDefault()
+      try {
+          
+          const file = e.target.files[0]
+          
+          if(!file) return alert("File not exist.")
+
+          if(file.size > 1024 * 1024) // 1mb
+              return alert("Size too large!")
+
+          if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
+              return alert("File format is incorrect.")
+
+          let formData = new FormData()
+          formData.append('file', file)
+
+          setLoading(true)
+          const res = await axios.post('/api/upload_avatar', formData, {
+              headers: {'content-type': 'multipart/form-data', Authorization: token}
+          })
+          setLoading(false)
+          setAvatar(res.data.url)
+
+      } catch (err) {
+          alert(err.response.data.msg)
+      }
+  }
+ 
     const handleSubmit = async e => {
 e.preventDefault()
 if(isEmpty(title) || isEmpty(type) || isEmpty(description) || isEmpty(avatar))
@@ -111,15 +141,26 @@ console.log(data)
 
               <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add Event </h1>
 <div class="overlay"></div>
-</div>  <form onSubmit={handleSubmit}>
+</div>  
+  <form onSubmit={handleSubmit}>
     <div class="form-group">
         <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia',fontStyle:'normal',fontSize: '20px'}}>Title :</label>
         <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="Titre.."/>
     </div>
     <div class="form-group">
         <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia',fontStyle:'normal',fontSize: '20px'}}>Type :</label>
-        <input type="text" id="lname"  class="form-control" name="type"  onChange={handleChange} placeholder="type.."/>
+        <select  id="lname"  class="form-control" name="type"  onChange={handleChange} name="type">
+      <option value="TEDx talks">TEDx talks</option>
+      <option value="Club mashups">Club mashups</option>
+      <option value="Local city tours">Local city tours</option>
+      <option value="Workshops">Workshops</option>
+      <option value="Academic awards">Academic awards</option>
+      <option value="Meet the grads">Meet the grads</option>
+      <option value="Retreats and other stress-relief activities">Retreats and other stress-relief activities</option>
+      </select>
       </div>
+      
+      
   
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia',fontStyle:'normal',fontSize: '20px'}}>Description :</label>
@@ -127,13 +168,15 @@ console.log(data)
     </div>
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia',fontStyle:'normal',fontSize: '20px'}}>photo :</label>
-        <input  className="fas fa-camera" type="file" name="file" id="file_up" onChange={changeAvatar} />
+        <input  className="form-control" type="file" name="file" id="file_up" onChange={handleUpload} />
+        
     </div>
     <div class="row">
-      <input type="submit" className="btn btn-primary" value="Submit"/>
+      <input type="submit" className="btn btn-primary" style={{marginLeft:'50%'}} value="Submit"/>
     </div>
   </form>
 </div>
+
 </>
-  );
+  )
 }

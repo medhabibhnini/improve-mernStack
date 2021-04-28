@@ -12,14 +12,14 @@ description :{
     type: String,
     required :[true,"please enter the description"],
     trim:true,
-    unique :true
+    unique :false
 
 },
 type :{
     type: String,
     required :[true,"please enter the type"],
     trim:true,
-    unique :true
+    unique :false
 
 },
 

@@ -4,6 +4,7 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import { addLikeToPost } from "../../redux/actions/likes.actions/addLikeToPost";
 import { removeLikeFromTopicPost } from "../../redux/actions/likes.actions/removeLikeFromTopicPost";
+import { removePost } from "../../redux/actions/posts.actions/removePost";
 import "./posts.css"
 const TopicPost = ({
   isTheOldest,
@@ -13,8 +14,10 @@ const TopicPost = ({
   post,
   removeLikeFromTopicPost,
   addLikeToPost,
+  removePost,
   auth,
 }) => {
+ 
   return (
     <>
     
@@ -36,9 +39,16 @@ const TopicPost = ({
                             <small> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></small>
                         </div>
                     </div>
-                    <div class="post-action">
-                        <i class="fas fa-ellipsis-h"></i>
+                    <div style={{ display: auth.isLogged && auth.user.name === post.name ? "block" : "none" }} class="post-action" 
+                    onClick={() =>{
+                     
+                          removePost(post._id).then(window.location.reload(true))}
+                          
+                        
+                          }><i className="fas fa-times"></i>
+                         
                     </div>
+                   
                 </div>
                 <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
                     <div class="images-container">
@@ -128,6 +138,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   addLikeToPost,
   removeLikeFromTopicPost,
+  removePost
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicPost);

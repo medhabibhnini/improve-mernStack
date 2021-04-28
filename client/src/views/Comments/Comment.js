@@ -36,7 +36,7 @@ const Comment = ({
     window.location.reload(true);
   }}
             >
-                        <i class="fas fa-times" 
+                        <i style={{ display: auth.isLogged && auth.user.name === comment.name ? "block" : "none" }} class="fas fa-times" 
                          ></i>
             </div>
            </div>

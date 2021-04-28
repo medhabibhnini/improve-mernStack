@@ -71,11 +71,21 @@ const UserPost = ({ post, removePost, auth }) => {
              
                     </div>
                     <div class="like-comment-holder">
-                    
+                    {post.likes.length} Comments
                     </div>
                 </div>
             </div>
-
+            <div class="fb-card-actions-holder">
+                <div class="fb-card-actions">
+                    
+                    <div class="fb-btn-holder">
+                    <Link to={`/topics/topic/${post._id}`}>Update</Link>
+                    </div>
+                  
+                </div>
+            </div>
+           
+      
            
             
            

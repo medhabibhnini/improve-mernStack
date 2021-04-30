@@ -66,7 +66,8 @@ const mystyle = {
     return (
       <>
         <Dashboard/>
-      
+        
+
 <div class="col">
           <div class="card shadow">
             <div class="card-header border-0" >
@@ -82,7 +83,7 @@ const mystyle = {
             <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add A Course +</Button>
 
             </Link >
-           <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px"}}>
+           <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px", maxWidth:"100%"}}>
                         <thead class="thead-light">
                         <tr>
             <th>Title</th>

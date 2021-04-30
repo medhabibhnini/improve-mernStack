@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import { Button } from 'react-bootstrap';
+import StripeCheckoutButton from '../../components/stripe-button/stripe.button.component';
+
 
 import image from "./soft.jpg"
 import {useParams, useHistory} from 'react-router-dom'
@@ -10,6 +12,9 @@ import "../../components/body/home/home.css"
 
 export default function DetailCourse()
 {
+
+  
+
   const {id} = useParams()
   const history = useHistory()
   const [courses,getCourses] =useState([]);
@@ -29,6 +34,8 @@ export default function DetailCourse()
 
 useEffect(()=>{
     getAllCourses() },[])
+    const totalPrice = courses.price;
+    const redirLink = courses.link;
 return(
 
 <>
@@ -53,15 +60,18 @@ return(
 </div>
 </div>
 
-
 <div class="card mb-3" style={{marginTop:"20px", marginLeft:"50px",marginRight:"50px",backgrounColor:"blue"}}>
-  <img class="card-img-top" src={courses.image} alt="Card image cap" style={{ marginLeft:"300px",height:"400px" ,width:"800px"}}/>
+  <img class="card-img-top" src={courses.image} alt="Card image cap" style={{ marginLeft:"300px",height:"400px" ,width:"600px"}}/>
   <div class="card-body" style={{backgrounColor:"black"}}>
-  <h2 class="card-title" style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '25px'}} > Title Of The Course:  {courses.title}</h2>
-
-    <h5 class="card-title"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontSize: '20px'}}>Category: {courses.category}</h5>
+  <h6 class="card-title" style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '25px'}} > {courses.title}</h6>
+  <br></br>
+    <h7 class="card-title"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontSize: '20px'}}>skill: {courses.category}</h7>
+    <br></br>
+    <h7 class="card-title"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontSize: '20px'}}>description of the course</h7>
     <p class="card-text"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '15px'}}>{courses.description}</p>
-    <Button className="btn btn-yellow" style={{marginLeft:"60%", marginTop:"20px"}}>Take This Course</Button>
+    <hr></hr>
+    <h6 class="card-title" style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'bold',fontSize: '15px'}} > Price Of The Course:  {courses.price}$</h6>
+    <StripeCheckoutButton price={totalPrice} style={{marginLeft:'40%'}}/>
     <p class="card-text"><small class="text-muted"></small></p>
   </div>
 </div>

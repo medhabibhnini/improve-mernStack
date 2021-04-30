@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { CustomInput, FormGroup } from 'reactstrap';
 
+import Loading from '../../utils/loading/Loading'
 
 // core components
 import axios from 'axios'
@@ -43,7 +44,7 @@ success: ''
 
 export default function CreateCourse() {
   const history = useHistory()
-    
+
   const token = useSelector(state => state.token)
 
   const [hardskills] =useState([]);
@@ -105,7 +106,7 @@ export default function CreateCourse() {
             
             if(!file) return alert("File not exist.")
 
-            if(file.size > 1024 * 1024) // 1mb
+            if(file.size > 1920 * 1080) // 1mb
                 return alert("Size too large!")
 
             if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
@@ -149,11 +150,11 @@ console.log(data)
   return (
     <>
     <Dashboard/>
-<div className="container" style={{marginLeft:"300px",marginTop:"100px"}}>
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+<div className="container" style={{marginLeft:"250px",marginTop:"100px"}}>
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://familyconnexions.ca/wp-content/uploads/2016/06/training.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
-<p>softskills</p>
-              <h1 className="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add soft skills </h1>
+
+              <h1 className="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add A Course </h1>
 <div className="overlay"></div>
 </div>
   <form onSubmit={handleSubmit}>
@@ -195,8 +196,15 @@ console.log(data)
     </div>
     <div className="form-group">
       <div className="upload">
-      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
+      
 
+      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
+  {
+  loading ? <div id="file_img"><Loading /></div>
+  :<div id="file_img" style={styleUpload}>
+  <img src={image ? image.url : ''} alt=""/>
+  </div>
+  }
                 
             </div>
 

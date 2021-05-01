@@ -17,3 +17,6 @@ export const LIKE_COMMENT = "LIKE_COMMENT";
 export const REMOVE_LIKE_FROM_COMMENT = "REMOVE_LIKE_FROM_COMMENT";
 export const CLEAR_POST = "CLEAR_POST";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
+export const GET_BLOGS = "GET_BLOGS";
+export const GET_BLOG = "GET_BLOG";
+export const BLOG_ERROR = "BLOG_ERROR";

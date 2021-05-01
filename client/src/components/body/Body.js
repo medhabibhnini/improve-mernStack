@@ -16,9 +16,8 @@ import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 import Users from './profile/ListeUser'
-//import Posts from './posts/Posts'
-//import DetailPosts from './detailPosts/DetailPosts'
 import CreatePost from '../../views/CreatePost'
+import CreateBlog from '../../views/CreateBlog'
 import Softskills from  '../../views/skills/ListSoftSkills'
 import Addsoftskills from '../../views/skills/Softskills'
 import Editsoftskills from '../../views/skills/EditSoft'
@@ -32,6 +31,7 @@ import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 import Topics from '../../views/Topics.js'
 import TopicPage from "../../views/TopicPage.js";
 import PostsUser from '../../views/PostsUser'
+import blogs from '../../views/Blogs'
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -61,9 +61,11 @@ function Body() {
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
                
-                <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact /> 
+                <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
+                <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
                 <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
                 <Route path="/topics" exact component={Topics} />
+                <Route path="/subjects" exact component={blogs} />
                 <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}
                 <Route exact path="/linkedin" component={LinkedInPopUp} />

@@ -25,10 +25,9 @@ app.use('/user', require('./routes/userRouter'))
 
 app.use('/api', require('./routes/upload'))
 app.use('/forum', require('./routes/postRouter'))
-app.use('/comments', require('./routes/commentRouter'))
 app.use('/soft',require('./routes/skills'))
 app.use('/hard',require('./routes/hardskills'))
-
+app.use('/blog', require('./routes/blogRouter'))
 
 /*
 const postRoute= require('./routes/posts')

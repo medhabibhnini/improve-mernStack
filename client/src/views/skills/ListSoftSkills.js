@@ -27,6 +27,7 @@ const [data, setData] = useState(initialState)
 
 useEffect(()=>{
 getAllSkills();},[]);
+
 const getAllSkills =()=>{
 axios.get('http://localhost:5000/soft/softskills')
 .then((response)=>{

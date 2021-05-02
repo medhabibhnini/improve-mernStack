@@ -10,6 +10,9 @@ import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import Dashboard from '../dashboard/dashboard'
 import './table.css'
+import MaterialTable from 'material-table';
+import Pagination from './Pagination'
+import { Table } from 'reactstrap'
 const initialState = {
     name: '',
     lastName:'',
@@ -20,7 +23,10 @@ const initialState = {
     success: ''
 }
 
+
 function ListeUser() {
+
+
     const auth = useSelector(state => state.auth)
     const token = useSelector(state => state.token)
 
@@ -34,8 +40,14 @@ function ListeUser() {
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
 
-    const dispatch = useDispatch()
 
+    const dispatch = useDispatch()
+    const [q, setQ] = useState("");
+    /*function search(rows){
+        return rows.filter(row => row.userName.toLowerCase().indexOf(q) > -1)
+    }*/
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
     useEffect(() => {
         if(isAdmin){
             fetchAllUsers(token).then(res =>{
@@ -44,41 +56,25 @@ function ListeUser() {
         }
     },[token, isAdmin, dispatch, callback])
 
+    
+    /* pagination*/
+    
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = users.slice(indexOfFirstPost, indexOfLastPost);
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    // search
+    const [search, setSearch] = useState("");
+   //filter
+   //const roleAdmin = this
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
     }
 
-    const changeAvatar = async(e) => {
-        e.preventDefault()
-        try {
-            const file = e.target.files[0]
+   
 
-            if(!file) return setData({...data, err: "No files were uploaded." , success: ''})
-
-            if(file.size > 1024 * 1024)
-                return setData({...data, err: "Size too large." , success: ''})
-
-            if(file.type !== 'image/jpeg' && file.type !== 'image/png')
-                return setData({...data, err: "File format is incorrect." , success: ''})
-
-            let formData =  new FormData()
-            formData.append('file', file)
-
-            setLoading(false)
-            const res = await axios.post('/api/upload_avatar', formData, {
-                headers: {'content-type': 'multipart/form-data', Authorization: token}
-            })
-
-            setLoading(false)
-            setAvatar(res.data.url)
-            
-        } catch (err) {
-            setData({...data, err: err.response.data.msg , success: ''})
-        }
-    }
-
-    const updateInfor = () => {
+    /*const updateInfor = () => {
         try {
             axios.patch('/user/update', {
                 name: name ? name : user.name,
@@ -93,7 +89,7 @@ function ListeUser() {
         } catch (err) {
             setData({...data, err: err.response.data.msg , success: ''})
         }
-    }
+    }*/
 
     const updatePassword = () => {
         if(isLength(password))
@@ -113,10 +109,10 @@ function ListeUser() {
         }
     }
 
-    const handleUpdate = () => {
+   /* const handleUpdate = () => {
         if(name || lastName || userName || avatar ) updateInfor()
         if(password) updatePassword()
-    }
+    }*/
     const deleteuser = async (id) => {
         try {
             if(user._id !== id){
@@ -155,12 +151,25 @@ function ListeUser() {
             }
           })
     }
-    return (
-  
-        <>
-<Dashboard/>
-      
+
     
+    return (
+        
+        <>
+                   
+
+      <div>
+           <input
+           type="text"
+           placeholder="search .."
+           onChange={(event) => {
+               setSearch(event.target.value);
+           }}
+           >
+           </input>
+           <Pagination postsPerPage={postsPerPage} totalPosts={users.length} paginate={paginate}/>
+           </div>
+
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
@@ -170,7 +179,10 @@ function ListeUser() {
              {err && showErrMsg(err)}
            {success && showSuccessMsg(success)}
            {loading && <h3>Loading.....</h3>}
-           <table  class="table align-items-center table-flush">
+           
+
+           <Table /*data={search(data)} */ class="table align-items-center table-flush">
+
                         <thead  class="thead-light">
                             <tr>
                                 <th>Avatar</th>
@@ -183,7 +195,15 @@ function ListeUser() {
                         </thead>
                         <tbody>
                             {
-                                users.map(user => (
+                                currentPosts.filter((val)=> {
+                                    if (search =="") {
+                                        return val
+                                    } else if ((val.name.toLowerCase().includes(search.toLowerCase())) ||
+                                    (val.email.toLowerCase().includes(search.toLowerCase()))
+                                    ) {
+                                        return val
+                                    }
+                                }).map(user => (
                                     <tr key={user._id}>
                                         <td>
                                         <a href="#" class="avatar rounded-circle mr-3">
@@ -215,8 +235,8 @@ function ListeUser() {
                                 ))
                             }
                         </tbody>
-                    </table>
-                   
+                    </Table>
+
              </div>
              </div>
     

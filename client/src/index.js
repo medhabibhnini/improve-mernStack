@@ -9,6 +9,12 @@ import {DataProviders} from './GlobalState';
 import ChatBot from 'react-simple-chatbot';
 import { Provider } from 'react-redux';
 import store from "./GlobalState"
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import paginationFactory from "react-bootstrap-table2-paginator";
+import * as ReactBootStrap from "react-bootstrap";
+
 const steps = [
   {
     id: '0',
@@ -21,6 +27,7 @@ const steps = [
     end: true,
   },
 ];
+
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>

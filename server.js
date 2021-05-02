@@ -21,9 +21,16 @@ app.use(fileUpload({
 
 // Routes
 app.use('/user', require('./routes/userRouter'))
+
+const postRoute= require('./routes/postRouter')
+
 //const postRoute= require('./routes/posts')
 
+
 app.use('/api', require('./routes/upload'))
+app.use('/api', require('./routes/courseRouter'))
+
+
 app.use('/forum', require('./routes/postRouter'))
 app.use('/soft',require('./routes/skills'))
 app.use('/hard',require('./routes/hardskills'))

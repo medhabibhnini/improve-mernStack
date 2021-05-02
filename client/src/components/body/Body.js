@@ -4,7 +4,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import ActivationEmail from './auth/ActivationEmail'
 import NotFound from '../utils/NotFound/NotFound'
-
+import Loading from '../utils/Loading/Loading'
 import ForgotPass from '../body/auth/ForgotPassword'
 import ResetPass from '../body/auth/ResetPassword'
 
@@ -15,12 +15,22 @@ import Home from '../body/home/Home'
 import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
+
 import Users from './profile/ListeUser'
 import CreatePost from '../../views/CreatePost'
 import CreateBlog from '../../views/CreateBlog'
+
+
+
+import CreateCourse from '../../views/courses/CreateCourse'
+import Courses from '../../views/courses/ListCourses'
+import EditCourse from '../../views/courses/EditCourse'
+import ListCourse from '../../views/front/ListCourse'
+import DetailsCourse from '../../views/front/DetailCourse'
+
 import Softskills from  '../../views/skills/ListSoftSkills'
-import Addsoftskills from '../../views/skills/Softskills'
-import Editsoftskills from '../../views/skills/EditSoft'
+import Addsoftskills from '../../views/skills/softskills.js'
+import Editsoftskills from '../../views/skills/editSoft.js'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
 import Hardskills from '../../views/skills/ListHardSkills'
@@ -58,6 +68,12 @@ function Body() {
                 <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
                  <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
+
+                <Route path="/create_course" exact component={isAdmin ? CreateCourse : Loading} />
+                <Route path="/courses" exact component={isAdmin ? Courses : Loading} />
+                <Route path="/listcourses" exact component={isAdmin ? ListCourse : Loading} />
+                <Route path="/edit_course/:id" component={isAdmin ? EditCourse : Loading} exact  />
+                <Route path="/detailcourse/:id" component={DetailsCourse} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
                

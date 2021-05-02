@@ -1,3 +1,4 @@
+
 import React from 'react'
 import swal from 'sweetalert'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +13,7 @@ import {
   faQuestion,
   faImage,
   faCopy,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenu from "./SubMenu"
 import axios from 'axios'
@@ -128,8 +130,8 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/contact"}>
-            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+          <NavLink tag={Link} to={"/courses"}>
+            <FontAwesomeIcon icon={faBook} className="mr-2" />
             Courses
           </NavLink>
         </NavItem>

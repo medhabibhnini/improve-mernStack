@@ -6,6 +6,8 @@ import softskills from './softskillsReducer'
 import posts from "./posts.reducer";
 import blogs from "./blog.reducer"
 import courses from './coursesReducer'
+import events from './eventsReducer'
+
 export default combineReducers({
     auth,
     token,
@@ -13,5 +15,6 @@ export default combineReducers({
     softskills,
     posts,
     blogs,
-    courses
+    courses,
+    events,
 })

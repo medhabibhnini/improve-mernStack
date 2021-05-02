@@ -173,7 +173,16 @@ function Header() {
             </a>
           </li>
 }
-
+{
+                 
+                 <li className="nav-item" style={{marginRight:"0px"}}>
+                    <a className="nav-link nav-link-icon"  target="_blank">
+                    <Link to="/listevent">
+                    <button   className="btn btn-primary" >Events</button>
+                      </Link>
+                    </a>
+                  </li>
+        }
 {
                     
          <li className="nav-item" style={{marginRight:"400px"}}>

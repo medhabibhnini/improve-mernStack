@@ -33,6 +33,10 @@ import Addsoftskills from '../../views/skills/Softskills.js'
 import Editsoftskills from '../../views/skills/EditSoft.js'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
+import Events from  '../../views/events/ListEvents'
+import Addevents from '../../views/events/Events'
+import Editevents from '../../views/events/EditEvent'
+import ListEvent from '../../views/front/ListEvent'
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
@@ -95,6 +99,12 @@ function Body() {
                 <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
                 <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
 
+              
+                            <Route path="/listevent" component={ListEvent} exact />
+                            <Route path="/events" component={isAdmin ? Events : NotFound} exact />  
+                            <Route path="/addevent" component={isAdmin ? Addevents : NotFound} exact  />
+                            <Route path="/editevent/:id" component={isAdmin ? Editevents : NotFound} exact  />
+                         
             </Switch>
         </section> 
     

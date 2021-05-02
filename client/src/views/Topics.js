@@ -7,7 +7,9 @@ import { searchTopics } from "../redux/actions/posts.actions/searchTopics";
 import { connect } from "react-redux";
 import TopicPostsWrapper from "./TopicPosts/TopicPostsWrapper";
 import Header from "../components/header/Header";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+
 const Topics = ({
   getPosts,
   getMostRecentPosts,
@@ -15,11 +17,15 @@ const Topics = ({
   getMostLikedPosts,
   searchTopics,
   posts,
+ 
 }) => {
   let [dataFromSearch, setDataFromSearch] = useState("");
+  //let [blog_id, setblog] = useState(blog);
+ const { blog_id }= useParams();
+
   let [topicsSortType, setTopicsSortType] = useState({
-    isTheOldest: false,
-    isTheMostRecent: true,
+    isTheOldest: true,
+    isTheMostRecent: false,
     isTheMostCommented: false,
     isTheMostLiked: false,
   });
@@ -32,10 +38,12 @@ const Topics = ({
   } = topicsSortType;
 
   useEffect(() => {
-    if (isTheOldest) getPosts();
-    else if (isTheMostCommented) getMostCommentedPosts();
-    else if (isTheMostLiked) getMostLikedPosts();
-    else getMostRecentPosts();
+
+   
+    if (isTheMostRecent) getMostRecentPosts(blog_id);
+    else if (isTheMostCommented) getMostCommentedPosts(blog_id);
+    else if (isTheMostLiked) getMostLikedPosts(blog_id);
+    else getPosts(blog_id) ;
   }, []);
 
   const onChange = (e) => setDataFromSearch(e.target.value);
@@ -50,7 +58,7 @@ const Topics = ({
         isTheMostLiked: false,
         isTheOldest: false,
       });
-      getMostRecentPosts();
+      getMostRecentPosts(blog_id);
     }
   };
 
@@ -62,7 +70,7 @@ const Topics = ({
         isTheMostCommented: false,
         isTheMostRecent: false,
       });
-      getMostLikedPosts();
+      getMostLikedPosts(blog_id);
     } else if (changedType === "isTheOldest") {
       setTopicsSortType({
         isTheMostLiked: false,
@@ -70,7 +78,7 @@ const Topics = ({
         isTheMostCommented: false,
         isTheMostRecent: false,
       });
-      getPosts();
+      getPosts(blog_id);
     } else if (changedType === "isTheMostCommented") {
       setTopicsSortType({
         isTheMostLiked: false,
@@ -78,7 +86,7 @@ const Topics = ({
         isTheMostCommented: true,
         isTheMostRecent: false,
       });
-      getMostCommentedPosts();
+      getMostCommentedPosts(blog_id);
     } else {
       setTopicsSortType({
         isTheMostLiked: false,
@@ -86,7 +94,7 @@ const Topics = ({
         isTheMostCommented: false,
         isTheMostRecent: true,
       });
-      getMostRecentPosts();
+      getMostRecentPosts(blog_id);
     }
   };
 
@@ -106,6 +114,24 @@ const Topics = ({
         <div class="p-2">
         <div
           className={
+            isTheOldest
+     
+          }
+        >
+          <input
+            onChange={() => changeTopicsType("isTheOldest")}
+            value={isTheOldest}
+            checked={isTheOldest}
+            type="checkbox"
+          />
+          <p onClick={() => changeTopicsType("isTheOldest")}>
+           the Oldest
+          </p>
+        </div>
+</div>
+        <div class="p-2">
+        <div
+          className={
             isTheMostRecent
      
           }
@@ -121,6 +147,7 @@ const Topics = ({
           </p>
         </div>
 </div>
+
 <div class="p-2">
         <div
           className={
@@ -161,13 +188,15 @@ const Topics = ({
         </div>
      
       <div className="topics-wrapper">
-      <Link to="/posts/add" className="btn btn-outline-primary btn-circle d-inline float-left">Add Post</Link>
+      <Link to={`/posts/add/${blog_id}`} className="btn btn-outline-primary btn-circle d-inline float-left">Add Post</Link>
+      <br></br>
         <TopicPostsWrapper
           isTheOldest={isTheOldest}
           isTheMostCommented={isTheMostCommented}
           isTheMostRecent={isTheMostRecent}
           isTheMostLiked={isTheMostLiked}
           posts={posts.posts}
+          blog_id={blog_id}
         />
       </div>
       </div>

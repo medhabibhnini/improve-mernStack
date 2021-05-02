@@ -7,6 +7,7 @@ const TopicPostsWrapper = ({
   isTheMostRecent,
   isTheMostLiked,
   posts,
+  blog_id
 }) =>
   posts !== null &&
   posts.length > 0 &&
@@ -16,8 +17,10 @@ const TopicPostsWrapper = ({
       isTheMostCommented={isTheMostCommented}
       isTheMostRecent={isTheMostRecent}
       isTheMostLiked={isTheMostLiked}
+      blog_id={blog_id}
       post={post}
       key={post._id}
+      
     />
   ));
 

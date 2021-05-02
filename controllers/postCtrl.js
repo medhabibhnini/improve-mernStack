@@ -48,7 +48,7 @@ class APIfeatures {
 const postCtrl = {
     getPosts: async(req, res) =>{
         try {
-            const features = new APIfeatures(Posts.find(), req.query)
+            const features = new APIfeatures(Posts.find({blog_id : req.params.blog_id}), req.query)
            
 
             const posts = await features.query
@@ -65,11 +65,11 @@ const postCtrl = {
     },
     createPost: async(req, res) =>{
         try {
-            const {title,description,user} = req.body;
+            const {title,description,user,blog_id} = req.body;
             let users = await User.findById(user).select("-password");
 
             const newPost = new Posts({
-        title: title.toLowerCase(), description,user:users,name:users.name,avatar:users.avatar
+        title: title.toLowerCase(), description,user:users,name:users.name,avatar:users.avatar,blog_id:blog_id
             })
 
             await newPost.save()
@@ -194,7 +194,7 @@ const postCtrl = {
       getMostLikedPost:async (req, res) => {
         try {
           //We order from the most to the least liked, as default sort is assigned as 1, when you use -1 you basically reverse the order of array
-          let posts = await Posts.find().sort({ likes: -1 });
+          let posts = await Posts.find({blog_id : req.params.blog_id}).sort({ likes: -1 });
           res.json(posts);
         } catch (error) {
           console.error(error);
@@ -203,7 +203,7 @@ const postCtrl = {
       },
       getMostCommentedPost:async (req, res) => {
         try {
-          let posts = await Posts.find().sort({ comments: -1 });
+          let posts = await Posts.find({blog_id : req.params.blog_id}).sort({ comments: -1 });
           res.json(posts);
         } catch (error) {
           console.error(error);
@@ -340,6 +340,15 @@ const postCtrl = {
       getSinglePost:async (req, res) => {
         try {
           let posts = await Posts.findById(req.params.post_id);
+          res.json(posts);
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json("Server Error...");
+        }
+      },
+      getPostByDate:async (req, res) => {
+        try {
+          let posts = await Posts.find({blog_id : req.params.blog_id}).sort({ date: -1 });
           res.json(posts);
         } catch (error) {
           console.error(error);

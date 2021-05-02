@@ -3,18 +3,18 @@ import TopicBlog from "./TopicBlog";
 
 
 const TopicBlogWrapper = ({
-blogs
+  blogs,
+  isTheOldest,
 }) =>
-  blogs !== null &&
-  blogs.length > 0 &&
-  blogs.map((blog) => (
+blogs !== null &&
+blogs.length > 0 &&
+blogs.map((blog) => (
     <TopicBlog
-    blog={blog}
-    key={blog.id}
-    />,
-    console.log(blogs)
-  
+      isTheOldest={isTheOldest}
+      blog={blog}
+      key={blog._id}
+    />
   ));
- 
 
 export default TopicBlogWrapper;
+

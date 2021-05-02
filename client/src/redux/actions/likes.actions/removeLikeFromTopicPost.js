@@ -11,7 +11,8 @@ export const removeLikeFromTopicPost = (
   isOldest,
   isMostRecent,
   isMostCommented,
-  isMostLiked
+  isMostLiked,
+  blog_id
 ) => async (dispatch) => {
   try {
     const res = await axios.delete(
@@ -22,13 +23,13 @@ export const removeLikeFromTopicPost = (
       payload: res.data,
     });
     if (isOldest) {
-      dispatch(getPosts());
+      dispatch(getPosts(blog_id));
     } else if (isMostRecent) {
-      dispatch(getMostRecentPosts());
+      dispatch(getMostRecentPosts(blog_id));
     } else if (isMostCommented) {
-      dispatch(getMostCommentedPosts());
+      dispatch(getMostCommentedPosts(blog_id));
     } else if (isMostLiked) {
-      dispatch(getMostLikedPosts());
+      dispatch(getMostLikedPosts(blog_id));
     }
   } catch (error) {
     dispatch({ type: POST_ERROR });

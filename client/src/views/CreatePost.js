@@ -40,6 +40,8 @@ user:''
 export default function CreatePost() {
     const auth = useSelector(state => state.auth)
     const {user} = auth
+    const {blog_id}= useParams();
+    console.log(blog_id);
     const history = useHistory()
     const [callback, setCallback] = useState(false)
     const [data, setData] = useState(initialState)
@@ -56,11 +58,11 @@ if(isEmpty(title)  || isEmpty(description))
  
 try {
 const res = await axios.post('http://localhost:5000/forum/posts',{
-  title,description,user
+  title,description,user,blog_id
 })
 
 setData({...data,err:'',success:res.data.msg})
-history.push("/topics")
+history.push(`/topics/${blog_id}`)
 } catch(err)
 {
   err.response.data.msg && 

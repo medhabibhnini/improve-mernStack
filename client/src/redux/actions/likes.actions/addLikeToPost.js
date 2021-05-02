@@ -12,6 +12,7 @@ export const addLikeToPost = (
   isMostRecent,
   isMostCommented,
   isMostLiked,
+  blog_id,
   auth
 ) => async (dispatch) => {
   //const auth = useSelector(state => state.auth)
@@ -24,13 +25,13 @@ console.log(auth)
     dispatch({ type: ADD_LIKE, payload: res.data });
 
     if (isOldest) {
-      dispatch(getPosts());
+      dispatch(getPosts(blog_id));
     } else if (isMostRecent) {
-      dispatch(getMostRecentPosts());
+      dispatch(getMostRecentPosts(blog_id));
     } else if (isMostCommented) {
-      dispatch(getMostCommentedPosts());
+      dispatch(getMostCommentedPosts(blog_id));
     } else if (isMostLiked) {
-      dispatch(getMostLikedPosts());
+      dispatch(getMostLikedPosts(blog_id));
     }
   } catch (error) {
     dispatch({

@@ -1,10 +1,10 @@
 import { MOST_COMMENTED, POST_ERROR } from "../../../constants/posts.constants";
 import axios from "axios";
 
-export const getMostCommentedPosts = () => async (dispatch) => {
+export const getMostCommentedPosts = (blog_id) => async (dispatch) => {
   try {
     const res = await axios.get(
-      "http://localhost:5000/forum/posts/the_most_commented"
+      `http://localhost:5000/forum/posts/the_most_commented/${blog_id}`
     );
     dispatch({ type: MOST_COMMENTED, payload: res.data });
   } catch (error) {

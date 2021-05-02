@@ -56,15 +56,15 @@ function Body() {
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
                 <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
-               <Route path="/users" component={isAdmin ? Users : NotFound} exact />
+                 <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
                
-                <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
+                <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
                 <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
-                <Route path="/topics" exact component={Topics} />
+                <Route path="/topics/:blog_id" exact component={Topics} />
                 <Route path="/subjects" exact component={blogs} />
                 <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}

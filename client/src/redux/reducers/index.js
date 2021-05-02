@@ -11,6 +11,6 @@ export default combineReducers({
     users,
     softskills,
     posts,
-    blogs
+    blogs,
  
 })

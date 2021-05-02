@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from "react";
-import {getBlogs} from "../redux/actions/blog.actions/getBlogs"
+import { getBlogs } from "../redux/actions/blog.actions/getBlogs"
 import { connect } from "react-redux";
 import TopicBlogWrapper from "./Blog/TopicBlogWrapper";
 import Header from "../components/header/Header";
 import { Link } from "react-router-dom";
 import TopicBlog from "../views/Blog/TopicBlog";
 const Blogs = ({
+  blogs,
 getBlogs,
-blogs
+
 
 }) => {
- 
+  let [topicsSortType, setTopicsSortType] = useState({
+    isTheOldest: true,
+  });
 
+  let {
+
+    isTheOldest,
+  } = topicsSortType;
  
   useEffect(() => {
- getBlogs();
+  if (isTheOldest) getBlogs();
 
   }, []);
-
-
+  console.log(blogs.blogs)
   return (
     <>
-    <Header/>
+  <Header/>
     
     
      
@@ -31,19 +37,18 @@ blogs
         <br />
         <br />
         <div className="container">
-        <div class="d-flex flex-row">
-        <div class="p-2">
-      
-     
-      <div className="topics-wrapper">
-      <Link to="/subject/add" className="btn btn-outline-primary btn-circle d-inline float-left">Add Subject</Link>
+        <Link to="/subject/add" className="btn btn-outline-primary btn-circle d-inline float-left">Add Subject</Link>
+        <br></br>
+        <div className="row mt-5">
+
+         
     <TopicBlogWrapper
+isTheOldest={isTheOldest}
     blogs={blogs.blogs}
+   
     />
-      </div>
-      </div>
-     </div>
-     </div>
+</div>
+</div>
     </>
   );
 };

@@ -70,7 +70,7 @@ const blogCtrl ={
 
             res.json({
                 //status: 'success',
-                //result: blogs.length,
+                result: blogs.length,
                 blogs: blogs
             })
             

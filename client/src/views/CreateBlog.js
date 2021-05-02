@@ -60,7 +60,7 @@ const res = await axios.post('http://localhost:5000/blog/createblog',{
 })
 
 setData({...data,err:'',success:res.data.msg})
-history.push("/")
+history.push("/subjects")
 } catch(err)
 {
   err.response.data.msg && 
@@ -83,7 +83,7 @@ console.log(data)
 <Link to="/topics" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
     
 <div class="container">
-  <h1>Add post </h1>
+  <h1>Add Subjects </h1>
   <form onSubmit={handleSubmit}>
   <div class="form-group">
         <label for="fname">Title</label>

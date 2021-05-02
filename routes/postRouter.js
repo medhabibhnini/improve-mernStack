@@ -5,10 +5,10 @@ const authAdmin = require('../middleware/authAdmin')
 
 
 router.route('/posts')
-    .get(postCtrl.getPosts)
     .post( postCtrl.createPost)
    
-
+    router.route('/posts/:blog_id')
+    .get(postCtrl.getPosts)
    
 router.route('/posts/:id')
     .delete( postCtrl.deletePost)
@@ -31,11 +31,11 @@ router.delete("/posts/remove_comment/:post_id/:comment_id",postCtrl.removeCommen
       
 router.delete("/posts/remove_like_from_comment/:post_id/:comment_id/:like_id",postCtrl.removeLikeFromComment );
 
-router.get("/posts/most_liked", postCtrl.getMostLikedPost);
+router.get("/posts/most_liked/:blog_id", postCtrl.getMostLikedPost);
 
-router.get("/posts/the_most_recent", postCtrl.getPostByDate);
+router.get("/posts/the_most_recent/:blog_id", postCtrl.getPostByDate);
 
-router.get("/posts/the_most_commented", postCtrl.getMostCommentedPost);
+router.get("/posts/the_most_commented/:blog_id", postCtrl.getMostCommentedPost);
 
 router.get("/posts/single_post/:post_id", postCtrl.getSinglePost);
 

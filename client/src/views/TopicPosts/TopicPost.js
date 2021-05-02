@@ -6,6 +6,7 @@ import { addLikeToPost } from "../../redux/actions/likes.actions/addLikeToPost";
 import { removeLikeFromTopicPost } from "../../redux/actions/likes.actions/removeLikeFromTopicPost";
 import { removePost } from "../../redux/actions/posts.actions/removePost";
 import "./posts.css"
+import Header from "../../components/header/Header";
 const TopicPost = ({
   isTheOldest,
   isTheMostCommented,
@@ -15,12 +16,13 @@ const TopicPost = ({
   removeLikeFromTopicPost,
   addLikeToPost,
   removePost,
+  blog_id,
   auth,
 }) => {
  
   return (
     <>
-    
+   
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -96,6 +98,7 @@ const TopicPost = ({
                                 isTheMostRecent,
                                 isTheMostCommented,
                                 isTheMostLiked,
+                                blog_id,
                                 auth
                               )
                             );
@@ -106,6 +109,7 @@ const TopicPost = ({
                               isTheMostRecent,
                               isTheMostCommented,
                               isTheMostLiked,
+                              blog_id,
                               auth
                             );
                             }

@@ -27,10 +27,9 @@ import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
-
 import Softskills from  '../../views/skills/ListSoftSkills'
 import Addsoftskills from '../../views/skills/Softskills'
-import Editsoftskills from '../../views/skills/EditSoft'
+//import Editsoftskills from '../../views/skills/EditSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
 import Events from  '../../views/events/ListEvents'
@@ -91,7 +90,7 @@ function Body() {
                 <Route exact path="/linkedin" component={LinkedInPopUp} />
                 <Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
                 <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
-                <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />
+            
                 <Route path="/listsoft" component={ListSoft} exact />
                 <Route path="/detailsoft/:id" component={DetailSoft} exact />
                 <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />

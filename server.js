@@ -24,7 +24,6 @@ app.use(fileUpload({
 // Routes
 app.use('/user', require('./routes/userRouter'))
 
-const postRoute= require('./routes/postRouter')
 
 //const postRoute= require('./routes/posts')
 

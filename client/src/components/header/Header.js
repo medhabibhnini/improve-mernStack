@@ -62,7 +62,7 @@ function Header() {
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>
-          <DropdownItem to="/radar" tag={Link}>
+          <DropdownItem to={`/radar/${user._id}`} tag={Link}>
             <i className="ni ni-settings-gear-65" />
             <span>My advancement</span>
           </DropdownItem>
@@ -167,6 +167,7 @@ function Header() {
 {
          <li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
+            <Link to="/ListHard">
             <Link to="#">
             <button   className="btn btn-primary" >Hard skills</button>
               </Link>

@@ -2,13 +2,32 @@ import React,{useState, useEffect} from 'react'
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import axios from 'axios'
-import { Button } from 'react-bootstrap';
+import { Button ,Modal} from 'react-bootstrap';
+import { isEmpty } from "../../components/utils/validation/Validation";
+import Swal from 'sweetalert2'
+
 import "../../components/body/home/home.css"
 import {Link} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
+const initialScore ={
+  UserId:'',
+  score :'',
+  err: '',
+  success: ''
+ 
+     }
 export default function ListSoft  (){
   const [skills,getSkills] =useState([]);
- 
+  const {id} = useParams()
+  const  [show,setShow] =useState(false);
+  const auth = useSelector(state => state.auth)
+
+  const {user, isLogged, isAdmin} = auth
+
+  const [datas ,setDatas]= useState(initialScore);
+ const {UserId,score,err,success}=datas;
   useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
@@ -20,7 +39,71 @@ export default function ListSoft  (){
     
     
     }
+
+
+    const handleSubmit = async e => {
+      e.preventDefault()
+      if(isEmpty(score))
+ {  Swal.fire(
+  'Error!',
+  'You must fill all the blanks.',
+  'error'
+)    
+     return setDatas({...datas,err:"Please fill in all fields ", success :''})
+ }
+        try {
+
+    
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, add it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const res =  axios.post(`http://localhost:5000/soft/affecterSoft/${id}`,{
+            score,UserId
+          })
+       //   setData({...data,err:'',success:res.data.msg})
+       //setDatas({...datas,err:'',success:res.data.msg})
+      closeModal()
+        }
+      })
+      } catch(err)
+      {
+        err.response.data.msg && 
+        setDatas({...datas, err: err.response.data.msg, success: ''})
+        Swal.fire(
+          'Error!',
+          'Error.',
+          'error'
+        )
+      }
+    
+      
+          }
   
+          const handleChange = e => {
+            const {name, value} = e.target
+            datas.UserId=user._id;
+    
+            setDatas({...datas, [name]:value, err:'', success: ''})
+          }
+
+          const handleModal =()=>
+          { 
+      
+            
+              setShow(true);
+          }
+          const closeModal =()=>
+          {
+              setShow(false);
+          }
+
   
   return (
         <>
@@ -61,6 +144,34 @@ export default function ListSoft  (){
                     </div>
                   </div>
   <Link to={`/detailsoft/${skill._id}`}> <Button className="btn bg-gradient-primary"> More details</Button></Link>
+              
+  <Link to={`/listsoft/${skill._id}`}> <Button className="btn bg-gradient-primary" onClick={handleModal}> Score</Button></Link>
+  <Modal show={show}>
+                    <Modal.Header>Ajouter un score
+
+
+                    </Modal.Header>
+                    <Modal.Body>
+                    <div class="container">
+    <form onSubmit={handleSubmit} >
+
+<div class="form-group">
+    <label for="score">Score :</label>
+    <input type="text" class="form-control" onChange={handleChange}  id="score" name="score"/>
+
+  </div>
+ 
+  <button type="submit" class="btn btn-default">Add score</button>
+ 
+  </form>
+
+</div>
+                    </Modal.Body>
+            <Modal.Footer>
+            <Link to={`/listsoft/`}>  <Button onClick={closeModal}> Close Modal</Button></Link></Modal.Footer>
+              
+                </Modal>
+                
                 </div>
                 </div>
            ) )}

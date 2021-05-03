@@ -136,8 +136,8 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-        <NavLink tag={Link} to={"/courses"}>
-            <FontAwesomeIcon icon={faBook} className="mr-2" />
+        <NavLink tag={Link} to={"/events"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
             Events
           </NavLink>
         </NavItem>

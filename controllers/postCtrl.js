@@ -1,4 +1,4 @@
-const Posts = require('../models/postModel');
+const Posts = require('../models/PostModel');
 const User = require ('../models/userModel')
 // Filter, sorting and paginating
 const { validationResult } = require("express-validator");

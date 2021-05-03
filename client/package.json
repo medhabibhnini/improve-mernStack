@@ -36,6 +36,7 @@
     "socket.io-client": "^2.3.1",
     "start": "^5.1.0",
     "stripe-checkout": "^1.0.9",
+    "styled-components": "^5.2.3",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^10.16.5",
     "web-vitals": "^1.1.1"

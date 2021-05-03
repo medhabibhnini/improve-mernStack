@@ -12,6 +12,7 @@ import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
 
 import { isEmpty } from "../../components/utils/validation/Validation";
+import ListSoftSkills from "../skills/ListSoftSkills";
 const styles = {
     cardCategoryWhite: {
       color: "rgba(255,255,255,.62)",
@@ -42,23 +43,26 @@ success: ''
 
 }
 
+
+
 export default function CreateCourse() {
   const history = useHistory()
 
   const token = useSelector(state => state.token)
 
-  const [hardskills] =useState([]);
+  const [hardskills,getHardSkills] =useState([]);
   useEffect(()=>{
     getAllHardSkills();},[]);
     const getAllHardSkills =()=>{
     axios.get('http://localhost:5000/hard/hardskills')
     .then((response)=>{
     const allHardSkills =response.data;
-    getAllHardSkills(allHardSkills);
+    getHardSkills(allHardSkills);
     }).catch(error=>console.error(`Error :${error}`));
     
     
     }
+    
 
   const [softskills,getSkills] =useState([]);
   useEffect(()=>{
@@ -72,7 +76,6 @@ export default function CreateCourse() {
     
     
     }
-
 
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState(false)
@@ -147,6 +150,7 @@ history.push("./courses")
 
     }
 console.log(data)
+
   return (
     <>
     <Dashboard/>
@@ -165,15 +169,31 @@ console.log(data)
  
       <div className="form-group">
       <label htmlFor="categories">Categories: </label>
+                  
                     <select name="category" value={category} onChange={handleChange} >
-                        <option value="">Please select a category</option>
+                        <option value="">**Hard Skills/Soft Skills**</option>
+                        <option value="">**Hard Skills**</option>
+                        {
+                            hardskills.map(hardskills => (
+                                <option value={hardskills.title} key={hardskills._id}>
+                                    {hardskills.title}
+                                    
+                                </option>
+                            
+                            ))
+                        }
+                       <option value="">**Soft Skills**</option>
                         {
                             softskills.map(softskills => (
                                 <option value={softskills.title} key={softskills._id}>
                                     {softskills.title}
+                                    
                                 </option>
+                            
                             ))
                         }
+                          
+                            
                     </select>
         
       </div>
@@ -189,7 +209,8 @@ console.log(data)
         <input type="number" id="price"  className="form-control" name="price" onChange={handleChange} />
         
       </div>
-      
+      <div className="form-group">
+        </div>
     <div className="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description :</label>
         <textarea id="subject"  className="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
@@ -208,6 +229,8 @@ console.log(data)
                 
             </div>
 
+</div>
+<div>
 </div>
     <div className="row">
       <input type="submit" className="btn btn-primary" value="Submit"/>

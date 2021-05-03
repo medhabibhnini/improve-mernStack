@@ -76,7 +76,7 @@ history.push("./hardskills")
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
-              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add Hard skills</h1>
+  <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add Hard skills</h1>
 <div class="overlay"></div>
 </div>
   <form onSubmit={handleSubmit}>

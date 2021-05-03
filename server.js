@@ -15,21 +15,29 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
+
+
+
+
+
+
 // Routes
 app.use('/user', require('./routes/userRouter'))
-const postRoute= require('./routes/posts')
+
+
+
+
 
 app.use('/api', require('./routes/upload'))
-app.use('/soft',require('./routes/skills'))
+app.use('/api', require('./routes/courseRouter'))
+
+
+app.use('/forum', require('./routes/postRouter'))
+app.use('/event',require('./routes/events'))
 app.use('/hard',require('./routes/hardskills'))
+app.use('/blog', require('./routes/blogRouter'))
+app.use('/soft',require('./routes/skills'))
 
-app.use('/post',postRoute)
-
-/*
-const postRoute= require('./routes/posts')
-app.use('/forum',postRoute);
-
-app.use('/forum', require('./routes/post'))*/
 
 // Connect to mongodb
 const URI = process.env.MONGODB_URL
@@ -42,6 +50,11 @@ mongoose.connect(URI, {
     if(err) throw err;
     console.log("Connected to mongodb")
 })
+
+
+
+
+
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))

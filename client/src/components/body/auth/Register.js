@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
+import Recaptcha from 'react-google-recaptcha';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {isEmpty, isEmail, isLength, isMatch} from '../../utils/validation/Validation'
 import './register.css'
+import swal from 'sweetalert'
 
-import Header from '../../header/Header'
-import Footer from '../../footer/Footer'
+
 const initialState = {
     name: '',
     lastName: '',
@@ -23,6 +24,8 @@ function Register() {
 
     const {name, lastName, userName, email, password,cf_password, err, success} = user
 
+  
+
     const handleChangeInput = e => {
         const {name, value} = e.target
         setUser({...user, [name]:value, err: '', success: ''})
@@ -32,7 +35,15 @@ function Register() {
     const handleSubmit = async e => {
         e.preventDefault()
         if(isEmpty(name) || isEmpty(password))
-                return setUser({...user, err: "Please fill in all fields.", success: ''})
+        
+        return swal({
+          title: "Please fill in all fields!",
+          text: "You need to fill all fields to Register!",
+          icon: "error",
+          button: "Confirm",
+          timer: "9000"
+          });
+                //return setUser({...user, err: "Please fill in all fields.", success: ''})
 
         if(!isEmail(email))
             return setUser({...user, err: "Invalid emails.", success: ''})
@@ -44,6 +55,13 @@ function Register() {
             return setUser({...user, err: "Password did not match.", success: ''})
 
         try {
+          swal({
+            title: "Account created successefuly!",
+            text: " Please Check your Email to activate it!",
+            icon: "success",
+            button: "Confirm",
+            timer: "9000"
+            });
             const res = await axios.post('/user/register', {
                 name, lastName, userName, email, password
             })
@@ -54,11 +72,8 @@ function Register() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
-    
     return (
-<>
-<Header />
-     
+        <body class="bg-default">
         <div class="main-content">
       
           <div class="header bg-primary py-7 py-lg-8">
@@ -67,7 +82,7 @@ function Register() {
                 <div class="row justify-content-center">
                   <div class="col-lg-5 col-md-6">
                     <h1 class="text-white">Welcome!</h1>
-                    <p class="text-lead text-light">here you can register</p>
+                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
                   </div>
                 </div>
               </div>
@@ -168,8 +183,16 @@ function Register() {
                           </div>
                         </div>
                       </div>
+                      <div>
+                      <Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+           // onloadCallback={this.recaptchaLoaded}
+           // verifyCallback={this.verifyCallback}
+          />
+                      </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-info mt-4">Create account</button>
+                        <button type="submit" class="btn btn-info mt-4" >Create account</button>
                       </div>
                     </form>
                   </div>
@@ -184,9 +207,9 @@ function Register() {
             </div>
           </div>
         </div>
-        <Footer/>
-    </>   
   
+       
+      </body>
       )
 
     

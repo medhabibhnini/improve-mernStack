@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Recaptcha from 'react-google-recaptcha';
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
@@ -7,6 +8,12 @@ import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './login.css'
+import swal from 'sweetalert'
+import { LinkedIn } from 'react-linkedin-login-oauth2';
+import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png'
+
+
+
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 const initialState = {
@@ -17,6 +24,7 @@ const initialState = {
 }
 
 function Login() {
+  
     const [user, setUser] = useState(initialState)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -41,6 +49,13 @@ function Login() {
             history.push("/")
 
         } catch (err) {
+          swal({
+            title: "Verify your inputs",
+            text: "Your Email & Password must match & exist!",
+            icon: "error",
+            button: "OK",
+            timer: "9000"
+            });
             err.response.data.msg && 
             setUser({...user, err: err.response.data.msg, success: ''})
         }
@@ -60,6 +75,22 @@ function Login() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
+    
+    const responseLinkedin = async (response) => {
+      try {
+        const {accessToken, userID} = response
+        const res = await axios.post('/user/linkedin_login', {accessToken, userID})
+
+        setUser({...user, error:'', success: res.data.msg})
+        localStorage.setItem('firstLogin', true)
+
+        dispatch(dispatchLogin())
+        history.push('/')
+    } catch (err) {
+        err.response.data.msg && 
+        setUser({...user, err: err.response.data.msg, success: ''}) 
+    }
+    }
 
     const responseFacebook = async (response) => {
         try {
@@ -73,9 +104,17 @@ function Login() {
             history.push('/')
         } catch (err) {
             err.response.data.msg && 
-            setUser({...user, err: err.response.data.msg, success: ''})
+            setUser({...user, err: err.response.data.msg, success: ''}) 
         }
     }
+    
+    var verifyCallback = (response) => {
+      console.log(response);
+      if (!response) {
+          alert("captcha baby")
+      }
+  };
+    
 
     return (
    <>
@@ -127,7 +166,14 @@ function Login() {
                  fields="name,email,picture"
                  callback={responseFacebook} 
                  />
-
+                 <hr></hr>
+              <LinkedIn
+                clientId="77ly230ti6em95"
+                redirectUri="http://localhost:3000/"
+                callback={responseLinkedin} 
+              >
+                <img src={linkedin} alt="Log in with Linked In" style={{ maxWidth: '180px' }} />
+              </LinkedIn>
                   </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
@@ -168,11 +214,21 @@ function Login() {
                         </div>
                       </div>
                     </div>
+                    <div>
+                <Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+           // onloadCallback={this.recaptchaLoaded}
+            verifyCallback={verifyCallback}
+          />
+                </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-info mt-4">Sign In</button>
                     </div>
                   </form>
+
                 </div>
+                
               </div>
               <div class="row mt-3">
               <div class="col-6"><Link to="/forgot_password">

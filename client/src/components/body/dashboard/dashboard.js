@@ -1,4 +1,7 @@
+
 import React from 'react'
+import swal from 'sweetalert'
+import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import Softskill from "../../../views/skills/ListSoftSkills"
@@ -10,6 +13,7 @@ import {
   faQuestion,
   faImage,
   faCopy,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenu from "./SubMenu"
 import axios from 'axios'
@@ -30,7 +34,15 @@ function Dashboard() {
 
 
     const handleLogout = async () => {
+      
         try {
+          swal({
+            title: "Logout Bouton",
+            text: "You are going to Logout",
+            icon: "warning",
+            buttons: "Confirm",
+            timer: "9000"
+            });
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
             window.location.href = "/";
@@ -74,7 +86,7 @@ const submenus = [
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Sidebar Nav</a>
+  <Link to="/" class="navbar-brand" >imPROve</Link>
   <button
     class="navbar-toggler"
     type="button"
@@ -118,6 +130,7 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+
           <NavLink tag={Link} to={"/listmacro"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
             Macro skills
@@ -138,8 +151,20 @@ Home
         </NavItem>
 
 
+    <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
 
 
+          <NavLink tag={Link} to={"/courses"}>
+            <FontAwesomeIcon icon={faBook} className="mr-2" />
+            Courses
+          </NavLink>
+        </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+        <NavLink tag={Link} to={"/events"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            Events
+          </NavLink>
+        </NavItem>
       </Nav>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-md-0">

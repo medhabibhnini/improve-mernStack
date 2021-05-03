@@ -21,6 +21,9 @@ let PostSchema = mongoose.Schema({
   avatar: {
     type: String,
   },
+  blog_id: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now(),

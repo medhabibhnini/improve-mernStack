@@ -135,6 +135,12 @@ Home
             Courses
           </NavLink>
         </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+        <NavLink tag={Link} to={"/events"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            Events
+          </NavLink>
+        </NavItem>
       </Nav>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-md-0">

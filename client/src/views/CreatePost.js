@@ -7,9 +7,9 @@ import {useParams, useHistory} from 'react-router-dom'
 // core components
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import Header from '../../header/Header'
-import Footer from '../../footer/Footer'
-import { isEmpty } from "../../utils/validation/Validation";
+import Header from '../components/header/Header'
+import Footer from '../components/footer/Footer'
+import { isEmpty } from "../components/utils/validation/Validation";
 const styles = {
     cardCategoryWhite: {
       color: "rgba(255,255,255,.62)",
@@ -40,6 +40,8 @@ user:''
 export default function CreatePost() {
     const auth = useSelector(state => state.auth)
     const {user} = auth
+    const {blog_id}= useParams();
+    console.log(blog_id);
     const history = useHistory()
     const [callback, setCallback] = useState(false)
     const [data, setData] = useState(initialState)
@@ -56,12 +58,11 @@ if(isEmpty(title)  || isEmpty(description))
  
 try {
 const res = await axios.post('http://localhost:5000/forum/posts',{
-  title,description,user
+  title,description,user,blog_id
 })
 
 setData({...data,err:'',success:res.data.msg})
-history.push("/posts")
-window.location.reload(true);
+history.push(`/topics/${blog_id}`)
 } catch(err)
 {
   err.response.data.msg && 
@@ -81,7 +82,7 @@ console.log(data)
               <h1 class="titre" style={{marginLeft:"100px",fontSize:"100",color:"white"}}>Post Here</h1>
 <div class="overlay"></div>
 </div>
-<Link to="/posts" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
+<Link to="/topics" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
     
 <div class="container">
   <h1>Add post </h1>

@@ -17,9 +17,9 @@ import {useSelector} from 'react-redux'
 import Dashboard from './dashboard/dashboard'
 
 import Users from './profile/ListeUser'
+import CreatePost from '../../views/CreatePost'
+import CreateBlog from '../../views/CreateBlog'
 
-import Posts from './posts/Posts'
-import DetailPosts from './detailPosts/DetailPosts'
 
 
 import CreateCourse from '../../views/courses/CreateCourse'
@@ -27,19 +27,24 @@ import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
-
-import CreatePost from './posts/CreatePost'
-import Softskills from  '../../views/skills/ListSoftSkills'
-import Addsoftskills from '../../views/skills/softskills.js'
-import Editsoftskills from '../../views/skills/editSoft.js'
+//import Softskills from  '../../views/skills/ListSoftSkills'
+//import Addsoftskills from '../../views/skills/Softskills'
+//import Editsoftskills from '../../views/skills/EditSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
+import Events from  '../../views/events/ListEvents'
+import Addevents from '../../views/events/Events'
+import Editevents from '../../views/events/EditEvent'
+import ListEvent from '../../views/front/ListEvent'
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
 import HomeBack from '../../views/Home'
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
-
+import Topics from '../../views/Topics'
+import TopicPage from "../../views/TopicPage";
+import PostsUser from '../../views/PostsUser'
+import blogs from '../../views/Blogs'
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -63,8 +68,9 @@ function Body() {
 
                 <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
                 <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-            <Route path="/dashboard" component={isAdmin ? Dashboard : Loading} exact />
-               <Route path="/users" component={isAdmin ? Users : NotFound} exact />
+                <Route path="/dashboard" component={isAdmin ? Dashboard : NotFound} exact />
+                 <Route path="/users" component={isAdmin ? Users : NotFound} exact />
+
 
                 <Route path="/create_course" exact component={isAdmin ? CreateCourse : Loading} />
                 <Route path="/courses" exact component={isAdmin ? Courses : Loading} />
@@ -73,22 +79,31 @@ function Body() {
                 <Route path="/detailcourse/:id" component={DetailsCourse} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
-                <Route path="/posts" component={Posts} exact />
-                <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
-                <Route path="/forum/posts/:id" component={DetailPosts} exact />
+               
+                <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
+                <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
+                <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
+                <Route path="/topics/:blog_id" exact component={Topics} />
+                <Route path="/subjects" exact component={blogs} />
+                <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
+                { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}
                 <Route exact path="/linkedin" component={LinkedInPopUp} />
-                
+                {/*<Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
+                <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
+    <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />*/}
+                <Route path="/listsoft" component={ListSoft} exact />
+                <Route path="/detailsoft/:id" component={DetailSoft} exact />
+                <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />
+                <Route path="/addhard" component={isAdmin ? Addhardskills : NotFound} exact  />
+                <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
+                <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
 
-                            <Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
-                            <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
-                            <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />
-                            <Route path="/listsoft" component={ListSoft} exact />
-                            <Route path="/detailsoft/:id" component={DetailSoft} exact />
-                            <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />
-                            <Route path="/addhard" component={isAdmin ? Addhardskills : NotFound} exact  />
-                            <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
-                            <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
-
+              
+                            <Route path="/listevent" component={ListEvent} exact />
+                            <Route path="/events" component={isAdmin ? Events : NotFound} exact />  
+                            <Route path="/addevent" component={isAdmin ? Addevents : NotFound} exact  />
+                            <Route path="/editevent/:id" component={isAdmin ? Editevents : NotFound} exact  />
+                         
             </Switch>
         </section> 
     

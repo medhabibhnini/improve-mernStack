@@ -5,7 +5,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const path = require('path')
-const Comments = require('./models/commentModel')
+
 
 const app = express()
 app.use(express.json())
@@ -25,7 +25,7 @@ app.use(fileUpload({
 app.use('/user', require('./routes/userRouter'))
 
 
-//const postRoute= require('./routes/posts')
+
 
 
 app.use('/api', require('./routes/upload'))
@@ -38,11 +38,7 @@ app.use('/hard',require('./routes/hardskills'))
 app.use('/blog', require('./routes/blogRouter'))
 app.use('/soft',require('./routes/skills'))
 
-/*
-const postRoute= require('./routes/posts')
-app.use('/forum',postRoute);
 
-*/
 // Connect to mongodb
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {

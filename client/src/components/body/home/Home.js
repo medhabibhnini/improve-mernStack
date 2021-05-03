@@ -44,7 +44,7 @@ function Home() {
                   <div className="py-3 text-center"> <i className="fas fa-rocket card-img-top fa-4x text-primary" aria-hidden="true"></i></div>
                   <div className="card-body">
                     <h4 className="card-title">Ready to ship</h4>
-                    <p className="card-text">You can use this theme as personal as well as for commercial purpose & can customise it. </p>
+                    <p className="card-text">Improve your skills becomes a goal for all students , with our website you can easily attend online training </p>
                    </div>
                   </div>
                 </div>
@@ -52,7 +52,6 @@ function Home() {
                   <div className="col-md-3">
                  <div className="card shadow">
                   <div className="card-body">
-                   <div className="py-3 text-center"><i className="fas fa-feather card-img-top fa-4x text-primary" aria-hidden="true"></i></div>
                   <div className="card-body">
                     <h4 className="card-title">Light weight</h4>
                     <p className="card-text">We avoid needless js and CSS which makes template more sleek and powerful. </p>

@@ -49,9 +49,10 @@ const res = await axios.put(`http://localhost:5000/soft/updateSoft/${id}`,{
     title,type,description
 
 })
-history.push("/softskills")
 
 setData({...data,err:'',success:res.data.msg})
+history.push("/softskills")
+
 }catch(err)
         {
             setData({...data, err: err.response.data.msg , success: ''})

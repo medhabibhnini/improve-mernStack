@@ -30,11 +30,14 @@
     "googleapis": "^61.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.3",
+    "mssql": "^6.3.1",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.14",
     "perfect-scrollbar": "^1.5.0",
     "react-chartist": "^0.14.4",
-    "react-google-maps": "^9.4.5"
+    "react-google-maps": "^9.4.5",
+    "socket.io": "^2.3.0",
+    "web-vitals": "^1.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"

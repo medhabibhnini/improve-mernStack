@@ -118,11 +118,28 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/listmacro"}>
+            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+            Macro skills
+          </NavLink>
+        </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/contact"}>
+            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+            Micro skills
+          </NavLink>
+        </NavItem>
+        
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/contact"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
             Courses
           </NavLink>
         </NavItem>
+
+
+
+
       </Nav>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-md-0">

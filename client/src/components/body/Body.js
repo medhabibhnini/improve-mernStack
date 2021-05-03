@@ -29,8 +29,8 @@ import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
 
 import Softskills from  '../../views/skills/ListSoftSkills'
-import Addsoftskills from '../../views/skills/Softskills.js'
-import Editsoftskills from '../../views/skills/EditSoft.js'
+import Addsoftskills from '../../views/skills/Softskills'
+import Editsoftskills from '../../views/skills/EditSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
 import Events from  '../../views/events/ListEvents'
@@ -42,8 +42,8 @@ import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
 import HomeBack from '../../views/Home'
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
-import Topics from '../../views/Topics.js'
-import TopicPage from "../../views/TopicPage.js";
+import Topics from '../../views/Topics'
+import TopicPage from "../../views/TopicPage";
 import PostsUser from '../../views/PostsUser'
 import blogs from '../../views/Blogs'
 function Body() {

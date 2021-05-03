@@ -37,6 +37,7 @@ app.use('/forum', require('./routes/postRouter'))
 app.use('/event',require('./routes/events'))
 app.use('/hard',require('./routes/hardskills'))
 app.use('/blog', require('./routes/blogRouter'))
+app.use('/soft',require('./routes/skills'))
 
 /*
 const postRoute= require('./routes/posts')

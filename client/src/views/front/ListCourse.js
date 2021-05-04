@@ -24,7 +24,9 @@ export default function ListSoft  (){
   
   return (
         <>
-            <Header/>
+
+    <Header/>
+    
             <br></br>
     <br></br>
     <br></br>

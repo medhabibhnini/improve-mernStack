@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect,useParams} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllCourses, dispatchGetAllCourses} from '../../redux/actions/coursesAction'
 import axios from 'axios'
@@ -8,6 +8,7 @@ import image from "./courses.jpg";
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
+
 
 import { $CombinedState } from 'redux'
 const initialState ={
@@ -26,6 +27,9 @@ const [courses,getCourses] =useState([]);
 const [loading, setLoading] = useState(false)
 const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
+const [nomsoft,getnomsoft]=useState([])
+
+
 
 useEffect(()=>{
 getAllCourses();},[]);
@@ -38,6 +42,18 @@ getCourses(allCourses);
 
 
 }
+
+const  nomsofts =()=>{
+  axios.get(`http://localhost:5000/api/getnamesoftcourse/`)
+        .then((response)=>{
+        const allSkills =response.data;
+        
+        getnomsoft(allSkills);
+  
+  
+      }).catch(error=>console.error(`Error :${error}`));
+  
+  }
 const handleDelete = async (id) =>{
 try{
   if(window.confirm("Are you sure ? Do you want to delete this course? "))
@@ -94,7 +110,7 @@ const mystyle = {
           <tr   key={course._id}>
             <td>{course.title}</td>
             <td>{course.description}</td>
-            <td>{course.category}</td>
+            <td>{course.nomsofts}</td>
             <td>{course.price}</td>
             <td>{course.link}</td>
             <td>

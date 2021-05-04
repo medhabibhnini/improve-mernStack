@@ -3,7 +3,6 @@ import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import axios from 'axios'
 import { Button ,Modal} from 'react-bootstrap';
-import "../../components/body/home/home.css"
 import {useSelector} from 'react-redux'
 import { isEmpty } from "../../components/utils/validation/Validation";
 import {Link} from 'react-router-dom'

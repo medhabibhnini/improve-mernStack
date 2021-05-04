@@ -106,7 +106,24 @@ const courseCtrl = {
         return res.status(500).json({msg: err.message})
     }
 
-}
+},
+
+getSkillsNoun : async(req,res)=>
+{
+
+    try{
+        const courses = await Courses.find().populate({path :'microId',select:'title  -_id'}).select('title  -_id');
+        
+        res.json(courses);
+    } catch(err)
+    {
+        return res.status(500).json({msg: err.message})
+    
+    
+    }
+
+
+},
 }
 
 

@@ -16,7 +16,7 @@ const StripeCheckoutButton = ({ price }) => {
             name='imPROve Co.'
             billingAddress
             shippingAddress
-            image='https://ibb.co/zRDxVM4'
+            image=''
             description={`Your total is $${price}`}
             amount={priceForStripe}
             panelLabel='Pay Now'

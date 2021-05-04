@@ -27,21 +27,26 @@ import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
-//import Softskills from  '../../views/skills/ListSoftSkills'
-//import Addsoftskills from '../../views/skills/Softskills'
-//import Editsoftskills from '../../views/skills/EditSoft'
+
+import Softskills from  '../../views/skills/ListSoftSkills'
+import Addsoftskills from '../../views/skills/softskills'
+import Editsoftskills from '../../views/skills/editSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
+
 import Events from  '../../views/events/ListEvents'
 import Addevents from '../../views/events/Events'
 import Editevents from '../../views/events/EditEvent'
 import ListEvent from '../../views/front/ListEvent'
+
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
 import AjoutHard from '../../views/front/AjoutHard'
 import ListHard from '../../views/front/ListHard'
+
 import HomeBack from '../../views/Home'
+
 import AddMacro from '../../views/skills/AddMacroSkill'
 import AddMicro from '../../views/skills/AddMicroSkill'
 import ListMacro from '../../views/skills/ListMacroSkill'
@@ -92,9 +97,9 @@ function Body() {
     */}
 
                 <Route path="/radar/:id" component={isLogged ? Radar : NotFound} exact />
-                <Route path="/posts" component={Posts} exact />
+                
                 <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
-                <Route path="/forum/posts/:id" component={DetailPosts} exact />
+                
                 <Route exact path="/linkedin" component={LinkedInPopUp} />
                             <Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />
                             <Route path="/addsoft" component={isAdmin ? Addsoftskills : NotFound} exact  />
@@ -113,16 +118,9 @@ function Body() {
                             <Route path="/listmacro" component={isAdmin ? ListMacro : NotFound} exact  />
 
                             <Route path="/addmacro" component={isAdmin ? AddMacro : NotFound} exact  />
-                            <Route path="/addmicro" component={isAdmin ? AddMicro : NotFound} exact  />
-                            <Route path="/editmacro/:id" component={isAdmin ? EditMacro : NotFound} exact  />
-
-               
-                <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
+                         
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
-                <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
-                <Route path="/topics/:blog_id" exact component={Topics} />
-                <Route path="/subjects" exact component={blogs} />
-                <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
+                
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}
                 <Route exact path="/linkedin" component={LinkedInPopUp} />
                 {/*<Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />

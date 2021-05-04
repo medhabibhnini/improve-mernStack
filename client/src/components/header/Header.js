@@ -69,6 +69,7 @@ function Header() {
           <DropdownItem className="noti-title" header tag="div">
             <h6 className="text-overflow m-0">Welcome!</h6>
           </DropdownItem>
+          <DropdownItem to="/profile" tag={Link}>
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>
@@ -177,26 +178,6 @@ function Header() {
                   <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
                   <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
                  
-         <li className="nav-item">
-            <a className="nav-link nav-link-icon"  target="_blank">
-            <Link to="/listsoft">
-            <button   className="btn btn-primary" >Soft skills</button>
-              </Link>
-            </a>
-          </li>
-}
-{
-         <li className="nav-item">
-            <a className="nav-link nav-link-icon"  target="_blank">
-            <Link to="/ListHard">
-            <Link to="#">
-            <button   className="btn btn-primary" >Hard skills</button>
-              </Link>
-            </a>
-          </li>
-}
-{
-
                   <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
                 </ul>
               </div>
@@ -221,7 +202,7 @@ function Header() {
                 <li><a href="javascript:;">Skills <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">
                  
-                    <li><a href="javascript:;">Hard skills</a>
+                    <li><Link to="/listHard">Hard skills</Link>
                      
                     </li>
                       
@@ -235,7 +216,7 @@ function Header() {
                     <li class="add-menu-left">
                       <h5 class="menu-adv-title">Our Courses</h5>
                       <ul>
-                        <li><a href="courses.html">Courses </a></li>
+                        <li><a href="/listcourse">Courses </a></li>
                         <li><a href="courses-details.html">Courses Details</a></li>
                         <li><a href="profile.html">Instructor Profile</a></li>
                         <li><a href="event.html">Upcoming Event</a></li>

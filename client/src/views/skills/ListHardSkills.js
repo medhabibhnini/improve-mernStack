@@ -69,11 +69,6 @@ return(
 <>
 <Dashboard/>
       
-<div class="col">
-          <div class="ca0rd shadow">
-            <div class="card-header border-0" >
-              <h3 class="mb-0">Card tables</h3>
-              </div>
 
 
 

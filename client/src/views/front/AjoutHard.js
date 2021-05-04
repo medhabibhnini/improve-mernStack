@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import image from "./soft.jpg"
 import {useParams, useHistory} from 'react-router-dom'
 import axios from 'axios'
-import "../../components/body/home/home.css"
 const initialState ={
     title :'',
     type :'',

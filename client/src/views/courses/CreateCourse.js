@@ -68,7 +68,7 @@ export default function CreateCourse() {
   useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/soft/softskills')
+    axios.get('http://localhost:5000/soft/getmicroskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -76,7 +76,7 @@ export default function CreateCourse() {
     
     
     }
-
+console.log(softskills)
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState(false)
     const [data, setData] = useState(initialState)
@@ -149,6 +149,16 @@ history.push("./courses")
 
 
     }
+
+
+
+
+
+
+
+
+
+    
 console.log(data)
 
   return (
@@ -170,22 +180,14 @@ console.log(data)
       <div className="form-group">
       <label htmlFor="categories">Categories: </label>
                   
-                    <select name="category" value={category} onChange={handleChange} >
-                        <option value="">**Hard Skills/Soft Skills**</option>
-                        <option value="">**Hard Skills**</option>
-                        {
-                            hardskills.map(hardskills => (
-                                <option value={hardskills.title} key={hardskills._id}>
-                                    {hardskills.title}
-                                    
-                                </option>
-                            
-                            ))
-                        }
-                       <option value="">**Soft Skills**</option>
+              
+              
+                    <select name="microId" value={category} onChange={handleChange} >
+                     
+                       <option value=""></option>
                         {
                             softskills.map(softskills => (
-                                <option value={softskills.title} key={softskills._id}>
+                                <option value={softskills._id} key={softskills._id}>
                                     {softskills.title}
                                     
                                 </option>
@@ -195,8 +197,34 @@ console.log(data)
                           
                             
                     </select>
+
         
       </div>
+<div className="form-group">
+      <label htmlFor="categories">Categories: </label>
+                  
+              
+              
+                    <select name="category" value={category} onChange={handleChange} >
+                        <option value=""></option>
+                       
+                        {
+                            hardskills.map(hardskills => (
+                                <option value={hardskills._id} key={hardskills._id}>
+                                    {hardskills.title}
+                                    
+                                </option>
+                            
+                            ))
+                        }
+                       
+                          
+                            
+                    </select>
+                    
+        
+      </div>
+
 
 
       <div className="form-group">

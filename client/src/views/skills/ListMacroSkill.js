@@ -4,7 +4,6 @@ import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskills
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
-import "../../components/body/home/home.css"
 import Swal from 'sweetalert2'
 
 import Dashboard from "../../components/body/dashboard/dashboard"

@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {isEmail} from '../../utils/validation/Validation'
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
-import './ForgotPassword.css';
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+import { Link } from '@material-ui/core'
 const initialState = {
     email: '',
     err: '',
@@ -36,67 +36,40 @@ function ForgotPassword() {
     
     return (
     <>
-    <Header/>
-        <div class="main-content">
-      
-          <div class="header bg-primary py-7 py-lg-8">
-            <div class="container">
-              <div class="header-body text-center mb-7">
-                <div class="row justify-content-center">
-                  <div class="col-lg-5 col-md-6">
-                    <h1 class="text-white">Welcome!</h1>
-                    <p class="text-lead text-light">You have to enter your email address to get your new password.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="separator separator-bottom separator-skew zindex-100">
-              <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-              </svg>
-            </div>
-          </div>
-   
-          <div class="container mt--8 pb-5">
-       
-            <div class="row justify-content-center">
-              <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary shadow border-0">
-                  <div class="card-header bg-transparent pb-5">
-                    <div class="text-center">
-                      <h1>Forget your password ? </h1>
-                    </div>
-                  </div>
-                  <div class="card-body px-lg-5 py-lg-5">
-                    <div class="text-center text-muted mb-4">
-                      <small>Enter your adress mail here</small>
-                    </div>
-                    {err && showErrMsg(err)}
+   <div class="page-wraper">
+	<div id="loading-icon-bx"></div>
+	<div class="account-form">
+		<div class="account-head" style={{backgroundImage:"url(assets/images/background/bg2.jpg)"}}>
+			<a href="index.html"><img src="assets/images/logo-white-2.png" alt=""/></a>
+		</div>
+		<div class="account-form-inner">
+			<div class="account-container">
+				<div class="heading-bx left">
+					<h2 class="title-head">Forget <span>Password</span></h2>
+					<p>Login Your Account <Link href="/login">Click here</Link></p>
+				</div>	
+        {err && showErrMsg(err)}
                 {success && showSuccessMsg(success)}
-                    <form role="form">
-                   
-                      
-                    <div class="form-group mb-3">
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Email" type="email" id="email"
-                      value={email} name="email" onChange={handleChangeInput} />
-                      </div>
-                    </div>
-                      <div class="text-center">
-                        <button type="button" onClick={forgotPassword} class="btn btn-primary mt-4">Verify your email</button>
-                      </div>
-              
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <Footer/>
+				<form class="contact-bx">
+					<div class="row placeani">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label>Your Email Address</label>
+									<input   type="email" id="email"
+                      value={email} name="email" onChange={handleChangeInput} type="email" required="" class="form-control"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 m-b30">
+							<button name="submit" type="button" onClick={forgotPassword} value="Submit" class="btn button-md">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
   </>
        
   

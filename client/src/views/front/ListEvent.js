@@ -3,7 +3,7 @@ import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import axios from 'axios'
 import { Button } from 'react-bootstrap';
-import "../../components/body/home/home.css"
+
 import {Link} from 'react-router-dom'
 
 export default function ListEvent  (){

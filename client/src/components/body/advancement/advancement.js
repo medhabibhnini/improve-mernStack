@@ -6,9 +6,24 @@ import {Link} from 'react-router-dom'
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
-import '../profile/profile.css'
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+
+import "../../../assets/css/assets.css"
+
+import "../../../assets/css/typography.css"
+import "../../../assets/css/shortcodes/shortcodes.css"
+	
+
+import "../../../assets/css/style.css"
+
+
+import "../../../assets/css/color/color-1.css"
+
+import "../../../assets/vendors/revolution/css/layers.css"
+import "../../../assets/vendors/revolution/css/settings.css"
+import "../../../assets/vendors/revolution/css/navigation.css"
+
 const initialState = {
     name: '',
     password: '',
@@ -172,23 +187,27 @@ function Advancement() {
     <br></br>
     <br></br>
   
-        <div class="main-content">
-      
+       
+    <div class="content-block">
      
-    
-      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://online.csp.edu/wp-content/uploads/2017/01/Hard-Skills-vs-Soft-Skills-FB.png)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-
-        <span class="mask bg-gradient-default opacity-8"></span>
-  
-        <div class="container-fluid d-flex align-items-center">
-          <div class="row">
-            <div class="col-lg-7 col-md-10">
-           
-            </div>
+     <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+          <div class="container">
+              <div class="page-banner-entry">
+                  <h1 class="text-white">Advancement</h1>
+       </div>
           </div>
-        </div>
       </div>
 
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+              <br>
+              </br>
+              <br></br>
+              <br>
+              </br>
       <div class="container-fluid mt--7">
         <div class="row">
           <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -252,7 +271,8 @@ function Advancement() {
                   
                 </div>
               </div>
-              <div class="card-body">
+       
+              <div class="card-body" style={{backgroundColor:"white",borderStyle:"none"}}>
             {success && showSuccessMsg(success)}
               {err && showErrMsg(err)}
             {loading && <h3>Loading.....</h3>}

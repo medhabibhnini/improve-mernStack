@@ -4,7 +4,7 @@ import {fetchAllCourses, dispatchGetAllCourses} from '../../redux/actions/course
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./courses.jpg";
-import "../../components/body/home/home.css"
+
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -73,12 +73,7 @@ const mystyle = {
             <div class="card-header border-0" >
               <h3 class="mb-0">Card tables</h3>
               </div>
-              <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://blogs.flinders.edu.au/fit/wp-content/uploads/sites/19/2018/10/short-courses.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
-
-              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Courses Management </h1>
-<div class="overlay"></div>
-</div>
+    
 <Link to ="/create_course">
             <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add A Course +</Button>
 

@@ -11,10 +11,10 @@ import ResetPass from '../body/auth/ResetPassword'
 import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'
 import Radar from '../body/advancement/advancement'
-import Home from '../body/home/Home'
+import Home from '../body/home/Home.jsx'
 import Advancement from '../body/advancement/advancement'
 import {useSelector} from 'react-redux'
-import Dashboard from './dashboard/dashboard'
+import Dashboard from './dashboard/dashboard.jsx'
 
 import Users from './profile/ListeUser'
 import CreatePost from '../../views/CreatePost'
@@ -64,7 +64,7 @@ function Body() {
                 <Route path="/login" component={isLogged ? NotFound : Login} exact />
                 <Route path="/register" component={isLogged ? NotFound : Register} exact />
 
-                <Route path="/forgot_password" component={isLogged ? NotFound : ForgotPass} exact />
+                <Route path="/forgot_password" component={ForgotPass} exact />
                 <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
 
                 <Route path="/user/activate/:activation_token" component={ActivationEmail} exact />

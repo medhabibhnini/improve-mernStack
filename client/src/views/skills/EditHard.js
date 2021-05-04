@@ -4,6 +4,15 @@ import {useSelector} from 'react-redux'
 import image from "./softi.jpg";
 import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
+import "../../admin/assets/css/assets.css"
+import "../../admin/assets/vendors/calendar/fullcalendar.css"
+import "../../admin/assets/css/typography.css"
+import "../../admin/assets/css/shortcodes/shortcodes.css"
+import "../../assets/css/style.css"
+import "../../admin/assets/css/dashboard.css"
+import "../../assets/css/color/color-1.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const initialState = {
     title: '',
@@ -77,34 +86,37 @@ if(title || description || type )
       <>
           <Dashboard/>
 
-      <div style={{
-    width:'100%',
-    height:'100%'
-        
-      }}>  
-          <div style={mystyle} >
-              </div>
 
-<div class="container"  style={{marginLeft:"300px",marginTop:"100px"}} >
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
 
-              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}>Edit hard skills </h1>
-<div class="overlay"></div>
-</div>  <form onSubmit={handleUpdate}>
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Hard</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Edit Hard skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Edit Hard skills</h4>
+						</div>
+						<div class="widget-inner">
+            <form  onSubmit={handleUpdate} class="edit-profile m-b30">
     <div class="form-group">
-        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title</label>
-     
-        <input type="text" class="form-control"  id="fname" name="title" onChange={handleChange} placeholder="Communication.." defaultValue={skills.title}/>
-     
+        <label for="fname" >Title</label>
+        <input type="text" id="fname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange} defaultValue={skills.title} />
     </div>
     <div class="form-group">
-        <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type</label>
-        <input type="text" class="form-control" id="lname" name="type"  onChange={handleChange} placeholder="type.." defaultValue={skills.type}/>
-    </div>
-    <div class="form-group">
+        <label for="lname">Type</label>
+        <input type="text" id="lname"  style={{marginLeft:"45px",marginBottom:"25px"}}  class="form-control" name="type"  onChange={handleChange} defaultValue={skills.type}/>
+      </div>
+  
+      <div class="form-group">
         <label for="cat">Categorie</label>
-     <select name="categorie" id="cat" class="form-control" onChange={handleChange} name="categorie" defaultValue={skills.categorie}>
+     <select name="categorie" id="cat" class="form-control"  style={{marginLeft:"15px",marginBottom:"25px"}} onChange={handleChange} name="categorie" defaultValue={skills.categorie}>
 <option value="informatic">Informatic</option>
 <option value="bussiness">Business</option>
 <option value="Health care">Health care</option>
@@ -115,16 +127,21 @@ if(title || description || type )
      
       </div>
     <div class="form-group">
-        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
-        <textarea id="subject" name="description" class="form-control" onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={skills.description}></textarea>
+        <label for="subject">Description </label>
+        <br></br>
+        <textarea id="subject"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} defaultValue={skills.description} style={{height:200}}></textarea>
     </div>
     <div class="row">
-      <input type="submit" className="btn btn-primary" variant="primary" style={{marginLeft:'50%'}} value="Submit"/>
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
     </div>
   </form>
-</div>
-<footers/>
-</div>  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
 </>
     )
 }

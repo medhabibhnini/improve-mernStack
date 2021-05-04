@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllEvent, dispatchGetAllEvents} from '../../redux/actions/eventsAction'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import "../../components/body/home/home.css"
+
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';

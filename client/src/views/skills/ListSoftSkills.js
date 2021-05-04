@@ -4,8 +4,10 @@ import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskills
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
+
 import "../../components/body/home/home.css"
 import Swal from 'sweetalert2'
+
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -78,7 +80,7 @@ const mystyle = {
               <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Soft skills management </h1>
 <div class="overlay"></div>
 </div>
-<Link to ="/addsoft">
+
             <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add soft skills +</Button>
 
             </Link >

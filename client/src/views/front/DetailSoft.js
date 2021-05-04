@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import image from "./soft.jpg"
 import {useParams, useHistory} from 'react-router-dom'
 import axios from 'axios'
-import "../../components/body/home/home.css"
+
 
 export default function DetailSoft()
 {

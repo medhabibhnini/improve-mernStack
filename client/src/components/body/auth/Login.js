@@ -7,7 +7,7 @@ import {dispatchLogin} from '../../../redux/actions/authAction'
 import {useDispatch} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-import './login.css'
+
 import swal from 'sweetalert'
 import { LinkedIn } from 'react-linkedin-login-oauth2';
 import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png'
@@ -118,132 +118,85 @@ function Login() {
 
     return (
    <>
-   <Header/>
-   <br/>
-   <br/>
-   <br/>
-   <br/>
-      <div class="main-content">
-    
-        <div class="header bg-primary py-7 py-lg-8">
-          <div class="container">
-            <div class="header-body text-center mb-7">
-              <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-6">
-                  <h1 class="text-white">Welcome!</h1>
-                  <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-              <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-          </div>
-        </div>
- 
-        <div class="container mt--8 pb-5">
-     
-          <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-              <div class="card bg-secondary shadow border-0">
-                <div class="card-header bg-transparent pb-5">
-                  <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-                  <div class="text-center">
-                  <GoogleLogin
+
+<div class="page-wraper">
+	<div id="loading-icon-bx"></div>
+	<div class="account-form">
+		<div class="account-head" style={{backgroundImage:"url(assets/images/background/bg2.jpg)"}}>
+			<a href="index.html"><img src="assets/images/logo-white-2.png" alt=""/></a>
+		</div>
+		<div class="account-form-inner">
+			<div class="account-container">
+				<div class="heading-bx left">
+					<h2 class="title-head">Login to your <span>Account</span></h2>
+					<p>Don't have an account? <Link href="/register">Create one here</Link></p>
+				</div>	
+        {err && showErrMsg(err)}
+            {success && showSuccessMsg(success)}
+				<form class="contact-bx" onSubmit={handleSubmit}>
+					<div class="row placeani">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label>Your Name</label>
+									<input value={email} name="email"  id="email" onChange={handleChangeInput}  type="text" required="" class="form-control"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div class="input-group"> 
+									<label>Your Password</label>
+									<input    value={password}  id="password" name="password" onChange={handleChangeInput} type="password" class="form-control" required=""/>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="form-group form-forget">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="customControlAutosizing"/>
+									<label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+								</div>
+								<Link to="/forgot_password" class="ml-auto">Forgot Password?</Link>
+							</div>
+						</div>
+						<div class="col-lg-12 m-b30">
+							<button name="submit" type="submit" value="Submit" class="btn button-md">Login</button>
+						</div>
+						<div class="col-lg-12">
+							<h6>Login with Social media</h6>
+							<div class="d-flex">
+              <FacebookLogin
+              buttonStyle={{ all: 'unset' }}
+                 appId="619161739039869"
+                 autoLoad={false}
+                 textButton=""
+                 fields="name,email,picture"
+                 icon={<a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>}
+                 callback={responseFacebook} 
+                 />
+                <GoogleLogin
+                
+                render={renderProps => (
+                  <a class="btn flex-fill m-l5 google-plus" onClick={renderProps.onClick} disabled={renderProps.disabled}><i class="fa fa-google-plus"></i>Google Plus</a>
+                )}
                     clientId="892015450442-lc9bne9gbtddtc8njmf34n7clsrcj23n.apps.googleusercontent.com"
                     buttonText="Login with google"
                     onSuccess={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <hr></hr>
-                <FacebookLogin
-                buttonStyle={{fontSize:"10.6px"}}
-                
-                 appId="619161739039869"
-                 autoLoad={false}
-                 fields="name,email,picture"
-                 callback={responseFacebook} 
-                 />
-                 <hr></hr>
-              <LinkedIn
-                clientId="77ly230ti6em95"
-                redirectUri="http://localhost:3000/"
-                callback={responseLinkedin} 
-              >
-                <img src={linkedin} alt="Log in with Linked In" style={{ maxWidth: '180px' }} />
-              </LinkedIn>
-                  </div>
-                </div>
-                <div class="card-body px-lg-5 py-lg-5">
-                  <div class="text-center text-muted mb-4">
-                    <small>Or sign up with credentials</small>
-                  </div>
-                  {err && showErrMsg(err)}
-            {success && showSuccessMsg(success)}
-                  <form role="form" onSubmit={handleSubmit}>
-                 
-                    <div class="form-group">
-                      <div class="input-group input-group-alternative mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Email" type="email" id="email"
-                    value={email} name="email" onChange={handleChangeInput}/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Password" type="password"
-                       id="password"
-                       value={password} name="password" onChange={handleChangeInput}/>
-                      </div>
-                    </div>
-                  
-                    <div class="row my-4">
-                      <div class="col-12">
-                        <div class="custom-control custom-control-alternative custom-checkbox">
-                          <input class="custom-control-input" id="customCheckRegister" type="checkbox"/>
-                          <label class="custom-control-label" for="customCheckRegister">
-                            <span class="text-muted">Remember me</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                <Recaptcha
-            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
-            render="explicit"
-           // onloadCallback={this.recaptchaLoaded}
-            verifyCallback={verifyCallback}
-          />
-                </div>
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-info mt-4">Sign In</button>
-                    </div>
-                  </form>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 
-                </div>
-                
-              </div>
-              <div class="row mt-3">
-              <div class="col-6"><Link to="/forgot_password">
-                <a href="#" class="text-light"><small>Forgot your password?</small></a></Link>
-              </div>
-              <div class="col-6 text-right">
-              <Link to="/register">  <a href="#" class="text-light"><small>Create new account</small></a></Link>
-              </div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    <Footer/> 
+
+
   </>
     )
 }

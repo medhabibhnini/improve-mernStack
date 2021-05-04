@@ -115,13 +115,7 @@ Home
             List of users
           </NavLink>
         </NavItem>
-        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/softskills"} >
-          <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-
-            Soft skills
-          </NavLink>
-        </NavItem>
+      
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
           <NavLink tag={Link} to={"/hardskills"}>
           <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
@@ -137,20 +131,12 @@ Home
           </NavLink>
         </NavItem>
         <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/contact"}>
+          <NavLink tag={Link} to={"/listmicro"}>
             <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Micro skills
-          </NavLink>
+Soft skills          </NavLink>
         </NavItem>
         
-        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
-          <NavLink tag={Link} to={"/contact"}>
-            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-            Courses
-          </NavLink>
-        </NavItem>
-
-
+  
     <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
 
 

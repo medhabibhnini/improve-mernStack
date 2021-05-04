@@ -31,7 +31,7 @@ export default function ListSoft  (){
   useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/soft/softskills')
+    axios.get('http://localhost:5000/soft/getmicroskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -139,7 +139,10 @@ export default function ListSoft  (){
                   <div style={{minHeight: '140px' ,backgroundImage: 'url(https://theyellowspot.com/wp-content/uploads/2019/10/soft-skills-1.png)', backgroundSize: 'cover', backgroundPosition: 'center top'}}/>
                  </div>
                   <div className="card-body">
-                    <h4 className="card-title">{skill.type}  : {skill.title}</h4>
+                  {skill.macroId.map(macro=>(
+                      <h3 key={macro._id}>{macro.title}</h3>
+                      ))}
+                    <h4 className="card-title">{skill.title}</h4>
                     <p className="card-text">{skill.description} </p>
                     </div>
                   </div>

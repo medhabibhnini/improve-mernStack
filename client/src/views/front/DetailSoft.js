@@ -14,7 +14,7 @@ export default function DetailSoft()
   const history = useHistory()
   const [skills,getSkills] =useState([]);
   const getAllSkills =()=>{
-    axios.get(`http://localhost:5000/soft/getsoft/${id}`)
+    axios.get(`http://localhost:5000/soft/getmicro/${id}`)
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills)
@@ -58,8 +58,11 @@ return(
   <img class="card-img-top" src={image} alt="Card image cap" style={{ marginLeft:"300px",height:"400px" ,width:"800px"}}/>
   <div class="card-body" style={{backgrounColor:"black"}}>
   <h2 class="card-title" style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '40px'}} > Title :  {skills.title}</h2>
+  {skills.macroId.map(macro=>(
+        <h5 class="card-title"  key={macro._id}  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontSize: '30px'}}>{macro.title}</h5>
 
-    <h5 class="card-title"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontSize: '30px'}}>{skills.type}</h5>
+
+                      ))}
     <p class="card-text"  style={{marginLeft:'30%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '15px'}}>{skills.description}</p>
     <Button className="btn btn-yellow" style={{marginLeft:"60%", marginTop:"20px"}}>Show courses</Button>
     <p class="card-text"><small class="text-muted"></small></p>

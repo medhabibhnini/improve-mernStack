@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
 // @material-ui/core components
 import {useHistory} from 'react-router-dom'
+import { CustomInput, FormGroup } from 'reactstrap';
+import Loading from '../../utils/loading/Loading'
 
+import {useSelector} from 'react-redux'
 
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -41,6 +44,9 @@ success: ''
 export default function Softskills() {
   const history = useHistory()
   const [skills,getSkills] =useState([]);
+  const [image, setImage] = useState(false)
+  const token = useSelector(state => state.token)
+  const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState(initialState)
     const {title,description,macroId, err, success} = data
@@ -55,7 +61,7 @@ if(isEmpty(title) || isEmpty(macroId) || isEmpty(description))
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
 const res = await axios.post('http://localhost:5000/soft/ajoutMicro',{
-  title,description,macroId
+  title,description,macroId,image
 })
 setData({...data,err:'',success:res.data.msg})
 //history.push("./softskills")
@@ -77,13 +83,44 @@ setData({...data,err:'',success:res.data.msg})
         
         
         }
+        const styleUpload = {
+          display: image ? "block" : "none"
+      }   
 
+      const handleUpload = async e =>{
+        e.preventDefault()
+        try {
+            
+            const file = e.target.files[0]
+            
+            if(!file) return alert("File not exist.")
+
+            if(file.size > 1920 * 1080) // 1mb
+                return alert("Size too large!")
+
+            if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
+                return alert("File format is incorrect.")
+
+            let formData = new FormData()
+            formData.append('file', file)
+
+            setLoading(true)
+            const res = await axios.post('/api/upload_avatar', formData, {
+                headers: {'content-type': 'multipart/form-data', Authorization: token}
+            })
+            setLoading(false)
+            setImage(res.data.url)
+
+        } catch (err) {
+            alert(err.response.data.msg)
+        }
+    }
 
 
     return (
     <>
     <Dashboard/>
-<div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
+<div class="container" style={{marginLeft:"300px",marginTop:"100px",}}>
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
@@ -96,7 +133,7 @@ setData({...data,err:'',success:res.data.msg})
     </div>
  
       <div class="form-group">
-        <label for="cat">Macro skills</label>
+      <label for="cat"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Macro skills :</label>
      <select name="macroId" id="cat" class="form-control" onChange={handleChange} >
    { skills.map(skill=>(
 <option value={skill._id} key={skill._id}>{skill.title}</option>
@@ -117,6 +154,23 @@ setData({...data,err:'',success:res.data.msg})
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description :</label>
         <textarea id="subject"  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
     </div>
+
+    <div className="form-group">
+      <div className="upload">
+      
+
+      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
+  {
+  loading ? <div id="file_img"><Loading /></div>
+  :<div id="file_img" style={styleUpload}>
+  <img src={image ? image.url : ''} alt=""/>
+  </div>
+  }
+                
+            </div>
+
+</div>
+
     <div class="row">
       <input type="submit" className="btn btn-primary" value="Submit"/>
     </div>

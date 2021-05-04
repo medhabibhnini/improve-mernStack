@@ -168,7 +168,6 @@ function Header() {
          <li className="nav-item">
             <a className="nav-link nav-link-icon"  target="_blank">
             <Link to="/ListHard">
-            <Link to="#">
             <button   className="btn btn-primary" >Hard skills</button>
               </Link>
             </a>

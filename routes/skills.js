@@ -25,6 +25,7 @@ router.put('/updateMicro/:id',softSkill.updateMicroSkills)
 router.get('/microskills',softSkill.getAllMicroSkillz)
 router.delete('/deletemicro/:id',softSkill.deleteMicroskill)
 router.get('/getmicro/:id',softSkill.getMicroSkillsById)
+router.get('/getmicroskills',softSkill.getSkillsNoun)
 
 
 module.exports=router

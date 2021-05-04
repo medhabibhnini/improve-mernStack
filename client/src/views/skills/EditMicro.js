@@ -8,24 +8,26 @@ import Dashboard from "../../components/body/dashboard/dashboard"
 const initialState = {
     title: '',
     description:'',
+    macroId:'',
     err: '',
     success: ''
 }
-export default function EditMacro  ()  {
+export default function EditMicro ()  {
     const {id} = useParams()
     const history = useHistory()
     const [data, setData] = useState(initialState)
 
     const [skills,getSkills] =useState([]);
-    
-    const {title,description, err, success} = data
+    const [macros,getMacros] =useState([]);
+
+    const {title,description,macroId, err, success} = data
 
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getmacro/${id}`)
+        axios.get(`http://localhost:5000/soft/getmicro/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -35,16 +37,28 @@ export default function EditMacro  ()  {
         
         
         }
-
+      
+            const getMacros =()=>{
+            axios.get('http://localhost:5000/soft/macroskills')
+            .then((response)=>{
+            const allSkills =response.data;
+            getMacros(allSkills);
+            }).catch(error=>console.error(`Error :${error}`));
+            
+            
+            }
+    
 
 
     useEffect(()=>{
-        getAllSkills() },[])
+        getAllSkills()
+        getMacros()
+    },[],[])
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateMacro/${id}`,{
-    title,description
+const res = await axios.put(`http://localhost:5000/soft/updateMicro/${id}`,{
+    title,description,macroId
 
 })
 
@@ -57,7 +71,7 @@ setData({...data,err:'',success:res.data.msg})
     }
    
     const handleUpdate =()=>{
-if(title || description  ) 
+if(title || description || macroId  ) 
 {handleSubmit()
     history.push("/listmacro")
 
@@ -95,7 +109,19 @@ if(title || description  )
      
     </div>
  
-  
+    <div class="form-group">
+      <label for="cat"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Macro skills :</label>
+     <select name="macroId" id="cat" class="form-control" onChange={handleChange} >
+   { macros.map(skill=>(
+<option value={skill._id} key={skill._id}>{skill.title}</option>
+ 
+
+    ) )}
+
+     </select>
+     
+     
+      </div>
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
         <textarea id="subject" name="description" class="form-control" onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={skills.description}></textarea>

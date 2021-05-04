@@ -9,7 +9,6 @@ import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAc
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import Dashboard from '../dashboard/dashboard'
-import './table.css'
 import MaterialTable from 'material-table';
 import Pagination from './Pagination'
 import { Table } from 'reactstrap'

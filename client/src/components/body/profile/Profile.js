@@ -9,7 +9,7 @@ import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import { CustomInput, FormGroup } from 'reactstrap';
 import UserPostsWrapper from "../../../views/UserPosts/UserPostsWrapper";
-import './profile.css'
+
 
 const initialState = {
     name: '',

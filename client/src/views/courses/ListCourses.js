@@ -4,7 +4,7 @@ import {fetchAllCourses, dispatchGetAllCourses} from '../../redux/actions/course
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./courses.jpg";
-import "../../components/body/home/home.css"
+
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';

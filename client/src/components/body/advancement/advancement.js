@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
-import '../profile/profile.css'
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 const initialState = {

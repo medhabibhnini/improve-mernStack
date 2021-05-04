@@ -250,8 +250,10 @@ const test=()=>{
                                 </div>
                             </div>
 						</div>
-				    
+
         		<div class="col-lg-9 col-md-8 col-sm-12">
+            <Link to="/addhards"><Button>Add hard Skills +</Button></Link>  
+
 							<div class="row">
               { skills.map( skill =>(   
 
@@ -259,8 +261,10 @@ const test=()=>{
 									<div class="cours-bx">
 										<div class="action-box">
 											<img src="assets/images/courses/pic1.jpg" alt=""/>
-											<a href="#" class="btn btn-red" style={{color:'white'}}>Read More</a>
-										</div>
+									 <Link to={`/listHard/${skill._id}`}>
+                  		<button   onClick={handleModal} class="btn btn-red"  style={{color:'white'}}>Add score</button>
+                      </Link>
+                  	</div>
 										<div class="info-bx text-center">
 											<h5><a href="#">{skill.title} </a></h5>
 											<span>{skill.type} </span>
@@ -302,7 +306,33 @@ const test=()=>{
 				</div>
             </div>
         </div>
+        <Modal show={show}>
+                    <Modal.Header>Ajouter un score
 
+
+                    </Modal.Header>
+                    <Modal.Body>
+                    <div class="container">
+    <form onSubmit={handleSubmit} >
+
+<div class="form-group">
+    <label for="score">Score</label>
+    <input type="text" class="form-control" onChange={handleChange}  id="score" name="score"/>
+
+  </div>
+  
+  <button type="submit" class="btn btn-default" >Add score</button>
+  
+
+
+  </form>
+
+</div>
+                    </Modal.Body>
+            <Modal.Footer>
+            <Link to={`/listHard/`}>     <Button onClick={closeModal}> Close Modal</Button></Link></Modal.Footer>
+              
+                </Modal>
 
      {/* <div class="content-block">
 

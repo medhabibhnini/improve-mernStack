@@ -41,6 +41,7 @@ import Editevents from '../../views/events/EditEvent'
 import ListEvent from '../../views/front/ListEvent'
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
+import Addhard from '../../views/front/AjoutHard'
 import Edithardskills from '../../views/skills/EditHard'
 import AjoutHard from '../../views/front/AjoutHard'
 import ListHard from '../../views/front/ListHard'
@@ -121,6 +122,7 @@ function Body() {
                             <Route path="/addmicro" component={isAdmin ? AddMicro : NotFound} exact  />
                             <Route path="/editmacro/:id" component={isAdmin ? EditMacro : NotFound} exact  />
                             <Route path="/editmicro/:id" component={isAdmin ? EditMicro : NotFound} exact  />
+                            <Route path="/addhards" component={isLogged ? Addhard : NotFound} exact />  
 
                
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />

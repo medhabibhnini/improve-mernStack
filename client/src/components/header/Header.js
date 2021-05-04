@@ -206,7 +206,7 @@ function Header() {
                      
                     </li>
                       
-                    <li><a href="javascript:;">Soft skills</a>
+                    <li><Link to="/listsoft">Soft skills</Link>
                      
                     </li>
                   </ul>

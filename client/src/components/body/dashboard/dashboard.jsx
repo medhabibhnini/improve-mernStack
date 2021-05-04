@@ -266,10 +266,10 @@ function Dashboard() {
 		                </Link>
 		            </li>
 					<li>
-						<a Link to="/users" class="ttr-material-button">
+						<Link to="/users" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
 		                	<span class="ttr-label">Users</span>
-		                </a>
+		                </Link>
 		            </li>
 					<li>
 						<Link to="/courses" class="ttr-material-button">

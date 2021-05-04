@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import TopicPostsWrapper from "./TopicPosts/TopicPostsWrapper";
 import Header from "../components/header/Header";
 import { Link, useParams } from "react-router-dom";
+import Footer from "../components/footer/Footer";
 
 
 const Topics = ({
@@ -102,20 +103,34 @@ const Topics = ({
     <>
     <Header/>
     
+    <div class="page-content bg-white">
+  
+        <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Subjects Posts</h1>
+				</div>
+            </div>
+        </div>
+        <div class="breadcrumb-row">
+			<div class="container">
+				<ul class="list-inline">
+					<li><Link to="/subjects">go Back</Link></li>
+					<li>Posts</li>
+          <li><Link to={`/posts/add/${blog_id}`}>Add Post</Link></li>
+          <li></li>
+         
+				</ul>
+			</div>
+		</div>
     
-     
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div className="container">
+ <div className="container">
         <div class="d-flex flex-row">
+        
         <div class="p-2">
         <div
           className={
             isTheOldest
-     
           }
         >
           <input
@@ -184,11 +199,16 @@ const Topics = ({
             The Most Commented  
           </p>
         </div>
+        </div>
 </div>
         </div>
+    <div class="content-block">
+			<div class="section-area section-sp1">
+				<div class="container">
+        <div class="row">
+        <div class="col-lg-8">
      
-      <div className="topics-wrapper">
-      <Link to={`/posts/add/${blog_id}`} className="btn btn-outline-primary btn-circle d-inline float-left">Add Post</Link>
+
       <br></br>
         <TopicPostsWrapper
           isTheOldest={isTheOldest}
@@ -198,9 +218,53 @@ const Topics = ({
           posts={posts.posts}
           blog_id={blog_id}
         />
-      </div>
-      </div>
+    
+					
+				
+					
+						</div>
+        <div class="col-lg-4 sticky-top">
+							<aside class="side-bar sticky-top">
+								<div class="widget">
+									<h6 class="widget-title">Search</h6>
+									<div class="search-bx style-1">
+										<form role="search" method="post">
+											<div class="input-group">
+												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text"/>
+												<span class="input-group-btn">
+													<button type="submit" class="fa fa-search text-primary"></button>
+												</span> 
+											</div>
+										</form>
+									</div>
+								</div>
+				
+									<h6 class="widget-title">you can add a post here</h6>
+									<div class="news-box">
+										<p></p>
+										
+											<div class="input-group">
+											
+												<Link to={`/posts/add/${blog_id}`} class="btn black radius-no">
+													Add Post
+												</Link>
+											</div>
+										
+									</div>
+								
+								
+							
+							</aside>
+						</div>
+        </div>
+
+        </div>
      
+       </div>
+  </div>
+  </div>
+ 
+     <Footer/>
     </>
   );
 };

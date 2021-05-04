@@ -127,16 +127,13 @@ function Header() {
             <div class="topbar-left">
               <ul>
                 <li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
-                <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
+                <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>improve-stack@gmail.com</a></li>
               </ul>
             </div>
             <div class="topbar-right">
               <ul>
                 <li>
-                  <select class="header-lang-bx">
-                    <option data-icon="flag flag-uk">English UK</option>
-                    <option data-icon="flag flag-us">English US</option>
-                  </select>
+                
                 </li>
 
 {
@@ -162,7 +159,7 @@ function Header() {
                   <div class="container clearfix">
     
             <div class="menu-logo">
-              <a href="index.html"><img src="assets/images/logo-white.png" alt=""/></a>
+              <a href="index.html"><img src="" alt=""/></a>
             </div>
 
                       <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,11 +171,7 @@ function Header() {
                       <div class="secondary-menu">
                           <div class="secondary-inner">
                               <ul>
-                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
-                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
-                 
-                  <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
+            
                 </ul>
               </div>
                       </div>
@@ -230,11 +223,8 @@ function Header() {
                 </li>
                 <li><a href="javascript:;">Blog <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">
-                    <li><a href="blog-classic-grid.html">Blog Classic</a></li>
-                    <li><a href="blog-classic-sidebar.html">Blog Classic Sidebar</a></li>
-                    <li><a href="blog-list-sidebar.html">Blog List Sidebar</a></li>
-                    <li><a href="blog-standard-sidebar.html">Blog Standard Sidebar</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
+                    <li><Link to="/subjects">All Subjects</Link></li>
+                    <li><Link to="/subject/add">Add Subject</Link></li>
                   </ul>
                 </li>
                 <li><a href="javascript:;">Event <i class="fa fa-chevron-down"></i></a>

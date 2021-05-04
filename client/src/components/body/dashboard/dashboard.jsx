@@ -296,10 +296,10 @@ function Dashboard() {
 		                </a>
                     <Collapse isOpen={isOpen}>
 		                	<li>
-		                		<a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">Macro skills</span></a>
+		                		<Link to="/listmacro" class="ttr-material-button"><span class="ttr-label">Macro skills</span></Link>
 		                	</li>
 		                	<li>
-		                		<Link to="/softskills" class="ttr-material-button"><span class="ttr-label">Micro Skills</span></Link>
+		                		<Link to="/listmicro" class="ttr-material-button"><span class="ttr-label">Micro Skills</span></Link>
 		                	</li>
 		                </Collapse>
 		            </li>

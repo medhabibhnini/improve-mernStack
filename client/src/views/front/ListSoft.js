@@ -6,7 +6,6 @@ import { Button ,Modal} from 'react-bootstrap';
 import { isEmpty } from "../../components/utils/validation/Validation";
 import Swal from 'sweetalert2'
 
-import "../../components/body/home/home.css"
 import {Link} from 'react-router-dom'
 import {useParams, useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'

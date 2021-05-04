@@ -64,7 +64,7 @@ const res = await axios.post('http://localhost:5000/soft/ajoutMicro',{
   title,description,macroId,image
 })
 setData({...data,err:'',success:res.data.msg})
-//history.push("./softskills")
+history.push("./listmicro")
 } catch(err)
 {
   err.response.data.msg && 
@@ -116,11 +116,11 @@ setData({...data,err:'',success:res.data.msg})
         }
     }
 
-
+console.log(data)
     return (
     <>
     <Dashboard/>
-<div class="container" style={{marginLeft:"300px",marginTop:"100px",}}>
+{/*<div class="container" style={{marginLeft:"300px",marginTop:"100px",}}>
 <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
 
@@ -175,7 +175,83 @@ setData({...data,err:'',success:res.data.msg})
       <input type="submit" className="btn btn-primary" value="Submit"/>
     </div>
   </form>
+</div>*/}
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Micro skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Add Micro skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Add Micro skills</h4>
+						</div>
+						<div class="widget-inner">
+            <form onSubmit={handleSubmit} class="edit-profile m-b30">
+            <div class="form-group">
+        <label for="fname" >Title</label>
+        <input type="text" id="fname" style={{marginLeft:"45px",marginBottom:"35px"}}  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
+    </div>
+ 
+    <div class="form-group">
+      <label for="cat"  >Macroskills</label>
+     <select name="macroId" style={{marginLeft:"15px",marginBottom:"35px"}} id="cat" class="form-control" onChange={handleChange} >
+   { skills.map(skill=>(
+<option value={skill._id} key={skill._id}>{skill.title}</option>
+ 
+
+    ) )}
+
+     </select>
+     
+     
+      </div>
+
+  
+
+      <div class="form-group">
+        <label for="subject" >Description</label>
+        <textarea id="subject"  style={{marginLeft:"50px"}} class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+    </div>
+    <div className="form-group"  style={{marginLeft:"70px"}}>
+      <div className="upload">
+      
+ 
+      <CustomInput  type="file"   name="file" id="file_up" onChange={handleUpload} />
+  {
+  loading ? <div id="file_img"><Loading /></div>
+  :<div id="file_img" style={styleUpload}>
+  <img src={image ? image.url : ''} alt=""/>
+  </div>
+  }
+                
+            </div>
+
 </div>
+    <div class="row">
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
+    </div>
+  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+
+
+
+
 </>
   );
 }

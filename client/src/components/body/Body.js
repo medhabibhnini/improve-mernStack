@@ -31,7 +31,7 @@ import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
 import Softskills from  '../../views/skills/ListSoftSkills'
-import Addsoftskills from '../../views/skills/Softskills'
+import Addsoftskills from '../../views/skills/softskills'
 import Editsoftskills from '../../views/skills/editSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
@@ -50,6 +50,7 @@ import AddMicro from '../../views/skills/AddMicroSkill'
 import ListMacro from '../../views/skills/ListMacroSkill'
 import ListMicro from '../../views/skills/ListMicroSkill'
 import EditMacro from '../../views/skills/EditMacro'
+import EditMicro from '../../views/skills/EditMicro'
 
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 function Body() {
@@ -108,7 +109,6 @@ function Body() {
 
                             <Route path="/detailsoft/:id" component={DetailSoft} exact />
                             <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />
-                            <Route path="/addhard" component={isLogged ? AjoutHard : NotFound} exact  />
                             <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
                             <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
                             <Route path="/listHard" component={isLogged ? ListHard : NotFound} exact />
@@ -120,6 +120,7 @@ function Body() {
                             <Route path="/addmacro" component={isAdmin ? AddMacro : NotFound} exact  />
                             <Route path="/addmicro" component={isAdmin ? AddMicro : NotFound} exact  />
                             <Route path="/editmacro/:id" component={isAdmin ? EditMacro : NotFound} exact  />
+                            <Route path="/editmicro/:id" component={isAdmin ? EditMicro : NotFound} exact  />
 
                
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />

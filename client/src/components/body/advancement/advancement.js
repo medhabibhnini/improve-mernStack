@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
-import '../profile/profile.css'
 import {useParams, useHistory} from 'react-router-dom'
 import { Button ,Modal} from 'react-bootstrap';
 
@@ -367,7 +366,7 @@ const nomsoftss=returnTabsoft()
      <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
           <div class="container">
               <div class="page-banner-entry">
-                  <h1 class="text-white">Advancement</h1>
+                  <h1 class="text-white">Hard skills</h1>
        </div>
           </div>
       </div>

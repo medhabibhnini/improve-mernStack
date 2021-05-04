@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import { CustomInput, FormGroup } from 'reactstrap';
+import Loading from '../../utils/loading/Loading'
+
 import image from "./softi.jpg";
 import axios from 'axios'
 import Dashboard from "../../components/body/dashboard/dashboard"
@@ -13,10 +16,13 @@ const initialState = {
     success: ''
 }
 export default function EditMicro ()  {
+    const [loading, setLoading] = useState(false)
+
     const {id} = useParams()
     const history = useHistory()
     const [data, setData] = useState(initialState)
-
+    const [image, setImage] = useState(false)
+    const token = useSelector(state => state.token)
     const [skills,getSkills] =useState([]);
     const [macros,getMacros] =useState([]);
 
@@ -38,7 +44,7 @@ export default function EditMicro ()  {
         
         }
       
-            const getMacros =()=>{
+            const getMacross =()=>{
             axios.get('http://localhost:5000/soft/macroskills')
             .then((response)=>{
             const allSkills =response.data;
@@ -52,7 +58,7 @@ export default function EditMicro ()  {
 
     useEffect(()=>{
         getAllSkills()
-        getMacros()
+        getMacross()
     },[],[])
     const handleSubmit = async()=>{
 
@@ -73,10 +79,44 @@ setData({...data,err:'',success:res.data.msg})
     const handleUpdate =()=>{
 if(title || description || macroId  ) 
 {handleSubmit()
-    history.push("/listmacro")
+    history.push("/listmicro")
 
 }
     }
+
+
+    const styleUpload = {
+        display: image ? "block" : "none"
+    }   
+
+    const handleUpload = async e =>{
+      e.preventDefault()
+      try {
+          
+          const file = e.target.files[0]
+          
+          if(!file) return alert("File not exist.")
+
+          if(file.size > 1920 * 1080) // 1mb
+              return alert("Size too large!")
+
+          if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
+              return alert("File format is incorrect.")
+
+          let formData = new FormData()
+          formData.append('file', file)
+
+          setLoading(true)
+          const res = await axios.post('/api/upload_avatar', formData, {
+              headers: {'content-type': 'multipart/form-data', Authorization: token}
+          })
+          setLoading(false)
+          setImage(res.data.url)
+
+      } catch (err) {
+          alert(err.response.data.msg)
+      }
+  }
     const mystyle = {
    marginLeft:"60%"
       };
@@ -87,7 +127,7 @@ if(title || description || macroId  )
       <>
           <Dashboard/>
 
-      <div style={{
+    {/*  <div style={{
     width:'100%',
     height:'100%'
         
@@ -132,7 +172,87 @@ if(title || description || macroId  )
   </form>
 </div>
 <footers/>
-</div>  
+   </div>*/ } 
+
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Micro skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Add Micro skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Add Micro skills</h4>
+						</div>
+						<div class="widget-inner">
+            <form onSubmit={handleUpdate} class="edit-profile m-b30">
+            <div class="form-group">
+        <label for="fname" >Title</label>
+        <input type="text" id="fname" defaultValue={skills.title} style={{marginLeft:"45px",marginBottom:"35px"}}  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
+    </div>
+ 
+    <div class="form-group">
+      <label for="cat"  >Macroskills</label>
+     <select name="macroId" style={{marginLeft:"15px",marginBottom:"35px"}} id="cat" class="form-control" onChange={handleChange} >
+   { macros.map(skill=>(
+<option value={skill._id} key={skill._id}>{skill.title}</option>
+ 
+
+    ) )}
+
+     </select>
+     
+     
+      </div>
+
+  
+
+      <div class="form-group">
+        <label for="subject" >Description</label>
+        <textarea id="subject" defaultValue={skills.description}  style={{marginLeft:"50px"}} class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+    </div>
+    <div className="form-group"  style={{marginLeft:"70px"}}>
+      <div className="upload">
+      
+ 
+      <CustomInput  type="file"  defaultValue={skills.image} name="file" id="file_up" onChange={handleUpload} />
+  {
+  loading ? <div id="file_img"><Loading /></div>
+  :<div id="file_img" style={styleUpload}>
+  <img src={image ? image.url : ''} alt=""/>
+  </div>
+  }
+                
+            </div>
+
+</div>
+    <div class="row">
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
+    </div>
+  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+
+
+
+
+
+
+
 </>
     )
 }

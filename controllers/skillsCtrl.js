@@ -192,7 +192,7 @@ getSkillsNoun : async(req,res)=>
 {
 
     try{
-        const skills = await MicroSkills.find().populate({path :'macroId',select:'title '}).select('title description ');
+        const skills = await MicroSkills.find().populate({path :'macroId',select:'title '}).select('title description image ');
         
         res.json(skills);
     } catch(err)

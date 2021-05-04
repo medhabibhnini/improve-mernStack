@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from "react";
 // @material-ui/core components
 import {useHistory} from 'react-router-dom'
@@ -83,8 +84,6 @@ history.push("./hardskills")
     return(
 <> 
 <Dashboard/>
-
-
 
 <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
 		<div class="container-fluid">

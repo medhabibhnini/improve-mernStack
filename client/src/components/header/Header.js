@@ -202,7 +202,7 @@ function Header() {
                 <li><a href="javascript:;">Skills <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">
                  
-                    <li><a href="javascript:;">Hard skills</a>
+                    <li><Link to="/listHard">Hard skills</Link>
                      
                     </li>
                       

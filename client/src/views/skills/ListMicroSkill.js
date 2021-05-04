@@ -4,7 +4,6 @@ import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskills
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
-import "../../components/body/home/home.css"
 import Swal from 'sweetalert2'
 
 import Dashboard from "../../components/body/dashboard/dashboard"
@@ -25,11 +24,13 @@ const [skills,getSkills] =useState([]);
 const [loading, setLoading] = useState(false)
 const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
+const auth = useSelector(state => state.auth)
 
+const {user, isLogged, isAdmin} = auth
 useEffect(()=>{
 getAllSkills();},[]);
 const getAllSkills =()=>{
-axios.get('httlocalhostp://:5000/soft/getmicroskills')
+axios.get('http://localhost:5000/soft/getmicroskills')
 .then((response)=>{
 const allSkills =response.data;
 getSkills(allSkills);
@@ -68,7 +69,7 @@ const mystyle = {
       <>
         <Dashboard/>
       
-<div class="col">
+{/*<div class="col">
           <div class="card shadow">
             <div class="card-header border-0" >
               <h3 class="mb-0">Card tables</h3>
@@ -129,7 +130,84 @@ const mystyle = {
 <br></br>
 <br></br>
 <br></br>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+                   <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>*/ }
+
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Micro soft Skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Micro soft Skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Micro soft skills </h4>
+              <Link to ="/addmicro">
+            <Button className=" " style={{marginTop:"20px"}}>Add Micro skills + </Button>
+
+            </Link >
+						</div>
+						<div class="widget-inner">
+            { skills.map(skill =>(
+							<div  key={skill._id} class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src={skill.image} alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<h4>{skill.title}</h4>
+                    {skill.macroId.map(macro=>(
+                      <h2 key={macro._id}>{macro.title}</h2>
+                      ))}
+									</div>
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-pic">
+													<img src= {user.avatar} alt=""/>
+												</div>
+												<div class="card-courses-user-info">
+										
+												</div>
+											</li>
+											<li class="card-courses-categories">
+											
+											</li>
+								
+										
+										</ul>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<h6 class="m-b10">Micro Skills Description</h6>
+											<p>{skill.description} </p>	
+										</div>
+										<div class="col-md-12">
+											<Link  to={`/editmicro/${skill._id}`} class="btn green radius-xl outline">Edit</Link>
+											<Link  onClick={() => handleDelete(skill._id)}  class="btn red outline radius-xl ">Delete</Link>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						
+             ) )}
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="ttr-overlay"></div>
+
+
 </>
 
     )

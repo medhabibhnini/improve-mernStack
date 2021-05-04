@@ -1,13 +1,18 @@
-import React,{useState, useEffect} from 'react'
-import Header from "../../components/header/Header"
-import Footer from "../../components/footer/Footer"
-import axios from 'axios'
+import 'antd/dist/antd.css';
+import { Calendar, Badge } from 'antd';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import "../../components/body/home/home.css"
+import {Card, Container, Row} from "reactstrap";
+import Footer from '../../components/footer/Footer';
+import Header from "../../components/header/Header";
 import {Link} from 'react-router-dom'
 
-export default function ListEvent  (){
+
+export default function ListEvent() {
+
   const [events,getEvents] =useState([]);
+ 
  
   useEffect(()=>{
     getAllEvents();},[]);
@@ -22,10 +27,69 @@ export default function ListEvent  (){
     }
   
   
+/*  function getListData(value) {
+    let listData;
+    switch (value.date()) {
+      case 8:
+        listData = [
+          { type: 'warning', content: 'This is warning event.' },
+          { type: 'success', content: 'This is usual event.' },
+        ];
+        break;
+      case 10:
+        listData = [
+          { type: 'warning', content: 'This is warning event.' },
+          { type: 'success', content: 'This is usual event.' },
+          { type: 'error', content: 'This is error event.' },
+        ];
+        break;
+      case 15:
+        listData = [
+          { type: 'warning', content: 'This is warning event' },
+          { type: 'success', content: 'This is very long usual event。。....' },
+          { type: 'error', content: 'This is error event 1.' },
+          { type: 'error', content: 'This is error event 2.' },
+          { type: 'error', content: 'This is error event 3.' },
+          { type: 'error', content: 'This is error event 4.' },
+        ];
+        break;
+      default:
+    }
+    return listData || [];
+  }
+  */
+  /*function dateCellRender(value) {
+    const listData = getListData(value);
+    return (
+      <ul className="events">
+        {listData.map(item => (
+          <li key={item.content}>
+            <Badge status={item.type} text={item.content} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  
+  function getMonthData(value) {
+    if (value.month() === 8) {
+      return 1394;
+    }
+  }
+  
+  function monthCellRender(value) {
+    const num = getMonthData(value);
+    return num ? (
+      <div className="notes-month">
+        <section>{num}</section>
+        <span>Backlog number</span>
+      </div>
+    ) : null;
+  }*/
   return (
-        <>
-            <Header/>
-            <br></br>
+       <>
+     <Header/>
+     <br></br>
     <br></br>
     <br></br>
     <br></br>
@@ -40,15 +104,8 @@ export default function ListEvent  (){
   </div>
 </div>
 </div>
-
-
-
-<div className="container mt-5" id="about">
-               <h1 className="text-center py-4">Welcome to imProve</h1>
-              
-              <div className="row text-center mt-5">
-          
-          {   events.map( event =>(         
+<Calendar/>
+     {   events.map( event =>(         
                 <div className="col-md-3" style={{marginBottom:'20px'}}>
                  <div className="card shadow">
                   <div className="card-body">
@@ -64,13 +121,9 @@ export default function ListEvent  (){
                 </div>
                 </div>
            ) )}
-              </div>
-            </div>
-       
-<Footer/>
-
-
-        </>
-    )
+           
+    <Footer/>
+       </>
+  );
 }
 

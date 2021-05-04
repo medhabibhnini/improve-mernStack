@@ -4,10 +4,10 @@ const events ={
  create : async(req,res)=>
  {
 try{
-    const {title,description,type,avatar} = req.body 
-    if(!title || !description || !type || !avatar)
+    const {title,description,type,state,localisation,link,date,etatevent,price,avatar} = req.body 
+    if(!title || !description || !type || !state || !localisation || !link || !date || !etatevent || !price || !avatar)
     return res.status(400).json({msg:"please fill in all field"})
-const newEvent = new Events({title,description,type,avatar})
+const newEvent = new Events({title,description,type,state,localisation,link,date,etatevent,price,avatar})
 await newEvent.save()
 res.json({msg :"events has been enregistred"})
 
@@ -18,8 +18,8 @@ res.json({msg :"events has been enregistred"})
  updateEvents : async(req,res) =>
  {
 try {
-const {title,description,type,avatar}= req.body 
-await Events.findByIdAndUpdate({_id: req.params.id},{title,description,type,avatar})
+const {title,description,type,state,localisation,link,date,etatevent,price,avatar}= req.body 
+await Events.findByIdAndUpdate({_id: req.params.id},{title,description,type,state,localisation,link,date,etatevent,price,avatar})
 res.json({msg: "Update Success!"})
 }
 catch(err)
@@ -27,6 +27,7 @@ catch(err)
 return res.status(500).json({msg: err.message})
 }
  },
+ 
 getAllEvents : async (req,res)=>
 {try 
     {

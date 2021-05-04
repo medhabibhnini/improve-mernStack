@@ -32,6 +32,9 @@ import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Edithardskills from '../../views/skills/EditHard'
 import HomeBack from '../../views/Home'
+import Calendar from '../../views/calendar/calendar'
+import DetailEvent from '../../views/front/DetailEvent'
+
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -59,7 +62,6 @@ function Body() {
                <Route path="/users" component={isAdmin ? Users : NotFound} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
-
                 <Route path="/posts" component={Posts} exact />
                 <Route path="/forum/posts/:id" component={DetailPosts} exact />
 
@@ -78,10 +80,13 @@ function Body() {
                             <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />
                             <Route path="/listevent" component={ListEvent} exact />
                             <Route path="/events" component={isAdmin ? Events : NotFound} exact />  
+                            <Route path="/calendar" component={ListEvent} exact />
                             <Route path="/addevent" component={isAdmin ? Addevents : NotFound} exact  />
                             <Route path="/editevent/:id" component={isAdmin ? Editevents : NotFound} exact  />
                             <Route path="/listsoft" component={ListSoft} exact />
                             <Route path="/detailsoft/:id" component={DetailSoft} exact />
+                            <Route path="/detailevent/:id" component={DetailEvent} exact />
+
                             <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />
                             <Route path="/addhard" component={isAdmin ? Addhardskills : NotFound} exact  />
                             <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />

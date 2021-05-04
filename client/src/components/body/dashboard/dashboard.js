@@ -12,6 +12,7 @@ import {
   faQuestion,
   faImage,
   faCopy,
+  faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenu from "./SubMenu"
 import axios from 'axios'
@@ -21,7 +22,13 @@ import {  DropdownMenu,
   UncontrolledDropdown,
   DropdownToggle,
   Media ,Nav,NavItem, NavLink } from  "reactstrap";
-
+  import {
+    BiArrowBack,
+    BiCalendarEvent,
+    FaArchive, FaCalendar,
+    
+  } from "react-icons/all";
+  
 
 import improvelogo from "../../../assets/img/logo.png"
 function Dashboard() {
@@ -140,6 +147,13 @@ Home
             Courses
           </NavLink>
         </NavItem>
+        <NavItem style={{marginBottom :"30px",marginTop : "20px",marginLeft:"20px"}}>
+          <NavLink tag={Link} to={"/calendar"}>
+            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+            Calendar
+          </NavLink>
+        </NavItem>
+
       </Nav>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-md-0">

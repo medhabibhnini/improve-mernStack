@@ -44,13 +44,8 @@ export default function()
 
     <>
     <Dashboard/>
-    <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
-
-              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}>Dashboard </h1>
-<div class="overlay"></div>
-</div>
-    <div class="col-xl-8 order-xl-1" style={{marginTop:"100px",marginLeft:"330px"}}>
+  
+    <div class="col-xl-8 order-xl-1" style={{marginTop:"100px",marginLeft:"330px",backgroundColor:"white" }}>
             <div class="card bg-secondary shadow">
               <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
@@ -60,7 +55,7 @@ export default function()
                   
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body"  style={{backgroundColor:"white" }}>
           
           
             <div>

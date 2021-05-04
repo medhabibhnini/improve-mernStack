@@ -1,31 +1,16 @@
-import React, {createContext, useState, useEffect} from 'react'
-import {getData} from './components/utils/FetchData'
-import io from 'socket.io-client'
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./redux/reducers";
 
-export const DataContext = createContext()
+const middleware = [thunk];
 
-export const DataProvider = ({children}) => {
-    const [posts, setPosts] = useState([])
-    const [socket, setSocket] = useState(null)
+const initialState = {};
 
-    useEffect(() => {
-        getData('/forum/posts')
-            .then(res => setPosts(res.data.posts))
-            .catch(err => console.log(err.response.data.msg))
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-        const socket = io()
-        setSocket(socket)
-        return () =>  socket.close()
-    },[])
-
-    const state = {
-        posts: [posts, setPosts],
-        socket
-    }
-
-    return(
-        <DataContext.Provider value={state}>
-            {children}
-        </DataContext.Provider>
-    )
-}
+export default store;

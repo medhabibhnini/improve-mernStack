@@ -14,6 +14,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 import Login from './components/body/auth/Login';
 
+
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(state => state.token)
@@ -42,24 +43,24 @@ function App() {
       getUser()
     }
   },[token, dispatch])
+  
 
 
   return (
-    <BrowserRouter>
+ 
+  /*  <BrowserRouter>
     <Switch >
       <Route exact path="/linkedin" component={LinkedInPopUp} />
       <Route path="/" component={Login} />
     </Switch>
   </BrowserRouter>,
-   <DataProvider>    
+   <DataProvider>  */  
      <Router>
         
         <Body />
-       
-  
+      
     </Router>
 
-    </DataProvider> 
 
 
    

@@ -6,9 +6,27 @@ import {Link} from 'react-router-dom'
 import {isLength, isMatch} from '../../utils/validation/Validation'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
-import '../profile/profile.css'
+import {useParams, useHistory} from 'react-router-dom'
+import { Button ,Modal} from 'react-bootstrap';
+
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+
+import "../../../assets/css/assets.css"
+
+import "../../../assets/css/typography.css"
+import "../../../assets/css/shortcodes/shortcodes.css"
+	
+
+import "../../../assets/css/style.css"
+
+
+import "../../../assets/css/color/color-1.css"
+
+import "../../../assets/vendors/revolution/css/layers.css"
+import "../../../assets/vendors/revolution/css/settings.css"
+import "../../../assets/vendors/revolution/css/navigation.css"
+
 const initialState = {
     name: '',
     password: '',
@@ -16,39 +34,209 @@ const initialState = {
     err: '',
     success: ''
 }
+const initialScore = {
 
+  title:'',
+
+  err: '',
+  success: ''
+}
 function Advancement() {
     const auth = useSelector(state => state.auth)
     const token = useSelector(state => state.token)
 
     const users = useSelector(state => state.users)
+    const {id} = useParams()
 
     const {user, isAdmin} = auth
     const [data, setData] = useState(initialState)
+    const [datas, setDatas] = useState(initialScore)
+
     const {name, password, cf_password, err, success} = data
 
     const [avatar, setAvatar] = useState(false)
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
+    const [skills,getSkills] =useState([]);
+const [skillUp,getSkillUp] =useState([]);
+const [scores,setScores]=useState([]);
+const [softskills,getsofskills]= useState([])
+const [softscore,getsoftscore]=useState([])
+const [nomsoft,getnomsoft]=useState([])
+
+const handleChanges = e => {
+  const {name, value} = e.target
+  setDatas({...datas, [name]:value, err:'', success: ''})
+  console.log(datas.title)
+}
+
+const getSoftSkills =()=>{
+  axios.get(`http://localhost:5000/soft/getSoftList/${id}`)
+  .then((response)=>{
+  const allSkills =response.data;
+
+  getsofskills(allSkills);
+  }).catch(error=>console.error(`Error :${error}`));
+  
+  
+  }
+  const scoresofts =()=>{
+    axios.get(`http://localhost:5000/soft/getScoresoft/${id}`)
+    .then((response)=>{
+    const allSkills =response.data;
+    
+    getsoftscore(allSkills);
+  
+  
+  }).catch(error=>console.error(`Error :${error}`));
+  
+  
+  }
+
+      const getAllSkills =()=>{
+      axios.get(`http://localhost:5000/hard/getHardList/${id}`)
+      .then((response)=>{
+      const allSkills =response.data;
+
+getSkills(allSkills);
+      }).catch(error=>console.error(`Error :${error}`));
+      
+      
+      } 
+
+const scoreSkills =()=>{
+  axios.get(`http://localhost:5000/hard/getScorehard/${id}`)
+  .then((response)=>{
+  const allSkills =response.data;
+  
+  setScores(allSkills);
+
+
+}).catch(error=>console.error(`Error :${error}`));
+
+
+}
+
+      const  nomSkillss =()=>{
+      axios.get(`http://localhost:5000/hard/getNamehard/${id}`)
+            .then((response)=>{
+            const allSkills =response.data;
+            
+            getSkillUp(allSkills);
+      
+      
+          }).catch(error=>console.error(`Error :${error}`));
+      
+      }
+
+
+      const  nomsofts =()=>{
+        axios.get(`http://localhost:5000/soft/getNamesoft/${id}`)
+              .then((response)=>{
+              const allSkills =response.data;
+              
+              getnomsoft(allSkills);
+        
+        
+            }).catch(error=>console.error(`Error :${error}`));
+        
+        }
+
+
+      useEffect(()=>{
+        getAllSkills();
+        nomSkillss();
+        scoreSkills();
+        getSoftSkills();
+        scoresofts();
+        nomsofts();
+      },[],[],[],[],[],[]);
+const returnScores=()=>{
+  scoreSkills();
+  const tab1=[]
+  for (let index = 0, len = scores.length; index < len; ++index)
+  {
+tab1[index]=scores[index].score;
+  }
+  return tab1;
+
+}
+const returnScoressoft=()=>{
+  scoresofts();
+  const tab1=[]
+  for (let index = 0, len = softscore.length; index < len; ++index)
+  {
+tab1[index]=softscore[index].score;
+  }
+  return tab1;
+
+}
+const tabsoft=returnScoressoft();
+const tab2=returnScores()
+      const returnTab=()=>
+      {  nomsofts();
+
+         const tab1=[]
+        for (let index = 0, len = skillUp.length; index < len; ++index) {
+          for(let i = 0, len = skillUp[index].SkillId.length; i < len; ++i)
+        {
+          tab1[index]=skillUp[index].SkillId[i].title
+
+
+        }
+        } return tab1
+      }
+      const returnTabsoft=()=>
+      {nomSkillss();
+
+         const tab1=[]
+        for (let index = 0, len = nomsoft.length; index < len; ++index) {
+          for(let i = 0, len = nomsoft[index].SkillId.length; i < len; ++i)
+        {
+          tab1[index]=nomsoft[index].SkillId[i].title
+
+
+        }
+        } return tab1
+      }
+      const tab=returnTab()
+const nomsoftss=returnTabsoft()
+      const addSkill=()=>{
+        var  index=0
+
+        for ( index, tab.length; index <  tab.length; ++index) {
+        
+        if(tab[index]==datas.title)
+        {
+          tab.slice(index,1)
+
+        }
+        }
+
+      }
+
+
+
+
     const datachart = {
-        labels: ['Communication Skills ', 'Leadership', 'Influencing', 'Interpersonal Skills', 'Personal Skills ', 'Creativity', 'Professional Skills '],
+        labels:tab,
         datasets: [
           {
-            label: 'Soft Skills Data',
+            label: 'Hard Skills Data',
             backgroundColor: 'rgba(179,181,198,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             pointBackgroundColor: 'rgba(255,99,132,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(255,99,132,1)',
-            data: [65, 59, 90, 81, 75, 65, 85]
+            data: tab2
           },
           
           
         ]
       };
       const datachartHard = {
-        labels: ['Marketing ', 'Data Analysis', 'Mobile and Web Development', 'Network structure and security', 'Project management ', 'Mathematical and numerical skills', 'Design '],
+        labels: nomsoftss,
         datasets: [
           {
             label: 'Soft Skills Data',
@@ -58,7 +246,7 @@ function Advancement() {
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(0,191,255)',
-            data: [66, 55, 75, 83, 79, 72, 95]
+            data: tabsoft
           },
           
           
@@ -172,23 +360,27 @@ function Advancement() {
     <br></br>
     <br></br>
   
-        <div class="main-content">
-      
+       
+    <div class="content-block">
      
-    
-      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://online.csp.edu/wp-content/uploads/2017/01/Hard-Skills-vs-Soft-Skills-FB.png)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-
-        <span class="mask bg-gradient-default opacity-8"></span>
-  
-        <div class="container-fluid d-flex align-items-center">
-          <div class="row">
-            <div class="col-lg-7 col-md-10">
-           
-            </div>
+     <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+          <div class="container">
+              <div class="page-banner-entry">
+                  <h1 class="text-white">Hard skills</h1>
+       </div>
           </div>
-        </div>
       </div>
 
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+              <br>
+              </br>
+              <br></br>
+              <br>
+              </br>
       <div class="container-fluid mt--7">
         <div class="row">
           <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
@@ -247,12 +439,24 @@ function Advancement() {
               <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">My soft skills Advancement</h3>
+                    <h3 class="mb-0">My Hard skills Advancement</h3>
                   </div>
-                  
+                  <form >   
+                  <select name="title" onChange={handleChanges}>
+                    { tab.map( skill=>(
+<option value={skill}>
+{skill}
+
+</option>
+                     ) )}
+                  </select>
+                             <Button >-</Button>
+</form>
+                  <Button>+</Button>
                 </div>
               </div>
-              <div class="card-body">
+       
+              <div class="card-body" style={{backgroundColor:"white",borderStyle:"none"}}>
             {success && showSuccessMsg(success)}
               {err && showErrMsg(err)}
             {loading && <h3>Loading.....</h3>}
@@ -260,7 +464,7 @@ function Advancement() {
         <Radar data ={datachart}></Radar>
         </div>
         <hr></hr>
-        <h3 class="mb-0">My hard skills Advancement</h3>
+        <h3 class="mb-0">My Soft skills Advancement</h3>
 
         <div>
         <Radar data ={datachartHard}></Radar>

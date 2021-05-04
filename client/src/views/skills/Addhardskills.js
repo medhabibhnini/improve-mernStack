@@ -2,6 +2,17 @@ import React, {useState, useEffect} from "react";
 // @material-ui/core components
 import {useHistory} from 'react-router-dom'
 
+import "../../admin/assets/css/assets.css"
+import "../../admin/assets/vendors/calendar/fullcalendar.css"
+import "../../admin/assets/css/typography.css"
+import "../../admin/assets/css/shortcodes/shortcodes.css"
+import "../../assets/css/style.css"
+import "../../admin/assets/css/dashboard.css"
+import "../../assets/css/color/color-1.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -72,26 +83,38 @@ history.push("./hardskills")
     return(
 <> 
 <Dashboard/>
-<div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
 
-  <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add Hard skills</h1>
-<div class="overlay"></div>
-</div>
-  <form onSubmit={handleSubmit}>
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Hard</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Add Hard</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Add Hard</h4>
+						</div>
+						<div class="widget-inner">
+            <form onSubmit={handleSubmit} class="edit-profile m-b30">
     <div class="form-group">
-        <label for="fname">Title</label>
-        <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
+        <label for="fname" >Title</label>
+        <input type="text" id="fname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
     </div>
     <div class="form-group">
         <label for="lname">Type</label>
-        <input type="text" id="lname"  class="form-control" name="type"  onChange={handleChange} placeholder="type.."/>
+        <input type="text" id="lname"  style={{marginLeft:"45px",marginBottom:"25px"}}  class="form-control" name="type"  onChange={handleChange} placeholder="type.."/>
       </div>
   
       <div class="form-group">
         <label for="cat">Categorie</label>
-     <select name="categorie" id="cat" class="form-control" onChange={handleChange} name="categorie">
+     <select name="categorie" id="cat" class="form-control"  style={{marginLeft:"15px",marginBottom:"25px"}} onChange={handleChange} name="categorie">
 <option value="informatic">Informatic</option>
 <option value="bussiness">Business</option>
 <option value="Health care">Health care</option>
@@ -102,15 +125,20 @@ history.push("./hardskills")
      
       </div>
     <div class="form-group">
-        <label for="subject">Description</label>
-        <textarea id="subject"  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+        <label for="subject">Description </label>
+        <br></br>
+        <textarea id="subject"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
     </div>
     <div class="row">
-      <input type="submit" className="btn btn-primary" value="Submit"/>
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
     </div>
   </form>
-</div>
-
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </>
 
     )

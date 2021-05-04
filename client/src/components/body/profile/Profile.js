@@ -7,6 +7,31 @@ import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAction'
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
+import SimpleImageSlider from "react-simple-image-slider";
+import jQuery from "jquery"
+import bg1 from "../../../assets/images/background/bg1.jpg"
+
+import revslider_showDoubleJqueryError from "jquery"
+import slider1 from "../../../assets/images/slider/slide1.jpg"
+import slider2 from "../../../assets/images/slider/slide2.jpg"
+import pic1 from "../../../assets/images/our-services/pic1.jpg"
+import pic4 from "../../../assets/images/event/pic4.jpg"
+
+import "../../../assets/css/assets.css"
+
+import "../../../assets/css/typography.css"
+import "../../../assets/css/shortcodes/shortcodes.css"
+	
+
+import "../../../assets/css/style.css"
+
+
+import "../../../assets/css/color/color-1.css"
+
+import "../../../assets/vendors/revolution/css/layers.css"
+import "../../../assets/vendors/revolution/css/settings.css"
+import "../../../assets/vendors/revolution/css/navigation.css"
+
 import { CustomInput, FormGroup } from 'reactstrap';
 import UserPostsWrapper from "../../../views/UserPosts/UserPostsWrapper";
 
@@ -142,30 +167,23 @@ function Profile() {
         <>
       <Header />
       
-      <br></br>
-   <br></br>
-   <br></br>
-   <br></br>
-   <br></br>
-
-       <div className="main-content">
-     
-    
    
-     <div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px' ,backgroundImage: 'url(https://collectivevaluecreation.co.za/wp-content/uploads/2018/10/my-account-background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
 
-       <span className="mask bg-gradient-default opacity-8"></span>
- 
-       <div className="container-fluid d-flex align-items-center">
-         <div className="row">
-           <div className="col-lg-7 col-md-10">
-          
-           </div>
-         </div>
-       </div>
-     </div>
+       <div class="page-content bg-white">
+     
+       <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Profile</h1>
+				 </div>
+            </div>
+        </div>
 
-     <div className="container-fluid mt--7">
+<br></br>
+<br></br>
+<br></br>
+
+     <div className="content-block">
        <div className="row">
          <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
            <div className="card card-profile shadow">
@@ -223,58 +241,64 @@ function Profile() {
              </div>
            </div>
          </div>
-         <div className="col-xl-8 order-xl-1">
+         <div className="col-xl-8 order-xl-1" style={{backgroundColor:"white",marginLeft:"5px",marginLeft:"0px"}}>
            <div className="card bg-secondary shadow">
              <div className="card-header bg-white border-0">
-               <div className="row align-items-center">
-                 <div className="col-8">
+               <div class="tab-pane" id="edit-profile">
+                 <div class="profile-head">
                    <h3 className="mb-0">My account</h3>
                  </div>
-                 <div className="col-4 text-right">
-                   <a href="#!" className="btn btn-sm btn-primary">Settings</a>
-                 </div>
+               
                </div>
              </div>
-             <div className="card-body">
+             <div className="card-body"  style={{backgroundColor:"white",borderStyle:"none"}}>
              {err && showErrMsg(err)}
            {success && showSuccessMsg(success)}
            {loading && <h3>Loading.....</h3>}
-               <form>
-                 <h6 className="heading-small text-muted mb-4">User information</h6>
-                 <div className="pl-lg-4">
-                   <div className="row">
-                     <div className="col-lg-6">
-                       <div className="form-group focused">
-                         <label className="form-control-label" for="input-username">Username</label>
-                         <input type="text" id="input-username" name="userName" className="form-control form-control-alternative" defaultValue={user.userName} onChange={handleChange}/>
-                       </div>
-                     </div>
-                     <div className="col-lg-6">
-                       <div className="form-group">
-                         <label className="form-control-label" for="input-email">Email address</label>
-                         <input type="email" id="input-email" className="form-control form-control-alternative"  defaultValue={user.email} disabled/>
-                       </div>
-                     </div>
-                   </div>
-                   <div className="row">
-                     <div className="col-lg-6">
-                       <div className="form-group focused">
-                         <label className="form-control-label" for="input-first-name">First name</label>
-                         <input type="text" id="name"  className="form-control form-control-alternative" name="name"  defaultValue={user.name} onChange={handleChange}/>
-                       </div>
-                     </div>
-                     <div className="col-lg-6">
-                       <div className="form-group focused">
-                         <label className="form-control-label" for="input-last-name">Last name</label>
-                         <input type="text" id="input-last-name" className="form-control form-control-alternative" name="lastName" defaultValue={user.lastName} onChange={handleChange}/>
-                       </div>
-                     </div>
-                   </div>
-                   <div className="col-md-12 text-center">
-                   <button disabled={loading}  className="btn btn-primary" onClick={handleUpdate}>Edit profile</button>
-                   </div>
-                 </div>
-              
+               <form  class="edit-profile">
+               <div class="form-group row">
+													<div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
+														<h3>1. Personal Details</h3>
+													</div>
+												</div>
+
+                        <div class="form-group row">
+													<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Username</label>
+													<div class="col-12 col-sm-9 col-md-9 col-lg-7">
+														<input class="form-control" name="userName" type="text"defaultValue={user.userName} onChange={handleChange}/>
+													</div>
+												</div>
+                        <div class="form-group row">
+													<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Email address</label>
+													<div class="col-12 col-sm-9 col-md-9 col-lg-7">
+														<input class="form-control" type="text" defaultValue={user.email} disabled/>
+													</div>
+												</div>
+                        <div class="form-group row">
+													<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">First name</label>
+													<div class="col-12 col-sm-9 col-md-9 col-lg-7">
+														<input class="form-control" type="text" name="name"  defaultValue={user.name} onChange={handleChange}/>
+													</div>
+												</div>
+                        <div class="form-group row">
+													<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Lastname </label>
+													<div class="col-12 col-sm-9 col-md-9 col-lg-7">
+														<input class="form-control" type="text" name="lastName" defaultValue={user.lastName} onChange={handleChange}/>
+													</div>
+												</div>
+
+                        <div class="">
+												<div class="">
+													<div class="row">
+														<div class="col-12 col-sm-3 col-md-3 col-lg-2">
+														</div>
+														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
+															<button  disabled={loading}   class="btn btn-primary"  onClick={handleUpdate}>Save changes</button>
+														</div>
+													</div>
+												</div>
+											</div>
+
        
                </form>
              </div>

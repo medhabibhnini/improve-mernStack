@@ -260,38 +260,65 @@ function Dashboard() {
 			<nav class="ttr-sidebar-navi">
 				<ul>
 					<li>
-						<a href="index.html" class="ttr-material-button">
+						<Link  to="/homeback" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
 		                	<span class="ttr-label">Dashborad</span>
+		                </Link>
+		            </li>
+					<li>
+						<a Link to="/users" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-home"></i></span>
+		                	<span class="ttr-label">Users</span>
 		                </a>
 		            </li>
 					<li>
-						<a href="courses.html" class="ttr-material-button">
+						<Link to="/courses" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-book"></i></span>
 		                	<span class="ttr-label">Courses</span>
-		                </a>
+		                </Link>
 		            </li>
               
 				
 				
 					<li>
-						<a href="bookmark.html" class="ttr-material-button">
+						<Link to="/hardskills" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-		                	<span class="ttr-label">Bookmarks</span>
-		                </a>
+		                	<span class="ttr-label">Hard Skills</span>
+		                </Link>
 		            </li>
+
+	
 					<li>
-						<a href="review.html" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-comments"></i></span>
-		                	<span class="ttr-label">Review</span>
+						<a to="/softskills" class="ttr-material-button" onClick={toggle1}>
+							<span class="ttr-icon"><i class="ti-user"></i></span>
+		                	<span class="ttr-label">Soft Skills</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
 		                </a>
+                    <Collapse isOpen={isOpen}>
+		                	<li>
+		                		<a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">Macro skills</span></a>
+		                	</li>
+		                	<li>
+		                		<Link to="/softskills" class="ttr-material-button"><span class="ttr-label">Micro Skills</span></Link>
+		                	</li>
+		                </Collapse>
+		            </li>
+
+
+					<li>
+						<Link to="/events" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-comments"></i></span>
+		                	<span class="ttr-label">Events</span>
+		                </Link>
 		            </li>
 					<li>
 						<a href="add-listing.html" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
-		                	<span class="ttr-label">Add listing</span>
+		                	<span class="ttr-label">Forum</span>
 		                </a>
 		            </li>
+
+					
 					<li>
 						<a href="#" class="ttr-material-button" onClick={toggle1}>
 							<span class="ttr-icon"><i class="ti-user"></i></span>

@@ -23,70 +23,28 @@ const TopicPost = ({
   return (
     <>
    
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-<div class="fb-cards-designs">
-    <div class="fb-clone-card">
-            <div class="fb-card-main-content">
-                <div class="fb-card-header">
-                    <div class="user-post-info">
-                        <div class="user-thumb">
-                            <img src={post.avatar} class="img-responsive" />
-                        </div>
-                        <div class="user-information">
-                            <p>{post.name} {post.lastName}</p>
-                            <small> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></small>
-                        </div>
-                    </div>
-                    <div style={{ display: auth.isLogged && auth.user.name === post.name ? "block" : "none" }} class="post-action" 
-                    onClick={() =>{
-                     
-                          removePost(post._id).then(window.location.reload(true))}
-                          
-                        
-                          }><i className="fas fa-times"></i>
-                         
-                    </div>
-                   
-                </div>
-                <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
-                    <div class="images-container">
+   <div class="blog-post blog-md clearfix">
+  
+             
+								<div class="ttr-post-media"> 
+									<a href="#"><img src={post.avatar} class="img-responsive" alt=""/></a> 
+								</div>
+								<div class="ttr-post-info">
+									<ul class="media-post">
+										<li><a href="#"><i class="fa fa-calendar"></i> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></a></li>
+										<li><a href="#"><i class="fa fa-user"></i>{post.name} {post.lastName}</a></li>
+									</ul>
+									<h5 class="post-title"><a href="blog-details.html">{post.title}</a></h5>
+									<p>{post.description}</p>
                       
-                            
-                            <div class="sponsord-post-title-links">
-                            <small>{post.title}</small>
-                                <h5>{post.description}</h5>
-                            </div>
-                     
-                    </div>
-                </div>
-
-               
-            </div>
-
-            <div class="fb-card-like-comment-holder">
-                <div class="fb-card-like-comment">
-                    <div class="likes-emoji-holder">
-                    <span>   {post.likes.length} <i class="fas fa-thumbs-up"></i>  
-                  
-                      </span> 
-             
-             
-                    </div>
-                    <div class="like-comment-holder">
-                    <span>   {post.comments.length} Comments
+                  <span>    <i class="fas fa-thumbs-up"></i>  {post.likes.length} Likes
                   
                   </span> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-card-actions-holder">
-                <div class="fb-card-actions">
-                    <div class="fb-btn-holder" style={{ display: auth.isLogged ? "block" : "none" }}>
+                
+      
+										<a href="#" class="comments-bx"> {post.comments.length} Comment</a>
+									<div class="post-extra">
+              <div class="fb-btn-holder" style={{ display: auth.isLogged ? "block" : "none" }}>
                         <Link 
                          onClick={() => {
                             if (post.likes.find((like) => like.user === auth.user._id)) {
@@ -120,15 +78,12 @@ const TopicPost = ({
                               : "far fa-thumbs-up"
                           } ></i></Link>
                     </div>
-                    <div class="fb-btn-holder">
-                    <Link to={`/topics/topic/${post._id}`}>View more</Link>
-                    </div>
-                  
-                </div>
-            </div>
-           
-        </div>
-</div>
+                    <Link to={`/topics/topic/${post._id}`} class="comments-bx"> View Details</Link> 
+                 
+									</div>
+								</div>
+							</div>
+
 
 
     </>

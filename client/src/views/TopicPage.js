@@ -34,10 +34,7 @@ const TopicPage = ({
   ) : (
     <>
     <Header/>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
+
     <div class="fb-cards-designs">
       <TopicSection
         post={post}
@@ -50,17 +47,22 @@ const TopicPage = ({
        
    
        
-    <div class="fb-clone-card">
-      <div class="fb-card-comments">
-        <div class="comment-input-holder">
+<div class="clear" id="comment-list">
+								<div class="comments-area" id="comments">
+									<h2 class="comments-title">Comments</h2>
+									<div class="clearfix m-b20">
+                  <ol class="comment-list">
+                    
      
         <CommentsWrapper comments={post.comments} />
-     
+        </ol>
+     </div>
+     </div>
+     </div>
       
     <TopicPageForm auth={auth} post={post} createComment={createComment} />
-    </div>
-      </div>
-    </div>
+ 
+
     </div>
     <Footer/>
 </>

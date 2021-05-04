@@ -1,12 +1,17 @@
 import React from "react";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { removePost } from "../../redux/actions/posts.actions/removePost";
+import { useHistory } from "react-router-dom";
 const TopicSection = ({
   auth,
   post,
   addLikeToTopicPage,
   removeLikeFromPost,
+  removePost,
 }) => {
+    let history = useHistory();
   return (
       <>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
@@ -27,8 +32,14 @@ const TopicSection = ({
                             <small> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></small>
                         </div>
                     </div>
-                    <div class="post-action">
-                        <i class="fas fa-ellipsis-h"></i>
+                    <div style={{ display: auth.isLogged && auth.user.name === post.name ? "block" : "none" }} class="post-action" 
+                    onClick={() =>{
+                     
+                          removePost(post._id).then(history.push("/subjects"))}
+                          
+                        
+                          }><i className="fas fa-times"></i>
+                         
                     </div>
                 </div>
                 <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
@@ -70,5 +81,13 @@ const TopicSection = ({
 </>
   );
 };
+const mapDispatchToProps = {
+removePost
+  };
+  
+  const mapStateToProps = (state) => ({
+    post: state.posts.post,
+    auth: state.auth,
+  });
 
-export default TopicSection;
+export default connect(mapStateToProps, mapDispatchToProps) (TopicSection);

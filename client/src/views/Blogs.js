@@ -5,6 +5,7 @@ import TopicBlogWrapper from "./Blog/TopicBlogWrapper";
 import Header from "../components/header/Header";
 import { Link } from "react-router-dom";
 import TopicBlog from "../views/Blog/TopicBlog";
+import Footer from "../components/footer/Footer";
 const Blogs = ({
   blogs,
 getBlogs,
@@ -29,26 +30,40 @@ getBlogs,
     <>
   <Header/>
     
-    
-     
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div className="container">
-        <Link to="/subject/add" className="btn btn-outline-primary btn-circle d-inline float-left">Add Subject</Link>
-        <br></br>
-        <div className="row mt-5">
+  <div class="page-content bg-white">
+   
+        <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Blog Classic</h1>
+				 </div>
+            </div>
+        </div>
+		<div class="breadcrumb-row">
+			<div class="container">
+				<ul class="list-inline">
+					<li><a href="#">Home</a></li>
+					<li>Blog Classic</li>
+				</ul>
+			</div>
+		</div>
 
-         
+    <div class="content-block"> 
+    <div class="section-area section-sp1">  
+    <div class="container">
+    <div class="ttr-blog-grid-3 row" id="masonry">
     <TopicBlogWrapper
 isTheOldest={isTheOldest}
     blogs={blogs.blogs}
    
     />
+    </div>
+    </div>
+    </div>
+    </div>    
 </div>
-</div>
+<Footer/>
+
     </>
   );
 };

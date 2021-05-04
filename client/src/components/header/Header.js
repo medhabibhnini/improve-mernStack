@@ -69,7 +69,7 @@ function Header() {
           <DropdownItem className="noti-title" header tag="div">
             <h6 className="text-overflow m-0">Welcome!</h6>
           </DropdownItem>
-          <DropdownItem to="/profile" tag={Link}>
+          <DropdownItem>
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>
@@ -171,7 +171,13 @@ function Header() {
                       <div class="secondary-menu">
                           <div class="secondary-inner">
                               <ul>
-            
+
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
+                 
+                  <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
+
                 </ul>
               </div>
                       </div>
@@ -199,7 +205,7 @@ function Header() {
                      
                     </li>
                       
-                    <li><a href="javascript:;">Soft skills</a>
+                    <li><Link to="/listsoft">Soft skills</Link>
                      
                     </li>
                   </ul>

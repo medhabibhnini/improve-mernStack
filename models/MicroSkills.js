@@ -17,7 +17,9 @@ macroId:[
     {type:mongoose.Schema.Types.ObjectId, ref: 'MacroSkills'}
   ],
 
-  
+  image: {
+    type: String,
+  }
 
 },{
 timestamps:true

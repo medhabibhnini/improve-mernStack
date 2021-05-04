@@ -68,6 +68,28 @@ history.push("./softskills")
 
     }
 console.log(data)
+const [skills,getSkills] =useState([]);
+
+useEffect(()=>{
+  getAllSkills();},[]);
+  const getAllSkills =()=>{
+  axios.get('http://localhost:5000/soft/microskills')
+  .then((response)=>{
+  const allSkills =response.data;
+  getSkills(allSkills);
+  }).catch(error=>console.error(`Error :${error}`));
+  
+  
+  }
+
+
+
+
+
+
+
+
+
   return (
     <>
     <Dashboard/>
@@ -83,22 +105,22 @@ console.log(data)
         <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
     </div>
  
-      <div class="form-group">
-        <label for="cat">Categorie</label>
+    <div class="form-group">
+      <label for="cat"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Micro skills :</label>
      <select name="type" id="cat" class="form-control" onChange={handleChange} >
-<option value="Communication">Communication</option>
-<option value="Leadership">Leadership</option>
-<option value="Health Influencing">Influencing</option>
-<option value="Interpersonal skills">Interpersonal skills</option>
-<option value="personal skills">personal skills</option>
-<option value="Creativity">Creativity</option>
-<option value="Professional skills">Professional skills</option>
+     <option> choisir un soft skill</option>
+
+   { skills.map(skill=>(
+   
+<option value={skill._id} key={skill._id}>{skill.title}</option>
+ 
+
+    ) )}
 
      </select>
      
      
       </div>
-
 
 
 

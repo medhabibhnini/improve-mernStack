@@ -11,7 +11,7 @@ UserId:[
     {type:mongoose.Schema.Types.ObjectId, ref: 'Users'}
   ],
 SkillId :[
-    {type: mongoose.Schema.Types.ObjectId, ref: 'SoftSkills'}
+    {type: mongoose.Schema.Types.ObjectId, ref: 'MicroSkills'}
 
 ],
 

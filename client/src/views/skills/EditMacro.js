@@ -11,7 +11,7 @@ const initialState = {
     err: '',
     success: ''
 }
-export default function EditSoft  ()  {
+export default function EditMacro  ()  {
     const {id} = useParams()
     const history = useHistory()
     const [data, setData] = useState(initialState)
@@ -73,7 +73,7 @@ if(title || description  )
       <>
           <Dashboard/>
 
-      <div style={{
+    { /* <div style={{
     width:'100%',
     height:'100%'
         
@@ -106,7 +106,47 @@ if(title || description  )
   </form>
 </div>
 <footers/>
-</div>  
+    </div>  */}
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Edit macro skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Edit macro skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Edit macro skills</h4>
+						</div>
+						<div class="widget-inner">
+            <form  onSubmit={handleUpdate} class="edit-profile m-b30">
+    <div class="form-group">
+        <label for="fname" >Title</label>
+        <input type="text" id="fname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange} defaultValue={skills.title} />
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Description </label>
+        <br></br>
+        <textarea id="subject"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} defaultValue={skills.description} style={{height:200}}></textarea>
+    </div>
+    <div class="row">
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
+    </div>
+  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
 </>
     )
 }

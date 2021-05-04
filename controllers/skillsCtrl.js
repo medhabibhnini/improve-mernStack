@@ -131,12 +131,12 @@ return res.status(500).json({msg: err.message})
 createMicro : async(req,res)=>
  {
 try{
-    const {title,description,macroId}= req.body 
-    if(!title || !description  || ! macroId)
+    const {title,description,macroId,image}= req.body 
+    if(!title || !description  || ! macroId || ! image) 
     return res.status(400).json({msg:"please fill in all field"})
-const newMicro = new MicroSkills({title,description})
+const newMicro = new MicroSkills({title,description,macroId,image})
 await newMicro.save()
-res.json({msg :"Macro skills has been enregistred"})
+res.json({msg :"Micro skills has been enregistred"})
 
 }catch(err){ return res.status(500).json({msg:err.message})
 }
@@ -147,8 +147,8 @@ res.json({msg :"Macro skills has been enregistred"})
  updateMicroSkills : async(req,res) =>
  {
 try {
-const {title,description,macroId}= req.body 
-await MicroSkills.findByIdAndUpdate({_id: req.params.id},{title,description,macroId})
+const {title,description,macroId,image}= req.body 
+await MicroSkills.findByIdAndUpdate({_id: req.params.id},{title,description,macroId,image})
 res.json({msg: "Update Success!"})
 }
 catch(err)
@@ -180,7 +180,7 @@ return res.status(500).json({msg: err.message})
  getMicroSkillsById : async (req,res)=>
 {
     try {
-        const skill = await MicroSkills.findById(req.params.id)
+        const skill = await MicroSkills.findById(req.params.id).populate({path :'macroId',select:'title '})
 
         res.json(skill)
     } catch (err) {
@@ -192,7 +192,7 @@ getSkillsNoun : async(req,res)=>
 {
 
     try{
-        const skills = await MicroSkills.find().populate({path :'macroId',select:'title  -_id'}).select('title  -_id');
+        const skills = await MicroSkills.find().populate({path :'macroId',select:'title '}).select('title description image ');
         
         res.json(skills);
     } catch(err)

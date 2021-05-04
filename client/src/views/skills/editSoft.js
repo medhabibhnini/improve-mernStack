@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import image from "./header.jpg";
+import image from "./softi.jpg";
 import axios from 'axios'
+import Dashboard from "../../components/body/dashboard/dashboard"
+
 const initialState = {
     title: '',
     description:'',
@@ -47,7 +49,10 @@ const res = await axios.put(`http://localhost:5000/soft/updateSoft/${id}`,{
     title,type,description
 
 })
+
 setData({...data,err:'',success:res.data.msg})
+history.push("/softskills")
+
 }catch(err)
         {
             setData({...data, err: err.response.data.msg , success: ''})
@@ -58,7 +63,6 @@ setData({...data,err:'',success:res.data.msg})
     const handleUpdate =()=>{
 if(title || description || type ) 
 {handleSubmit()
-    history.push("/admin/softskills")
 
 }
     }
@@ -69,6 +73,9 @@ if(title || description || type )
         backgrounColor:"blue"
            };
     return (
+      <>
+          <Dashboard/>
+
       <div style={{
     width:'100%',
     height:'100%'
@@ -76,43 +83,48 @@ if(title || description || type )
       }}>  
           <div style={mystyle} >
               </div>
-              <img src={image} class="img-fluid"  style={{marginLeft:'12%',height:'auto',width:'1140px',maxWidth:'100%'}}/>
 
-<div class="container" c >
-  <h1 style={{marginLeft:'50%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Edit soft skills </h1>
-  <form onSubmit={handleUpdate}>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname"  style={{marginLeft:'10%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title</label>
-      </div>
-      <div class="col-75">
-        <input type="text"  id="fname" name="title" onChange={handleChange} placeholder="Communication.." defaultValue={skills.title}/>
-      </div>
+<div class="container"  style={{marginLeft:"300px",marginTop:"100px"}} >
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+              
+
+              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Edit soft skills </h1>
+<div class="overlay"></div>
+</div>  <form onSubmit={handleUpdate}>
+    <div class="form-group">
+        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title</label>
+     
+        <input type="text" class="form-control"  id="fname" name="title" onChange={handleChange} placeholder="Communication.." defaultValue={skills.title}/>
+     
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname"  style={{marginLeft:'10%',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type</label>
+    <div class="form-group">
+        <label for="cat">Categorie</label>
+     <select name="type" id="cat" class="form-control" onChange={handleChange} defaultValue={skills.type} >
+<option value="Communication">Communication</option>
+<option value="Leadership">Leadership</option>
+<option value="Health Influencing">Influencing</option>
+<option value="Interpersonal skills">Interpersonal skills</option>
+<option value="personal skills">personal skills</option>
+<option value="Creativity">Creativity</option>
+<option value="Professional skills">Professional skills</option>
+
+     </select>
+     
+     
       </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="type"  onChange={handleChange} placeholder="type.." defaultValue={skills.type}/>
-      </div>
-    </div>
   
-    <div class="row">
-      <div class="col-25">
-        <label for="subject"  style={{marginLeft:'10%',marginBottom:'10%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
-      </div>
-      <div class="col-75">
-        <textarea id="subject" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={skills.description}></textarea>
-      </div>
+    <div class="form-group">
+        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
+        <textarea id="subject" name="description" class="form-control" onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={skills.description}></textarea>
     </div>
     <div class="row">
-      <input type="submit" variant="primary" style={{marginLeft:'50%'}} value="Submit"/>
+      <input type="submit" className="btn btn-primary" variant="primary" style={{marginLeft:'50%'}} value="Submit"/>
     </div>
   </form>
 </div>
 <footers/>
 </div>  
+</>
     )
 }
 

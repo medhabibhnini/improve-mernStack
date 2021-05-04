@@ -4,6 +4,11 @@ import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskills
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
+import Swal from 'sweetalert2'
+
+import Dashboard from "../../components/body/dashboard/dashboard"
+import { Button } from 'react-bootstrap';
+
 import { $CombinedState } from 'redux'
 const initialState ={
   title :'',
@@ -22,6 +27,7 @@ const [data, setData] = useState(initialState)
 
 useEffect(()=>{
 getAllSkills();},[]);
+
 const getAllSkills =()=>{
 axios.get('http://localhost:5000/soft/softskills')
 .then((response)=>{
@@ -57,55 +63,68 @@ const mystyle = {
   marginLeft:"60%"
      };
     return (
-      <div>
-     <div style={mystyle} >
+      <>
+        <Dashboard/>
+      
+<div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0" >
+              <h3 class="mb-0">Card tables</h3>
               </div>
-              <div  class="contenant">
-              <img src={image} class="img-fluid"  style={{marginLeft:'0%',height:'300px',width:'1140px',maxWidth:'100%'}}/>
-              <div class="texte_centrer"> <h1 class="titles">Liste des skills</h1></div>
- 
+              <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
               
-</div>
-<div class="container-fluid">
 
-  <div class="row">
-    <div class="col-lg-9">
-    {loading && <h3>Loading.....</h3>}
-    <div class="table-responsive table--no-card m-b-30"  style={{marginLeft:'180px'}}>
-      <table summary="This table shows how to create responsive tables using Datatables' extended functionality" class="table table-borderless table-striped table-earning">
-        <thead>
-          <tr>
+              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Soft skills management </h1>
+<div class="overlay"></div>
+</div>
+<Link to ="/addsoft">
+            <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add soft skills +</Button>
+
+            </Link >
+           <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px"}}>
+                        <thead class="thead-light">
+                        <tr>
             <th>Title</th>
-            <th  class="text-right">Description</th>
-            <th  class="text-right">Type</th>
-            <th  class="text-right">Actions</th>
+            <th >Description</th>
+            <th  >Type</th>
+            <th >Actions</th>
           </tr>
-        </thead>
-        <tbody>
-          { skills.map(skill =>(
-          <tr data-status="active"  key={skill._id}>
+                        </thead>
+                        <tbody>
+                        { skills.map(skill =>(
+          <tr   key={skill._id}>
             <td>{skill.title}</td>
             <td>{skill.description}</td>
             <td>{skill.type}</td>
             <td>
-            <Link  to={`/admin/editskills/${skill._id}`}>
-                                                <i className="fas fa-edit" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </i>
+            <Link  to={`/editsoft/${skill._id}`}>
+                                                <Button className="fas fa-edit btn btn-warning" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </Button>
                                           
                                             </Link>
-               <i className="fas fa-trash-alt" title="Remove" style={{height:'4px',width:'40px'}} 
-                                    onClick={() => handleDelete(skill._id)}         ></i></td>
+               <Button className="fas fa-trash-alt  btn btn-danger"  title="Remove" style={{height:'40px',width:'60px'}} 
+                                    onClick={() => handleDelete(skill._id)}         ></Button></td>
           </tr>
            ) )}
-        </tbody> 
-        <tfoot>
-       
-        </tfoot>
-      </table>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+                        </tbody>
+                    </table>
+             </div>
+             </div>
+    
+  
+    
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+</>
+/************************************ */
+
     )
 }
 

@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 // @material-ui/core components
+import {useHistory} from 'react-router-dom'
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import axios from 'axios'
+import Dashboard from "../../components/body/dashboard/dashboard"
 
 import { isEmpty } from "../../components/utils/validation/Validation";
 const styles = {
@@ -36,6 +39,7 @@ success: ''
 }
 
 export default function Softskills() {
+  const history = useHistory()
 
     const [data, setData] = useState(initialState)
     const {title,type,description, err, success} = data
@@ -53,6 +57,7 @@ const res = await axios.post('http://localhost:5000/soft/ajoutSoft',{
   title,type,description
 })
 setData({...data,err:'',success:res.data.msg})
+history.push("./softskills")
 } catch(err)
 {
   err.response.data.msg && 
@@ -63,40 +68,72 @@ setData({...data,err:'',success:res.data.msg})
 
     }
 console.log(data)
-  return (
-    
-<div class="container">
-  <h1>Add soft skills </h1>
-  <form onSubmit={handleSubmit}>
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Tile</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="fname" name="title" onChange={handleChange} placeholder="Communication.."/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Type</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="type"  onChange={handleChange} placeholder="type.."/>
-      </div>
-    </div>
+const [skills,getSkills] =useState([]);
+
+useEffect(()=>{
+  getAllSkills();},[]);
+  const getAllSkills =()=>{
+  axios.get('http://localhost:5000/soft/microskills')
+  .then((response)=>{
+  const allSkills =response.data;
+  getSkills(allSkills);
+  }).catch(error=>console.error(`Error :${error}`));
   
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Description</label>
+  
+  }
+
+
+
+
+
+
+
+
+
+  return (
+    <>
+    <Dashboard/>
+<div class="container" style={{marginLeft:"300px",marginTop:"100px"}}>
+<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
+              
+
+              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Add soft skills </h1>
+<div class="overlay"></div>
+</div>  <form onSubmit={handleSubmit}>
+    <div class="form-group">
+        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title :</label>
+        <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
+    </div>
+ 
+    <div class="form-group">
+      <label for="cat"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Micro skills :</label>
+     <select name="type" id="cat" class="form-control" onChange={handleChange} >
+     <option> choisir un soft skill</option>
+
+   { skills.map(skill=>(
+   
+<option value={skill._id} key={skill._id}>{skill.title}</option>
+ 
+
+    ) )}
+
+     </select>
+     
+     
       </div>
-      <div class="col-75">
-        <textarea id="subject" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
-      </div>
+
+
+
+
+    <div class="form-group">
+        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description :</label>
+        <textarea id="subject"  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
     </div>
     <div class="row">
-      <input type="submit" value="Submit"/>
+      <input type="submit" className="btn btn-primary" value="Submit"/>
     </div>
   </form>
 </div>
+</>
   );
 }

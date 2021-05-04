@@ -9,7 +9,6 @@ import {fetchAllUsers, dispatchGetAllUsers} from '../../../redux/actions/usersAc
 import Header from '../../header/Header'
 import Footer from '../../footer/Footer'
 import Dashboard from '../dashboard/dashboard'
-import './table.css'
 import MaterialTable from 'material-table';
 import Pagination from './Pagination'
 import { Table } from 'reactstrap'
@@ -157,33 +156,34 @@ function ListeUser() {
         
         <>
                    
+                   <Dashboard/>
 
-      <div>
-           <input
+     
+
+        <div class="col"> 
+          <div class="card shadow"  >
+            <div class="card-header border-0">
+              <h3 class="mb-0">Card tables</h3>
+              </div>
+              <div>
+           <input  style={{marginLeft:"1000px",marginTop:"50px",width:"150px"}} 
            type="text"
            placeholder="search .."
            onChange={(event) => {
                setSearch(event.target.value);
            }}
-           >
+         
+         >
            </input>
-           <Pagination postsPerPage={postsPerPage} totalPosts={users.length} paginate={paginate}/>
            </div>
-
-        <div class="col">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <h3 class="mb-0">Card tables</h3>
-              </div>
-             
              {err && showErrMsg(err)}
            {success && showSuccessMsg(success)}
            {loading && <h3>Loading.....</h3>}
            
 
-           <Table /*data={search(data)} */ class="table align-items-center table-flush">
+           <Table /*data={search(data)} */ style={{marginLeft:"300px",marginTop:"0px",width:"1000px"}} >
 
-                        <thead  class="thead-light">
+                        <thead >
                             <tr>
                                 <th>Avatar</th>
                                 <th>Name</th>
@@ -205,15 +205,15 @@ function ListeUser() {
                                     }
                                 }).map(user => (
                                     <tr key={user._id}>
-                                        <td>
+                                        <td style={{width:"30px"}}>
                                         <a href="#" class="avatar rounded-circle mr-3">
                           <img alt="Image placeholder" src={user.avatar}/>
                         </a>
                           </td>
-                                        <td><span className="mb-0 text-sm">{user.name}</span></td>
-                                        <td><span className="mb-0 text-sm">{user.email}</span></td>
+                                        <td style={{width:"30px"}}><span className="mb-0 text-sm">{user.name}</span></td>
+                                        <td style={{width:"70px"}}><span className="mb-0 text-sm">{user.email}</span></td>
                                   
-                                        <td>
+                                        <td style={{width:"50px"}}>
                                             {
                                                 user.role === 1
                                                 ?   <span class="badge badge-dot">
@@ -224,7 +224,7 @@ function ListeUser() {
                                               </span>
                                             }
                                         </td>
-                                        <td>
+                                        <td style={{width:"90px"}}>
                                             <Link to={`/edit_user/${user._id}`}>
                                                 <i className="fas fa-edit" title="Edit"></i>
                                             </Link>
@@ -236,7 +236,9 @@ function ListeUser() {
                             }
                         </tbody>
                     </Table>
-
+                    <div style={{marginLeft:"500px"}}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={users.length} paginate={paginate} />
+                    </div>
              </div>
              </div>
     

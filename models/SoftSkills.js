@@ -15,14 +15,10 @@ description :{
     unique :true
 
 },
-type :{
-    type: String,
-    required :[true,"please enter the type"],
-    trim:true,
-    unique :true
+type:[
+    {type:mongoose.Schema.Types.ObjectId, ref: 'MicroSkills'}
+  ],
 
-
-},
 
 },{
 timestamps:true

@@ -295,6 +295,7 @@ export default function ListSoft  (){
                   
 								</div> 
                 ))}
+                
 								<div class="col-lg-12 m-b20">
 									<div class="pagination-bx rounded-sm gray clearfix">
 										<ul class="pagination">

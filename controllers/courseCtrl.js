@@ -61,9 +61,9 @@ const courseCtrl = {
     },
     createCourse: async(req, res) =>{
         try {
-            const {title, price, description, image, category, link} = req.body;
+            const {title, price, description, image, category, link,place,instructor} = req.body;
             if(!image) return res.status(400).json({msg: "No image upload"})
-             const newCourse = new Courses({title,description,category,price,link,image})
+             const newCourse = new Courses({title,description,category,price,link,image,place, instructor})
 
             await newCourse.save()
             res.json({msg: "Created a course"})

@@ -12,7 +12,7 @@ const StripeCheckoutButton = ({ price }) => {
 
     return (
         <StripeCheckout
-            label='Pay Now'
+            label='Buy This Course'
             name='imPROve Co.'
             billingAddress
             shippingAddress

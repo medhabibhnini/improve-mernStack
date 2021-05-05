@@ -216,10 +216,7 @@ function Header() {
                       <h5 class="menu-adv-title">Our Courses</h5>
                       <ul>
                         <li><a href="/listcourse">Courses </a></li>
-                        <li><a href="courses-details.html">Courses Details</a></li>
-                        <li><a href="profile.html">Instructor Profile</a></li>
-                        <li><a href="event.html">Upcoming Event</a></li>
-                        <li><a href="membership.html">Membership</a></li>
+                        
                       </ul>
                     </li>
                     <li class="add-menu-right">

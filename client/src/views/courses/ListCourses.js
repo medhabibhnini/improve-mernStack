@@ -21,7 +21,8 @@ const initialState ={
   success: ''
   
   }
-  
+
+
 const ListCourses = () => {
 const [courses,getCourses] =useState([]);
 const [loading, setLoading] = useState(false)
@@ -83,7 +84,7 @@ const mystyle = {
       <>
         <Dashboard/>
         
-
+{/*
 <div class="col">
           <div class="card shadow">
             <div class="card-header border-0" >
@@ -139,8 +140,79 @@ const mystyle = {
 <br></br>
 <br></br>
 <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+
+                        */}
+                        
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Courses</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Courses</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Courses</h4>
+              <Link to ="/addmicro">
+            <Button className=" " style={{marginTop:"20px"}}>Add Courses + </Button>
+
+            </Link >
+						</div>
+						<div class="widget-inner">
+            { courses.map(courses =>(
+							<div  key={courses._id} class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src={courses.image} alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-pic">
+												</div>
+												<div class="card-courses-user-info">
+										
+												</div>
+											</li>
+											<li class="card-courses-categories">
+											
+											</li>
+								
+										
+										</ul>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<h6 class="m-b10">Course Description</h6>
+											<p>{courses.description} </p>	
+										</div>
+										<div class="col-md-12">
+											<Link  to={`/edit_course/${courses._id}`} class="btn green radius-xl outline">Edit</Link>
+											<Link  onClick={() => handleDelete(courses._id)}  class="btn red outline radius-xl ">Delete</Link>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						
+             ) )}
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="ttr-overlay"></div>
+
+
 </>
-/************************************ */
 
     )
 }

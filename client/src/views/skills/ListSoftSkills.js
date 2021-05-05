@@ -7,8 +7,6 @@ import image from "./header.jpg";
 
 import Swal from 'sweetalert2'
 
-import Swal from 'sweetalert2'
-
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';

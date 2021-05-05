@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import TopicPost from "./TopicPost";
 
 const TopicPostsWrapper = ({
@@ -8,9 +8,10 @@ const TopicPostsWrapper = ({
   isTheMostLiked,
   posts,
   blog_id,
-  currentPosts,
-  search
+ 
 }) =>
+
+  
   posts !== null &&
   posts.length > 0 &&
   posts.map((post) => (
@@ -24,6 +25,8 @@ const TopicPostsWrapper = ({
       key={post._id}
       
     />
+  
   ));
+
 
 export default TopicPostsWrapper;

@@ -20,12 +20,17 @@ getBlogs,
 
     isTheOldest,
   } = topicsSortType;
+  //const blogss =blogs.Blogs;
+
  
+
   useEffect(() => {
   if (isTheOldest) getBlogs();
 
   }, []);
+ 
   console.log(blogs.blogs)
+  //const currentPosts = (blogs).slice(indexOfFirstPost, indexOfLastPost);
   return (
     <>
   <Header/>

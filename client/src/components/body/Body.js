@@ -59,6 +59,7 @@ import EditMacro from '../../views/skills/EditMacro'
 import EditMicro from '../../views/skills/EditMicro'
 
 import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
+import Blogs from '../../views/Blogs'
 function Body() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
@@ -134,10 +135,13 @@ function Body() {
                             <Route path="/editmicro/:id" component={isAdmin ? EditMicro : NotFound} exact  />
                             <Route path="/addhards" component={isLogged ? Addhard : NotFound} exact />  
 
-               
+                            <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
-                
+                <Route path="/subjects" component={ Blogs } exact />  
+                <Route path="/topics/:blog_id" component={  Topics  } exact />  
+                <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
+                <Route path="/404" exact component={NotFound} />
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}
               {/*  <Route exact path="/linkedin" component={LinkedInPopUp} />*/}
                 {/*<Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />

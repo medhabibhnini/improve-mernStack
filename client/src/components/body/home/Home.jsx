@@ -120,7 +120,7 @@ const Home=() =>{
 								data-paddingbottom="[10,10,10,10]"
 								data-paddingleft="[0,0,0,0]"
 								style={{zIndex: "6", fontFamily:"rubik", fontWeight:"700", textAlign:"center", whiteSpace: "normal"}}>
-									Welcome To University
+									Welcome To imProve
 							</div>
 
 
@@ -164,7 +164,8 @@ const Home=() =>{
 								data-paddingbottom="[0,0,0,0]"
 								data-paddingleft="[0,0,0,0]"
 								style={{zIndex: "7", textTransform:"capitalize", whiteSpace: "unset", color:"#fff", fontFamily:"rubik", fontSize:"18px", lineHeight:"28px", fontWeight:"400"}}>
-									 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+						
+						Build your soft and hard skills with smart way
 							</div>
 
 							<div class="tp-caption Newspaper-Button rev-btn " 
@@ -277,7 +278,7 @@ const Home=() =>{
 								data-paddingbottom="[10,10,10,10]"
 								data-paddingleft="[0,0,0,0]"
 								style={{zIndex: "6", fontFamily:"rubik", fontWeight:"700", textAlign:"center", whiteSpace: "normal",textTransform:"uppercase"}}>
-									Welcome To University
+									Welcome To Improve
 							</div>
 
 	
@@ -321,7 +322,7 @@ const Home=() =>{
 								data-paddingbottom="[0,0,0,0]"
 								data-paddingleft="[0,0,0,0]"
 								style={{zIndex: "7", textTransform:"capitalize", whiteSpace: "unset", color:"#fff", fontFamily:"rubik", fontSize:"18px", lineHeight:"28px", fontWeight:"400"}}>
-									 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+Here you can evaluate yourself
 							</div>
 			
 							<div class="tp-caption Newspaper-Button rev-btn " 

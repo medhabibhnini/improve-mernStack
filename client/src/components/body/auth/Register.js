@@ -29,7 +29,13 @@ function Register() {
         const {name, value} = e.target
         setUser({...user, [name]:value, err: '', success: ''})
     }
-
+	var verifyCallback = (response) => {
+		console.log(response);
+		if (!response) {
+			alert("captcha baby")
+		}
+	};
+	  
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -148,7 +154,12 @@ function Register() {
 						<div class="col-lg-12 m-b30">
 							<button name="submit" type="submit" value="Submit" class="btn button-md">Sign Up</button>
 						</div>
-				
+						<Recaptcha
+            sitekey="6Lf1V7AaAAAAAPp_6vsd_qBGMh4LcteRsSVi7Ari"
+            render="explicit"
+           // onloadCallback={this.recaptchaLoaded}
+            verifyCallback={verifyCallback}
+          />
 					</div>
 				</form>
 			</div>

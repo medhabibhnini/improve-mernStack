@@ -19,7 +19,7 @@ const TopicPost = ({
   blog_id,
   auth,
 }) => {
- 
+  
   return (
     <>
    
@@ -78,7 +78,7 @@ const TopicPost = ({
                               : "far fa-thumbs-up"
                           } ></i></Link>
                     </div>
-                    <Link to={`/topics/topic/${post._id}`} class="comments-bx"> View Details</Link> 
+                    <Link to={`/topics/topic/${post._id}`} class="comments-bx btn black radius-no"> View Details</Link> 
                  
 									</div>
 								</div>

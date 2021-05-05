@@ -224,11 +224,8 @@ function Header() {
                     </li>
                   </ul>
                 </li>
-                <li><a href="javascript:;">Blog <i class="fa fa-chevron-down"></i></a>
-                  <ul class="sub-menu">
-                    <li><Link to="/subjects">All Subjects</Link></li>
-                    <li><Link to="/subject/add">Add Subject</Link></li>
-                  </ul>
+                <li><Link to="/subjects">Blog </Link>
+                 
                 </li>
                 <li><a href="javascript:;">Event <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">

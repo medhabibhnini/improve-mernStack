@@ -34,7 +34,7 @@ const Home=() =>{
 
           <body id="bg" >
 <div class="page-wraper">
-<div id="loading-icon-bx"></div>
+
 <header class="header rs-nav" >
 	
 <Header />

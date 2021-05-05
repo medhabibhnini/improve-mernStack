@@ -195,7 +195,7 @@ function Header() {
                 <a href="index.html"><img src="assets/images/logo.png" alt=""/></a>
               </div>
                           <ul class="nav navbar-nav">	
-                <li class="active"><a href="javascript:;">Home </a>
+                <li class="active"><Link to="/">Home </Link>
                 
                 </li>
                 <li><a href="javascript:;">Skills <i class="fa fa-chevron-down"></i></a>

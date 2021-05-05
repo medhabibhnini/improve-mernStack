@@ -2,12 +2,10 @@ import React,{useState, useEffect} from 'react'
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import axios from 'axios'
-
-
 import { Button ,Modal} from 'react-bootstrap';
 import { isEmpty } from "../../components/utils/validation/Validation";
 import Swal from 'sweetalert2'
-
+import Pagination from '../../components/body/profile/Pagination'
 
 import {Link} from 'react-router-dom'
 import {useParams, useHistory} from 'react-router-dom'
@@ -41,7 +39,15 @@ export default function ListSoft  (){
     
     
     }
+    const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = skills.slice(indexOfFirstPost, indexOfLastPost);
 
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    
 
     const handleSubmit = async e => {
       e.preventDefault()
@@ -256,12 +262,33 @@ export default function ListSoft  (){
                                 </div>
                             </div>
 						</div>
-
+         
         		<div class="col-lg-9 col-md-8 col-sm-12">
           
 
 							<div class="row">
-              { skills.map( skill =>(   
+
+              <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="search" style={{marginLeft:"600px",width:"150px"}} id="example-search-input"
+                   onChange={(event) => {
+                    setSearch(event.target.value);
+                }}
+                />
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+     </div>
+
+              {  currentPosts.filter((val)=> {
+                                    if (search =="") {
+                                        return val
+                                    } else if ((val.title.toLowerCase().includes(search.toLowerCase())) 
+                                    ) {
+                                        return val
+                                    }
+                                }).map( skill =>(   
 
 								<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
 									<div class="cours-bx">
@@ -295,20 +322,15 @@ export default function ListSoft  (){
                   
 								</div> 
                 ))}
-                
-								<div class="col-lg-12 m-b20">
-									<div class="pagination-bx rounded-sm gray clearfix">
-										<ul class="pagination">
-											<li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-											<li class="active"><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
-										</ul>
-									</div>
-								</div>
+
+
+
 							</div>
+              <div style={{marginLeft:"500px"}}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={skills.length} paginate={paginate} />
+                    </div> 
 						</div>
+        
 					</div>
 				</div>
             </div>

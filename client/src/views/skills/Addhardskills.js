@@ -81,6 +81,7 @@ history.push("./hardskills")
 
 
     }
+    console.log(data)
     return(
 <> 
 <Dashboard/>

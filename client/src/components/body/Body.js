@@ -48,7 +48,7 @@ import Addhard from '../../views/front/AjoutHard'
 import Edithardskills from '../../views/skills/EditHard'
 import AjoutHard from '../../views/front/AjoutHard'
 import ListHard from '../../views/front/ListHard'
-import Blog from  '../../views/Blogs'
+
 import HomeBack from '../../views/Home'
 
 import AddMacro from '../../views/skills/AddMacroSkill'
@@ -134,12 +134,10 @@ function Body() {
                             <Route path="/editmicro/:id" component={isAdmin ? EditMicro : NotFound} exact  />
                             <Route path="/addhards" component={isLogged ? Addhard : NotFound} exact />  
 
-                <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
+               
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
-                <Route path="/subjects" component={ Blog } exact />  
-                <Route path="/topics/:blog_id" component={ Topics } exact />  
-                <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
+                
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}
               {/*  <Route exact path="/linkedin" component={LinkedInPopUp} />*/}
                 {/*<Route path="/softskills" component={isAdmin ? Softskills : NotFound} exact  />

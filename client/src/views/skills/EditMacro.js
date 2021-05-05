@@ -8,26 +8,24 @@ import Dashboard from "../../components/body/dashboard/dashboard"
 const initialState = {
     title: '',
     description:'',
-    type:'',
     err: '',
     success: ''
 }
-export default function EditSoft  ()  {
+export default function EditMacro  ()  {
     const {id} = useParams()
     const history = useHistory()
     const [data, setData] = useState(initialState)
 
-    const [editSkills,setEditSkills]= useState([])
     const [skills,getSkills] =useState([]);
     
-    const {title,description,type, err, success} = data
+    const {title,description, err, success} = data
 
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getsoft/${id}`)
+        axios.get(`http://localhost:5000/soft/getmacro/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -45,14 +43,12 @@ export default function EditSoft  ()  {
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateSoft/${id}`,{
-    title,type,description
+const res = await axios.put(`http://localhost:5000/soft/updateMacro/${id}`,{
+    title,description
 
 })
 
 setData({...data,err:'',success:res.data.msg})
-history.push("/softskills")
-
 }catch(err)
         {
             setData({...data, err: err.response.data.msg , success: ''})
@@ -61,8 +57,9 @@ history.push("/softskills")
     }
    
     const handleUpdate =()=>{
-if(title || description || type ) 
+if(title || description  ) 
 {handleSubmit()
+    history.push("/listmacro")
 
 }
     }
@@ -76,7 +73,7 @@ if(title || description || type )
       <>
           <Dashboard/>
 
-      <div style={{
+    { /* <div style={{
     width:'100%',
     height:'100%'
         
@@ -97,21 +94,7 @@ if(title || description || type )
         <input type="text" class="form-control"  id="fname" name="title" onChange={handleChange} placeholder="Communication.." defaultValue={skills.title}/>
      
     </div>
-    <div class="form-group">
-        <label for="cat">Categorie</label>
-     <select name="type" id="cat" class="form-control" onChange={handleChange} defaultValue={skills.type} >
-<option value="Communication">Communication</option>
-<option value="Leadership">Leadership</option>
-<option value="Health Influencing">Influencing</option>
-<option value="Interpersonal skills">Interpersonal skills</option>
-<option value="personal skills">personal skills</option>
-<option value="Creativity">Creativity</option>
-<option value="Professional skills">Professional skills</option>
-
-     </select>
-     
-     
-      </div>
+ 
   
     <div class="form-group">
         <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
@@ -123,7 +106,47 @@ if(title || description || type )
   </form>
 </div>
 <footers/>
-</div>  
+    </div>  */}
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Edit macro skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Edit macro skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Edit macro skills</h4>
+						</div>
+						<div class="widget-inner">
+            <form  onSubmit={handleUpdate} class="edit-profile m-b30">
+    <div class="form-group">
+        <label for="fname" >Title</label>
+        <input type="text" id="fname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange} defaultValue={skills.title} />
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Description </label>
+        <br></br>
+        <textarea id="subject"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} defaultValue={skills.description} style={{height:200}}></textarea>
+    </div>
+    <div class="row">
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
+    </div>
+  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
 </>
     )
 }

@@ -18,13 +18,37 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  microId:[
+    {type:mongoose.Schema.Types.ObjectId, ref: 'MicroSkills'}
+  ],
+
   price: {
     type: Number,
     required: true,
   },
+  
+  place: {
+    type: String,
+    
+  },
+  
+  instructor: {
+    type: String,
+    
+  },
+  location: {
+    type: String,
+    
+  },
+  date: {
+    type: Date,
+    
+  },
+  
+  
   link: {
     type: String,
-    required: true,
+    
   },
   
 })

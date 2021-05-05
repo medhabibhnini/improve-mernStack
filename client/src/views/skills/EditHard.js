@@ -61,6 +61,7 @@ const res = await axios.put(`http://localhost:5000/hard/updateHard/${id}`,{
 })
 
 setData({...data,err:'',success:res.data.msg})
+history.push("/hardskills")
 
 }catch(err)
         {
@@ -72,7 +73,6 @@ setData({...data,err:'',success:res.data.msg})
     const handleUpdate =()=>{
 if(title || description || type ) 
 {handleSubmit()
-    history.push("/hardskills")
 
 }
     }

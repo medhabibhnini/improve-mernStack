@@ -4,9 +4,7 @@ import {fetchAllSoft, dispatchGetAllSkills} from '../../redux/actions/softskills
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
-
 import Swal from 'sweetalert2'
-
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -14,24 +12,25 @@ import { Button } from 'react-bootstrap';
 import { $CombinedState } from 'redux'
 const initialState ={
   title :'',
-  type :'',
+ 
   description :'',
   err: '',
   success: ''
   
   }
   
-const ListSoftSkills = () => {
+const ListMacroSkills = () => {
 const [skills,getSkills] =useState([]);
 const [loading, setLoading] = useState(false)
 const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
+const auth = useSelector(state => state.auth)
 
+const {user, isLogged, isAdmin} = auth
 useEffect(()=>{
 getAllSkills();},[]);
-
 const getAllSkills =()=>{
-axios.get('http://localhost:5000/soft/softskills')
+axios.get('http://localhost:5000/soft/macroskills')
 .then((response)=>{
 const allSkills =response.data;
 getSkills(allSkills);
@@ -44,7 +43,7 @@ try{
   if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/soft/deleteskills/${id}`, {
+    await axios.delete(`http://localhost:5000/soft/deletemacro/${id}`, {
 
   })
   setLoading(false)
@@ -67,7 +66,7 @@ const mystyle = {
     return (
       <>
         <Dashboard/>
-      
+ { /*    
 <div class="col">
           <div class="card shadow">
             <div class="card-header border-0" >
@@ -79,8 +78,8 @@ const mystyle = {
               <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Soft skills management </h1>
 <div class="overlay"></div>
 </div>
-<Link>
-            <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add soft skills +</Button>
+<Link to ="/addmacro">
+            <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add macro skills +</Button>
 
             </Link >
            <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px"}}>
@@ -88,7 +87,6 @@ const mystyle = {
                         <tr>
             <th>Title</th>
             <th >Description</th>
-            <th  >Type</th>
             <th >Actions</th>
           </tr>
                         </thead>
@@ -97,9 +95,8 @@ const mystyle = {
           <tr   key={skill._id}>
             <td>{skill.title}</td>
             <td>{skill.description}</td>
-            <td>{skill.type}</td>
             <td>
-            <Link  to={`/editsoft/${skill._id}`}>
+            <Link  to={`/editmacro/${skill._id}`}>
                                                 <Button className="fas fa-edit btn btn-warning" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </Button>
                                           
                                             </Link>
@@ -123,10 +120,89 @@ const mystyle = {
 <br></br>
 <br></br>
 <br></br>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>*/ }
+
+
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Macro soft Skills</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Macro soft Skills</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Macro soft skills </h4>
+              <Link to ="/addmacro">
+            <Button className=" " style={{marginTop:"20px"}}>Add Macro skills + </Button>
+
+            </Link >
+						</div>
+						<div class="widget-inner">
+            { skills.map(skill =>(
+							<div  key={skill._id} class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src="assets/images/courses/pic1.jpg" alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<h4>{skill.title}</h4>
+									</div>
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-pic">
+													<img src= {user.avatar} alt=""/>
+												</div>
+												<div class="card-courses-user-info">
+										
+												</div>
+											</li>
+											<li class="card-courses-categories">
+											
+											</li>
+								
+										
+										</ul>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<h6 class="m-b10">Macro Skills Description</h6>
+											<p>{skill.description} </p>	
+										</div>
+										<div class="col-md-12">
+											<Link  to={`/editmacro/${skill._id}`} class="btn green radius-xl outline">Edit</Link>
+											<Link  onClick={() => handleDelete(skill._id)}  class="btn red outline radius-xl ">Delete</Link>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						
+             ) )}
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="ttr-overlay"></div>
+
+
+
+
+
+
 </>
 
     )
 }
 
-export default ListSoftSkills
+export default ListMacroSkills

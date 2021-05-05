@@ -63,7 +63,6 @@ const [scores,setScores]=useState([]);
 const [softskills,getsofskills]= useState([])
 const [softscore,getsoftscore]=useState([])
 const [nomsoft,getnomsoft]=useState([])
-
 const handleChanges = e => {
   const {name, value} = e.target
   setDatas({...datas, [name]:value, err:'', success: ''})
@@ -181,10 +180,12 @@ const tab2=returnScores()
           for(let i = 0, len = skillUp[index].SkillId.length; i < len; ++i)
         {
           tab1[index]=skillUp[index].SkillId[i].title
-
+         // settabHard(skillUp[index].SkillId[i].title)
 
         }
-        } return tab1
+        }
+        console.log(tab1)
+        return tab1 
       }
       const returnTabsoft=()=>
       {nomSkillss();
@@ -199,6 +200,7 @@ const tab2=returnScores()
         }
         } return tab1
       }
+      console.log(nomsoft)
       const tab=returnTab()
 const nomsoftss=returnTabsoft()
       const addSkill=()=>{
@@ -442,14 +444,14 @@ const nomsoftss=returnTabsoft()
                     <h3 class="mb-0">My Hard skills Advancement</h3>
                   </div>
                   <form >   
-                  <select name="title" onChange={handleChanges}>
+                 {/* <select name="title" onChange={handleChanges}>
                     { tab.map( skill=>(
 <option value={skill}>
 {skill}
 
 </option>
                      ) )}
-                  </select>
+                    </select>*/}
                              <Button >-</Button>
 </form>
                   <Button>+</Button>

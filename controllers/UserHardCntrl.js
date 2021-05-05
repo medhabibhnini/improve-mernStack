@@ -66,7 +66,7 @@ getNomSkills : async(req,res)=>
 {
 
     try{
-        const skills = await ListHard.find({UserId: req.params.id}).populate({path :'SkillId',select:'title  -_id'}).select('title  -_id');
+        const skills = await ListHard.find({UserId: req.params.id}).populate({path :'SkillId',select:'title  -_id'}).select(' -_id');
         
         res.json(skills);
     } catch(err)

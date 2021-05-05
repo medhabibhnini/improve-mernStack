@@ -5,6 +5,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
 import Swal from 'sweetalert2'
+import Pagination from '../../components/body/profile/Pagination'
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -25,7 +26,14 @@ const [loading, setLoading] = useState(false)
 const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
 const auth = useSelector(state => state.auth)
+const [search, setSearch] = useState("");
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage] = useState(3);
+const indexOfLastPost = currentPage * postsPerPage;
+const indexOfFirstPost = indexOfLastPost - postsPerPage;
+const paginate = pageNumber => setCurrentPage(pageNumber);
 
+const currentPosts = skills.slice(indexOfFirstPost, indexOfLastPost);
 const {user, isLogged, isAdmin} = auth
 useEffect(()=>{
 getAllSkills();},[]);
@@ -144,8 +152,28 @@ const mystyle = {
 
             </Link >
 						</div>
+        
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="search" style={{marginLeft:"600px",width:"150px"}} id="example-search-input"
+                   onChange={(event) => {
+                    setSearch(event.target.value);
+                }}
+                />
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+     </div>
 						<div class="widget-inner">
-            { skills.map(skill =>(
+           {  currentPosts.filter((val)=> {
+                                    if (search =="") {
+                                        return val
+                                    } else if ((val.title.toLowerCase().includes(search.toLowerCase())) 
+                                    ) {
+                                        return val
+                                    }
+                                }).map(skill =>(
 							<div  key={skill._id} class="card-courses-list admin-courses">
 								<div class="card-courses-media">
 									<img src="assets/images/courses/pic1.jpg" alt=""/>
@@ -187,6 +215,9 @@ const mystyle = {
 						
              ) )}
 						
+            <div style={{marginLeft:"500px"}}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={skills.length} paginate={paginate} />
+                    </div> 
 						</div>
 					</div>
 				</div>

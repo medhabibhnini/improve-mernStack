@@ -199,6 +199,7 @@ function Header() {
                 <li class="active"><a href="javascript:;">Home </a>
                 
                 </li>
+                
                 <li><a href="javascript:;">Skills <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">
                  
@@ -211,6 +212,7 @@ function Header() {
                     </li>
                   </ul>
                 </li>
+
                 <li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu add-menu">
                     <li class="add-menu-left">
@@ -255,6 +257,9 @@ function Header() {
 
 
 
+
+<li><Link to="/help">Help </Link>
+                </li>
                 <li><a href="javascript:;">Contact us</a>
                   <ul class="sub-menu">
                   

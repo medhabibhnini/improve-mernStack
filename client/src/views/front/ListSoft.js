@@ -39,6 +39,47 @@ export default function ListSoft  (){
     
     }
 
+    const notif = async e => {
+      Swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        progressSteps: ['1', '2']
+      }).queue([
+        {
+          title: 'Mouse Scroll on the added Skills',
+          text: 'Scroll on the picture, a button will appear',
+          imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image'
+       
+        },{
+          title: 'Select add Score Button',
+          text: 'A PoP UP will appear , be free to add your score',
+          imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image'
+          
+        }
+      ]).then((result) => {
+        if (result.value) {
+          const answers = JSON.stringify(result.value)
+          Swal.fire({
+        title: '<strong>We are here to <u>HELP YOU</u></strong>',
+        icon: 'info',
+        html:
+          'You can use <b>HELP SECTION</b>, ' +
+          'for more details, hope it was clear for you', 
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up"></i> Clear!',
+        confirmButtonAriaLabel: 'Great! Enjoy it!',
+      })
+        }
+      })
+    }
 
     const handleSubmit = async e => {
       e.preventDefault()
@@ -107,7 +148,9 @@ export default function ListSoft  (){
   return (
         <>
             <Header/>
-           {/* <br></br>
+           {
+           
+           /* <br></br>
     <br></br>
     <br></br>
     <br></br>
@@ -256,7 +299,10 @@ export default function ListSoft  (){
 
         		<div class="col-lg-9 col-md-8 col-sm-12">
           
+            <div class="form-group">
+    <input type="submit" class="form-control" value="HELP" onClick={notif} />
 
+  </div>
 							<div class="row">
               { skills.map( skill =>(   
 

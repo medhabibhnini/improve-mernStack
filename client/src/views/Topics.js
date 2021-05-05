@@ -37,7 +37,7 @@ const Topics = ({
     isTheMostLiked,
     isTheMostRecent,
   } = topicsSortType;
-  const [search, setSearch] = useState("");
+
   useEffect(() => {
 
    
@@ -98,11 +98,6 @@ const Topics = ({
       getMostRecentPosts(blog_id);
     }
   };
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(3);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  //const currentPosts //= posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <>
@@ -122,6 +117,7 @@ const Topics = ({
 				<ul class="list-inline">
 					<li><Link to="/subjects">go Back</Link></li>
 					<li>Posts</li>
+          <li><Link to={`/posts/add/${blog_id}`}>Add Post</Link></li>
           <li></li>
          
 				</ul>
@@ -221,8 +217,6 @@ const Topics = ({
           isTheMostLiked={isTheMostLiked}
           posts={posts.posts}
           blog_id={blog_id}
-          //currentPosts={currentPosts}
-          search={search}
         />
     
 					
@@ -236,14 +230,10 @@ const Topics = ({
 									<div class="search-bx style-1">
 										<form role="search" method="post">
 											<div class="input-group">
-												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text"
-                          onChange={(event) => {
-                            
-                            setSearch(event.target.value);
-                        }}
-                        value={search}
-                        />
-										
+												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text"/>
+												<span class="input-group-btn">
+													<button type="submit" class="fa fa-search text-primary"></button>
+												</span> 
 											</div>
 										</form>
 									</div>

@@ -45,7 +45,7 @@ const TopicPage = ({
 
    
        
-   <div className="container">
+   
        
 <div class="clear" id="comment-list">
 								<div class="comments-area" id="comments">
@@ -63,7 +63,6 @@ const TopicPage = ({
     <TopicPageForm auth={auth} post={post} createComment={createComment} />
  
 
-    </div>
     </div>
     <Footer/>
 </>

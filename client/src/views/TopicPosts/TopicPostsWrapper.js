@@ -7,9 +7,7 @@ const TopicPostsWrapper = ({
   isTheMostRecent,
   isTheMostLiked,
   posts,
-  blog_id,
-  currentPosts,
-  search
+  blog_id
 }) =>
   posts !== null &&
   posts.length > 0 &&

@@ -7,7 +7,7 @@ import axios from "axios";
 export const getMostRecentPosts = (blog_id) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/forum/posts/the_most_recent/${blog_id}`
+      `/forum/posts/the_most_recent/${blog_id}`
     );
     dispatch({ type: THE_MOST_RECENT_POSTS, payload: res.data });
   } catch (error) {

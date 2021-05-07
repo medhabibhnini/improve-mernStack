@@ -49,7 +49,7 @@ try {
     confirmButtonText: 'Yes, add it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      const res =  axios.post('http://localhost:5000/hard/ajouthard',{
+      const res =  axios.post('/hard/ajouthard',{
         title,type,description,categorie
       })
    //   setData({...data,err:'',success:res.data.msg})

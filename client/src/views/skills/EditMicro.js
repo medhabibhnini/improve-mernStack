@@ -33,7 +33,7 @@ export default function EditMicro ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getmicro/${id}`)
+        axios.get(`/soft/getmicro/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -45,7 +45,7 @@ export default function EditMicro ()  {
         }
       
             const getMacross =()=>{
-            axios.get('http://localhost:5000/soft/macroskills')
+            axios.get('/soft/macroskills')
             .then((response)=>{
             const allSkills =response.data;
             getMacros(allSkills);
@@ -63,7 +63,7 @@ export default function EditMicro ()  {
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateMicro/${id}`,{
+const res = await axios.put(`/soft/updateMicro/${id}`,{
     title,description,macroId
 
 })

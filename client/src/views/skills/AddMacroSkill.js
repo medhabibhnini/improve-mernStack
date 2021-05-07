@@ -55,7 +55,7 @@ if(isEmpty(title) || isEmpty(description))
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/soft/ajoutMacro',{
+const res = await axios.post('/soft/ajoutMacro',{
   title,description
 })
 setData({...data,err:'',success:res.data.msg})

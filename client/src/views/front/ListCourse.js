@@ -12,7 +12,7 @@ export default function ListSoft  (){
   useEffect(()=>{
     getAllCourses();},[]);
     const getAllCourses =()=>{
-    axios.get('http://localhost:5000/api/courses')
+    axios.get('/api/courses')
     .then((response)=>{
     const allCourses =response.data;
     getCourses(allCourses);

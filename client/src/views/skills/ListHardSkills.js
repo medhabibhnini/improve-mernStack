@@ -40,7 +40,7 @@ export default function ListHardSkills()
     useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/hard/hardskills')
+    axios.get('/hard/hardskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -53,7 +53,7 @@ export default function ListHardSkills()
       if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
       {                  
           setLoading(true)
-        await axios.delete(`http://localhost:5000/hard/deleteskills/${id}`, {
+        await axios.delete(`/hard/deleteskills/${id}`, {
     
       })
 	  handleDelete2(id)
@@ -80,7 +80,7 @@ export default function ListHardSkills()
 		  if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
 		  {                  
 			  setLoading(true)
-			await axios.delete(`http://localhost:5000/hard/deleteSkillhard/${id}`, {
+			await axios.delete(`/hard/deleteSkillhard/${id}`, {
 		
 		  })
 		  setLoading(false)

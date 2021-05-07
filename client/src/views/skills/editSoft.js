@@ -27,7 +27,7 @@ export default function EditSoft  ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getsoft/${id}`)
+        axios.get(`/soft/getsoft/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -45,7 +45,7 @@ export default function EditSoft  ()  {
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateSoft/${id}`,{
+const res = await axios.put(`/soft/updateSoft/${id}`,{
     title,type,description
 
 })

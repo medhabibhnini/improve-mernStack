@@ -4,7 +4,7 @@ import { GET_POSTS, POST_ERROR } from "../../../constants/posts.constants";
 export const getPosts = (blog_id) => async (dispatch) => {
 
   try {
-    const res = await axios.get(`http://localhost:5000/forum/posts/${blog_id}`);
+    const res = await axios.get(`/forum/posts/${blog_id}`);
     console.log(res.data)
     let list = [];
     for (var i=0; i < res.data.result; i++) {

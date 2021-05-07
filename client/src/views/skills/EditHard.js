@@ -37,7 +37,7 @@ export default function EditHard  ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/hard/gethard/${id}`)
+        axios.get(`/hard/gethard/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)

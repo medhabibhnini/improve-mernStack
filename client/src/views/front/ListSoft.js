@@ -31,7 +31,7 @@ export default function ListSoft  (){
   useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/soft/getmicroskills')
+    axios.get('/soft/getmicroskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -72,7 +72,7 @@ export default function ListSoft  (){
         confirmButtonText: 'Yes, add it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          const res =  axios.post(`http://localhost:5000/soft/affecterSoft/${id}`,{
+          const res =  axios.post(`/soft/affecterSoft/${id}`,{
             score,UserId
           })
        //   setData({...data,err:'',success:res.data.msg})

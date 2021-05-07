@@ -30,7 +30,7 @@ const [data, setData] = useState(initialState)
 useEffect(()=>{
 getAllEvents();},[]);
 const getAllEvents =()=>{
-axios.get('http://localhost:5000/event/events')
+axios.get('/event/events')
 .then((response)=>{
 const allEvents =response.data;
 getEvents(allEvents);
@@ -85,7 +85,7 @@ try{
   if(window.confirm("Are you sure ? Do you want to delete this event"))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/event/deleteevents/${id}`, {
+    await axios.delete(`/event/deleteevents/${id}`, {
 
   })
   setLoading(false)

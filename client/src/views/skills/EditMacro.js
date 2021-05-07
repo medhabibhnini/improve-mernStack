@@ -25,7 +25,7 @@ export default function EditMacro  ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/soft/getmacro/${id}`)
+        axios.get(`/soft/getmacro/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -43,7 +43,7 @@ export default function EditMacro  ()  {
     const handleSubmit = async()=>{
 
         try{
-const res = await axios.put(`http://localhost:5000/soft/updateMacro/${id}`,{
+const res = await axios.put(`/soft/updateMacro/${id}`,{
     title,description
 
 })

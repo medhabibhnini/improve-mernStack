@@ -147,7 +147,7 @@ const paginate = pageNumber => setCurrentPage(pageNumber);
           confirmButtonText: 'Yes, add it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            const res =  axios.post(`http://localhost:5000/hard/affecterHard/${id}`,{
+            const res =  axios.post(`/hard/affecterHard/${id}`,{
               score,UserId
             })
          //   setData({...data,err:'',success:res.data.msg})

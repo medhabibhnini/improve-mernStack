@@ -9,7 +9,7 @@ export const removeLikeFromComment = (post_id, comment_id, like_id) => async (
 ) => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/forum/posts/remove_like_from_comment/${post_id}/${comment_id}/${like_id}`
+      `/forum/posts/remove_like_from_comment/${post_id}/${comment_id}/${like_id}`
     );
     dispatch({ type: REMOVE_LIKE_FROM_COMMENT, payload: res.data });
   } catch (error) {

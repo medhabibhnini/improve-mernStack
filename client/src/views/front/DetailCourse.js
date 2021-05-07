@@ -19,7 +19,7 @@ export default function DetailCourse()
   const history = useHistory()
   const [courses,getCourses] =useState([]);
   const getAllCourses =()=>{
-    axios.get(`http://localhost:5000/api/courses/${id}`)
+    axios.get(`/api/courses/${id}`)
     .then((response)=>{
     const allCourses =response.data;
     getCourses(allCourses)

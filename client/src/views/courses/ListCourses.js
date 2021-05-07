@@ -35,7 +35,7 @@ const [nomsoft,getnomsoft]=useState([])
 useEffect(()=>{
 getAllCourses();},[]);
 const getAllCourses =()=>{
-axios.get('http://localhost:5000/api/courses')
+axios.get('/api/courses')
 .then((response)=>{
 const allCourses =response.data;
 getCourses(allCourses);
@@ -45,7 +45,7 @@ getCourses(allCourses);
 }
 
 const  nomsofts =()=>{
-  axios.get(`http://localhost:5000/api/getnamesoftcourse/`)
+  axios.get(`/api/getnamesoftcourse/`)
         .then((response)=>{
         const allSkills =response.data;
         
@@ -60,7 +60,7 @@ try{
   if(window.confirm("Are you sure ? Do you want to delete this course? "))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/api/courses/${id}`, {
+    await axios.delete(`/api/courses/${id}`, {
 
   })
   setLoading(false)

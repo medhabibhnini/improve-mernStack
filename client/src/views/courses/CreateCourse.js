@@ -56,7 +56,7 @@ export default function CreateCourse() {
   useEffect(()=>{
     getAllHardSkills();},[]);
     const getAllHardSkills =()=>{
-    axios.get('http://localhost:5000/hard/hardskills')
+    axios.get('/hard/hardskills')
     .then((response)=>{
     const allHardSkills =response.data;
     getHardSkills(allHardSkills);
@@ -70,7 +70,7 @@ export default function CreateCourse() {
   useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/soft/getmicroskills')
+    axios.get('/soft/getmicroskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -137,7 +137,7 @@ if(isEmpty(title) || isEmpty(description || isEmpty(category) || isEmpty(instruc
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/api/courses',{
+const res = await axios.post('/api/courses',{
   title,description,category,image,link,price,place,instructor
 })
 setData({...data,err:'',success:res.data.msg})

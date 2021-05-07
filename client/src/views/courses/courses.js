@@ -53,7 +53,7 @@ if(isEmpty(title) || isEmpty(type) || isEmpty(description))
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/soft/ajoutSoft',{
+const res = await axios.post('/soft/ajoutSoft',{
   title,type,description
 })
 setData({...data,err:'',success:res.data.msg})

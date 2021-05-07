@@ -5,7 +5,7 @@ import { getPost } from "../posts.actions/getPost";
 export const addLikeToTopicPage = (post_id) => async (dispatch) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/forum/posts/likes/${post_id}`
+      `/forum/posts/likes/${post_id}`
     );
     dispatch({ type: ADD_LIKE, payload: res.data });
     dispatch(getPost(post_id));

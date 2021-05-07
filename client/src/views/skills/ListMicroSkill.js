@@ -39,7 +39,7 @@ const {user, isLogged, isAdmin} = auth
 useEffect(()=>{
 getAllSkills();},[]);
 const getAllSkills =()=>{
-axios.get('http://localhost:5000/soft/getmicroskills')
+axios.get('/soft/getmicroskills')
 .then((response)=>{
 const allSkills =response.data;
 getSkills(allSkills);
@@ -54,7 +54,7 @@ try{
   if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/soft/deletemicro/${id}`, {
+    await axios.delete(`/soft/deletemicro/${id}`, {
 
   })
   handleDelete2(id)
@@ -77,7 +77,7 @@ const handleDelete2 = async (id) =>{
     if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
     {                  
         setLoading(true)
-      await axios.delete(`http://localhost:5000/soft/deleteSkillsoft/${id}`, {
+      await axios.delete(`/soft/deleteSkillsoft/${id}`, {
   
     })
     setLoading(false)

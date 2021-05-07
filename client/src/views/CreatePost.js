@@ -57,7 +57,7 @@ if(isEmpty(title)  || isEmpty(description))
   return setData({...data,err:"Please fill in all fields ", success :''})
  
 try {
-const res = await axios.post('http://localhost:5000/forum/posts',{
+const res = await axios.post('/forum/posts',{
   title,description,user,blog_id
 })
 

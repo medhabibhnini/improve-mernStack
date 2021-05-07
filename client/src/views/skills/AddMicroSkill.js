@@ -60,7 +60,7 @@ if(isEmpty(title) || isEmpty(macroId) || isEmpty(description))
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/soft/ajoutMicro',{
+const res = await axios.post('/soft/ajoutMicro',{
   title,description,macroId,image
 })
 setData({...data,err:'',success:res.data.msg})
@@ -75,7 +75,7 @@ history.push("./listmicro")
     useEffect(()=>{
         getAllSkills();},[]);
         const getAllSkills =()=>{
-        axios.get('http://localhost:5000/soft/macroskills')
+        axios.get('/soft/macroskills')
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills);

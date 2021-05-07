@@ -10,7 +10,7 @@ export const searchTopics = (searchInput) => async (dispatch) => {
     };
     const body = JSON.stringify({ searchInput });
     const res = await axios.put(
-      `http://localhost:5000/forum/posts/search_for_post`,
+      `/forum/posts/search_for_post`,
       body,
       config
     );

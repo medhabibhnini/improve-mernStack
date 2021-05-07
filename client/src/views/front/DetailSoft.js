@@ -14,7 +14,7 @@ export default function DetailSoft()
   const history = useHistory()
   const [skills,getSkills] =useState([]);
   const getAllSkills =()=>{
-    axios.get(`http://localhost:5000/soft/getmicro/${id}`)
+    axios.get(`/soft/getmicro/${id}`)
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills)

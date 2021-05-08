@@ -5,7 +5,7 @@ import { getPost } from "../posts.actions/getPost";
 export const removeLikeFromPost = (post_id, like_id) => async (dispatch) => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/forum/posts/remove_like_from_post/${post_id}/${like_id}`
+      `/forum/posts/remove_like_from_post/${post_id}/${like_id}`
     );
     dispatch({ type: REMOVE_POST, payload: res.data });
     dispatch(getPost(post_id));

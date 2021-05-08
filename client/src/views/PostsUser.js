@@ -31,7 +31,7 @@ const user_id =auth.user._id
 useEffect(()=>{
 getUserPostById();},[]);
 const getUserPostById =()=>{
-axios.get(`http://localhost:5000/forum/posts/user_posts/${user_id}`)
+axios.get(`/forum/posts/user_posts/${user_id}`)
     .then((response)=>{
         const Myposts =response.data;
             getMyPosts(Myposts);

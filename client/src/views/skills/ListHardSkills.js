@@ -5,6 +5,7 @@ import axios from 'axios'
 import image from "./header.jpg";
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import Pagination from '../../components/body/profile/Pagination'
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -26,11 +27,20 @@ export default function ListHardSkills()
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
     const [data, setData] = useState(initialState)
+	const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = skills.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
     
+
     useEffect(()=>{
     getAllSkills();},[]);
     const getAllSkills =()=>{
-    axios.get('http://localhost:5000/hard/hardskills')
+    axios.get('/hard/hardskills')
     .then((response)=>{
     const allSkills =response.data;
     getSkills(allSkills);
@@ -43,9 +53,10 @@ export default function ListHardSkills()
       if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
       {                  
           setLoading(true)
-        await axios.delete(`http://localhost:5000/hard/deleteskills/${id}`, {
+        await axios.delete(`/hard/deleteskills/${id}`, {
     
       })
+	  handleDelete2(id)
       setLoading(false)
       setCallback(!callback)
       window.location.reload(false);
@@ -64,10 +75,37 @@ export default function ListHardSkills()
 
 
 
+    const handleDelete2 = async (id) =>{
+		try{
+		  if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
+		  {                  
+			  setLoading(true)
+			await axios.delete(`/hard/deleteSkillhard/${id}`, {
+		
+		  })
+		  setLoading(false)
+		  setCallback(!callback)
+		  window.location.reload(false);
+		
+		  }
+		  
+		
+		
+		} catch (err) {
+		  setData({...data, err: err.response.data.msg , success: ''})
+		}
+		
+		
+		}
+	
+	
+	
 return(
 
 <>
 <Dashboard/>
+
+
 
 
 
@@ -91,7 +129,27 @@ return(
             </Link >
 						</div>
 						<div class="widget-inner">
-            { skills.map(skill =>(
+						
+						<div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="search" style={{marginLeft:"600px",width:"150px"}} id="example-search-input"
+                   onChange={(event) => {
+                    setSearch(event.target.value);
+                }}
+                />
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+     </div>
+		   {  currentPosts.filter((val)=> {
+                                    if (search =="") {
+                                        return val
+                                    } else if ((val.title.toLowerCase().includes(search.toLowerCase())) 
+                                    ) {
+                                        return val
+                                    }
+                                }).map(skill =>(
 							<div  key={skill._id} class="card-courses-list admin-courses">
 								<div class="card-courses-media">
 									<img src="assets/images/courses/pic1.jpg" alt=""/>
@@ -133,6 +191,9 @@ return(
 							</div>
 						
              ) )}
+			   <div style={{marginLeft:"500px"}}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={skills.length} paginate={paginate} />
+                    </div> 
 						
 						</div>
 					</div>

@@ -3,6 +3,7 @@ const courseCtrl = require('../controllers/courseCtrl')
 const auth = require('../middleware/auth')
 const authAdmin = require('../middleware/authAdmin')
 
+router.get('/getNameSoftCourse/:id',courseCtrl.getSkillsNoun)
 
 router.route('/courses')
     .get(courseCtrl.getCourses)

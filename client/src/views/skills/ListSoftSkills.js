@@ -5,6 +5,8 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import image from "./header.jpg";
 
+import Swal from 'sweetalert2'
+
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
@@ -29,7 +31,7 @@ useEffect(()=>{
 getAllSkills();},[]);
 
 const getAllSkills =()=>{
-axios.get('http://localhost:5000/soft/softskills')
+axios.get('/soft/softskills')
 .then((response)=>{
 const allSkills =response.data;
 getSkills(allSkills);
@@ -42,7 +44,7 @@ try{
   if(window.confirm("Are you sure ? Do you want to delete this soft skills"))
   {                  
       setLoading(true)
-    await axios.delete(`http://localhost:5000/soft/deleteskills/${id}`, {
+    await axios.delete(`/soft/deleteskills/${id}`, {
 
   })
   setLoading(false)
@@ -77,7 +79,7 @@ const mystyle = {
               <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Soft skills management </h1>
 <div class="overlay"></div>
 </div>
-<Link to ="/addsoft">
+<Link>
             <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add soft skills +</Button>
 
             </Link >
@@ -123,7 +125,6 @@ const mystyle = {
 <br></br>
 <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
 </>
-/************************************ */
 
     )
 }

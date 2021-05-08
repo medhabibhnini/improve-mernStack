@@ -20,12 +20,17 @@ getBlogs,
 
     isTheOldest,
   } = topicsSortType;
+  //const blogss =blogs.Blogs;
+
  
+
   useEffect(() => {
   if (isTheOldest) getBlogs();
 
   }, []);
+ 
   console.log(blogs.blogs)
+  //const currentPosts = (blogs).slice(indexOfFirstPost, indexOfLastPost);
   return (
     <>
   <Header/>
@@ -42,8 +47,9 @@ getBlogs,
 		<div class="breadcrumb-row">
 			<div class="container">
 				<ul class="list-inline">
-					<li><a href="#">Home</a></li>
+					<li><Link to="/">Home</Link></li>
 					<li>Blog Classic</li>
+          <li><Link to="/subject/add">Add subjects</Link></li>
 				</ul>
 			</div>
 		</div>

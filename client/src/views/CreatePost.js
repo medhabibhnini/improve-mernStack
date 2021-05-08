@@ -57,7 +57,7 @@ if(isEmpty(title)  || isEmpty(description))
   return setData({...data,err:"Please fill in all fields ", success :''})
  
 try {
-const res = await axios.post('http://localhost:5000/forum/posts',{
+const res = await axios.post('/forum/posts',{
   title,description,user,blog_id
 })
 
@@ -75,35 +75,66 @@ console.log(data)
   return (
     <>
   
-   <div className="main-content">
-<div className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{minHeight: '600px',backgroundImage: 'url(https://www.amalo-recrutement.fr/app/uploads/2020/01/soft-skills-scaled.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
-
-              <h1 class="titre" style={{marginLeft:"100px",fontSize:"100",color:"white"}}>Post Here</h1>
-<div class="overlay"></div>
-</div>
-<Link to="/topics" className="btn btn-outline-primary btn-circle d-inline float-right">Go back</Link>
-    
-<div class="container">
-  <h1>Add post </h1>
-  <form onSubmit={handleSubmit}>
-  <div class="form-group">
-        <label for="fname">Title</label>
-        <input type="text" id="fname"  class="form-control" name="title" onChange={handleChange} placeholder="title"/>
-    </div>
+  <div class="page-content bg-white">
    
-    <div class="form-group">
-        <label for="subject">Description</label>
-        <textarea id="subject"  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+   <div class="page-banner ovbl-dark" style={{backgroundImage:"url(assets/images/banner/banner1.jpg)"}}>
+       <div class="container">
+           <div class="page-banner-entry">
+               <h1 class="text-white">Add subject</h1>
     </div>
-    <div class="row">
-      <input type="submit" className="btn btn-info" value="Submit"/>
-     
-    </div>
-  
-    </form>
+       </div>
+   </div>
+<div class="breadcrumb-row">
+ <div class="container">
+   <ul class="list-inline">
+     <li><Link to="/">Home</Link></li>
+     <li><Link to="Subjects">Blog</Link></li>
+     <li><Link to={`/topics/${blog_id}`}>Posts</Link></li>
+     <li>Add Posts</li>
+   </ul>
+ </div>
 </div>
-</div>
+<div class="page-banner contact-page section-sp2">
+            <div class="container">
+                <div class="row">
+				
+		
+					<div class="col-lg-7 col-md-7">
+						<form class="contact-bx ajax-form" onSubmit={handleSubmit} action="http://educhamp.themetrades.com/demo/assets/script/contact.php">
+						<div class="ajax-message"></div>
+							<div class="heading-bx left">
+								<h2 class="title-head">Add <span>Post</span></h2>
+								<p>you can add a post here</p>
+							</div>
+							<div class="row placeani">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+											
+											<input type="text" name="title" placeholder="Subject Title" onChange={handleChange} required class="form-control valid-character"/>
+										</div>
+									</div>
+								</div>
+							
+								<div class="col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+						
+											<textarea name="description"  placeholder="Write description" onChange={handleChange}  rows="4" class="form-control" required ></textarea>
+										</div>
+									</div>
+								</div>
+						
+								<div class="col-lg-12">
+									<button name="submit" type="submit" value="Submit" class="btn button-md"> Add post </button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+            </div>
+		</div>
+				</div>
 <Footer/>
 </>
   );

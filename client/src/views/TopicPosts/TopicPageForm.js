@@ -7,6 +7,21 @@ const TopicPageForm = ({ auth, createComment, post }) => {
   return (
   
      <>
+     		    {/*<div class="comment-respond" id="respond">
+											<h4 class="comment-reply-title" id="reply-title">Leave a Reply <small> <a style={{display:"none"}} href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h4>
+											<form class="comment-form" id="commentform" method="post">
+											
+												<p class="comment-form-comment">
+													<label for="comment">Comment</label>
+													<textarea rows="8" name="comment" placeholder="Comment" id="comment"></textarea>
+												</p>
+												<p class="form-submit">
+													<input type="submit" value="Submit Comment" class="submit" id="submit" name="submit"/>
+												</p>
+											</form>
+  </div>*/}
+                   
+                    
 <form style={{ display: auth.isLogged ? "block" : "none" }}
     >
     <div class="comment-input-holder">

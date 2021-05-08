@@ -9,7 +9,7 @@ export const getUserPostsById = (auth) => async (dispatch) => {
     console.log(auth)
     const user_id=auth.user._id
     const res = await axios.get(
-      `http://localhost:5000/forum/posts/user_posts/${user_id}`,
+      `/forum/posts/user_posts/${user_id}`,
     );
     console.log(res.data)
     dispatch({ type: GET_POST_BY_USER_ID, payload: res.data });

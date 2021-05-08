@@ -69,11 +69,11 @@ function Header() {
           <DropdownItem className="noti-title" header tag="div">
             <h6 className="text-overflow m-0">Welcome!</h6>
           </DropdownItem>
-          <DropdownItem to="/profile" tag={Link}>
+          <DropdownItem to={`/profile`}>
             <i className="ni ni-single-02" />
             <span>My profile</span>
           </DropdownItem>
-          <DropdownItem to="/radar" tag={Link}>
+          <DropdownItem to={`/radar/${user._id}`} tag={Link}>
             <i className="ni ni-settings-gear-65" />
             <span>My advancement</span>
           </DropdownItem>
@@ -171,7 +171,13 @@ function Header() {
                       <div class="secondary-menu">
                           <div class="secondary-inner">
                               <ul>
-            
+
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
+                 
+                  <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
+
                 </ul>
               </div>
                       </div>
@@ -189,46 +195,17 @@ function Header() {
                 <a href="index.html"><img src="assets/images/logo.png" alt=""/></a>
               </div>
                           <ul class="nav navbar-nav">	
-                <li class="active"><a href="javascript:;">Home </a>
+                <li class="active"><Link to="/">Home </Link>
                 
                 </li>
                 <li><a href="javascript:;">Skills <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">
                  
-                 <li className="nav-item" style={{marginRight:"0px"}}>
-                    <a className="nav-link nav-link-icon"  target="_blank">
-                    <Link to="/listevent">
-                    <button   className="btn btn-primary" >Events</button>
-                      </Link>
-                    </a>
-                  </li>
-        }
-{
-                    
-                    <li className="nav-item" style={{marginRight:"0px"}}>
-                       <a className="nav-link nav-link-icon"  target="_blank">
-                       <Link to="/calendar">
-                       <button   className="btn btn-primary" >Calender</button>
-                         </Link>
-                       </a>
-                     </li>
-           }
-           
-{
-                    
-         <li className="nav-item" style={{marginRight:"300px"}}>
-            <a className="nav-link nav-link-icon"  target="_blank">
-            <Link to="/login">
-            <button   className="btn btn-primary" >Courses</button>
-              </Link>
-            </a>
-          </li>
-}
-                    <li><a href="javascript:;">Hard skills</a>
+                    <li><Link to="/listHard">Hard skills</Link>
                      
                     </li>
                       
-                    <li><a href="javascript:;">Soft skills</a>
+                    <li><Link to="/listsoft">Soft skills</Link>
                      
                     </li>
                   </ul>
@@ -238,11 +215,8 @@ function Header() {
                     <li class="add-menu-left">
                       <h5 class="menu-adv-title">Our Courses</h5>
                       <ul>
-                        <li><a href="courses.html">Courses </a></li>
-                        <li><a href="courses-details.html">Courses Details</a></li>
-                        <li><a href="profile.html">Instructor Profile</a></li>
-                        <li><a href="event.html">Upcoming Event</a></li>
-                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="/listcourse">Courses </a></li>
+                        
                       </ul>
                     </li>
                     <li class="add-menu-right">
@@ -250,11 +224,8 @@ function Header() {
                     </li>
                   </ul>
                 </li>
-                <li><a href="javascript:;">Blog <i class="fa fa-chevron-down"></i></a>
-                  <ul class="sub-menu">
-                    <li><Link to="/subjects">All Subjects</Link></li>
-                    <li><Link to="/subject/add">Add Subject</Link></li>
-                  </ul>
+                <li><Link to="/subjects">Blog </Link>
+                 
                 </li>
                 <li><a href="javascript:;">Event <i class="fa fa-chevron-down"></i></a>
                   <ul class="sub-menu">

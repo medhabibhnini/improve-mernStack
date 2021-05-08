@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from "react";
 // @material-ui/core components
 import {useHistory} from 'react-router-dom'
@@ -66,7 +67,7 @@ if(isEmpty(title) || isEmpty(type) || isEmpty(description) || isEmpty(categorie)
 
   return setData({...data,err:"Please fill in all fields ", success :''})
 try {
-const res = await axios.post('http://localhost:5000/hard/ajouthard',{
+const res = await axios.post('/hard/ajouthard',{
   title,type,description,categorie
 })
 setData({...data,err:'',success:res.data.msg})
@@ -80,11 +81,10 @@ history.push("./hardskills")
 
 
     }
+    console.log(data)
     return(
 <> 
 <Dashboard/>
-
-
 
 <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
 		<div class="container-fluid">

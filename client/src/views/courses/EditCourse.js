@@ -29,7 +29,7 @@ export default function EditSoft  ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllCourses =()=>{
-        axios.get(`http://localhost:5000/courses/${id}`)
+        axios.get(`/courses/${id}`)
         .then((response)=>{
         const allCourses =response.data;
         getCourses(allCourses)

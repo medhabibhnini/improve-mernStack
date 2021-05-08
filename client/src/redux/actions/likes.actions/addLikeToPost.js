@@ -20,7 +20,7 @@ console.log(auth)
   
   try {
     const res = await axios.put(
-      `http://localhost:5000/forum/posts/likes/${post_id}`,auth
+      `/forum/posts/likes/${post_id}`,auth
     );
     dispatch({ type: ADD_LIKE, payload: res.data });
 

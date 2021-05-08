@@ -5,6 +5,27 @@ router.put('/updateSoft/:id',softSkill.updateSoftSkills)
 router.get('/softskills',softSkill.getAllSoftSkillz)
 router.delete('/deleteskills/:id',softSkill.deleteSoftskill)
 router.get('/getsoft/:id',softSkill.getSoftSkillsById)
+const ListSoft = require('../controllers/UserSoftCntrl')
+router.post('/affecterSoft/:id',ListSoft.create)
+router.get('/listeSoft',ListSoft.getListSoft)
+router.get('/getSoftList/:id',ListSoft.findByUser)
+router.get('/getNameSoft/:id',ListSoft.getNomSkills)
+router.get('/getScoresoft/:id',ListSoft.findUsersScore)
+router.get('/getSkillsoft/:id',ListSoft.findBySkill)
+router.delete('/deleteSkillsoft/:id',ListSoft.delete)
+//Macro
+router.post('/ajoutMacro',softSkill.createMacro)
+router.put('/updateMacro/:id',softSkill.updateMacroSkills)
+router.get('/macroskills',softSkill.getAllMacroSkillz)
+router.delete('/deletemacro/:id',softSkill.deleteMacroskill)
+router.get('/getmacro/:id',softSkill.getMacroSkillsById)
+//Micro
+router.post('/ajoutMicro',softSkill.createMicro)
+router.put('/updateMicro/:id',softSkill.updateMicroSkills)
+router.get('/microskills',softSkill.getAllMicroSkillz)
+router.delete('/deletemicro/:id',softSkill.deleteMicroskill)
+router.get('/getmicro/:id',softSkill.getMicroSkillsById)
+router.get('/getmicroskills',softSkill.getSkillsNoun)
 
 
 module.exports=router

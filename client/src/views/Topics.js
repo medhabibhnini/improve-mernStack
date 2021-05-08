@@ -9,6 +9,7 @@ import TopicPostsWrapper from "./TopicPosts/TopicPostsWrapper";
 import Header from "../components/header/Header";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/footer/Footer";
+import Pagination from '../components/body/profile/Pagination'
 
 
 const Topics = ({
@@ -37,7 +38,7 @@ const Topics = ({
     isTheMostLiked,
     isTheMostRecent,
   } = topicsSortType;
-
+  const [search, setSearch] = useState("");
   useEffect(() => {
 
    
@@ -117,7 +118,6 @@ const Topics = ({
 				<ul class="list-inline">
 					<li><Link to="/subjects">go Back</Link></li>
 					<li>Posts</li>
-          <li><Link to={`/posts/add/${blog_id}`}>Add Post</Link></li>
           <li></li>
          
 				</ul>
@@ -217,9 +217,10 @@ const Topics = ({
           isTheMostLiked={isTheMostLiked}
           posts={posts.posts}
           blog_id={blog_id}
+  
         />
     
-					
+
 				
 					
 						</div>
@@ -230,10 +231,12 @@ const Topics = ({
 									<div class="search-bx style-1">
 										<form role="search" method="post">
 											<div class="input-group">
-												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text"/>
-												<span class="input-group-btn">
-													<button type="submit" class="fa fa-search text-primary"></button>
-												</span> 
+												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text"
+                        value={dataFromSearch}
+                        onChange={(e) => onChange(e)}
+                       
+                        />
+										
 											</div>
 										</form>
 									</div>
@@ -257,7 +260,7 @@ const Topics = ({
 							</aside>
 						</div>
         </div>
-
+     
         </div>
      
        </div>

@@ -43,7 +43,7 @@ export default function EditEvent  ()  {
     }   
     
     const getAllEvents =()=>{
-        axios.get(`http://localhost:5000/event/getevent/${id}`)
+        axios.get(`/event/getevent/${id}`)
         .then((response)=>{
         const allEvents =response.data;
         getEvents(allEvents)

@@ -37,7 +37,7 @@ export default function EditHard  ()  {
         setData({...data, [name]:value, err:'', success: ''})
     }
     const getAllSkills =()=>{
-        axios.get(`http://localhost:5000/hard/gethard/${id}`)
+        axios.get(`/hard/gethard/${id}`)
         .then((response)=>{
         const allSkills =response.data;
         getSkills(allSkills)
@@ -61,6 +61,7 @@ const res = await axios.put(`http://localhost:5000/hard/updateHard/${id}`,{
 })
 
 setData({...data,err:'',success:res.data.msg})
+history.push("/hardskills")
 
 }catch(err)
         {
@@ -72,7 +73,6 @@ setData({...data,err:'',success:res.data.msg})
     const handleUpdate =()=>{
 if(title || description || type ) 
 {handleSubmit()
-    history.push("/hardskills")
 
 }
     }

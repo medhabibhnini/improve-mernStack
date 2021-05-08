@@ -12,7 +12,7 @@ export default function ListEvent  (){
   useEffect(()=>{
     getAllEvents();},[]);
     const getAllEvents =()=>{
-    axios.get('http://localhost:5000/event/events')
+    axios.get('/event/events')
     .then((response)=>{
     const allEvents =response.data;
     getEvents(allEvents);

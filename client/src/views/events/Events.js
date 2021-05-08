@@ -1,11 +1,15 @@
 import 'antd/dist/antd.css';
-import { Calendar, Badge } from 'antd';
+import { Calendar, Alert } from 'antd';
 import React, { useState, useEffect, Component } from 'react';
+import DatePicker from "react-datepicker";
 // @material-ui/core components
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { CustomInput, FormGroup } from 'reactstrap';
+import Loading from '../../utils/loading/Loading'
 
-
+import moment from 'moment';
+import date from 'react-calendar-pane';
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // core components
@@ -38,29 +42,34 @@ const initialState = {
   type: '',
   description: '',
   state: 'online',
-  localisation: '',
-  link: '',
-  date:'',
+  localisation: 'null',
+  link: 'null',
+  date: '',
   etatevent:'',
-  price:'',
-  avatar: '',
+  price:'0',
   err: '',
+
   success: ''
 
 }
 
+
 export default function Events() {
   const history = useHistory()
-
+  const { value, selectedValue } = useState(false);
   const token = useSelector(state => state.token)
   const [loading, setLoading] = useState(false)
   const [avatar, setAvatar] = useState(false)
   const [data, setData] = useState(initialState)
-  const { title, type, description, state, localisation, link,date,etatevent,price, err, success } = data
+  
+  const { title, type, description, state, localisation, link,etatevent,price,date, err, success } = data
   const handleChange = e => {
     const { name, value } = e.target
     setData({ ...data, [name]: value, err: '', success: '' })
   }
+  const styleUpload = {
+    display: avatar ? "block" : "none"
+}   
 
   ///////////////////////////////////
   const handleUpload = async e => {
@@ -71,7 +80,7 @@ export default function Events() {
 
       if (!file) return alert("File not exist.")
 
-      if (file.size > 1024 * 1024) // 1mb
+      if (file.size > 1920 * 1080) // 1mb
         return alert("Size too large!")
 
       if (file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
@@ -94,12 +103,12 @@ export default function Events() {
 //////////////////////////////////////////
   const handleSubmit = async e => {
     e.preventDefault()
-    if (isEmpty(title) || isEmpty(type) || isEmpty(description) || isEmpty(state) || isEmpty(localisation) || isEmpty(link) || isEmpty(date) || isEmpty(etatevent) || isEmpty(price) || isEmpty(avatar))
+    if (isEmpty(title) || isEmpty(type) || isEmpty(description) || isEmpty(state) || isEmpty(date) || isEmpty(etatevent)  )
 
       return setData({ ...data, err: "Please fill in all fields ", success: '' })
     try {
       const res = await axios.post('http://localhost:5000/event/ajoutEvent', {
-        title, type, description, state, localisation, link,date,etatevent,price,avatar
+        title, type, description, state, localisation, link, date, etatevent, price, avatar
       })
       setData({ ...data, err: '', success: res.data.msg })
       history.push("./events")
@@ -108,7 +117,7 @@ export default function Events() {
         setData({ ...data, err: err.response.data.msg, success: '' })
     }
 
-
+console.log(data)
 
   }
 //////////////////////////////////////////
@@ -142,27 +151,36 @@ export default function Events() {
     }
   }
   ///////////////////////////////
-  
+ 
+    
   console.log(data)
   return (
     <>
       <Dashboard />
-      <div class="container" style={{ marginLeft: "300px", marginTop: "100px" }}>
-        <div id="headers" className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{ height: "400px", backgroundImage: 'url(https://www.lymehaus.com/wp-content/uploads/2020/05/eventsturkeyantalya.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top' }}>
-
-
-          <h1 class="titre" style={{ marginLeft: "200px", fontSize: "100", color: "white" }}> Add Event </h1>
-          <div class="overlay"></div>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div class="form-group">
-            <label htmlFor="fname" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Title :</label>
-            <input type="text" id="fname" class="form-control" name="title" onChange={handleChange} placeholder="Titre.." />
-          </div>
-
-          <div class="form-group">
-            <label htmlFor="lname" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Type :</label>
-            <select id="lname" class="form-control" name="type" onChange={handleChange} name="type">
+      <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Events</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Add Event</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Add Event</h4>
+						</div>
+						<div class="widget-inner">
+            <form onSubmit={handleSubmit} class="edit-profile m-b30">
+    <div class="form-group">
+        <label for="Tname" >Title</label>
+        <input type="text" id="Tname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange} placeholder="Communication.."/>
+    </div>
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" class="form-control" name="type" style={{marginLeft:"45px",marginBottom:"25px"}} onChange={handleChange} name="type">
               <option value="TEDx talks">TEDx talks</option>
               <option value="Club mashups">Club mashups</option>
               <option value="Local city tours">Local city tours</option>
@@ -171,17 +189,17 @@ export default function Events() {
               <option value="Meet the grads">Meet the grads</option>
               <option value="Retreats and other stress-relief activities">Retreats and other stress-relief activities</option>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label htmlFor="subject" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>State :</label><br/>
-          
-          <input 
-          type="radio"
+      </div>
+  
+      <div class="form-group">
+        <label for="state" >State</label>
+      <input 
+          type="radio" style={{marginLeft: '20px'}}
           name="state"
           value="online"
           onChange={handleChange}
           checked={data.state==='online'}
+          style={{marginLeft:"45px",marginBottom:"25px"}}
           />
           <span style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Online</span>
             
@@ -194,61 +212,82 @@ export default function Events() {
           />
           <span style={{ marginLeft: '15px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Presential</span><br/>
     <br></br>
-            <label htmlFor="fname" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Link :</label>
-            <input type="text" id="link" class="form-control" name="link" onChange={handleChange} placeholder="Link.."  disabled={data.state==='presential' } /><br/>
+    <br></br>
+    </div>
+    <div class="form-group">
+            <label htmlFor="fname" style={{marginLeft:"45px",marginBottom:"25px"}} >Link</label>
+            <input type="text" id="link" style={{marginLeft:"45px",marginBottom:"25px"}} class="form-control" name="link" onChange={handleChange} placeholder="Link.."  disabled={data.state==='presential' } /><br/>
+    </div>
+    <div class="form-group">
+            <label htmlFor="fname" style={{marginLeft:"45px",marginBottom:"25px"}}>Localisation</label>
+            <input type="text" id="localisation" class="form-control" style={{marginLeft:"45px",marginBottom:"25px"}} name="localisation" onChange={handleChange} placeholder="Localisation.."  disabled={data.state==='online' } /><br/>
+     </div>
 
-            <label htmlFor="fname" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Localisation :</label>
-            <input type="text" id="localisation" class="form-control" name="localisation" onChange={handleChange} placeholder="Localisation.."  disabled={data.state==='online' } /><br/>
-          
-          </div>
+     <form>
+    <label for="date">Enter a date and time for the event:</label>
+    <input id="date" type="datetime-local" name="date" onChange={handleChange} />
+</form>
 
-          <div class="form-group">
-            <label htmlFor="date" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Date of the event :</label>
-            <input type="date" id="date"  class="form-control" name="date" onClick={handleChange} value="date" min="01-01-2021" max="12-31-2050"   />
-          </div>
-
-          <div class="form-group">
-            <label htmlFor="subject" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Free/Paying event :</label><br/>
-          
-          <input 
+<div class="form-group">
+        <label htmlFor="etatevent" id="etatevent" name="etatevent" >Free/Paying event :</label>
+        <input 
+          id="paying"
           type="radio"
           name="etatevent"
           value="paying"
           onChange={handleChange}
-          checked={data.etatevent==='paying'}
+          style={{marginLeft:"45px",marginBottom:"25px"}}
           />
-          <span style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Paying</span>
-            
+          <span id ="paying" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Paying</span>
+          
           <input 
+          id="free"
           type="radio" style={{marginLeft: '10px'}}
           name="etatevent"
           value="free"
           onChange={handleChange}
-          checked={data.etatevent==='free'}
+          onClick={() =>data.price==="0"}
           />
-          <span style={{ marginLeft: '15px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Free</span><br/>
+          
+          <span id="free" style={{ marginLeft: '15px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Free</span><br/>
+           </div>
            <br></br>
-            <label htmlFor="fname" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Price :</label>
-            <input type="text" id="price" class="form-control" name="price" onChange={handleChange} placeholder="Price.."  disabled={data.etatevent==='free' || data.etatevent==='' } /><br/>
-
+           <div class="form-group">
+            <label htmlFor="fname"style={{marginLeft:"45px",marginBottom:"25px"}} >Price </label>
+            <input type="text" id="price" class="form-control" style={{marginLeft:"45px",marginBottom:"25px"}} name="price" onChange={handleChange} placeholder="Price.."  disabled={data.etatevent==='free'} /><br/>
           </div>
+    
 
+    <div class="form-group">
+        <label for="description">Description </label>
+        <br></br>
+        <textarea id="description"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} placeholder="Write something.." style={{height:200}}></textarea>
+    </div>
+    <div className="form-group">
+      <div className="upload">
+      
 
-          <div class="form-group">
-            <label htmlFor="subject" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>Description :</label>
-            <textarea id="subject" class="form-control" name="description" onChange={handleChange} placeholder="Write something.." style={{ height: 200 }}></textarea>
-          </div>
+      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
+     {
+       loading ? <div id="file_img"><Loading /></div>
+         :<div id="file_img" style={styleUpload}>
+          <img src={avatar ? avatar.url : ''} alt=""/>
+           </div>
+        }
+                
+            </div>
 
-          <div class="form-group">
-            <label htmlFor="subject" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Georgia', fontStyle: 'normal', fontSize: '20px' }}>photo :</label>
-            <input className="form-control" type="file" name="file" id="file_up" onChange={handleUpload} />
-          </div>
-
-          <div class="row">
-            <input type="submit" className="btn btn-primary" style={{ marginLeft: '50%' }} value="Submit" />
-          </div>
-        </form>
-      </div>
+</div>
+    <div class="row">
+      <input type="submit" className="btn btn-primary" value="submit" style={{marginLeft:"500px"}}/>
+    </div>
+  </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
     </>
   )
 }

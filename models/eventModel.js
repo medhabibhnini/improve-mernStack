@@ -3,58 +3,65 @@ const eventSchema = new mongoose.Schema({
 title :{
     type: String,
     required :[true,"please enter the title"],
-    trim:true,
-    unique :true
+    unique: false
 
 },
 
 description :{
     type: String,
     required :[true,"please enter the description"],
-    trim:true,
     unique :false
 
 },
 type :{
     type: String,
-    required :[true,"please enter the type"],
     trim:true,
-    unique :false
+    unique:false
 
 },
 
 state :{
-    type: Boolean,
-    required :[true,"please enter the type"],
-    trim:true,
+    type: String,
+    unique: false
+
 
 },
 
 localisation :{
     type: String,
+    unique: false,
+    required:false
 },
 
 link :{
     type: String,
+    unique: false
+
 },
 
 date:{
     type: Date,
+    default: Date()
 
 },
 
 etatevent:{
-    type: Boolean,
-    required :[true, "peyant ou gratuit ?"]
+    type: String,
+    required: false,
+    unique: false
 },
 
 price:{
     type: Number,
+    required:false,
+    unique: false
+
 },
 
 avatar: {
     type: String,
     default: "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png"
+
 }
 
 },{

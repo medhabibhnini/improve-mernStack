@@ -2,13 +2,22 @@ import React, {useState, useEffect} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
+import { CustomInput, FormGroup } from 'reactstrap';
+import Loading from '../../utils/loading/Loading'
+
 import Dashboard from "../../components/body/dashboard/dashboard"
+import { event } from 'jquery'
+import Events from './Events'
 
 const initialState = {
-    title: '',
-    description:'',
-    type:'',
-    avatar :'',
+   title: '',
+   type: '',
+   state: 'online',
+   localisation: 'null',
+   link: 'null',
+   date: '',
+    etatevent:'',
+    price:'',
     err: '',
     success: ''
 }
@@ -23,12 +32,16 @@ export default function EditEvent  ()  {
     const [editEvents,setEditEvents]= useState([])
     const [events,getEvents] =useState([]);
     
-    const {title,description,type, err, success} = data
+    const { title, type, description, state, localisation, link, date, etatevent, price, err, success} = data
 
     const handleChange = e => {
         const {name, value} = e.target
         setData({...data, [name]:value, err:'', success: ''})
     }
+    const styleUpload = {
+        display: avatar ? "block" : "none"
+    }   
+    
     const getAllEvents =()=>{
         axios.get(`http://localhost:5000/event/getevent/${id}`)
         .then((response)=>{
@@ -49,8 +62,7 @@ export default function EditEvent  ()  {
 
         try{
 const res = await axios.put(`http://localhost:5000/event/updateEvent/${id}`,{
-    title,type,description,avatar
-
+    title, type, description, state, localisation, link, date, etatevent, price, avatar
 })
 setData({...data,err:'',success:res.data.msg})
 history.push("/events")
@@ -92,7 +104,7 @@ setData({...data,err:'',success:res.data.msg})
     }
    
     const handleUpdate =()=>{
-if(title || description || type || avatar ) 
+if(title || description || type || state || date || etatevent || price || avatar) 
 {handleSubmit()
 
 }
@@ -107,56 +119,137 @@ if(title || description || type || avatar )
       <>
           <Dashboard/>
 
-      <div style={{
-    width:'100%',
-    height:'100%'
-        
-      }}>  
-          <div style={mystyle} >
-              </div>
-
-<div class="container"  style={{marginLeft:"300px",marginTop:"100px"}} >
-<div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.lymehaus.com/wp-content/uploads/2020/05/eventsturkeyantalya.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
-
-              <h1 class="titre" style={{marginLeft:"200px",fontSize:"100",color:"white"}}> Edit events </h1>
-<div class="overlay"></div>
-</div>  
-<form onSubmit={handleUpdate}>
-    <div class="form-group">
-        <label for="fname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Title</label>    
-        <input type="text" class="form-control"  id="fname" name="title" onChange={handleChange} placeholder="Communication.." defaultValue={events.title}/>
-     
+          <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Add Hard</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Edit Events</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Edit Events</h4>
+						</div>
+						<div class="widget-inner">
+<form onSubmit={handleUpdate} class="edit-profile m-b30">
+<div class="form-group">
+        <label for="Tname" >Title</label>
+        <input type="text" id="Tname"    style={{marginLeft:"45px",marginBottom:"25px"}}class="form-control" name="title" onChange={handleChange}  defaultValue={events.title}/>
     </div>
     <div class="form-group">
-        <label for="lname"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Type</label>
-        <select class="form-control" id="lname" name="type"  onChange={handleChange} placeholder="type.." defaultValue={events.type}>
-        <option value="TEDx talks">TEDx talks</option>
-      <option value="Club mashups">Club mashups</option>
-      <option value="Local city tours">Local city tours</option>
-      <option value="Workshops">Workshops</option>
-      <option value="Academic awards">Academic awards</option>
-      <option value="Meet the grads">Meet the grads</option>
-      <option value="Retreats and other stress-relief activities">Retreats and other stress-relief activities</option>
-      </select>
-    </div>
+        <label for="type">Type</label>
+        <select id="type" class="form-control" name="type" style={{marginLeft:"45px",marginBottom:"25px"}} onChange={handleChange} name="type" defaultValue={events.type}>
+              <option value="TEDx talks">TEDx talks</option>
+              <option value="Club mashups">Club mashups</option>
+              <option value="Local city tours">Local city tours</option>
+              <option value="Workshops">Workshops</option>
+              <option value="Academic awards">Academic awards</option>
+              <option value="Meet the grads">Meet the grads</option>
+              <option value="Retreats and other stress-relief activities">Retreats and other stress-relief activities</option>
+            </select>
+      </div>
   
-    <div class="form-group">
-        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>Description</label>
-        <textarea id="subject" name="description" class="form-control" onChange={handleChange} placeholder="Write something.." style={{height:200}} defaultValue={events.description}></textarea>
+      <div class="form-group" defaultValue={events.state}>
+        <label for="state" >State</label>
+      <input 
+          type="radio" style={{marginLeft: '20px'}}
+          name="state"
+          value="online"
+          onChange={handleChange}
+          checked={data.state==='online'}
+          style={{marginLeft:"45px",marginBottom:"25px"}}
+          />
+          <span style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Online</span>
+            
+          <input 
+          type="radio" style={{marginLeft: '10px'}}
+          name="state"
+          value="presential"
+          onChange={handleChange}
+          checked={data.state==='presential'}
+          />
+          <span style={{ marginLeft: '15px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Presential</span><br/>
+    <br></br>
+    <br></br>
     </div>
     <div class="form-group">
-        <label for="subject"  style={{marginLeft:'10px',marginBottom:'0%',fontFamily:'Georgia, serif',fontStyle:'oblique',fontSize: '20px'}}>image</label>
-        <input type="file" class="form-control" id="file_up" name="file" defaultValue={events.avatar} onChange={handleUpload} />
+            <label htmlFor="fname" style={{marginLeft:"45px",marginBottom:"25px"}} >Link</label>
+            <input type="text" id="link" style={{marginLeft:"45px",marginBottom:"25px"}} class="form-control" name="link" onChange={handleChange} placeholder="Link.." defaultValue={events.link} disabled={data.state==='presential' } /><br/>
     </div>
+    <div class="form-group">
+            <label htmlFor="fname" style={{marginLeft:"45px",marginBottom:"25px"}}>Localisation</label>
+            <input type="text" id="localisation" class="form-control" style={{marginLeft:"45px",marginBottom:"25px"}} name="localisation" onChange={handleChange} placeholder="Localisation.."  defaultValue={events.localisation} disabled={data.state==='online' } /><br/>
+     </div>
 
-    <div class="row">
-      <input type="submit" className="btn btn-primary" variant="primary" style={{marginLeft:'50%'}} value="Submit"/>
+     <form>
+    <label for="date">Enter a date and time for the event:</label>
+    <input id="date" type="datetime-local" name="date" onChange={handleChange} defaultValue={events.date}/>
+</form>
+
+<div class="form-group" defaultValue={events.etatevent}>
+        <label htmlFor="etatevent" id="etatevent" name="etatevent" >Free/Paying event :</label>
+        <input 
+          id="paying"
+          type="radio"
+          name="etatevent"
+          value="paying"
+          onChange={handleChange}
+          style={{marginLeft:"45px",marginBottom:"25px"}}
+          />
+          <span id ="paying" style={{ marginLeft: '10px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Paying</span>
+          
+          <input 
+          id="free"
+          type="radio" style={{marginLeft: '10px'}}
+          name="etatevent"
+          value="free"
+          onClick={() =>data.price==="0"}
+          onChange={handleChange}
+          />
+          
+          <span id="free" style={{ marginLeft: '15px', marginBottom: '0%', fontFamily: 'Arial', fontStyle: 'normal', fontSize: '18px' }}>Free</span><br/>
+           </div>
+           <br></br>
+           <div class="form-group">
+            <label htmlFor="fname"style={{marginLeft:"45px",marginBottom:"25px"}} >Price </label>
+            <input type="text" id="price" class="form-control" style={{marginLeft:"45px",marginBottom:"25px"}} name="price" onChange={handleChange} placeholder="Price.." defaultValue={events.price} disabled={data.etatevent==='free'} /><br/>
+          </div>
+    
+
+    <div class="form-group">
+        <label for="description">Description </label>
+        <br></br>
+        <textarea id="description"  style={{marginLeft:"50px"}}  class="form-control" name="description"  onChange={handleChange} defaultValue={events.description} placeholder="Write something.." style={{height:200}}></textarea>
+    </div>
+    <div className="form-group">
+      <div className="upload">
+      
+
+      <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} defaultValue={events.avatar}/>
+     {
+       loading ? <div id="file_img"><Loading /></div>
+         :<div id="file_img" style={styleUpload}>
+          <img src={avatar ? avatar.url : ''} alt=""/>
+           </div>
+        }
+                
+            </div>
+
+</div>
+<div class="row">
+      <input type="submit" className="btn btn-primary" value="Confirm" style={{marginLeft:"500px"}}/>
     </div>
   </form>
 </div>
-<footers/>
-</div>  
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </>
     )
 }

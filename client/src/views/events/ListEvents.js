@@ -3,12 +3,14 @@ import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllEvent, dispatchGetAllEvents} from '../../redux/actions/eventsAction'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Moment from 'react-moment';
 
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
 
 import { $CombinedState } from 'redux'
+import { event } from 'jquery'
 const initialState ={
   title :'',
   type :'',
@@ -102,74 +104,111 @@ try{
 
 
 }
+const options = {
+	weekday: 'long',
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	timeZoneName: 'long'
+  };
 const mystyle = {
   marginLeft:"60%"
      };
     return (
       <>
-        <Dashboard/>
-      
-<div class="col">
-          <div class="card shadow">
-            <div class="card-header border-0" >
-              <h3 class="mb-0">Card tables</h3>
-              </div>
-              <div  id="headers"className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{height:"400px" ,backgroundImage: 'url(https://www.lymehaus.com/wp-content/uploads/2020/05/eventsturkeyantalya.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top'}}>
-              
+<Dashboard/>
 
-              <h1 class="titre" style={{marginLeft:"450px",fontSize:"100",color:"white"}}> Events management </h1>
-<div class="overlay"></div>
-</div>
-<Link to ="/addevent">
-            <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add Event +</Button>
+
+
+<main class="ttr-wrapper" style={{marginLeft:"300px"}}>
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Events</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li>Events</li>
+				</ul>
+			</div>	
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>List Events </h4>
+              <Link to ="/addevent">
+            <Button className=" " style={{marginTop:"20px"}}>Add event + </Button>
 
             </Link >
-           <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px"}}>
-                        <thead class="thead-light">
-                        <tr>
-            <th>Title</th>
-            <th >Description</th>
-            <th  >Type</th>
-            <th>Photos </th>
-            <th >Actions</th>
-          </tr>
-                        </thead>
-                        <tbody>
-                        { events.map(event =>(
-          <tr   key={event._id}>
-            <td>{event.title}</td>
-            <td>{event.description}</td>
-            <td>{event.type}</td>
-            <td><div className="col-lg-3 order-lg-2">
-                     <img src={avatar ? avatar : event.avatar} className="rounded-circle"/>
+						</div>
+						<div class="widget-inner">
+            { events.map(event =>(
+							<div  key={event._id} class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src={event.avatar} alt=""/>
+								</div>
+								
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<h4>{event.title}</h4>
+									
+									</div>
+									
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-info">
+												<Moment format="DD/MM/YYYY" >{event.date}</Moment><br></br>
+												</div>
+												</li>
+												<div class="card-courses-user-info">
+													<h4>{event.state}</h4>
+													<h5>{event.link}</h5>
+												</div>
+											</ul>
+											</div>
+											
 
-               </div></td>
-            <td>
-            <Link  to={`/editevent/${event._id}`}>
-                                                <Button className="fas fa-edit btn btn-warning" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </Button>
-                                          
-                                            </Link>
-               <Button className="fas fa-trash-alt  btn btn-danger"  title="Remove" style={{height:'40px',width:'60px'}} 
-                                    onClick={() => handleDelete(event._id)}         ></Button></td>
-          </tr>
-           ) )}
-                        </tbody>
-                    </table>
-             </div>
-             </div>
-    
-  
-    
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+									<div class="row card-courses-dec">
+									<div class="card-courses-list-bx">
+									<ul class="card-courses-view">
+									<li class="card-courses-user">
+
+									   <div class="col-md-12">
+													<h5 class="m-b10">{event.etatevent}</h5>
+													
+													<h6>{event.price} $</h6>
+													</div>
+													</li>
+											</ul>
+									</div>
+										<div class="col-md-12">
+											<h6 class="m-b10">{event.type}</h6>
+											<p>{event.description} </p>	
+										</div>
+
+										<div class="col-md-12">
+											<Link  to={`/editevent/${event._id}`} class="btn green radius-xl outline">Edit</Link>
+											<Link  onClick={() => handleDelete(event._id)}  class="btn red outline radius-xl ">Delete</Link>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						
+             ) )}
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="ttr-overlay"></div>
+
+
+
+
+
+
 </>
 /************************************ */
 

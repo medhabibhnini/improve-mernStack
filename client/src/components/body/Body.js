@@ -27,9 +27,9 @@ import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
-//import Softskills from  '../../views/skills/ListSoftSkills'
-//import Addsoftskills from '../../views/skills/Softskills'
-//import Editsoftskills from '../../views/skills/EditSoft'
+import Softskills from  '../../views/skills/ListSoftSkills'
+import Addsoftskills from '../../views/skills/softskills'
+import Editsoftskills from '../../views/skills/editSoft'
 import ListSoft from '../../views/front/ListSoft'
 import DetailSoft from '../../views/front/DetailSoft'
 import Events from  '../../views/events/ListEvents'
@@ -82,12 +82,8 @@ function Body() {
                 <Route path="/detailcourse/:id" component={DetailsCourse} exact />
 
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
-                <Route path="/posts" component={Posts} exact />
-                <Route path="/forum/posts/:id" component={DetailPosts} exact />
 
-                <Route path="/posts" component={Posts} exact />
                 <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
-                <Route path="/forum/posts/:id" component={DetailPosts} exact />
              {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
                 <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
                 <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />

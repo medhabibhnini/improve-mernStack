@@ -5,7 +5,7 @@ const events ={
  {
 try{
     const {title,description,type,state,localisation,link,date,etatevent,price,avatar} = req.body 
-    if(!title || !description || !type || !state || !localisation || !link || !date || !etatevent || !price || !avatar)
+    if(!title || !description || !type || !state || !date || !etatevent || !price || !avatar)
     return res.status(400).json({msg:"please fill in all field"})
 const newEvent = new Events({title,description,type,state,localisation,link,date,etatevent,price,avatar})
 await newEvent.save()

@@ -7,7 +7,7 @@ import NotFound from '../utils/NotFound/NotFound'
 import Loading from '../utils/Loading/Loading'
 import ForgotPass from '../body/auth/ForgotPassword'
 import ResetPass from '../body/auth/ResetPassword'
-
+import Superposition from './advancement/Superposition'
 import Profile from '../body/profile/Profile'
 import EditUser from '../body/profile/EditUser'
 import Radar from '../body/advancement/advancement'
@@ -123,6 +123,7 @@ function Body() {
                             <Route path="/editmacro/:id" component={isAdmin ? EditMacro : NotFound} exact  />
                             <Route path="/editmicro/:id" component={isAdmin ? EditMicro : NotFound} exact  />
                             <Route path="/addhards" component={isLogged ? Addhard : NotFound} exact />  
+                            <Route path="/Superposition" component={isLogged ? Superposition : NotFound} exact />  
 
                
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />

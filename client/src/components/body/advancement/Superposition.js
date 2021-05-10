@@ -31,6 +31,7 @@ const initialState = {
     name: '',
     password: '',
     cf_password: '',
+    selecteduser:'',
     err: '',
     success: ''
 }
@@ -41,7 +42,7 @@ const initialScore = {
   err: '',
   success: ''
 }
-function Advancement() {
+function Superposition() {
     const auth = useSelector(state => state.auth)
     const token = useSelector(state => state.token)
 
@@ -51,9 +52,10 @@ function Advancement() {
     const {user, isAdmin} = auth
     const [data, setData] = useState(initialState)
     const [datas, setDatas] = useState(initialScore)
-
-    const {name, password, cf_password, err, success} = data
-
+    const [getusers,setusers]=useState([])
+    const {name, password, cf_password,selecteduser, err, success} = data
+    const [search, setSearch] = useState("");
+const [oneuser,setoneuser]=useState()
     const [avatar, setAvatar] = useState(false)
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
@@ -140,16 +142,41 @@ const scoreSkills =()=>{
             }).catch(error=>console.error(`Error :${error}`));
         
         }
+/************users */
+const  getListUser =()=>{
+    axios.get(`http://localhost:5000/hard/users`)
+          .then((response)=>{
+          const allusers =response.data;
+          
+          setusers(allusers);
+    
+    
+        }).catch(error=>console.error(`Error :${error}`));
+    
+    
+    }
 
-
+    const  getoneUser =(ids)=>{
+        axios.get(`http://localhost:5000/hard/users/${ids}`)
+              .then((response)=>{
+              const allusers =response.data;
+              
+              setoneuser(allusers);
+        
+        
+            }).catch(error=>console.error(`Error :${error}`));
+        
+        }
       useEffect(()=>{
+        getoneUser()
+        getListUser()
         getAllSkills();
         nomSkillss();
         scoreSkills();
         getSoftSkills();
         scoresofts();
         nomsofts();
-      },[],[],[],[],[],[]);
+      },[],[],[],[],[],[],[],[]);
 const returnScores=()=>{
   scoreSkills();
   const tab1=[]
@@ -184,6 +211,7 @@ const tab2=returnScores()
 
         }
         }
+        console.log(tab1)
         return tab1 
       }
       const returnTabsoft=()=>
@@ -199,6 +227,7 @@ const tab2=returnScores()
         }
         } return tab1
       }
+      console.log(nomsoft)
       const tab=returnTab()
 const nomsoftss=returnTabsoft()
       const addSkill=()=>{
@@ -214,7 +243,6 @@ const nomsoftss=returnTabsoft()
         }
 
       }
-
 
 
 
@@ -351,7 +379,7 @@ const nomsoftss=returnTabsoft()
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
-
+console.log(selecteduser)
     return (
   
         <>
@@ -433,7 +461,81 @@ const nomsoftss=returnTabsoft()
                 </div>
               </div>
             </div>
+<div style={{marginTop:"10%"}}>
+<select  onChange={handleChange() } name="selecteduser"
+         >
+                <option></option>
+
+   { getusers.map(users=>(
+    <option value={users.name} key={users._id} onClick={getoneUser(users._id)}>{users.name}</option>))
+    
+    
+    }
+</select>
+
+</div>
+
+            {
+                getusers.filter((val)=> {
+                    if (search =="") {
+                        return val
+                    } else  if ((val.name.toLowerCase().includes(search.toLowerCase()))){
+                        return val
+                    }
+                }).map(userss=>(
+                
+                <div class="card card-profile shadow" style={{marginTop:"20%"}}>
+              <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image">
+                    <a href="#">
+                      <img src={avatar ? avatar : userss.avatar} class="rounded-circle"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div class="d-flex justify-content-between">
+      
+                </div>
+              </div>
+              <div class="card-body pt-0 pt-md-4">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                      <div>
+                      
+                      </div>
+                      <div>
+                       
+                      </div>
+                      <div>
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h3>
+                  {userss.name} {userss.lastName}<span class="font-weight-light"></span>
+                  </h3>
+                  <div class="h5 font-weight-300">
+                  
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>{user.email}
+                  </div>
+                  <div>
+                    <i class="ni education_hat mr-2"></i>University of Computer Science
+                  </div>
+         
+                        
+                </div>
+              </div>
+            </div>))}
+
           </div>
+          
           <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
               <div class="card-header bg-white border-0">
@@ -492,4 +594,4 @@ const nomsoftss=returnTabsoft()
     )
 }
 
-export default Advancement
+export default Superposition

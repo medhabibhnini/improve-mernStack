@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
+User-agent: http://localhost:3000/*
+
+Disallow:  http://localhost:3000/dashboard/*

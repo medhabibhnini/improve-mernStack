@@ -13,5 +13,8 @@ router.get('/getNamehard/:id',Listhard.getNomSkills)
 router.get('/getScorehard/:id',Listhard.findUsersScore)
 router.get('/getSkillhard/:id',Listhard.findBySkill)
 router.delete('/deleteSkillhard/:id',Listhard.delete)
+/***user */
+router.get('/users',hardskill.getUsers)
+router.get('/users/:id',hardskill.getUserById)
 
 module.exports=router

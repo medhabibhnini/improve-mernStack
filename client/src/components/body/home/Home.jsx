@@ -427,7 +427,10 @@ Here you can evaluate yourself
 					<div class="row">
 						<div class="col-md-12 heading-bx left">
 							<h2 class="title-head">Popular <span>Courses</span></h2>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+							<p> In order to improve your <strong>Hard soft Skills</strong> there are a list of
+							 <strong>Online free courses</strong>
+							 You can subscribe into trainings easily.
+							 </p>
 						</div>
 					</div>
 					<div class="row">

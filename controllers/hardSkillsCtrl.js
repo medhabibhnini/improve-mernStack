@@ -1,5 +1,5 @@
 const HardSkills = require('../models/HardSkills')
-
+const users =require('../models/userModel')
 const hardSkills ={
  create : async(req,res)=>
  {
@@ -60,6 +60,30 @@ getHardSkillsById : async (req,res)=>
         return res.status(500).json({msg: err.message})
     }
 
-}
+},
+getUsers: async (req,res)=>
+{
+    try {
+        const userss = await users.find({'role':'0'})
+
+        res.json(userss)
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
+
+},
+getUserById: async (req,res)=>
+{
+    try {
+        const userss = await users.findById(req.params.id);
+
+
+        res.json(userss)
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
+
+},
+
 }
 module.exports =hardSkills

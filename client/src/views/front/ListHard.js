@@ -218,13 +218,13 @@ const test=()=>{
                                 </ul>
                             </div>
 							<div class="widget">
-								<a href="#"><img src="assets/images/adv/adv.jpg" alt=""/></a>
+								<a href="#"><img src="assets/images/adv/adv.jpg" alt="Hard skills advancement"/></a>
 							</div>
 							<div class="widget recent-posts-entry widget-courses">
                                 <h5 class="widget-title style-1">Recent Courses</h5>
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
-                                        <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""/> </div>
+                                        <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt="forum online courses"/> </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-header">
                                                 <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
@@ -292,7 +292,7 @@ const test=()=>{
 								<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
 									<div class="cours-bx">
 										<div class="action-box">
-											<img src="assets/images/courses/pic1.jpg" alt=""/>
+											<img src="assets/images/courses/pic1.jpg" alt="Online education"/>
 									 <Link to={`/listHard/${skill._id}`}>
                   		<button   onClick={handleModal} class="btn btn-red"  style={{color:'white'}}>Add score</button>
                       </Link>

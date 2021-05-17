@@ -36,6 +36,7 @@ const initialState ={
 title :'',
 description :'',
 macroId:'',
+selecteduser:'',
 err: '',
 success: ''
 
@@ -49,7 +50,7 @@ export default function Softskills() {
   const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState(initialState)
-    const {title,description,macroId, err, success} = data
+    const {title,description,macroId,selecteduser, err, success} = data
     const handleChange = e => {
       const {name, value} = e.target
       setData({...data, [name]:value, err:'', success: ''})

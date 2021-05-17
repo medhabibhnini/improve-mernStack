@@ -125,6 +125,54 @@ const paginate = pageNumber => setCurrentPage(pageNumber);
     {
         setShow(false);
     }
+    const notif = async e => {
+      Swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        progressSteps: ['1', '2', '3']
+      }).queue([
+        {
+          title: 'Click to Add Hard Skills',
+          text: 'The blue button on left',
+          imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        },{
+          title: 'Mouse Scroll on the added Skills',
+          text: 'Scroll on the picture, a button will appear',
+          imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image'
+       
+        },{
+          title: 'Select add Score Button',
+          text: 'A PoP UP will appear , be free to add your score',
+          imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image'
+          
+        }
+      ]).then((result) => {
+        if (result.value) {
+          const answers = JSON.stringify(result.value)
+          Swal.fire({
+        title: '<strong>We are here to <u>HELP YOU</u></strong>',
+        icon: 'info',
+        html:
+          'You can use <b>HELP SECTION</b>, ' +
+          'for more details, hope it was clear for you', 
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up"></i> Clear!',
+        confirmButtonAriaLabel: 'Great! Enjoy it!',
+      })
+        }
+      })
+    }
     const handleSubmit = async e => {
         e.preventDefault()
         if(isEmpty(score))
@@ -261,7 +309,12 @@ const test=()=>{
 						</div>
 
         		<div class="col-lg-9 col-md-8 col-sm-12">
-            <Link to="/addhards"><Button>Add hard Skills +</Button></Link>  
+            
+            <div class="form-group">
+    <input type="submit" class="form-control" value="HELP" onClick={notif} />
+
+  </div>
+  <Link to="/addhards"><Button>Add hard Skills +</Button></Link>  
 
 							<div class="row">
     
@@ -355,7 +408,7 @@ const test=()=>{
 </div>
                     </Modal.Body>
             <Modal.Footer>
-            <Link to={`/listHard/`}>     <Button onClick={closeModal}> Close Modal</Button></Link></Modal.Footer>
+            <Link to={`/listHard/`}>     <Button onClick={closeModal}> Close</Button></Link></Modal.Footer>
               
                 </Modal>
 

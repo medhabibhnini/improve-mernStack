@@ -23,7 +23,7 @@ import Topics from '../../views/Topics'
 import TopicPage from "../../views/TopicPage";
 import PostsUser from '../../views/PostsUser'
 import blogs from '../../views/Blogs'
-
+import help from '../../views/Help/help'
 
 import CreateCourse from '../../views/courses/CreateCourse'
 import Courses from '../../views/courses/ListCourses'
@@ -146,7 +146,11 @@ function Body() {
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
                 <Route path="/subjects" component={  Blogs || Loading } exact />  
-                <Route path="/topics/:blog_id" component={Topics   } exact />  
+        
+                <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
+                <Route path="/topics/:blog_id" exact component={Topics} />
+                <Route path="/subjects" exact component={help} />
+                <Route path="/help" exact component={blogs} />
                 <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
                 <Route path="/404" exact component={NotFound} />
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}

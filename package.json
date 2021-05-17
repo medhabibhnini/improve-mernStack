@@ -19,6 +19,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.14.0",
+    "DatePicker": "^2.0.0",
     "bcrypt": "^5.0.0",
     "chartist": "^0.11.4",
     "cloudinary": "^1.23.0",

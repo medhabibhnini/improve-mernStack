@@ -30,7 +30,6 @@ import Courses from '../../views/courses/ListCourses'
 import EditCourse from '../../views/courses/EditCourse'
 import ListCourse from '../../views/front/ListCourse'
 import DetailsCourse from '../../views/front/DetailCourse'
-
 import Softskills from  '../../views/skills/ListSoftSkills'
 import Addsoftskills from '../../views/skills/softskills'
 import Editsoftskills from '../../views/skills/editSoft'
@@ -41,6 +40,7 @@ import Events from  '../../views/events/ListEvents'
 import Addevents from '../../views/events/Events'
 import Editevents from '../../views/events/EditEvent'
 import ListEvent from '../../views/front/ListEvent'
+import calendar from '../../views/calendar/calendar'
 
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
@@ -50,6 +50,8 @@ import AjoutHard from '../../views/front/AjoutHard'
 import ListHard from '../../views/front/ListHard'
 
 import HomeBack from '../../views/Home'
+import Calendar from '../../views/calendar/calendar'
+import DetailEvent from '../../views/front/DetailEvent'
 
 import AddMacro from '../../views/skills/AddMacroSkill'
 import AddMicro from '../../views/skills/AddMicroSkill'
@@ -94,6 +96,8 @@ function Body() {
                 <Route path="/detailcourse/:id" component={DetailsCourse} exact />
                 <Route path="/listcourse" exact component={isLogged ? ListCourse : Loading} />
                 <Route path="/radar" component={isLogged ? Radar : NotFound} exact />
+
+                <Route path="/posts/add" component={isLogged ? CreatePost : NotFound} exact />
              {/*<Route path="/admin/dashboard" component={isAdmin ? Admin : NotFound} exact  />
                 <Route path="/admin/user" component={isAdmin ? UserProfile : NotFound} exact  />
                 <Route path="/admin/table" component={isAdmin ? table : NotFound} exact  />
@@ -157,8 +161,18 @@ function Body() {
               
                             <Route path="/listevent" component={ListEvent} exact />
                             <Route path="/events" component={isAdmin ? Events : NotFound} exact />  
+                            <Route path="/calendar" component={calendar} exact />
                             <Route path="/addevent" component={isAdmin ? Addevents : NotFound} exact  />
                             <Route path="/editevent/:id" component={isAdmin ? Editevents : NotFound} exact  />
+                            <Route path="/listsoft" component={ListSoft} exact />
+                            <Route path="/detailsoft/:id" component={DetailSoft} exact />
+                            <Route path="/detailevent/:id" component={DetailEvent} exact />
+
+                            <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />
+                            <Route path="/addhard" component={isAdmin ? Addhardskills : NotFound} exact  />
+                            <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
+                            <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
+
                          
             </Switch>
         </section> 

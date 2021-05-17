@@ -5,6 +5,8 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const path = require('path')
+const Comments = require('./models/commentModel')
+const bodyParser = require('body-parser')
 
 
 const app = express()

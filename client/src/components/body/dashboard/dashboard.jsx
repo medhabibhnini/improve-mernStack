@@ -304,11 +304,16 @@ function Dashboard() {
 		                </Collapse>
 		            </li>
 
-
 					<li>
 						<Link to="/events" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-comments"></i></span>
 		                	<span class="ttr-label">Events</span>
+		                </Link>
+		            </li>
+					<li>
+						<Link to="/calendar" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-calendar"></i></span>
+		                	<span class="ttr-label">Calendar</span>
 		                </Link>
 		            </li>
 					<li>

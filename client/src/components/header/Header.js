@@ -227,11 +227,18 @@ function Header() {
                 <li><Link to="/subjects">Blog </Link>
                  
                 </li>
-                <li><a href="javascript:;">Event <i class="fa fa-chevron-down"></i></a>
-                  <ul class="sub-menu">
-                    <li><a href="blog-classic-grid.html">Blog Classic</a></li>
-                    <li><a href="blog-classic-sidebar.html">Blog Classic Sidebar</a></li>
-                
+                <li class="add-mega-menu"><a href="javascript:;">Our Events <i class="fa fa-chevron-down"></i></a>
+                  <ul class="sub-menu add-menu">
+                    <li class="add-menu-left">
+                      <h5 class="menu-adv-title">Our Events</h5>
+                      <ul>
+                        <li><a href="/listevent">Events </a></li>
+                        
+                      </ul>
+                    </li>
+                    <li class="add-menu-right">
+                      <img src="assets/images/adv/adv.jpg" alt=""/>
+                    </li>
                   </ul>
                 </li>
 

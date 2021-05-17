@@ -252,12 +252,12 @@ console.log(data)
       
 
       <CustomInput  type="file" name="file" id="file_up" onChange={handleUpload} />
-  {
-  loading ? <div id="file_img"><Loading /></div>
-  :<div id="file_img" style={styleUpload}>
-  <img src={image ? image.url : ''} alt=""/>
-  </div>
-  }
+     {
+       loading ? <div id="file_img"><Loading /></div>
+         :<div id="file_img" style={styleUpload}>
+          <img src={image ? image.url : ''} alt=""/>
+           </div>
+        }
                 
             </div>
 

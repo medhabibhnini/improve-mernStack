@@ -5,6 +5,7 @@ router.put('/updateEvent/:id',event.updateEvents)
 router.get('/events',event.getAllEvents)
 router.delete('/deleteevents/:id',event.deleteEvent)
 router.get('/getevent/:id',event.getEventsById)
+router.get('/calendar',event.getAllEvents)
 
 
 module.exports=router

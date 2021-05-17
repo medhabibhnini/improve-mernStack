@@ -149,8 +149,8 @@ function Body() {
         
                 <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  
                 <Route path="/topics/:blog_id" exact component={Topics} />
-                <Route path="/subjects" exact component={help} />
-                <Route path="/help" exact component={blogs} />
+                <Route path="/subjects" exact component={blogs} />
+                <Route path="/help" exact component={help} />
                 <Route path="/topics/topic/:topic_id" exact component={TopicPage} />
                 <Route path="/404" exact component={NotFound} />
                 { /* <Route path="/forum/posts/:id" component={DetailPosts} exact />*/}

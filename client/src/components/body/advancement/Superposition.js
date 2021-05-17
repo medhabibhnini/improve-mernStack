@@ -74,7 +74,7 @@ const [nomsoft,getnomsoft]=useState([])
 /************second part */
 const [softskils,getsofskils]= useState([])
 const getSoftSkils =()=>{
-  axios.get(`http://localhost:5000/soft/getSoftList/${user._id}`)
+  axios.get(`/soft/getSoftList/${user._id}`)
   .then((response)=>{
   const allSkills =response.data;
 
@@ -86,7 +86,7 @@ const getSoftSkils =()=>{
 
 /************************* */
 const getSoftSkills =()=>{
-  axios.get(`http://localhost:5000/soft/getSoftList/${id}`)
+  axios.get(`/soft/getSoftList/${id}`)
   .then((response)=>{
   const allSkills =response.data;
 
@@ -96,7 +96,7 @@ const getSoftSkills =()=>{
   
   }
   const scoresofts =()=>{
-    axios.get(`http://localhost:5000/soft/getScoresoft/${id}`)
+    axios.get(`/soft/getScoresoft/${id}`)
     .then((response)=>{
     const allSkills =response.data;
     
@@ -109,7 +109,7 @@ const getSoftSkills =()=>{
   }
 
       const getAllSkills =()=>{
-      axios.get(`http://localhost:5000/hard/getHardList/${id}`)
+      axios.get(`/hard/getHardList/${id}`)
       .then((response)=>{
       const allSkills =response.data;
 
@@ -120,7 +120,7 @@ getSkills(allSkills);
       } 
 
 const scoreSkills =()=>{
-  axios.get(`http://localhost:5000/hard/getScorehard/${id}`)
+  axios.get(`/hard/getScorehard/${id}`)
   .then((response)=>{
   const allSkills =response.data;
   
@@ -133,7 +133,7 @@ const scoreSkills =()=>{
 }
 
       const  nomSkillss =()=>{
-      axios.get(`http://localhost:5000/hard/getNamehard/${id}`)
+      axios.get(`/hard/getNamehard/${id}`)
             .then((response)=>{
             const allSkills =response.data;
             
@@ -146,7 +146,7 @@ const scoreSkills =()=>{
 
 
       const  nomsofts =()=>{
-        axios.get(`http://localhost:5000/soft/getNamesoft/${id}`)
+        axios.get(`/soft/getNamesoft/${id}`)
               .then((response)=>{
               const allSkills =response.data;
               
@@ -158,7 +158,7 @@ const scoreSkills =()=>{
         }
 /************users */
 const  getListUser =()=>{
-    axios.get(`http://localhost:5000/hard/users`)
+    axios.get(`/hard/users`)
           .then((response)=>{
           const allusers =response.data;
           console.log(allusers)
@@ -171,7 +171,7 @@ const  getListUser =()=>{
     
     }
     const  getoneUser =()=>{
-        axios.get(`http://localhost:5000/hard/users/${id}`)
+        axios.get(`/hard/users/${id}`)
               .then((response)=>{
               const usersss =response.data;
               

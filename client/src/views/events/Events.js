@@ -1,15 +1,14 @@
-import 'antd/dist/antd.css';
+
 import { Calendar, Alert } from 'antd';
 import React, { useState, useEffect, Component } from 'react';
-import DatePicker from "react-datepicker";
-// @material-ui/core components
+i// @material-ui/core components
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { CustomInput, FormGroup } from 'reactstrap';
 import Loading from '../../utils/loading/Loading'
 
 import moment from 'moment';
-import date from 'react-calendar-pane';
+
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // core components

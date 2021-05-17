@@ -129,7 +129,7 @@ function Login() {
 			<div class="account-container">
 				<div class="heading-bx left">
 					<h2 class="title-head">Login to your <span>Account</span></h2>
-					<p>Don't have an account? <Link href="/register">Create one here</Link></p>
+					<p>Don't have an account? <Link to="/register">Create one here</Link></p>
 				</div>	
         {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}

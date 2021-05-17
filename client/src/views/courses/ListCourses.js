@@ -1,4 +1,5 @@
 import React,{useState, useEffect,useParams} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllCourses, dispatchGetAllCourses} from '../../redux/actions/coursesAction'
 import axios from 'axios'
@@ -30,7 +31,7 @@ const [callback, setCallback] = useState(false)
 const [data, setData] = useState(initialState)
 const [nomsoft,getnomsoft]=useState([])
 
-
+const history = useHistory()
 
 useEffect(()=>{
 getAllCourses();},[]);
@@ -65,11 +66,11 @@ try{
   })
   setLoading(false)
   setCallback(!callback)
-  window.location.reload(false);
+ 
 
   }
   
-
+  history.push("/courses");
 
 } catch (err) {
   setData({...data, err: err.response.data.msg , success: ''})
@@ -158,7 +159,7 @@ const mystyle = {
 					<div class="widget-box">
 						<div class="wc-title">
 							<h4>Courses</h4>
-              <Link to ="/addmicro">
+              <Link to ="/create_course">
             <Button className=" " style={{marginTop:"20px"}}>Add Courses + </Button>
 
             </Link >

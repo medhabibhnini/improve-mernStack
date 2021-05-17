@@ -125,7 +125,8 @@ function Body() {
                             <Route path="/addhards" component={isLogged ? Addhard : NotFound} exact />  
                             <Route path="/Superposition" component={isLogged ? Superposition : NotFound} exact />  
 
-               
+                            <Route path="/Superposition/:id" component={isLogged ? Superposition : NotFound} exact />  
+
                 <Route path="/posts/add/:blog_id" component={isLogged ? CreatePost : NotFound} exact />
                 <Route path="/subject/add" component={isLogged ? CreateBlog : NotFound} exact />  
                 <Route path="/posts/user-posts" component={isLogged ? PostsUser : NotFound} exact />  

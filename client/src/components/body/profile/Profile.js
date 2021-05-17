@@ -191,7 +191,7 @@ function Profile() {
                <div className="col-lg-3 order-lg-2">
                  <div className="card-profile-image">
                    <a href="#">
-                     <img src={avatar ? avatar : user.avatar} className="rounded-circle"/>
+                     <img src={user.avatar} className="rounded-circle"/>
                    </a>
                  </div>
                </div>

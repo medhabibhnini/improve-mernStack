@@ -26,6 +26,7 @@ import "../../../assets/css/color/color-1.css"
 import "../../../assets/vendors/revolution/css/layers.css"
 import "../../../assets/vendors/revolution/css/settings.css"
 import "../../../assets/vendors/revolution/css/navigation.css"
+import { ButtonDropdown } from 'reactstrap';
 
 const initialState = {
     name: '',
@@ -55,7 +56,7 @@ function Superposition() {
     const [getusers,setusers]=useState([])
     const {name, password, cf_password,selecteduser, err, success} = data
     const [search, setSearch] = useState("");
-const [oneuser,setoneuser]=useState()
+const [oneuser,setoneuser]=useState(false)
     const [avatar, setAvatar] = useState(false)
     const [loading, setLoading] = useState(false)
     const [callback, setCallback] = useState(false)
@@ -65,12 +66,25 @@ const [scores,setScores]=useState([]);
 const [softskills,getsofskills]= useState([])
 const [softscore,getsoftscore]=useState([])
 const [nomsoft,getnomsoft]=useState([])
-const handleChanges = e => {
+/*const handleChanges = e => {
   const {name, value} = e.target
   setDatas({...datas, [name]:value, err:'', success: ''})
   console.log(datas.title)
-}
+}*/
+/************second part */
+const [softskils,getsofskils]= useState([])
+const getSoftSkils =()=>{
+  axios.get(`http://localhost:5000/soft/getSoftList/${user._id}`)
+  .then((response)=>{
+  const allSkills =response.data;
 
+  getsofskils(allSkills);
+  }).catch(error=>console.error(`Error :${error}`));
+  
+  
+  }
+
+/************************* */
 const getSoftSkills =()=>{
   axios.get(`http://localhost:5000/soft/getSoftList/${id}`)
   .then((response)=>{
@@ -147,7 +161,8 @@ const  getListUser =()=>{
     axios.get(`http://localhost:5000/hard/users`)
           .then((response)=>{
           const allusers =response.data;
-          
+          console.log(allusers)
+
           setusers(allusers);
     
     
@@ -155,18 +170,19 @@ const  getListUser =()=>{
     
     
     }
-
-    const  getoneUser =(ids)=>{
-        axios.get(`http://localhost:5000/hard/users/${ids}`)
+    const  getoneUser =()=>{
+        axios.get(`http://localhost:5000/hard/users/${id}`)
               .then((response)=>{
-              const allusers =response.data;
+              const usersss =response.data;
               
-              setoneuser(allusers);
+              setoneuser(usersss);
         
         
             }).catch(error=>console.error(`Error :${error}`));
         
         }
+     
+
       useEffect(()=>{
         getoneUser()
         getListUser()
@@ -177,6 +193,7 @@ const  getListUser =()=>{
         scoresofts();
         nomsofts();
       },[],[],[],[],[],[],[],[]);
+   //hard score   
 const returnScores=()=>{
   scoreSkills();
   const tab1=[]
@@ -187,6 +204,7 @@ tab1[index]=scores[index].score;
   return tab1;
 
 }
+//soft score
 const returnScoressoft=()=>{
   scoresofts();
   const tab1=[]
@@ -197,8 +215,13 @@ tab1[index]=softscore[index].score;
   return tab1;
 
 }
-const tabsoft=returnScoressoft();
-const tab2=returnScores()
+//soft
+const tabsoftUser1=returnScoressoft(user._id);
+const tabsoftUser2=returnScoressoft(id);
+//hard
+const tab2tUser1=returnScores(user._id);
+const tab2User2=returnScores(id);
+
       const returnTab=()=>
       {  nomsofts();
 
@@ -227,10 +250,13 @@ const tab2=returnScores()
         }
         } return tab1
       }
-      console.log(nomsoft)
-      const tab=returnTab()
-const nomsoftss=returnTabsoft()
-      const addSkill=()=>{
+      //soft
+      const tab1=returnTab(user._id)
+      const tab2=returnTab(id)
+      //hard
+const nomhard=returnTabsoft(user._id)
+const nomhard2=returnTabsoft(id);
+ /*     const addSkill=()=>{
         var  index=0
 
         for ( index, tab.length; index <  tab.length; ++index) {
@@ -243,28 +269,39 @@ const nomsoftss=returnTabsoft()
         }
 
       }
-
-
+*/
 
     const datachart = {
-        labels:tab,
+        labels:tab1,
         datasets: [
           {
-            label: 'Hard Skills Data',
-            backgroundColor: 'rgba(179,181,198,0.2)',
+            label: 'Hard Skills Data  of you',
+            backgroundColor: 'rgba(00,255,00,0.1)',
             borderColor: 'rgba(255,99,132,1)',
+            borderWidth:2,
+
+            pointBackgroundColor: 'rgba(255,99,132,1)',
+            pointBorderColor: '#fff00',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255,99,132,1)',
+            data: tab2tUser1
+          },
+          {
+            label: 'Hard Skills Data',
+            backgroundColor: 'rgba(00,255,255,0.1)',
+            borderColor: '#00FF00',
+            borderWidth:2,
             pointBackgroundColor: 'rgba(255,99,132,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(255,99,132,1)',
-            data: tab2
-          },
-          
+            data: [14,80,25]
+          }
           
         ]
       };
       const datachartHard = {
-        labels: nomsoftss,
+        labels:["imen"],
         datasets: [
           {
             label: 'Soft Skills Data',
@@ -274,7 +311,7 @@ const nomsoftss=returnTabsoft()
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(0,191,255)',
-            data: tabsoft
+            data:[15]
           },
           
           
@@ -292,8 +329,13 @@ const nomsoftss=returnTabsoft()
 
     const handleChange = e => {
         const {name, value} = e.target
+
         setData({...data, [name]:value, err:'', success: ''})
-    }
+data.selecteduser=null    
+      //  console.log(personId)
+      }
+      console.log(oneuser)
+
 
     const changeAvatar = async(e) => {
         e.preventDefault()
@@ -323,6 +365,7 @@ const nomsoftss=returnTabsoft()
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
+
 
     const updateInfor = () => {
         try {
@@ -379,7 +422,6 @@ const nomsoftss=returnTabsoft()
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
-console.log(selecteduser)
     return (
   
         <>
@@ -461,35 +503,34 @@ console.log(selecteduser)
                 </div>
               </div>
             </div>
+            <form onClick={getoneUser()}>
+
 <div style={{marginTop:"10%"}}>
-<select  onChange={handleChange() } name="selecteduser"
+{success && showSuccessMsg(success)}
+              {err && showErrMsg(err)}
+            {loading && <h3>Loading.....</h3>}
+<select  name="selecteduser" onChange={handleChange}
          >
-                <option></option>
 
    { getusers.map(users=>(
-    <option value={users.name} key={users._id} onClick={getoneUser(users._id)}>{users.name}</option>))
+    <option value={users._id} key={users._id}>{users.name}</option>))
     
     
     }
 </select>
 
+
+  <Button><Link  to={`/Superposition/${selecteduser}`} >loop</Link></Button>
 </div>
 
-            {
-                getusers.filter((val)=> {
-                    if (search =="") {
-                        return val
-                    } else  if ((val.name.toLowerCase().includes(search.toLowerCase()))){
-                        return val
-                    }
-                }).map(userss=>(
+      
                 
                 <div class="card card-profile shadow" style={{marginTop:"20%"}}>
               <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
                   <div class="card-profile-image">
                     <a href="#">
-                      <img src={avatar ? avatar : userss.avatar} class="rounded-circle"/>
+                      <img src={avatar ? avatar : oneuser.avatar} class="rounded-circle"/>
                     </a>
                   </div>
                 </div>
@@ -517,13 +558,13 @@ console.log(selecteduser)
                 </div>
                 <div class="text-center">
                   <h3>
-                  {userss.name} {userss.lastName}<span class="font-weight-light"></span>
+                  {oneuser.name} {oneuser.lastName}<span class="font-weight-light"></span>
                   </h3>
                   <div class="h5 font-weight-300">
                   
                   </div>
                   <div class="h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>{user.email}
+                    <i class="ni business_briefcase-24 mr-2"></i>{oneuser.email}
                   </div>
                   <div>
                     <i class="ni education_hat mr-2"></i>University of Computer Science
@@ -532,31 +573,14 @@ console.log(selecteduser)
                         
                 </div>
               </div>
-            </div>))}
-
+            </div>
+            </form>
           </div>
-          
+       
+
           <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
-              <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                  <div class="col-8">
-                    <h3 class="mb-0">My Hard skills Advancement</h3>
-                  </div>
-                  <form >   
-                 {/* <select name="title" onChange={handleChanges}>
-                    { tab.map( skill=>(
-<option value={skill}>
-{skill}
-
-</option>
-                     ) )}
-                    </select>*/}
-                             <Button >-</Button>
-</form>
-                  <Button>+</Button>
-                </div>
-              </div>
+          
        
               <div class="card-body" style={{backgroundColor:"white",borderStyle:"none"}}>
             {success && showSuccessMsg(success)}

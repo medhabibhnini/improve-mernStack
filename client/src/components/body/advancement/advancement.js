@@ -31,6 +31,7 @@ const initialState = {
     name: '',
     password: '',
     cf_password: '',
+    selecteduser:'',
     err: '',
     success: ''
 }
@@ -52,7 +53,7 @@ function Advancement() {
     const [data, setData] = useState(initialState)
     const [datas, setDatas] = useState(initialScore)
 
-    const {name, password, cf_password, err, success} = data
+    const {name, password, cf_password,selecteduser, err, success} = data
 
     const [avatar, setAvatar] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -63,6 +64,9 @@ const [scores,setScores]=useState([]);
 const [softskills,getsofskills]= useState([])
 const [softscore,getsoftscore]=useState([])
 const [nomsoft,getnomsoft]=useState([])
+const [oneuser,setoneuser]=useState(false)
+const [getusers,setusers]=useState([])
+
 const handleChanges = e => {
   const {name, value} = e.target
   setDatas({...datas, [name]:value, err:'', success: ''})
@@ -149,7 +153,9 @@ const scoreSkills =()=>{
         getSoftSkills();
         scoresofts();
         nomsofts();
-      },[],[],[],[],[],[]);
+        getoneUser();
+        getListUser();
+      },[],[],[],[],[],[],[],[]);
 const returnScores=()=>{
   scoreSkills();
   const tab1=[]
@@ -216,7 +222,32 @@ const nomsoftss=returnTabsoft()
       }
 
 
+/***user */
+const  getListUser =()=>{
+  axios.get(`http://localhost:5000/hard/users`)
+        .then((response)=>{
+        const allusers =response.data;
+        console.log(allusers)
 
+        setusers(allusers);
+  
+  
+      }).catch(error=>console.error(`Error :${error}`));
+  
+  
+  }
+  const  getoneUser =()=>{
+      axios.get(`http://localhost:5000/hard/users/${id}`)
+            .then((response)=>{
+            const usersss =response.data;
+            
+            setoneuser(usersss);
+      
+      
+          }).catch(error=>console.error(`Error :${error}`));
+      
+      }
+   
 
     const datachart = {
         labels:tab,
@@ -260,6 +291,7 @@ const nomsoftss=returnTabsoft()
                 dispatch(dispatchGetAllUsers(res))
             })
         }
+
     },[token, isAdmin, dispatch, callback])
 
     const handleChange = e => {
@@ -449,10 +481,21 @@ const nomsoftss=returnTabsoft()
 
 </option>
                      ) )}
-                    </select>*/}
-                             <Button >-</Button>
+                    </select>*/}<select  name="selecteduser" onChange={handleChange}
+         >
+
+         { getusers.map(users=>(
+          <option value={users._id} key={users._id}>{users.name}</option>))
+          
+          
+          }
+      </select>
+      
+      
+        <Link  to={`/Superposition/${selecteduser}`} >loop</Link>
+
+
 </form>
-                  <Button>+</Button>
                 </div>
               </div>
        

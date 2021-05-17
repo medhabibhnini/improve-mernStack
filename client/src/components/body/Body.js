@@ -40,7 +40,7 @@ import Events from  '../../views/events/ListEvents'
 import Addevents from '../../views/events/Events'
 import Editevents from '../../views/events/EditEvent'
 import ListEvent from '../../views/front/ListEvent'
-import calendar from '../../views/calendar/calendar'
+
 
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
@@ -50,7 +50,7 @@ import AjoutHard from '../../views/front/AjoutHard'
 import ListHard from '../../views/front/ListHard'
 
 import HomeBack from '../../views/Home'
-import Calendar from '../../views/calendar/calendar'
+
 import DetailEvent from '../../views/front/DetailEvent'
 
 import AddMacro from '../../views/skills/AddMacroSkill'
@@ -164,7 +164,7 @@ function Body() {
               
                             <Route path="/listevent" component={ListEvent} exact />
                             <Route path="/events" component={isAdmin ? Events : NotFound} exact />  
-                            <Route path="/calendar" component={calendar} exact />
+                        
                             <Route path="/addevent" component={isAdmin ? Addevents : NotFound} exact  />
                             <Route path="/editevent/:id" component={isAdmin ? Editevents : NotFound} exact  />
                             <Route path="/listsoft" component={ListSoft} exact />

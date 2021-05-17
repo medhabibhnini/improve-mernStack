@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 
-import "../TopicPosts/posts.css"
+
 import Topics from "../Topics";
 const TopicBlog = ({
  blog

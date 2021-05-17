@@ -41,13 +41,13 @@ import Addevents from '../../views/events/Events'
 import Editevents from '../../views/events/EditEvent'
 import ListEvent from '../../views/front/ListEvent'
 
-
+import ListHard from '../../views/front/ListHard'
 import Hardskills from '../../views/skills/ListHardSkills'
 import Addhardskills from '../../views/skills/Addhardskills'
 import Addhard from '../../views/front/AjoutHard'
 import Edithardskills from '../../views/skills/EditHard'
 import AjoutHard from '../../views/front/AjoutHard'
-import ListHard from '../../views/front/ListHard'
+
 
 import HomeBack from '../../views/Home'
 
@@ -91,7 +91,7 @@ function Body() {
 
                 <Route path="/create_course" exact component={isAdmin ? CreateCourse : Loading} />
                 <Route path="/courses" exact component={isAdmin ? Courses : Loading} />
-                <Route path="/listcourses" exact component={isAdmin ? ListCourse : Loading} />
+                <Route path="/listcourses" exact component={isLogged ? ListCourse : Loading} />
                 <Route path="/edit_course/:id" component={isAdmin ? EditCourse : Loading} exact  />
                 <Route path="/detailcourse/:id" component={DetailsCourse} exact />
                 <Route path="/listcourse" exact component={isLogged ? ListCourse : Loading} />
@@ -160,7 +160,7 @@ function Body() {
                 <Route path="/addhard" component={isAdmin ? Addhardskills : NotFound} exact  />
                 <Route path="/edithard/:id" component={isAdmin ? Edithardskills : NotFound} exact  />
                 <Route path="/homeback" component={isAdmin ? HomeBack : NotFound} exact  />
-
+        
               
                             <Route path="/listevent" component={ListEvent} exact />
                             <Route path="/events" component={isAdmin ? Events : NotFound} exact />  

@@ -14,70 +14,53 @@ const TopicSection = ({
     let history = useHistory();
   return (
       <>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-<div class="fb-cards-designs">
-    <div class="fb-clone-card">
-            <div class="fb-card-main-content">
-                <div class="fb-card-header">
-                    <div class="user-post-info">
-                        <div class="user-thumb">
-                            <img src={post.avatar} class="img-responsive" />
-                        </div>
-                        <div class="user-information">
-                            <p>{post.name} {post.lastName}</p>
-                            <small> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></small>
-                        </div>
-                    </div>
-                    <div style={{ display: auth.isLogged && auth.user.name === post.name ? "block" : "none" }} class="post-action" 
+<div class="col-lg-8 col-xl-8">
+					
+          <div class="recent-news blog-lg">
+     
+          <img src={post.avatar} class="img-responsive" />
+        
+            <div class="info-bx">
+              <ul class="media-post">
+                <li><a href="#"><i class="fa fa-calendar"></i> <Moment format="HH:mm YYYY-MM-DD">{post.date}</Moment></a></li>
+                <li><a href="#"><i class="fa fa-comments-o"></i>{post.comments.length} comments</a></li>
+                <li><a href="#"><i class="fas fa-thumbs-up"></i> {post.likes.length} likes </a></li>
+                <li> <a href="#"> <div style={{marginLeft:"300px"}}>
+          <div style={{ display: auth.isLogged && auth.user.name === post.name ? "block" : "none" }} class="post-action" 
                     onClick={() =>{
                      
                           removePost(post._id).then(history.push("/subjects"))}
                           
                         
-                          }><i className="fas fa-times"></i>
-                         
-                    </div>
-                </div>
-                <div class="fb-card-body simple-text-card simple-image-card simple-image-post">
-                    <div class="images-container">
-                      
-                            
-                            <div class="sponsord-post-title-links">
-                            <small>{post.title}</small>
-                                <h5>{post.description}</h5>
-                            </div>
-                     
-                    </div>
-                </div>
-
-               
-            </div>
-
-            <div class="fb-card-like-comment-holder">
-                <div class="fb-card-like-comment">
-                    <div class="likes-emoji-holder">
-                    <span>   {post.likes.length} <i class="fas fa-thumbs-up"></i>  
-                  
-                      </span> 
+                          } href="#">delete post</div></div></a></li>
+                <li></li>
+              </ul>
+              <h5 class="post-title"><a href="#">{post.title}</a></h5>
+              <p>{post.description}</p>
+            
+              <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
+              
              
-             
-                    </div>
-                    <div class="like-comment-holder">
-                    
-                    </div>
-                </div>
+              <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
             </div>
+          </div>
+          <div class="clear" id="comment-list">
+            <div class="comments-area" id="comments">
+            
+            
+          
+              </div>
+            </div>
+          </div>
+
+
+        
+
             
 
            
             
-           
-        </div>
-</div>
+
 </>
   );
 };

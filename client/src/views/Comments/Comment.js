@@ -53,7 +53,7 @@ const Comment = ({
         removeComment(post._id, comment._id, )
     
     window.location.reload(true);
-  }}> <a  style={{ display: auth.isLogged && auth.user.name === comment.name ? "block" : "none" }}  class="comment-reply-link">delete</a> </div>
+  }}> <a href="#"  style={{ display: auth.isLogged && auth.user.name === comment.name ? "block" : "none" }}  class="comment-reply-link">delete</a> </div>
 									
     </li>
 

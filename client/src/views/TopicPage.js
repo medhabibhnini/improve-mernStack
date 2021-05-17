@@ -34,8 +34,13 @@ const TopicPage = ({
   ) : (
     <>
     <Header/>
-
-    <div class="fb-cards-designs">
+    <div className="container">
+    <div className="content-block">
+    
+			
+						
+        
+   <div className="container">
       <TopicSection
         post={post}
         auth={auth}
@@ -44,9 +49,12 @@ const TopicPage = ({
       />
 
    
-       
-   <div className="container">
-       
+
+        
+              
+        
+              
+      <div className="container">
 <div class="clear" id="comment-list">
 								<div class="comments-area" id="comments">
 									<h2 class="comments-title">Comments</h2>
@@ -59,10 +67,12 @@ const TopicPage = ({
      </div>
      </div>
      </div>
-      
+     </div>
+     <div class="comment-respond" id="respond">
     <TopicPageForm auth={auth} post={post} createComment={createComment} />
- 
+ </div>
 
+    </div>
     </div>
     </div>
     <Footer/>

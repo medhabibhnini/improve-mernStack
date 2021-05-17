@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { addLikeToPost } from "../../redux/actions/likes.actions/addLikeToPost";
 import { removeLikeFromTopicPost } from "../../redux/actions/likes.actions/removeLikeFromTopicPost";
 import { removePost } from "../../redux/actions/posts.actions/removePost";
-import "./posts.css"
+
 import Header from "../../components/header/Header";
 const TopicPost = ({
   isTheOldest,

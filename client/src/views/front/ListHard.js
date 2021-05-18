@@ -139,7 +139,7 @@ const {userSkill,getUserskill}=useState([]);
        
         },{
           title: 'Select add Score Button',
-          text: 'A PoP UP will appear , be free to add your score',
+          text: 'A PoP UP will appear , be free to add your score between 0 & 100',
           imageUrl: 'https://i.pinimg.com/736x/61/62/5b/61625b91c47e4a58d0b1d338a8fd0596.jpg',
         imageWidth: 400,
         imageHeight: 200,

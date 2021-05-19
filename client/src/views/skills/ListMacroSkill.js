@@ -11,6 +11,7 @@ import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
 
 import { $CombinedState } from 'redux'
+import { Helmet } from 'react-helmet'
 const initialState ={
   title :'',
  
@@ -136,7 +137,9 @@ const mystyle = {
 <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
 		<div class="container-fluid">
 			<div class="db-breadcrumb">
+        <Helmet>
 				<h4 class="breadcrumb-title">Macro soft Skills</h4>
+        </Helmet>
 				<ul class="db-breadcrumb-list">
 					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
 					<li>Macro soft Skills</li>

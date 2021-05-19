@@ -9,6 +9,7 @@ import Pagination from '../../components/body/profile/Pagination'
 
 import Dashboard from "../../components/body/dashboard/dashboard"
 import { Button } from 'react-bootstrap';
+import { Helmet } from 'react-helmet';
 const initialState ={
     title :'',
     type :'',
@@ -122,7 +123,9 @@ return(
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
+							<Helmet>
 							<h4>Hard skills </h4>
+							</Helmet>
               <Link to ="/addhard">
             <Button className=" " style={{marginTop:"20px"}}>Add hard skills + </Button>
 

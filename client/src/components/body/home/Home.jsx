@@ -10,7 +10,7 @@ import slider1 from "../../../assets/images/slider/slide1.jpg"
 import slider2 from "../../../assets/images/slider/slide2.jpg"
 import pic1 from "../../../assets/images/our-services/pic1.jpg"
 import pic4 from "../../../assets/images/event/pic4.jpg"
-
+import {Helmet} from "react-helmet"
 import "../../../assets/css/assets.css"
 
 import "../../../assets/css/typography.css"
@@ -732,7 +732,9 @@ Here you can evaluate yourself
                 <div class="container">
 					<div class="row">
 						<div class="col-md-12 heading-bx left">
+							<Helmet>
 							<h2 class="title-head"><strong>Blog</strong> <span>News</span></h2>
+							</Helmet>
 							<p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
 						</div>
 					</div>

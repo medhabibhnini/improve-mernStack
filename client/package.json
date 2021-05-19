@@ -33,6 +33,7 @@
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.1.21",
     "react-google-recaptcha": "^2.1.0",
+    "react-helmet": "^6.1.0",
     "react-linkedin-login-oauth2": "^1.0.9",
     "react-moment": "^1.1.1",
     "react-paginate": "^7.1.2",

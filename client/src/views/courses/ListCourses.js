@@ -12,6 +12,7 @@ import { Button } from 'react-bootstrap';
 
 
 import { $CombinedState } from 'redux'
+import { Helmet } from 'react-helmet'
 const initialState ={
   title :'',
   description :'',
@@ -90,7 +91,9 @@ const mystyle = {
 <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
 		<div class="container-fluid">
 			<div class="db-breadcrumb">
+				<Helmet>
 				<h4 class="breadcrumb-title">Our Online Courses</h4>
+				</Helmet>
 				<ul class="db-breadcrumb-list">
 					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
 					<li>Courses</li>
@@ -100,8 +103,12 @@ const mystyle = {
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
+						<Helmet>
 							<h4>Best Courses</h4>
+							</Helmet>
+							<Helmet>
               <h5>Learn Courses</h5>
+			  </Helmet>
               <Link to ="/create_course">
             <Button className=" " style={{marginTop:"20px"}}>Add Courses + </Button>
 

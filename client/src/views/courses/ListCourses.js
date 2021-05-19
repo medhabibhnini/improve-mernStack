@@ -189,7 +189,7 @@ const mystyle = {
 									</div>
 									<div class="row card-courses-dec">
 										<div class="col-md-12">
-											<h6 class="m-b10">Course Description</h6>
+											<h6 class="m-b10">{courses.title}</h6>
 											<p>{courses.description} </p>	
 										</div>
 										<div class="col-md-12">

@@ -84,71 +84,13 @@ const mystyle = {
     return (
       <>
         <Dashboard/>
-        
-{/*
-<div class="col">
-          <div class="card shadow">
-            <div class="card-header border-0" >
-              <h3 class="mb-0">Card tables</h3>
-              </div>
-    
-<Link to ="/create_course">
-            <Button className=" " style={{marginTop:"30px", marginLeft:"1300px",width:"150px"}}>Add A Course +</Button>
-
-            </Link >
-           <table class="table align-items-center table-flush" style={{marginLeft:"200px",marginRight:"100px", maxWidth:"100%"}}>
-                        <thead class="thead-light">
-                        <tr>
-            <th>Title</th>
-            <th >Description</th>
-            <th  >Category</th>
-            <th  >Price</th>
-            <th  >Link</th>
-            <th >Actions</th>
-          </tr>
-                        </thead>
-                        <tbody>
-                        { courses.map(course =>(
-          <tr   key={course._id}>
-            <td>{course.title}</td>
-            <td>{course.description}</td>
-            <td>{course.nomsofts}</td>
-            <td>{course.price}</td>
-            <td>{course.link}</td>
-            <td>
-            <Link  to={`/edit_course/${course._id}`}>
-                                                <Button className="fas fa-edit btn btn-warning" title="Edit" style={{height:'40px',width:'60px',marginLeft:'50px'}} > </Button>
-                                          
-                                            </Link>
-               <Button className="fas fa-trash-alt  btn btn-danger"  title="Remove" style={{height:'40px',width:'60px'}} 
-                                    onClick={() => handleDelete(course._id)}         ></Button></td>
-          </tr>
-           ) )}
-                        </tbody>
-                    </table>
-             </div>
-             </div>
-    
-  
-    
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
-
-                        */}
+   
                         
 
 <main class="ttr-wrapper" style={{marginLeft:"300px"}}>
 		<div class="container-fluid">
 			<div class="db-breadcrumb">
-				<h4 class="breadcrumb-title">Courses</h4>
+				<h4 class="breadcrumb-title">Our Online Courses</h4>
 				<ul class="db-breadcrumb-list">
 					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
 					<li>Courses</li>
@@ -158,7 +100,8 @@ const mystyle = {
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
-							<h4>Courses</h4>
+							<h4>Best Courses</h4>
+              <h5>Learn Courses</h5>
               <Link to ="/create_course">
             <Button className=" " style={{marginTop:"20px"}}>Add Courses + </Button>
 

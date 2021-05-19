@@ -229,7 +229,7 @@ const Home=() =>{
 						data-param9="" data-param10="" 
 						data-description="Science says that Women are generally happier">
 
-							<img src={"../../../assets/images/slider/slide2.jpg"} alt="" 
+							<img src={"../../../assets/images/slider/slide2.jpg"} alt="Online education" 
 								data-bgposition="center center" 
 								data-bgfit="cover" 
 								data-bgrepeat="no-repeat" 
@@ -379,7 +379,7 @@ Here you can evaluate yourself
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="service-bx">
 								<div class="action-box">
-									<img src={pic1} alt=""/>
+									<img src={pic1} alt="Online education"/>
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -393,7 +393,7 @@ Here you can evaluate yourself
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="service-bx">
 								<div class="action-box">
-									<img src="../../../assets/images/our-services/pic2.jpg" alt=""/>
+									<img src="../../../assets/images/our-services/pic2.jpg" alt="Learn courses online"/>
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -407,7 +407,7 @@ Here you can evaluate yourself
 						<div class="col-lg-4 col-md-4 col-sm-12">
 							<div class="service-bx m-b0">
 								<div class="action-box">
-									<img src="../../../assets/images/our-services/pic3.jpg" alt=""/>
+									<img src="../../../assets/images/our-services/pic3.jpg" alt="Online traing free courses"/>
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -438,7 +438,8 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="cours-bx">
 								<div class="action-box">
-									<img src="assets/images/courses/pic1.jpg" alt=""/>
+									<img src="assets/images/courses/pic1.jpg" alt="training
+									"/>
 									<a href="#" class="btn">Read More</a>
 								</div>
 								<div class="info-bx text-center">
@@ -466,7 +467,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="cours-bx">
 								<div class="action-box">
-									<img src="assets/images/courses/pic2.jpg" alt=""/>
+									<img src="assets/images/courses/pic2.jpg" alt="best courses"/>
 									<a href="#" class="btn">Read More</a>
 								</div>
 								<div class="info-bx text-center">
@@ -494,7 +495,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="cours-bx">
 								<div class="action-box">
-									<img src="assets/images/courses/pic3.jpg" alt=""/>
+									<img src="assets/images/courses/pic3.jpg" alt="E-learning"/>
 									<a href="#" class="btn">Read More</a>
 								</div>
 								<div class="info-bx text-center">
@@ -522,7 +523,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="cours-bx">
 								<div class="action-box">
-									<img src="assets/images/courses/pic4.jpg" alt=""/>
+									<img src="assets/images/courses/pic4.jpg" alt="Online education"/>
 									<a href="#" class="btn">Read More</a>
 								</div>
 								<div class="info-bx text-center">
@@ -556,8 +557,8 @@ Here you can evaluate yourself
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 text-center text-white">
-							<h2>Online Courses To Learn</h2>
-							<h5>Own Your Feature Learning New Skills Online</h5>
+							<h2><strong>Online </strong> <strong>Courses</strong> To Learn</h2>
+							<h5>Own Your Feature <strong>Learning</strong>  <strong>New Skills</strong><strong>Online</strong> </h5>
 							<form class="cours-search">
 								<div class="input-group">
 									<input type="text" class="form-control" placeholder="What do you want to learn today?	"/>
@@ -611,7 +612,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
-									<img src="assets/images/event/pic4.jpg" alt=""/>
+									<img src="assets/images/event/pic4.jpg" alt="soft skills"/>
 								</div>
 								<div class="info-bx d-flex">
 									<div>
@@ -634,7 +635,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
-									<img src="assets/images/event/pic3.jpg" alt=""/>
+									<img src="assets/images/event/pic3.jpg" alt=" hard skills"/>
 								</div>
 								<div class="info-bx d-flex">
 									<div>
@@ -657,7 +658,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
-									<img src="assets/images/event/pic2.jpg" alt=""/>
+									<img src="assets/images/event/pic2.jpg" alt="improve skills"/>
 								</div>
 								<div class="info-bx d-flex">
 									<div>
@@ -698,7 +699,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="testimonial-bx">
 								<div class="testimonial-thumb">
-									<img src="assets/images/testimonials/pic1.jpg" alt=""/>
+									<img src="assets/images/testimonials/pic1.jpg" alt="improve skills"/>
 								</div>
 								<div class="testimonial-info">
 									<h5 class="name">Peter Packer</h5>
@@ -712,7 +713,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="testimonial-bx">
 								<div class="testimonial-thumb">
-									<img src="assets/images/testimonials/pic2.jpg" alt=""/>
+									<img src="assets/images/testimonials/pic2.jpg" alt="improve skills"/>
 								</div>
 								<div class="testimonial-info">
 									<h5 class="name">Peter Packer</h5>
@@ -731,7 +732,7 @@ Here you can evaluate yourself
                 <div class="container">
 					<div class="row">
 						<div class="col-md-12 heading-bx left">
-							<h2 class="title-head">Recent <span>News</span></h2>
+							<h2 class="title-head"><strong>Blog</strong> <span>News</span></h2>
 							<p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
 						</div>
 					</div>
@@ -739,7 +740,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="recent-news">
 								<div class="action-box">
-									<img src="assets/images/blog/latest-blog/pic1.jpg" alt=""/>
+									<img src="assets/images/blog/latest-blog/pic1.jpg" alt="improve skills"/>
 								</div>
 								<div class="info-bx">
 									<ul class="media-post">
@@ -758,7 +759,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="recent-news">
 								<div class="action-box">
-									<img src="assets/images/blog/latest-blog/pic2.jpg" alt=""/>
+									<img src="assets/images/blog/latest-blog/pic2.jpg" alt="improve skills"/>
 								</div>
 								<div class="info-bx">
 									<ul class="media-post">
@@ -777,7 +778,7 @@ Here you can evaluate yourself
 						<div class="item">
 							<div class="recent-news">
 								<div class="action-box">
-									<img src="assets/images/blog/latest-blog/pic3.jpg" alt=""/>
+									<img src="assets/images/blog/latest-blog/pic3.jpg" alt="improve skills"/>
 								</div>
 								<div class="info-bx">
 									<ul class="media-post">

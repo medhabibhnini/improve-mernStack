@@ -11,6 +11,7 @@ import { Button } from 'react-bootstrap';
 import Pagination from '../../components/body/profile/Pagination'
 
 import { $CombinedState } from 'redux'
+import { Helmet } from 'react-helmet'
 const initialState ={
   title :'',
  
@@ -179,7 +180,9 @@ const mystyle = {
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
+              <Helmet>
 							<h4>Micro soft skills </h4>
+              </Helmet>
               <Link to ="/addmicro">
             <Button className=" " style={{marginTop:"20px"}}>Add Micro skills + </Button>
 

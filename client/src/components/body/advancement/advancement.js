@@ -75,7 +75,7 @@ const handleChanges = e => {
 }
 
 const getSoftSkills =()=>{
-  axios.get(`/soft/getSoftList/${id}`)
+  axios.get(`http://localhost:5000/soft/getSoftList/${id}`)
   .then((response)=>{
   const allSkills =response.data;
 
@@ -85,7 +85,7 @@ const getSoftSkills =()=>{
   
   }
   const scoresofts =()=>{
-    axios.get(`/soft/getScoresoft/${id}`)
+    axios.get(`http://localhost:5000/soft/getScoresoft/${id}`)
     .then((response)=>{
     const allSkills =response.data;
     
@@ -98,7 +98,7 @@ const getSoftSkills =()=>{
   }
 
       const getAllSkills =()=>{
-      axios.get(`/hard/getHardList/${id}`)
+      axios.get(`http://localhost:5000/hard/getHardList/${id}`)
       .then((response)=>{
       const allSkills =response.data;
 
@@ -109,7 +109,7 @@ getSkills(allSkills);
       } 
 
 const scoreSkills =()=>{
-  axios.get(`/hard/getScorehard/${id}`)
+  axios.get(`http://localhost:5000/hard/getScorehard/${id}`)
   .then((response)=>{
   const allSkills =response.data;
   
@@ -122,7 +122,7 @@ const scoreSkills =()=>{
 }
 
       const  nomSkillss =()=>{
-      axios.get(`/hard/getNamehard/${id}`)
+      axios.get(`http://localhost:5000/hard/getNamehard/${id}`)
             .then((response)=>{
             const allSkills =response.data;
             
@@ -135,7 +135,7 @@ const scoreSkills =()=>{
 
 
       const  nomsofts =()=>{
-        axios.get(`/soft/getNamesoft/${id}`)
+        axios.get(`http://localhost:5000/soft/getNamesoft/${id}`)
               .then((response)=>{
               const allSkills =response.data;
               
@@ -251,7 +251,7 @@ const  getListUser =()=>{
    
 
     const datachart = {
-        labels:tab,
+        labels:['angularjs','react ','testqq'],
         datasets: [
           {
             label: 'Hard Skills Data',
@@ -261,14 +261,14 @@ const  getListUser =()=>{
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(255,99,132,1)',
-            data: tab2
+            data: ['60','70','80']
           },
           
           
         ]
       };
       const datachartHard = {
-        labels: nomsoftss,
+        labels: ['public speaking','test','coaching'],
         datasets: [
           {
             label: 'Soft Skills Data',
@@ -278,7 +278,7 @@ const  getListUser =()=>{
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(0,191,255)',
-            data: tabsoft
+            data: ['30','70','90']
           },
           
           

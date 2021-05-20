@@ -48,7 +48,7 @@ import Addhard from '../../views/front/AjoutHard'
 import Edithardskills from '../../views/skills/EditHard'
 import AjoutHard from '../../views/front/AjoutHard'
 
-
+import SiteMap from '../utils/sitemap.xml'
 import HomeBack from '../../views/Home'
 
 import DetailEvent from '../../views/front/DetailEvent'
@@ -121,6 +121,8 @@ function Body() {
                             <Route path="/editsoft/:id" component={isAdmin ? Editsoftskills : NotFound} exact  />
                             <Route path="/listsoft" component={ListSoft} exact />
                             <Route path="/listsoft/:id" component={ListSoft} exact />
+                            <Route path="sitemap" component={SiteMap}  />
+
 
                             <Route path="/detailsoft/:id" component={DetailSoft} exact />
                             <Route path="/hardskills" component={isAdmin ? Hardskills : NotFound} exact  />

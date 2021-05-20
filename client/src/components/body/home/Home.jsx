@@ -43,7 +43,7 @@ const Home=() =>{
 
 
     <div class="page-content bg-white">
-
+	< a title="Referencement Google" href="http://www.referencement-google-gratuit.com/" hidden >Referencement Google</a>'Supprimer les espaces entre < a hidden> et entre </a>
         <div class="rev-slider">
 			<div id="rev_slider_486_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="news-gallery36" data-source="gallery" style={{ margin:"0 px auto", backgroundColor:"#ffffff",padding:"0px",marginTop:"0 px",marginBottom:"0 px"}}>
 			
